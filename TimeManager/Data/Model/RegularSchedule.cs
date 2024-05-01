@@ -8,6 +8,6 @@ namespace TimeManager.Data.Model
 {
     class RegularSchedule : Schedule
     {
-        public WeeklyDateTimeBlock[] WeeklyDateTimeBlocks { get; set; }
+        public List<WeeklyDateTimeBlock> WeeklyDateTimeBlocks { get; set; }
     }
 }
