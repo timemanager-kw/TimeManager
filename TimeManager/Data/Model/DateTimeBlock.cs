@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TimeManager.Data.Model
+namespace TimeManager.Data
 {
     class DateTimeBlock
     {
