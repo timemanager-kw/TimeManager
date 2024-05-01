@@ -8,8 +8,8 @@ namespace TimeManager.Data.Model
 {
     class TimeTable
     {
-        private DateTimeBlock[] AvailableTimes { get; set; }
-        private AssignedSchedule[] AssignedSchedules { get; set; }
-        private AssignedTask[] AssignedTasks { get; set; }
+        private List<DateTimeBlock> AvailableTimes { get; set; }
+        private List<AssignedSchedule> AssignedSchedules { get; set; }
+        private List<AssignedTask> AssignedTasks { get; set; }
     }
 }
