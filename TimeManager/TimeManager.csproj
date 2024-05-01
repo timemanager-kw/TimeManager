@@ -46,11 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Model\AssignedSchedule.cs" />
+    <Compile Include="Data\Model\AssignedTask.cs" />
     <Compile Include="Data\Model\DateTimeBlock.cs" />
     <Compile Include="Data\Model\RegularSchedule.cs" />
     <Compile Include="Data\Model\Schedule.cs" />
     <Compile Include="Data\Model\SingleSchedule.cs" />
     <Compile Include="Data\Model\Task.cs" />
+    <Compile Include="Data\Model\TimeTable.cs" />
     <Compile Include="Data\Model\WeeklyDateTimeBlock.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
