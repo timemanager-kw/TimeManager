@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TimeManager.Data.Model
 {
-    class AssignedSchedule
+    class AssignedTask
     {
         public DateTimeBlock[] DateTimeBlocks { get; set; }
-        public Schedule Schedule { get; set; }
+        public Task Task { get; set; }
     }
 }
