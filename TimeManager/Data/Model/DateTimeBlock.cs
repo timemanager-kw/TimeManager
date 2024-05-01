@@ -8,7 +8,7 @@ namespace TimeManager.Data
 {
     class DateTimeBlock
     {
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
     }
 }
