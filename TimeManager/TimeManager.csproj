@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Manager\IScheduleManager.cs" />
+    <Compile Include="Data\Manager\ITaskManager.cs" />
+    <Compile Include="Data\Manager\ITimeTableManager.cs" />
     <Compile Include="Data\Model\AssignedSchedule.cs" />
     <Compile Include="Data\Model\AssignedTask.cs" />
     <Compile Include="Data\Model\DateTimeBlock.cs" />
