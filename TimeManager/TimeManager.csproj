@@ -61,6 +61,12 @@
     <Compile Include="Forms\AddScheduleForm.Designer.cs">
       <DependentUpon>AddScheduleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AddTaskForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddTaskForm.Designer.cs">
+      <DependentUpon>AddTaskForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
