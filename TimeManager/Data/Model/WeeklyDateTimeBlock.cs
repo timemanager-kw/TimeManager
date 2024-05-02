@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TimeManager.Data.Model
 {
-    class WeeklyDateTimeBlock
+    struct WeeklyDateTimeBlock
     {
         public DayOfWeek DayOfWeek { get; set; }
         public DateTime StartTime { get; set; }
