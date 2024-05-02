@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using TimeManager.Data.Model;
 
 namespace TimeManager.Scheduler
 {
-    internal interface ISchedulerStrategy
+    interface ISchedulerStrategy
     {
+        void Schedule(TimeTable timeTable, List<Task> tasks);
     }
 }
