@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace TimeManager.Data.Repository
 {
-    internal interface ITaskRepository
+    interface ITaskRepository
     {
+        void Add(Task task);
+        void Update(Task task);
+        void Delete(Task task);
+        IEnumerable<Task> LoadAll();
     }
 }
