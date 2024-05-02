@@ -8,7 +8,7 @@ namespace TimeManager.Data.Model
 {
     class TimeTable
     {
-        private List<DateTimeBlock> AvailableTimes { get; set; }
+        private List<DateTimeBlock> WorkTimes { get; set; }
         private List<AssignedSchedule> AssignedSchedules { get; set; }
         private List<AssignedTask> AssignedTasks { get; set; }
     }
