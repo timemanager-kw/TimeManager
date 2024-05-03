@@ -29,7 +29,7 @@ namespace TimeManager.Data.Manager
 
         public void Delete(Schedule schedule)
         {
-            throw new NotImplementedException();
+            _scheduleRepository.Delete(schedule);
         }
 
         public IEnumerable<Schedule> GetAll()
