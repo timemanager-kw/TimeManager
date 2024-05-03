@@ -11,12 +11,12 @@ namespace TimeManager.Data.Manager
     class ScheduleManager : IScheduleManager
     {
         private readonly IScheduleRepository _scheduleRepository;
-        private List<Schedule> schedules;
+        private readonly List<Schedule> schedules;
 
         public ScheduleManager(IScheduleRepository scheduleRepository)
         {
             _scheduleRepository = scheduleRepository;
-            schedules = (List<Schedule>) scheduleRepository.LoadAll();
+            schedules = (List<Schedule>) _scheduleRepository.LoadAll();
         }
 
         public void Add(Schedule schedule)
