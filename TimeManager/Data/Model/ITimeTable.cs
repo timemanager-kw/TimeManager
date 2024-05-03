@@ -12,6 +12,7 @@ namespace TimeManager.Data.Model
         List<DateTimeBlock> GetWorkTimes(DateTime week);
 
         List<DateTimeBlock> GetAvailableTimes(DateTime week);
+        bool IsAvailable(DateTimeBlock timeBlock);
 
         void AssignSchedule(AssignedSchedule assignedSchedule);
         void UnassignSchedule(AssignedSchedule assignedSchedule);
