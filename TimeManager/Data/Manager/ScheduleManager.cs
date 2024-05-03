@@ -21,7 +21,10 @@ namespace TimeManager.Data.Manager
 
         public void Add(Schedule schedule)
         {
-            throw new NotImplementedException();
+            // TODO: ID 등록
+            throw new NotImplementedException("TODO: ID 등록");
+
+            _scheduleRepository.Add(schedule);
         }
 
         public void Delete(Schedule schedule)
