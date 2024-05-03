@@ -25,11 +25,13 @@ namespace TimeManager.Data.Manager
             throw new NotImplementedException("TODO: ID 등록");
 
             _scheduleRepository.Add(schedule);
+            schedules.Add(schedule);
         }
 
         public void Delete(Schedule schedule)
         {
             _scheduleRepository.Delete(schedule);
+            schedules.Remove(schedule);
         }
 
         public IEnumerable<Schedule> GetAll()
@@ -39,6 +41,7 @@ namespace TimeManager.Data.Manager
 
         public void Update(Schedule schedule)
         {
+            schedules[schedules.FindIndex(s => s.Id == schedule.Id)] = schedule;
             _scheduleRepository.Update(schedule);
         }
     }
