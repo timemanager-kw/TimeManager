@@ -9,16 +9,16 @@ namespace TimeManager.Data.Model
     interface ITimeTable
     {
         void SetWorkTimes(List<DateTimeBlock> workTimes);
-        List<DateTimeBlock> GetWorkTimes();
+        List<DateTimeBlock> GetWorkTimes(DateTime week);
 
         List<DateTimeBlock> GetAvailableTimes(DateTime week);
 
         void AssignSchedule(AssignedSchedule assignedSchedule);
         void UnassignSchedule(AssignedSchedule assignedSchedule);
-        List<AssignedSchedule> GetAssignedSchedules();
+        List<AssignedSchedule> GetAssignedSchedules(DateTime week);
 
         void AssignTask(AssignedTask assignedTask);
         void UnassignTask(AssignedTask assignedTask);
-        List<AssignedTask> GetAssignedTasks();
+        List<AssignedTask> GetAssignedTasks(DateTime week);
     }
 }
