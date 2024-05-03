@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TimeManager.Data.Model;
 
 namespace TimeManager.Scheduler
 {
     abstract class Scheduler
     {
-        public void Run()
+        public TimeTable Run()
         {
             AssignSchdules();
-            Schedule();
+            return ScheduleTasks();
         }
 
         abstract public void AssignSchdules();
-        abstract public void Schedule();
+        abstract public TimeTable ScheduleTasks();
     }
 }
