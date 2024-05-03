@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TimeManager.Data.Model
 {
-    class DateTimeBlock
+    struct DateTimeBlock
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
