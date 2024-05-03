@@ -16,12 +16,12 @@ namespace TimeManager.Data.Manager
         public ScheduleManager(IScheduleRepository scheduleRepository)
         {
             _scheduleRepository = scheduleRepository;
-            schedules = new List<Schedule>();
+            schedules = (List<Schedule>) scheduleRepository.LoadAll();
         }
 
         public void Add(Schedule schedule)
         {
-            
+            throw new NotImplementedException();
         }
 
         public void Delete(Schedule schedule)
@@ -31,7 +31,7 @@ namespace TimeManager.Data.Manager
 
         public IEnumerable<Schedule> GetAll()
         {
-            throw new NotImplementedException();
+            return schedules;
         }
 
         public void Update(Schedule schedule)
