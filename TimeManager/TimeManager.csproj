@@ -91,6 +91,7 @@
     <Compile Include="Scheduler\IScheduler.cs" />
     <Compile Include="Scheduler\ISchedulerStrategy.cs" />
     <Compile Include="Scheduler\Scheduler.cs" />
+    <Compile Include="Scheduler\ThunderSchedulerStrategy.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
