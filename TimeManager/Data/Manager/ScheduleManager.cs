@@ -11,12 +11,12 @@ namespace TimeManager.Data.Manager
     class ScheduleManager : IScheduleManager
     {
         private readonly IScheduleRepository _scheduleRepository;
-        private readonly List<Schedule> schedules;
+        private readonly List<Schedule> _schedules;
 
         public ScheduleManager(IScheduleRepository scheduleRepository)
         {
             _scheduleRepository = scheduleRepository;
-            schedules = (List<Schedule>) _scheduleRepository.LoadAll();
+            _schedules = (List<Schedule>) _scheduleRepository.LoadAll();
         }
 
         public void Add(Schedule schedule)
@@ -25,23 +25,23 @@ namespace TimeManager.Data.Manager
             throw new NotImplementedException("TODO: ID 등록");
 
             _scheduleRepository.Add(schedule);
-            schedules.Add(schedule);
+            _schedules.Add(schedule);
         }
 
         public void Delete(Schedule schedule)
         {
             _scheduleRepository.Delete(schedule);
-            schedules.Remove(schedule);
+            _schedules.Remove(schedule);
         }
 
         public IEnumerable<Schedule> GetAll()
         {
-            return schedules;
+            return _schedules;
         }
 
         public void Update(Schedule schedule)
         {
-            schedules[schedules.FindIndex(s => s.Id == schedule.Id)] = schedule;
+            _schedules[_schedules.FindIndex(s => s.Id == schedule.Id)] = schedule;
             _scheduleRepository.Update(schedule);
         }
     }
