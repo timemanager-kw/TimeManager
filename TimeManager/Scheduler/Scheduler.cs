@@ -7,7 +7,7 @@ using TimeManager.Data.Model;
 
 namespace TimeManager.Scheduler
 {
-    abstract class Scheduler
+    abstract class Scheduler : IScheduler
     {
         public TimeTable Run()
         {
