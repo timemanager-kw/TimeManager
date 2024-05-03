@@ -46,17 +46,52 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Data\Manager\IScheduleManager.cs" />
+    <Compile Include="Data\Manager\ITaskManager.cs" />
+    <Compile Include="Data\Manager\ITimeTableManager.cs" />
+    <Compile Include="Data\Model\AssignedSchedule.cs" />
+    <Compile Include="Data\Model\AssignedTask.cs" />
+    <Compile Include="Data\Model\DateTimeBlock.cs" />
+    <Compile Include="Data\Model\ITimeTable.cs" />
+    <Compile Include="Data\Model\RegularSchedule.cs" />
+    <Compile Include="Data\Model\Schedule.cs" />
+    <Compile Include="Data\Model\SingleSchedule.cs" />
+    <Compile Include="Data\Model\Task.cs" />
+    <Compile Include="Data\Model\TimeTable.cs" />
+    <Compile Include="Data\Model\WeeklyDateTimeBlock.cs" />
+    <Compile Include="Data\Repository\IScheduleRepository.cs" />
+    <Compile Include="Data\Repository\ITaskRepository.cs" />
+    <Compile Include="Data\Repository\ITimeTableRepository.cs" />
+    <Compile Include="Forms\AddScheduleForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\AddScheduleForm.Designer.cs">
+      <DependentUpon>AddScheduleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddTaskForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddTaskForm.Designer.cs">
+      <DependentUpon>AddTaskForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EditAvailableTimeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditAvailableTimeForm.Designer.cs">
+      <DependentUpon>EditAvailableTimeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="Scheduler\IScheduler.cs" />
+    <Compile Include="Scheduler\ISchedulerStrategy.cs" />
+    <Compile Include="Scheduler\Scheduler.cs" />
+    <Compile Include="Scheduler\ThunderSchedulerStrategy.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -79,5 +114,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
