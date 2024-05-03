@@ -41,8 +41,12 @@ namespace TimeManager.Data.Manager
 
         public void Update(Schedule schedule)
         {
-            _schedules[_schedules.FindIndex(s => s.Id == schedule.Id)] = schedule;
+            int idx = _schedules.FindIndex(s => s.Id == schedule.Id);
+            if (idx == -1)
+                throw new ArgumentException("존재하지 않는 스케줄입니다.");
+
             _scheduleRepository.Update(schedule);
+            _schedules[idx] = schedule;
         }
     }
 }
