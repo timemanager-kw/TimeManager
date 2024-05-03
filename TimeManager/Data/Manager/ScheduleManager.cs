@@ -39,7 +39,7 @@ namespace TimeManager.Data.Manager
 
         public void Update(Schedule schedule)
         {
-            throw new NotImplementedException();
+            _scheduleRepository.Update(schedule);
         }
     }
 }
