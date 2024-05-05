@@ -37,7 +37,12 @@ namespace TimeManager.Data.Manager
 
         public void Update(Task task)
         {
-            throw new NotImplementedException();
+            int idx = _tasks.FindIndex(s => s.Id == task.Id);
+            if (idx == -1)
+                throw new ArgumentException("존재하지 않는 태스크입니다.");
+
+            _taskRepository.Update(task);
+            _tasks[idx] = task;
         }
     }
 }
