@@ -31,7 +31,7 @@ namespace TimeManager.Data.Manager
 
         public TimeTable Get()
         {
-            throw new NotImplementedException();
+            return _timeTable;
         }
 
         public void Update(TimeTable timeTable)
