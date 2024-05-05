@@ -9,6 +9,6 @@ namespace TimeManager.Data.Model
     class AssignedSchedule
     {
         public List<DateTimeBlock> DateTimeBlocks { get; set; }
-        public Schedule Schedule { get; set; }
+        public long ScheduleId { get; set; }
     }
 }
