@@ -26,7 +26,8 @@ namespace TimeManager.Data.Manager
 
         public void Delete(Task task)
         {
-            throw new NotImplementedException();
+            _taskRepository.Delete(task);
+            _tasks.Remove(task);
         }
 
         public IEnumerable<Task> GetAll()
