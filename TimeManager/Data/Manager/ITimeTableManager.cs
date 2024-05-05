@@ -11,6 +11,6 @@ namespace TimeManager.Data.Manager
     {
         TimeTable Get();
         void Save(TimeTable timeTable);
-        void Clear(TimeTable timeTable);
+        void Clear();
     }
 }
