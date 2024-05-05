@@ -20,7 +20,8 @@ namespace TimeManager.Data.Manager
 
         public void Add(Task task)
         {
-            throw new NotImplementedException();
+            _taskRepository.Add(task);
+            _tasks.Add(task);
         }
 
         public void Delete(Task task)
