@@ -2,28 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using TimeManager.Data.Model;
 
 namespace TimeManager.Data.Manager
 {
     class TaskManager : ITaskManager
     {
-        public void Add(Model.Task task)
+        public void Add(Task task)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(Model.Task task)
+        public void Delete(Task task)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Model.Task> GetAll()
+        public IEnumerable<Task> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Model.Task task)
+        public void Update(Task task)
         {
             throw new NotImplementedException();
         }
