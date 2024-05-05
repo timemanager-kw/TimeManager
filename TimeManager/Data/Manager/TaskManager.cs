@@ -12,10 +12,10 @@ namespace TimeManager.Data.Manager
         private readonly ITaskRepository _taskRepository;
         private readonly List<Task> _tasks;
 
-        public TaskManager(ITaskRepository taskRepository, List<Task> tasks)
+        public TaskManager(ITaskRepository taskRepository)
         {
             _taskRepository = taskRepository;
-            _tasks = tasks;
+            _tasks = (List<Task>) _taskRepository.LoadAll();
         }
 
         public void Add(Task task)
