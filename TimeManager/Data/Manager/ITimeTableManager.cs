@@ -9,9 +9,8 @@ namespace TimeManager.Data.Manager
 {
     interface ITimeTableManager
     {
-        void Add(TimeTable timeTable);
-        void Update(TimeTable timeTable);
-        void Delete(TimeTable timeTable);
         TimeTable Get();
+        void Save(TimeTable timeTable);
+        void Clear(TimeTable timeTable);
     }
 }

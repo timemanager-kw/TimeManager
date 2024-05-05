@@ -19,12 +19,7 @@ namespace TimeManager.Data.Manager
             _timeTable = _timeTableRepository.Load();
         }
 
-        public void Add(TimeTable timeTable)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(TimeTable timeTable)
+        public void Clear(TimeTable timeTable)
         {
             throw new NotImplementedException();
         }
@@ -34,7 +29,7 @@ namespace TimeManager.Data.Manager
             return _timeTable;
         }
 
-        public void Update(TimeTable timeTable)
+        public void Save(TimeTable timeTable)
         {
             throw new NotImplementedException();
         }
