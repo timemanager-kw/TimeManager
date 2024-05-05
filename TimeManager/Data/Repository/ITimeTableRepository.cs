@@ -9,7 +9,7 @@ namespace TimeManager.Data.Repository
 {
     interface ITimeTableRepository
     {
-        void Save(TimeTable timeTable);
+        void Update(TimeTable timeTable);
         void Clear(TimeTable timeTable);
         TimeTable Load();
     }
