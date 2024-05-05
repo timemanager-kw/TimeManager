@@ -11,7 +11,7 @@ namespace TimeManager.Data.Manager
     class TimeTableManager : ITimeTableManager
     {
         private readonly ITimeTableRepository _timeTableRepository;
-        private readonly TimeTable _timeTable;
+        private TimeTable _timeTable;
 
         public TimeTableManager(ITimeTableRepository timeTableRepository)
         {
@@ -31,7 +31,8 @@ namespace TimeManager.Data.Manager
 
         public void Save(TimeTable timeTable)
         {
-            throw new NotImplementedException();
+            _timeTableRepository.Update(timeTable);
+            _timeTable = timeTable;
         }
     }
 }
