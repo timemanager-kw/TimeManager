@@ -30,7 +30,7 @@ namespace TimeManager.Data.Manager
 
         public IEnumerable<Task> GetAll()
         {
-            throw new NotImplementedException();
+            return _tasks;
         }
 
         public void Update(Task task)
