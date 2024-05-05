@@ -19,9 +19,10 @@ namespace TimeManager.Data.Manager
             _timeTable = _timeTableRepository.Load();
         }
 
-        public void Clear(TimeTable timeTable)
+        public void Clear()
         {
-            throw new NotImplementedException();
+            _timeTableRepository.Clear();
+            _timeTable = _timeTableRepository.Load();
         }
 
         public TimeTable Get()
