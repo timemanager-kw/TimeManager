@@ -16,5 +16,10 @@ namespace TimeManager.Forms
         {
             InitializeComponent();
         }
+
+        private void splitContainer2_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
