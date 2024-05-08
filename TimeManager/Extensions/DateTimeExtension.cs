@@ -35,5 +35,15 @@ namespace TimeManager.Extensions
             int diff = (7 + (dayOfWeek - firstDayOfMonth.DayOfWeek)) % 7;
             return firstDayOfMonth.AddDays(diff);
         }
+
+        public static DateTime StartOfDay(this DateTime dateTime)
+        {
+            return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 0, 0, 0);
+        }
+
+        public static DateTime EndOfDay(this DateTime dateTime)
+        {
+            return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 23, 59, 59);
+        }
     }
 }
