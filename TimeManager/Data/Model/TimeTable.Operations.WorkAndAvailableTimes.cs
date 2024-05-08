@@ -12,7 +12,7 @@ namespace TimeManager.Data.Model
         // TODO: 주 단위로 확장
         public void SetWorkTimes(List<DateTimeBlock> workTimes)
         {
-            throw new NotImplementedException();
+            _workTimes = workTimes;
         }
 
         public List<DateTimeBlock> GetWorkTimes()
