@@ -28,5 +28,12 @@ namespace TimeManager.Extensions
         {
             return dateTime.StartOfMonth().AddMonths(1).AddDays(-1);
         }
+
+        public static DateTime FirstDayOfMonthHasDayOfWeek(this DateTime dateTime, DayOfWeek dayOfWeek)
+        {
+            DateTime firstDayOfMonth = dateTime.StartOfMonth();
+            int diff = (7 + (dayOfWeek - firstDayOfMonth.DayOfWeek)) % 7;
+            return firstDayOfMonth.AddDays(diff);
+        }
     }
 }
