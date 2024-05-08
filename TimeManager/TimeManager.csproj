@@ -59,6 +59,9 @@
     <Compile Include="Data\Model\Schedule.cs" />
     <Compile Include="Data\Model\Task.cs" />
     <Compile Include="Data\Model\TimeTable.cs" />
+    <Compile Include="Data\Model\TimeTable.Operations.AssignedSchedules.cs" />
+    <Compile Include="Data\Model\TimeTable.Operations.AssignedTasks.cs" />
+    <Compile Include="Data\Model\TimeTable.Operations.WorkAndAvailableTimes.cs" />
     <Compile Include="Data\Model\Week.cs" />
     <Compile Include="Data\Model\WeeklyDateTimeBlock.cs" />
     <Compile Include="Data\Repository\IScheduleRepository.cs" />
