@@ -51,7 +51,19 @@ namespace TimeManager.Data.Repository
             }
             File.WriteAllLines(filePath, lines);
         }
-        void Delete(Schedule schedule);
+        void Delete(Schedule schedule) { 
+            List<string> lines = File.ReadAllLines (filePath).ToList();
+            for(int i = 1; i < lines.Count; i++)
+            {
+                string[] parts = lines[i].Split(',');
+                if (int.Parse(parts[0]) == schedule.Id)
+                {
+                    lines.RemoveAt(i);
+                    break;
+                }
+            }
+            File.WriteAllLines(filePath, lines);
+        }
         IEnumerable<Schedule> LoadAll();
     }
 }
