@@ -8,18 +8,36 @@ namespace TimeManager.Data.Model
 {
     interface ITimeTable
     {
+        /* WorkTime Operations */
+        // TODO: 주 단위로 확장
         void SetWorkTimes(List<DateTimeBlock> workTimes);
-        List<DateTimeBlock> GetWorkTimes(DateTime week);
+        List<DateTimeBlock> GetWorkTimes();
 
-        List<DateTimeBlock> GetAvailableTimes(DateTime week);
+        /* AvailableTime Operations */
+        List<DateTimeBlock> GetWeeklyAvailableTimes(Week week);
+        List<DateTimeBlock> GetAvailableTimesInThisWeekAsOfNow();
         bool IsAvailable(DateTimeBlock timeBlock);
 
-        void AssignSchedule(AssignedSchedule assignedSchedule);
-        void UnassignSchedule(AssignedSchedule assignedSchedule);
-        List<AssignedSchedule> GetAssignedSchedules(DateTime week);
+        /* AssignedSchedule Operations */
+        void AssignSchedule(long scheduleId, IEnumerable<DateTimeBlock> assignedTimeBlocks);
+        void ReassignSchedule(long scheduleId, IEnumerable<DateTimeBlock> assignedTimeBlocks);
+        void UnassignSchedule(long scheduleId);
+        List<AssignedSchedule> GetAssignedSchedulesByScheduleId(long scheduleId);
+        List<AssignedSchedule> GetAllAssignedSchedules();
+        List<AssignedSchedule> GetAllAssignedSchedulesAsOfNow();
+        List<AssignedSchedule> GetWeeklyAssignedSchedules(Week week);
+        List<AssignedSchedule> GetAssignedSchedulesInThisWeekAsOfNow();
+        List<AssignedSchedule> GetAssignedSchedulesInBlock(DateTimeBlock timeBlock);
 
-        void AssignTask(AssignedTask assignedTask);
-        void UnassignTask(AssignedTask assignedTask);
-        List<AssignedTask> GetAssignedTasks(DateTime week);
+        /* AssignedTask Operations */
+        void AssignTask(long taskId, IEnumerable<DateTimeBlock> assignedTimeBlocks);
+        void ReassignTask(long taskId, IEnumerable<DateTimeBlock> assignedTimeBlocks);
+        void UnassignTask(long taskId);
+        List<AssignedTask> GetAssignedTasksByTaskId(long taskId);
+        List<AssignedTask> GetAllAssignedTasks();
+        List<AssignedTask> GetAllAssignedTasksAsOfNow();
+        List<AssignedTask> GetWeeklyAssignedTasks(Week week);
+        List<AssignedTask> GetAssignedTasksInThisWeekAsOfNow();
+        List<AssignedTask> GetAssignedTasksInBlock(DateTimeBlock timeBlock);
     }
 }
