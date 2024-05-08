@@ -12,7 +12,7 @@ namespace TimeManager.Data.Model
         Regular
     }
 
-    abstract class Schedule
+    class Schedule
     {
         public long Id { get; set; }
         public string Name { get; set; }

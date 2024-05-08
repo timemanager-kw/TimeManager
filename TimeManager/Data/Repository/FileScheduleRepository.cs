@@ -22,25 +22,27 @@ namespace TimeManager.Data.Repository
                 }
             }
         }
-        void Add(Schedule schedule) {
+        public void Add(Schedule schedule)
+        {
             int nextId;
             using (StreamReader reader = new StreamReader(filePath))
             {
                 nextId = int.Parse(reader.ReadLine());
             }
             schedule.Id = nextId;
-            using(StreamWriter writer = new StreamWriter(filePath))
+            using (StreamWriter writer = new StreamWriter(filePath))
             {
                 writer.WriteLine($"{schedule.Id}, {schedule.Name}, {schedule.Type}, {schedule.TimeBlock.StartDate}, {schedule.TimeBlock.EndDate}, {schedule.Description}");
             }
-            using(StreamWriter writer = new StreamWriter(filePath))
+            using (StreamWriter writer = new StreamWriter(filePath))
             {
                 writer.WriteLine(++nextId);
             }
         }
-        void Update(Schedule schedule) {
+        public void Update(Schedule schedule)
+        {
             List<string> lines = File.ReadAllLines(filePath).ToList();
-            for(int i = 1; i < lines.Count; i++)
+            for (int i = 1; i < lines.Count; i++)
             {
                 string[] parts = lines[i].Split(',');
                 if (int.Parse(parts[0]) == schedule.Id)
@@ -51,9 +53,10 @@ namespace TimeManager.Data.Repository
             }
             File.WriteAllLines(filePath, lines);
         }
-        void Delete(Schedule schedule) { 
-            List<string> lines = File.ReadAllLines (filePath).ToList();
-            for(int i = 1; i < lines.Count; i++)
+        public void Delete(Schedule schedule)
+        {
+            List<string> lines = File.ReadAllLines(filePath).ToList();
+            for (int i = 1; i < lines.Count; i++)
             {
                 string[] parts = lines[i].Split(',');
                 if (int.Parse(parts[0]) == schedule.Id)
@@ -64,6 +67,28 @@ namespace TimeManager.Data.Repository
             }
             File.WriteAllLines(filePath, lines);
         }
-        IEnumerable<Schedule> LoadAll();
+        public IEnumerable<Schedule> LoadAll()
+        {
+            List<Schedule> schedules = new List<Schedule>();
+            List<string> lines = File.ReadAllLines(filePath).ToList();
+            for (int i = 1; i < lines.Count; i++)
+            {
+                string[] parts = lines[i].Split(',');
+                Schedule schedule = new Schedule
+                {
+                    Id = long.Parse(parts[0]),
+                    Name = parts[1],
+                    Type = (EScheduleType)int.Parse(parts[2]),
+                    TimeBlock = new DateTimeBlock
+                    {
+                        StartDate = DateTime.Parse(parts[3]),
+                        EndDate = DateTime.Parse(parts[4]),
+                    },
+                    Description = parts[5]
+                };
+                schedules.Add(schedule);
+            }
+            return schedules;
+        }
     }
 }
