@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TimeManager.Data.Model
 {
-    class TimeTable
+    partial class TimeTable
     {
         /* private properties */
         private List<DateTimeBlock> _workTimes { get; set; }
