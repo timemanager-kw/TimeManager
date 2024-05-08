@@ -17,7 +17,7 @@ namespace TimeManager.Data.Model
 
         public List<DateTimeBlock> GetWorkTimes()
         {
-            throw new NotImplementedException();
+            return _workTimes;
         }
 
 
