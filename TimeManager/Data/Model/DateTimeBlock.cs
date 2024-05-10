@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,6 +18,16 @@ namespace TimeManager.Data.Model
             {
                 return EndDate - StartDate;
             }
+        }
+
+        public static IEnumerable<DateTimeBlock> Difference(IEnumerable<DateTimeBlock> minuend, IEnumerable<DateTimeBlock> subtrahend)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<DateTimeBlock> Difference(IEnumerable<DateTimeBlock> subtrahend)
+        {
+            throw new NotImplementedException();
         }
     }
 }

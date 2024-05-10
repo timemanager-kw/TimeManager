@@ -53,6 +53,5 @@ namespace TimeManager.Data.Model
         {
             throw new NotImplementedException();
         }
-
     }
 }
