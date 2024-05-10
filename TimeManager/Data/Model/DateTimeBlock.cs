@@ -18,5 +18,10 @@ namespace TimeManager.Data.Model
                 return EndDate - StartDate;
             }
         }
+
+        public static IEnumerable<DateTimeBlock> Difference(IEnumerable<DateTimeBlock> minuend, IEnumerable<DateTimeBlock> subtrahend)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
