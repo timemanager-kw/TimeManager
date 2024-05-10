@@ -52,5 +52,10 @@ namespace TimeManager.Data.Model
         {
             throw new NotImplementedException();
         }
+
+        private List<DateTimeBlock> GetDailyAssignedSchedules(DateTime date)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
