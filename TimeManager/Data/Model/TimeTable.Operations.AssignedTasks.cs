@@ -53,11 +53,5 @@ namespace TimeManager.Data.Model
         {
             throw new NotImplementedException();
         }
-
-        private List<DateTimeBlock> GetDailyAssignedTasks(DateTime date)
-        {
-            throw new NotImplementedException();
-        }
-
     }
 }
