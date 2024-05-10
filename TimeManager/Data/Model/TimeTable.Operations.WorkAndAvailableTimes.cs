@@ -32,7 +32,10 @@ namespace TimeManager.Data.Model
 
         public List<DateTimeBlock> GetAvailableTimesInThisWeekAsOfNow()
         {
-            throw new NotImplementedException();
+            IEnumerable<DateTimeBlock> scheduleTimesInThisWeek = GetAssignedSchedulesInThisWeekAsOfNow()
+                .SelectMany(s => s.AssignedBlocks);
+
+            return (List<DateTimeBlock>) DateTimeBlock.Difference(scheduleTimesInThisWeek, _workTimes);
         }
         
         public bool IsAvailable(DateTimeBlock timeBlock)
