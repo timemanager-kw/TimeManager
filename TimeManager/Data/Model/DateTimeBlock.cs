@@ -20,8 +20,12 @@ namespace TimeManager.Data.Model
             }
         }
 
-        // TODO: static 말고 일반 메서드로 구현
         public static IEnumerable<DateTimeBlock> Difference(IEnumerable<DateTimeBlock> minuend, IEnumerable<DateTimeBlock> subtrahend)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<DateTimeBlock> Difference(IEnumerable<DateTimeBlock> subtrahend)
         {
             throw new NotImplementedException();
         }
