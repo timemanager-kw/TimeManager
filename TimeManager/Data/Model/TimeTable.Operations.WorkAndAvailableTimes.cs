@@ -53,7 +53,10 @@ namespace TimeManager.Data.Model
 
         private List<DateTimeBlock> GetDailyAvailableTimes(DateTime date)
         {
-            throw new NotImplementedException();
+            IEnumerable<DateTimeBlock> scheduleTimes = GetDailyAssignedSchedules(date)
+                .SelectMany(s => s.AssignedBlocks);
+
+            return (List<DateTimeBlock>) DateTimeBlock.Difference(_workTimes, scheduleTimes);
         }
         
     }
