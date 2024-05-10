@@ -24,7 +24,9 @@ namespace TimeManager.Data.Model
         /* AvailableTime Operations */
         public List<DateTimeBlock> GetWeeklyAvailableTimes(Week week)
         {
-            throw new NotImplementedException();
+            List<AssignedSchedule> weeklySchedules = GetWeeklyAssignedSchedules(week);
+            List<DateTimeBlock> scheduleTimes = weeklySchedules.SelectMany(s => s.AssignedBlocks).ToList();
+            return (List<DateTimeBlock>) DateTimeBlock.Difference(_workTimes, scheduleTimes);
         }
 
         public List<DateTimeBlock> GetAvailableTimesInThisWeekAsOfNow()
