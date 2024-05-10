@@ -24,9 +24,8 @@ namespace TimeManager.Data.Model
         /* AvailableTime Operations */
         public List<DateTimeBlock> GetWeeklyAvailableTimes(Week week)
         {
-            List<DateTimeBlock> scheduleTimes = GetWeeklyAssignedSchedules(week)
-                .SelectMany(s => s.AssignedBlocks)
-                .ToList();
+            IEnumerable<DateTimeBlock> scheduleTimes = GetWeeklyAssignedSchedules(week)
+                .SelectMany(s => s.AssignedBlocks);
 
             return (List<DateTimeBlock>) DateTimeBlock.Difference(_workTimes, scheduleTimes);
         }
