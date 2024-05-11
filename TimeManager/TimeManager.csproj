@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\WeeklyTimeTableControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WeeklyTimeTableControl.Designer.cs">
+      <DependentUpon>WeeklyTimeTableControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\Manager\IScheduleManager.cs" />
     <Compile Include="Data\Manager\ITaskManager.cs" />
     <Compile Include="Data\Manager\ITimeTableManager.cs" />
@@ -98,6 +104,9 @@
     <Compile Include="Scheduler\ISchedulerStrategy.cs" />
     <Compile Include="Scheduler\Scheduler.cs" />
     <Compile Include="Scheduler\ThunderSchedulerStrategy.cs" />
+    <EmbeddedResource Include="Controls\WeeklyTimeTableControl.resx">
+      <DependentUpon>WeeklyTimeTableControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
