@@ -35,9 +35,10 @@
             // 
             this.weeklyTimeTableControl1.Location = new System.Drawing.Point(72, 38);
             this.weeklyTimeTableControl1.Name = "weeklyTimeTableControl1";
-            this.weeklyTimeTableControl1.Size = new System.Drawing.Size(767, 321);
+            this.weeklyTimeTableControl1.Size = new System.Drawing.Size(784, 321);
             this.weeklyTimeTableControl1.TabIndex = 0;
             this.weeklyTimeTableControl1.timeTable = null;
+            this.weeklyTimeTableControl1.Load += new System.EventHandler(this.weeklyTimeTableControl1_Load);
             // 
             // TestWeeklyTimeTableControl
             // 

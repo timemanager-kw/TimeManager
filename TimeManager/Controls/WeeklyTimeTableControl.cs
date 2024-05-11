@@ -38,6 +38,18 @@ namespace TimeManager.Controls
             }
         }
 
+        public void CleanCells()
+        {
+            for (int i = 0; i < 48; i++)
+            {
+                for (int j = 1; j < 8; j++)
+                {
+                    dataGridView.Rows[i].Cells[j].Value = null;
+                    dataGridView.Rows[i].Cells[j].Style.BackColor = Color.White;
+                }
+            }
+        }
+
         public void DrawSchedules()
         {
             List<AssignedSchedule> schedules = timeTable.GetWeeklyAssignedSchedules(week);

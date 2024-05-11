@@ -16,5 +16,10 @@ namespace TimeManager.Forms.Tests
         {
             InitializeComponent();
         }
+
+        private void weeklyTimeTableControl1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
