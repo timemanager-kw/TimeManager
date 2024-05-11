@@ -45,5 +45,10 @@ namespace TimeManager.Extensions
         {
             return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 23, 59, 59);
         }
+
+        public static int GetDayOfWeekIndex(this DateTime dateTime, DayOfWeek startDayOfWeek)
+        {
+            return (7 + (dateTime.DayOfWeek - startDayOfWeek)) % 7;
+        }
     }
 }
