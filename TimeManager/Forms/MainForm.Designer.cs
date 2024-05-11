@@ -30,7 +30,7 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
-            this.button1 = new System.Windows.Forms.Button();
+            this.AlgorithmStarter = new System.Windows.Forms.Button();
             this.NextBtn = new System.Windows.Forms.Button();
             this.WeekTxtBox = new System.Windows.Forms.TextBox();
             this.PreBtn = new System.Windows.Forms.Button();
@@ -102,7 +102,7 @@
             // 
             // splitContainer4.Panel1
             // 
-            this.splitContainer4.Panel1.Controls.Add(this.button1);
+            this.splitContainer4.Panel1.Controls.Add(this.AlgorithmStarter);
             this.splitContainer4.Panel1.Controls.Add(this.NextBtn);
             this.splitContainer4.Panel1.Controls.Add(this.WeekTxtBox);
             this.splitContainer4.Panel1.Controls.Add(this.PreBtn);
@@ -115,15 +115,16 @@
             this.splitContainer4.SplitterDistance = 28;
             this.splitContainer4.TabIndex = 0;
             // 
-            // button1
+            // AlgorithmStarter
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button1.Location = new System.Drawing.Point(619, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(60, 22);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "계획";
-            this.button1.UseVisualStyleBackColor = true;
+            this.AlgorithmStarter.Dock = System.Windows.Forms.DockStyle.Right;
+            this.AlgorithmStarter.Location = new System.Drawing.Point(619, 3);
+            this.AlgorithmStarter.Name = "AlgorithmStarter";
+            this.AlgorithmStarter.Size = new System.Drawing.Size(60, 22);
+            this.AlgorithmStarter.TabIndex = 5;
+            this.AlgorithmStarter.Text = "계획";
+            this.AlgorithmStarter.UseVisualStyleBackColor = true;
+            this.AlgorithmStarter.Click += new System.EventHandler(this.AlgorithmStarter_Click);
             // 
             // NextBtn
             // 
@@ -134,6 +135,7 @@
             this.NextBtn.TabIndex = 4;
             this.NextBtn.Text = ">";
             this.NextBtn.UseVisualStyleBackColor = true;
+            this.NextBtn.Click += new System.EventHandler(this.NextBtn_Click);
             // 
             // WeekTxtBox
             // 
@@ -411,7 +413,7 @@
         private System.Windows.Forms.Button PreBtn;
         private System.Windows.Forms.Button NextBtn;
         private System.Windows.Forms.TextBox WeekTxtBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button AlgorithmStarter;
         private System.Windows.Forms.SplitContainer splitContainer5;
         private System.Windows.Forms.TextBox LogTxt;
         private System.Windows.Forms.SplitContainer splitContainer6;
