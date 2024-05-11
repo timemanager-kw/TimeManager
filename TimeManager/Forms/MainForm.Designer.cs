@@ -32,7 +32,7 @@
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.button1 = new System.Windows.Forms.Button();
             this.NextBtn = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.WeekTxtBox = new System.Windows.Forms.TextBox();
             this.PreBtn = new System.Windows.Forms.Button();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
@@ -104,7 +104,7 @@
             // 
             this.splitContainer4.Panel1.Controls.Add(this.button1);
             this.splitContainer4.Panel1.Controls.Add(this.NextBtn);
-            this.splitContainer4.Panel1.Controls.Add(this.textBox1);
+            this.splitContainer4.Panel1.Controls.Add(this.WeekTxtBox);
             this.splitContainer4.Panel1.Controls.Add(this.PreBtn);
             this.splitContainer4.Panel1.Padding = new System.Windows.Forms.Padding(3);
             // 
@@ -135,17 +135,17 @@
             this.NextBtn.Text = ">";
             this.NextBtn.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // WeekTxtBox
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.textBox1.Location = new System.Drawing.Point(43, 3);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(140, 22);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.Text = "2024.05 2주차";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.WeekTxtBox.Dock = System.Windows.Forms.DockStyle.Left;
+            this.WeekTxtBox.Location = new System.Drawing.Point(43, 3);
+            this.WeekTxtBox.Multiline = true;
+            this.WeekTxtBox.Name = "WeekTxtBox";
+            this.WeekTxtBox.ReadOnly = true;
+            this.WeekTxtBox.Size = new System.Drawing.Size(140, 22);
+            this.WeekTxtBox.TabIndex = 3;
+            this.WeekTxtBox.Text = "2024.05 2주차";
+            this.WeekTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // PreBtn
             // 
@@ -346,6 +346,7 @@
             this.TaskBtn.TabIndex = 0;
             this.TaskBtn.Text = "업무";
             this.TaskBtn.UseVisualStyleBackColor = true;
+            this.TaskBtn.Click += new System.EventHandler(this.TaskBtn_Click);
             // 
             // TimeBlockView
             // 
@@ -407,7 +408,7 @@
         private System.Windows.Forms.SplitContainer splitContainer4;
         private System.Windows.Forms.Button PreBtn;
         private System.Windows.Forms.Button NextBtn;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox WeekTxtBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.SplitContainer splitContainer5;
         private System.Windows.Forms.TextBox LogTxt;
