@@ -136,5 +136,11 @@ namespace TimeManager.Controls
         {
             MergeCellsVertical(e, 1, 0, 10);
         }
+
+        private void dataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            // restrict selection
+            dataGridView.ClearSelection();
+        }
     }
 }
