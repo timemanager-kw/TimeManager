@@ -7,7 +7,7 @@ using TimeManager.Data.Model;
 
 namespace TimeManager.Data.Manager
 {
-    interface ITimeTableManager
+    public interface ITimeTableManager
     {
         TimeTable Get();
         void Save(TimeTable timeTable);

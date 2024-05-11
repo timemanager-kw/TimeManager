@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TimeManager.Data.Model
 {
-    interface ITimeTable
+    public interface ITimeTable
     {
         /* WorkTime Operations */
         // TODO: 주 단위로 확장

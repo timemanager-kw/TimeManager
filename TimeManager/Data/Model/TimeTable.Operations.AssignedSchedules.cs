@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TimeManager.Data.Model
 {
-    partial class TimeTable : ITimeTable
+    public partial class TimeTable : ITimeTable
     {
         /* AssignedSchedule Operations */
         public void AssignSchedule(long scheduleId, IEnumerable<DateTimeBlock> assignedTimeBlocks)

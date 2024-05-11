@@ -7,7 +7,7 @@ using TimeManager.Data.Model;
 
 namespace TimeManager.Data.Repository
 {
-    interface IScheduleRepository
+    public interface IScheduleRepository
     {
         void Add(Schedule schedule);
         void Update(Schedule schedule);
