@@ -27,6 +27,7 @@ namespace TimeManager.Controls
         private void WeeklyTimeTableControl_Load(object sender, EventArgs e)
         {
             InitializeRows();
+            DrawSchedules();
         }
 
         public void InitializeRows()
@@ -38,6 +39,26 @@ namespace TimeManager.Controls
 
                 dataGridView.Rows.Add();
                 dataGridView.Rows[i].HeaderCell.Value = dateTime.ToString("HH:mm");
+            }
+        }
+
+        public void DrawSchedules()
+        {
+            List<AssignedSchedule> schedules = _timeTable.GetWeeklyAssignedSchedules(_week);
+
+            foreach (AssignedSchedule schedule in schedules)
+            {
+                foreach (DateTimeBlock block in schedule.AssignedBlocks)
+                {
+                    int startRow = block.StartDate.Hour * 2 + block.StartDate.Minute / 30;
+                    int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute / 30;
+
+                    for (int i = startRow; i < endRow; i++)
+                    {
+                        dataGridView.Rows[i].Cells[block.StartDate.Day].Value = schedule.ScheduleId;
+                    }
+                }
+                
             }
         }
     }
