@@ -22,6 +22,7 @@ namespace TimeManager.Controls
         private void WeeklyTimeTableControl_Load(object sender, EventArgs e)
         {
             InitializeRows();
+            dataGridView.ClearSelection();
         }
 
         private void InitializeRows()
