@@ -13,6 +13,11 @@ using System.Collections;
 
 namespace TimeManager.Scheduler
 {
+    public class TimeOverflowException : Exception
+    {
+        public TimeOverflowException(string msg) : Base(msg) { }
+    }
+
     class ThunderSchedulerStrategy : ISchedulerStrategy
     {
         // Know 가용시간, tasks, 현재 날짜
@@ -30,7 +35,9 @@ namespace TimeManager.Scheduler
         // Day에 여러 정보를 담아 하나로 채우는게 목적인 클래스
         private class TempBlock
         {
-            public TempBlock(Data.Model.Task task) { this.task = task; }
+            public TempBlock(Data.Model.Task task, int time_interval){
+                this.task = task; this.time_interval = time_interval;
+            }
             public int time_interval {  get; set; }
             Data.Model.Task task;
         }
@@ -119,20 +126,33 @@ namespace TimeManager.Scheduler
                 // dateTime을 넣을 수 있는 날까지 MoveNext()하며 이동.
                 while((task_iter.Current.focusDate > day_iter.Current.dateTime))
                 {
+                    // 임의의 day에 대해 그 앞에 마감일이 지난 task가 존재한다는 것은, 이행이 불가능한 시간표라는 것이므로
+                    // 작업을 끝내는 동작을 한다.
+                    if(day_iter.Current.dateTime > task_iter.Current.endDate)
+                    {
+                        end = true; break;
+                    }
+                    // 그런 상황이 아니라면, 이후의 task를 확인하며 채우는 동작을 진행한다.
                     task_iter.MoveNext();
                 }
-                // 넣을 수 있는 시간이 넣으려고 하는 시간보다 더 크거나 같을 때
-                if((day_iter.Current.availableTime - day_iter.Current.time_allocated) >=task_iter.Current.Duration)
+
+                if (end) break; // (*)의 연장선 상의 작업
+
+                // 넣을 수 있는 시간공간이 넣으려고 하는 시간보다 더 크거나 같을 때
+                if ((day_iter.Current.availableTime - day_iter.Current.time_allocated) >=task_iter.Current.Duration)
                 {
                     // 같다면, 작업이 모두 끝난 이후 day_iter.MoveNext();
                     bool MoveNext = false;   // 를 수행하기 위한 선행과정
                     if ((day_iter.Current.availableTime - day_iter.Current.time_allocated) == task_iter.Current.Duration)
                         MoveNext = true;
 
-
                     int duration = task_iter.Current.Duration;
                     Data.Model.Task task = task_iter.Current.task;
                     int fill_location = day_iter.Current.time_allocated;
+
+                    // 0) TempBlock에 정보를 넣어 TempBlocks에 넣음.
+                    TempBlock tempBlock = new TempBlock(task, duration);
+                    day_iter.Current.tempBlocks.Add(tempBlock);
 
                     // 1) [time_allocated]에서부터 duration만큼 array를 채움.
                     for (int i=0; i < duration; i++)
@@ -150,12 +170,16 @@ namespace TimeManager.Scheduler
                     }
                     
                 }
-                // 넣을 수 있는 시간보다 넣으려고 하는 시간이 더 클때
+                // 넣을 수 있는 시간공간보다 넣으려고 하는 시간이 더 클때
                 else if ((day_iter.Current.availableTime - day_iter.Current.time_allocated) < task_iter.Current.Duration)
                 {
                     int duration = task_iter.Current.Duration;
                     Data.Model.Task task = task_iter.Current.task;
                     int fill_location = day_iter.Current.time_allocated;
+
+                    // 0) TempBlock에 정보를 넣어 TempBlocks에 넣음.
+                    TempBlock tempBlock = new TempBlock(task, day_iter.Current.availableTime - day_iter.Current.time_allocated);
+                    day_iter.Current.tempBlocks.Add(tempBlock);
 
                     // 1) [time_allocated]에서부터 availableTime까지 array를 채움.
                     for (int i = fill_location; i < day_iter.Current.availableTime; i++)
@@ -165,15 +189,17 @@ namespace TimeManager.Scheduler
                     // 2) duration에서 (채운 시간) 만큼 빼야함.
                     //  (채운 시간) = availableTime - time_allocated
                     task_iter.Current.Duration -= (day_iter.Current.availableTime - day_iter.Current.time_allocated);
+
+                    // 3) 해당 day의 availableTime을 모두 채웠으므로, day_iter.MoveNext();
+                    end = !day_iter.MoveNext();
                 }
             }
 
-
+            if (repl_tasks.Count != 0)
+            {
+                throw new TimeOverflowException("가용 시간이 부족합니다");
+            }
         }
-
-
-
-
 
 
         public void Schedule(TimeTable timeTable, List<Data.Model.Task> tasks)
@@ -217,13 +243,9 @@ namespace TimeManager.Scheduler
             List<ReplicaOfTask> repl_tasks = duplicateTaskOnShort(tasks);
 
             // W.T.D : 이제 days의 day에 repl_tasks의 repl_task를 넣기
-
             FillDaysWithTasks(repl_tasks, days);
 
-
-
-
-
+            // W.T.D : 덩어리가 큰 것들을 찾아 등분하여
 
 
 
