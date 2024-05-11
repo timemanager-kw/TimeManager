@@ -55,7 +55,6 @@ namespace TimeManager.Controls
             DrawWorkTimes(timeTable);
             DrawSchedules(timeTable, week);
             DrawTasks(timeTable, week);
-            //MergeCellsVertical(1, 0, 10);
         }
 
         private void DrawWorkTimes(TimeTable timeTable)
@@ -134,7 +133,6 @@ namespace TimeManager.Controls
 
         private void dataGridView_Paint(object sender, PaintEventArgs e)
         {
-            MergeCellsVertical(e, 1, 0, 10);
         }
 
         private void dataGridView_SelectionChanged(object sender, EventArgs e)
