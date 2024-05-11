@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TimeManager.Data.Model;
 
 namespace TimeManager.Controls
 {
     public partial class WeeklyTimeTableControl : UserControl
     {
-        public WeeklyTimeTableControl()
+        public WeeklyTimeTableControl(TimeTable timeTable, Week week)
         {
             InitializeComponent();
             InitializeRows();
