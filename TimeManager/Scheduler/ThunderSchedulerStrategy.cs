@@ -15,7 +15,9 @@ namespace TimeManager.Scheduler
 {
     public class TimeOverflowException : Exception
     {
-        public TimeOverflowException(string msg) : Base(msg) { }
+        public TimeOverflowException() { }
+        public TimeOverflowException(string msg) : base(msg) { }
+        
     }
 
     class ThunderSchedulerStrategy : ISchedulerStrategy
