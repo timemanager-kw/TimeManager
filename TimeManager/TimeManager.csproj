@@ -64,6 +64,7 @@
     <Compile Include="Data\Model\TimeTable.Operations.WorkAndAvailableTimes.cs" />
     <Compile Include="Data\Model\Week.cs" />
     <Compile Include="Data\Model\WeeklyDateTimeBlock.cs" />
+    <Compile Include="Data\Repository\FileScheduleRepository.cs" />
     <Compile Include="Data\Repository\IScheduleRepository.cs" />
     <Compile Include="Data\Repository\ITaskRepository.cs" />
     <Compile Include="Data\Repository\ITimeTableRepository.cs" />
@@ -98,6 +99,9 @@
     <Compile Include="Scheduler\ISchedulerStrategy.cs" />
     <Compile Include="Scheduler\Scheduler.cs" />
     <Compile Include="Scheduler\ThunderSchedulerStrategy.cs" />
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

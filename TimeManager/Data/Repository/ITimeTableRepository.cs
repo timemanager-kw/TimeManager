@@ -7,7 +7,7 @@ using TimeManager.Data.Model;
 
 namespace TimeManager.Data.Repository
 {
-    interface ITimeTableRepository
+    public interface ITimeTableRepository
     {
         void Update(TimeTable timeTable);
         void Clear();

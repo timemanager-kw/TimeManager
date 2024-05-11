@@ -8,7 +8,7 @@ using TimeManager.Data.Repository;
 
 namespace TimeManager.Data.Manager
 {
-    class ScheduleManager : IScheduleManager
+    public class ScheduleManager : IScheduleManager
     {
         private readonly IScheduleRepository _scheduleRepository;
         private readonly List<Schedule> _schedules;
