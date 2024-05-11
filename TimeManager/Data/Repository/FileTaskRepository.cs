@@ -41,7 +41,17 @@ namespace TimeManager.Data.Repository
         }
         void Update(Model.Task task)
         {
-
+            List<string> lines = File.ReadAllLines(filePath).ToList();
+            for (int i = 1; i < lines.Count; i++)
+            {
+                string[] parts = lines[i].Split(',');
+                if (int.Parse(parts[0]) == task.Id)
+                {
+                    lines[i] = $"{task.Id}, {task.Name}, {task.Description}, {task.Type}, {task.StartDate}, {task.EndDate},{task.Duration}, {task.FocusDays}, {task.WeeklyTimesWanted}, {task.NDaysOfWeekWanted}";
+                    break;
+                }
+            }
+            File.WriteAllLines(filePath, lines);
         }
         void Delete(Model.Task task)
         {
