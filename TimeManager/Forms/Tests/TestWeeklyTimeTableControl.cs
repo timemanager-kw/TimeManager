@@ -30,7 +30,7 @@ namespace TimeManager.Forms.Tests
             assignedTask1.TaskId = 1;
             assignedTask1.AssignedBlocks.Add(new DateTimeBlock(new DateTime(2024, 5, 6, 13, 0, 0), new DateTime(2024, 5, 6, 17, 0, 0)));
 
-            timeTable = new TimeTable(new List<DateTimeBlock>(), new List<AssignedSchedule> { assignedSchedule1 }, new List<AssignedTask>());
+            timeTable = new TimeTable(new List<DateTimeBlock>(), new List<AssignedSchedule> { assignedSchedule1 }, new List<AssignedTask> { assignedTask1 });
 
             Week week = new Week();
             week.Year = 2024;
