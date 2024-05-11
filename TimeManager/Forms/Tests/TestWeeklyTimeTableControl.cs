@@ -37,7 +37,7 @@ namespace TimeManager.Forms.Tests
             week.Month = 5;
             week.WeekOfMonth = 1;
 
-            weeklyTimeTableControl1.DrawSchedules(timeTable, week);
+            weeklyTimeTableControl1.DrawCells(timeTable, week);
         }
     }
 }

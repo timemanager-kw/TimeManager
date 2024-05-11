@@ -55,7 +55,7 @@ namespace TimeManager.Controls
             DrawTasks(timeTable, week);
         }
 
-        public void DrawSchedules(TimeTable timeTable, Week week)
+        private void DrawSchedules(TimeTable timeTable, Week week)
         {
             List<AssignedSchedule> schedules = timeTable.GetWeeklyAssignedSchedules(week);
 
@@ -75,7 +75,7 @@ namespace TimeManager.Controls
             }
         }
 
-        public void DrawTasks(TimeTable timeTable, Week week)
+        private void DrawTasks(TimeTable timeTable, Week week)
         {
             List<AssignedTask> tasks = timeTable.GetWeeklyAssignedTasks(week);
 
