@@ -54,6 +54,8 @@ namespace TimeManager.Controls
         {
             List<AssignedSchedule> schedules = timeTable.GetWeeklyAssignedSchedules(week);
 
+            CleanCells();
+
             foreach (AssignedSchedule schedule in schedules)
             {
                 foreach (DateTimeBlock block in schedule.AssignedBlocks)
