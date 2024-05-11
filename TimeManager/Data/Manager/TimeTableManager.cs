@@ -8,7 +8,7 @@ using TimeManager.Data.Repository;
 
 namespace TimeManager.Data.Manager
 {
-    class TimeTableManager : ITimeTableManager
+    public class TimeTableManager : ITimeTableManager
     {
         private readonly ITimeTableRepository _timeTableRepository;
         private TimeTable _timeTable;

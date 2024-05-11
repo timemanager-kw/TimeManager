@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace TimeManager.Data.Model
 {
-    enum EScheduleType
+    public enum EScheduleType
     {
         Singular,
         Regular
     }
 
-    abstract class Schedule
+    public class Schedule
     {
         public long Id { get; set; }
         public string Name { get; set; }

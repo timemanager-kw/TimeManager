@@ -7,7 +7,7 @@ using TimeManager.Extensions;
 
 namespace TimeManager.Data.Model
 {
-    partial class TimeTable : ITimeTable
+    public partial class TimeTable : ITimeTable
     {
         /* WorkTime Operations */
         // TODO: 주 단위로 확장

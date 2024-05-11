@@ -7,7 +7,7 @@ using TimeManager.Data.Repository;
 
 namespace TimeManager.Data.Manager
 {
-    class TaskManager : ITaskManager
+    public class TaskManager : ITaskManager
     {
         private readonly ITaskRepository _taskRepository;
         private readonly List<Task> _tasks;
