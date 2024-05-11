@@ -128,42 +128,27 @@ namespace TimeManager.Controls
         private void dataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             e.AdvancedBorderStyle.Bottom = DataGridViewAdvancedCellBorderStyle.None;
+
             if (e.RowIndex < 1 || e.ColumnIndex < 0)
             {
                 e.AdvancedBorderStyle.Top = dataGridView.AdvancedCellBorderStyle.Top;
                 return;
             }
 
-            if (e.ColumnIndex == 1)
-            {
-                if (IsSameCellValue(e.ColumnIndex, e.RowIndex))
-                {
-                    e.AdvancedBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.None;
-                }
-                else
-                {
-                    e.AdvancedBorderStyle.Top = dataGridView.AdvancedCellBorderStyle.Top;
-                }
-            }
+            if (IsSameCellValue(e.ColumnIndex, e.RowIndex))
+                e.AdvancedBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.None;
             else
-            {
                 e.AdvancedBorderStyle.Top = dataGridView.AdvancedCellBorderStyle.Top;
-            }
         }
 
         private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.RowIndex < 1 || e.ColumnIndex < 0)
+            if (e.RowIndex < 1) return;
+
+            if (IsSameCellValue(e.ColumnIndex, e.RowIndex))
             {
-                return;
-            }
-            if (e.ColumnIndex == 1)
-            {
-                if (IsSameCellValue(e.ColumnIndex, e.RowIndex))
-                {
-                    e.Value = "";
-                    e.FormattingApplied = true;
-                }
+                e.Value = "";
+                e.FormattingApplied = true;
             }
         }
 
