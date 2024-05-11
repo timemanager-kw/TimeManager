@@ -13,24 +13,20 @@ namespace TimeManager.Controls
 {
     public partial class WeeklyTimeTableControl : UserControl
     {
-        private TimeTable _timeTable;
-        private Week _week;
-
-        public WeeklyTimeTableControl(TimeTable timeTable, Week week)
+        public TimeTable timeTable { get; set; }
+        public Week week { get; set; }
+        
+        public WeeklyTimeTableControl()
         {
             InitializeComponent();
-
-            _timeTable = timeTable;
-            _week = week;
         }
 
         private void WeeklyTimeTableControl_Load(object sender, EventArgs e)
         {
             InitializeRows();
-            DrawSchedules();
         }
 
-        public void InitializeRows()
+        private void InitializeRows()
         {
             for (int i = 0; i < 48; i++)
             {
@@ -44,7 +40,7 @@ namespace TimeManager.Controls
 
         public void DrawSchedules()
         {
-            List<AssignedSchedule> schedules = _timeTable.GetWeeklyAssignedSchedules(_week);
+            List<AssignedSchedule> schedules = timeTable.GetWeeklyAssignedSchedules(week);
 
             foreach (AssignedSchedule schedule in schedules)
             {
@@ -56,6 +52,7 @@ namespace TimeManager.Controls
                     for (int i = startRow; i < endRow; i++)
                     {
                         dataGridView.Rows[i].Cells[block.StartDate.Day].Value = schedule.ScheduleId;
+                        dataGridView.Rows[i].Cells[block.StartDate.Day].Style.BackColor = Color.LightBlue;
                     }
                 }
                 
