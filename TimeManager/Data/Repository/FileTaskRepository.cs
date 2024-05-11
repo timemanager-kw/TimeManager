@@ -99,7 +99,12 @@ namespace TimeManager.Data.Repository
                 foreach(string weeklyTimesPart in weeklyTimesParts)
                 {
                     string[] weeklyTimeSubParts = weeklyTimesPart.Split('|');
-                    task.=weeklyTimeSubParts[0];
+                    WeeklyDateTimeBlock week = new WeeklyDateTimeBlock();
+                    DayOfWeek dayOfWeek;
+                    Enum.TryParse<DayOfWeek>(weeklyTimeSubParts[0], out dayOfWeek);
+                    week.DayOfWeek = dayOfWeek;
+                    week.StartTime = DateTime.Parse(weeklyTimesParts[1]);
+                    week.EndTime = DateTime.Parse(weeklyTimesParts[2]);
                 }
             tasks.Add(task);
             }
