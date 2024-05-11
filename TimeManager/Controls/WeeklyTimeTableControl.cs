@@ -78,6 +78,8 @@ namespace TimeManager.Controls
             {
                 foreach (DateTimeBlock block in schedule.AssignedBlocks)
                 {
+                    if (!week.IsInWeek(block.StartDate)) continue;
+
                     int startRow = block.StartDate.Hour * 2 + block.StartDate.Minute / 30;
                     int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute / 30;
 
@@ -98,6 +100,8 @@ namespace TimeManager.Controls
             {
                 foreach (DateTimeBlock block in task.AssignedBlocks)
                 {
+                    if (!week.IsInWeek(block.StartDate)) continue;
+
                     int startRow = block.StartDate.Hour * 2 + block.StartDate.Minute / 30;
                     int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute / 30;
 
