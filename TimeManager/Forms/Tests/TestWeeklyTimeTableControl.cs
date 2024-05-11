@@ -22,13 +22,13 @@ namespace TimeManager.Forms.Tests
 
         private void weeklyTimeTableControl1_Load(object sender, EventArgs e)
         {
-            Schedule schedule = new Schedule();
-            schedule.Id = 1;
-            schedule.Name = "Schedule 1";
-
             AssignedSchedule assignedSchedule1 = new AssignedSchedule();
-            assignedSchedule1.ScheduleId = schedule.Id;
+            assignedSchedule1.ScheduleId = 1;
             assignedSchedule1.AssignedBlocks.Add(new DateTimeBlock(new DateTime(2024, 5, 6, 8, 0, 0), new DateTime(2024, 5, 6, 12, 0, 0)));
+
+            AssignedTask assignedTask1 = new AssignedTask();
+            assignedTask1.TaskId = 1;
+            assignedTask1.AssignedBlocks.Add(new DateTimeBlock(new DateTime(2024, 5, 6, 13, 0, 0), new DateTime(2024, 5, 6, 17, 0, 0)));
 
             timeTable = new TimeTable(new List<DateTimeBlock>(), new List<AssignedSchedule> { assignedSchedule1 }, new List<AssignedTask>());
 
