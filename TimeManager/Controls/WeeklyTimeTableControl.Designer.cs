@@ -66,36 +66,50 @@
             // 
             this.ColumnMonday.HeaderText = "월";
             this.ColumnMonday.Name = "ColumnMonday";
+            this.ColumnMonday.ReadOnly = true;
+            this.ColumnMonday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // ColumnTuesday
             // 
             this.ColumnTuesday.HeaderText = "화";
             this.ColumnTuesday.Name = "ColumnTuesday";
+            this.ColumnTuesday.ReadOnly = true;
+            this.ColumnTuesday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // ColumnWednesday
             // 
             this.ColumnWednesday.HeaderText = "수";
             this.ColumnWednesday.Name = "ColumnWednesday";
+            this.ColumnWednesday.ReadOnly = true;
+            this.ColumnWednesday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // ColumnThursday
             // 
             this.ColumnThursday.HeaderText = "목";
             this.ColumnThursday.Name = "ColumnThursday";
+            this.ColumnThursday.ReadOnly = true;
+            this.ColumnThursday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // ColumnFriday
             // 
             this.ColumnFriday.HeaderText = "금";
             this.ColumnFriday.Name = "ColumnFriday";
+            this.ColumnFriday.ReadOnly = true;
+            this.ColumnFriday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // ColumnSaturday
             // 
             this.ColumnSaturday.HeaderText = "토";
             this.ColumnSaturday.Name = "ColumnSaturday";
+            this.ColumnSaturday.ReadOnly = true;
+            this.ColumnSaturday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // ColumnSunday
             // 
             this.ColumnSunday.HeaderText = "일";
             this.ColumnSunday.Name = "ColumnSunday";
+            this.ColumnSunday.ReadOnly = true;
+            this.ColumnSunday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // WeeklyTimeTableControl
             // 

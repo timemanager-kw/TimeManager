@@ -69,7 +69,7 @@ namespace TimeManager.Controls
                 }
             }
         }
-
+        
         private void DrawSchedules(TimeTable timeTable, Week week)
         {
             List<AssignedSchedule> schedules = timeTable.GetWeeklyAssignedSchedules(week);
