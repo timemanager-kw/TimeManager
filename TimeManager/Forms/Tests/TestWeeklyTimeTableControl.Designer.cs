@@ -33,7 +33,7 @@
             // 
             // weeklyTimeTableControl1
             // 
-            this.weeklyTimeTableControl1.Location = new System.Drawing.Point(72, 38);
+            this.weeklyTimeTableControl1.Location = new System.Drawing.Point(12, 12);
             this.weeklyTimeTableControl1.Name = "weeklyTimeTableControl1";
             this.weeklyTimeTableControl1.Size = new System.Drawing.Size(784, 321);
             this.weeklyTimeTableControl1.TabIndex = 0;
