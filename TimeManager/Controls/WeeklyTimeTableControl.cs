@@ -13,9 +13,6 @@ namespace TimeManager.Controls
 {
     public partial class WeeklyTimeTableControl : UserControl
     {
-        public TimeTable timeTable { get; set; }
-        public Week week { get; set; }
-        
         public WeeklyTimeTableControl()
         {
             InitializeComponent();
@@ -50,7 +47,7 @@ namespace TimeManager.Controls
             }
         }
 
-        public void DrawSchedules()
+        public void DrawSchedules(TimeTable timeTable, Week week)
         {
             List<AssignedSchedule> schedules = timeTable.GetWeeklyAssignedSchedules(week);
 
