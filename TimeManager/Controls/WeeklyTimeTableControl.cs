@@ -48,11 +48,16 @@ namespace TimeManager.Controls
             }
         }
 
+        public void DrawCells(TimeTable timeTable, Week week)
+        {
+            CleanCells();
+            DrawSchedules(timeTable, week);
+            DrawTasks(timeTable, week);
+        }
+
         public void DrawSchedules(TimeTable timeTable, Week week)
         {
             List<AssignedSchedule> schedules = timeTable.GetWeeklyAssignedSchedules(week);
-
-            CleanCells();
 
             foreach (AssignedSchedule schedule in schedules)
             {
