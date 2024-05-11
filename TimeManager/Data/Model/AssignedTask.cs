@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TimeManager.Data.Model
 {
-    class AssignedTask
+    public class AssignedTask
     {
         public List<DateTimeBlock> AssignedBlocks { get; set; }
         public long TaskId { get; set; }

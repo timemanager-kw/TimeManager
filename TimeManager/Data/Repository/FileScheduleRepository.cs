@@ -8,7 +8,7 @@ using TimeManager.Data.Model;
 
 namespace TimeManager.Data.Repository
 {
-    internal class FileScheduleRepository : IScheduleRepository
+    public class FileScheduleRepository : IScheduleRepository
     {
         private readonly string filePath;
         public FileScheduleRepository(string filePath)
