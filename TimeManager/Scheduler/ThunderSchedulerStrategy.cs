@@ -36,7 +36,6 @@ namespace TimeManager.Scheduler
 
         private class Day
         {
-
             public Day(DateTime date, int available)
             {
                 dateTime = date;
