@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TimeManager.Data.Model
 {
-    enum ETaskType
+    public enum ETaskType
     {
         /// <summary>
         /// 마감기한이 있는 짧은 기간의 Task입니다.
@@ -19,7 +19,7 @@ namespace TimeManager.Data.Model
         LongTerm
     }
 
-    class Task
+    public class Task
     {
         public long Id { get; set; }
         public string Name { get; set; }
