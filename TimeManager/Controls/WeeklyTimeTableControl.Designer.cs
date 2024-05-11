@@ -29,18 +29,68 @@
         private void InitializeComponent()
         {
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.ColumnMonday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTuesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnWednesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnThursday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnFriday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSaturday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSunday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnMonday,
+            this.ColumnTuesday,
+            this.ColumnWednesday,
+            this.ColumnThursday,
+            this.ColumnFriday,
+            this.ColumnSaturday,
+            this.ColumnSunday});
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView.Location = new System.Drawing.Point(0, 0);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowTemplate.Height = 23;
-            this.dataGridView.Size = new System.Drawing.Size(683, 339);
+            this.dataGridView.Size = new System.Drawing.Size(744, 326);
             this.dataGridView.TabIndex = 0;
+            // 
+            // ColumnMonday
+            // 
+            this.ColumnMonday.HeaderText = "월";
+            this.ColumnMonday.Name = "ColumnMonday";
+            // 
+            // ColumnTuesday
+            // 
+            this.ColumnTuesday.HeaderText = "화";
+            this.ColumnTuesday.Name = "ColumnTuesday";
+            // 
+            // ColumnWednesday
+            // 
+            this.ColumnWednesday.HeaderText = "수";
+            this.ColumnWednesday.Name = "ColumnWednesday";
+            // 
+            // ColumnThursday
+            // 
+            this.ColumnThursday.HeaderText = "목";
+            this.ColumnThursday.Name = "ColumnThursday";
+            // 
+            // ColumnFriday
+            // 
+            this.ColumnFriday.HeaderText = "금";
+            this.ColumnFriday.Name = "ColumnFriday";
+            // 
+            // ColumnSaturday
+            // 
+            this.ColumnSaturday.HeaderText = "토";
+            this.ColumnSaturday.Name = "ColumnSaturday";
+            // 
+            // ColumnSunday
+            // 
+            this.ColumnSunday.HeaderText = "일";
+            this.ColumnSunday.Name = "ColumnSunday";
             // 
             // WeeklyTimeTableControl
             // 
@@ -48,7 +98,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGridView);
             this.Name = "WeeklyTimeTableControl";
-            this.Size = new System.Drawing.Size(683, 339);
+            this.Size = new System.Drawing.Size(744, 326);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 
@@ -57,5 +107,12 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMonday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTuesday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnWednesday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnThursday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFriday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSaturday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSunday;
     }
 }
