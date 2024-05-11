@@ -70,6 +70,7 @@
     <Compile Include="Data\Model\TimeTable.Operations.WorkAndAvailableTimes.cs" />
     <Compile Include="Data\Model\Week.cs" />
     <Compile Include="Data\Model\WeeklyDateTimeBlock.cs" />
+    <Compile Include="Data\Repository\FileScheduleRepository.cs" />
     <Compile Include="Data\Repository\IScheduleRepository.cs" />
     <Compile Include="Data\Repository\ITaskRepository.cs" />
     <Compile Include="Data\Repository\ITimeTableRepository.cs" />
