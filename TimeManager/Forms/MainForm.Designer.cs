@@ -49,7 +49,7 @@
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.ScheduleBtn = new System.Windows.Forms.Button();
             this.TaskBtn = new System.Windows.Forms.Button();
-            this.TimeBlock = new System.Windows.Forms.ListView();
+            this.TimeBlockView = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -322,7 +322,7 @@
             // 
             // splitContainer3.Panel2
             // 
-            this.splitContainer3.Panel2.Controls.Add(this.TimeBlock);
+            this.splitContainer3.Panel2.Controls.Add(this.TimeBlockView);
             this.splitContainer3.Size = new System.Drawing.Size(191, 239);
             this.splitContainer3.SplitterDistance = 35;
             this.splitContainer3.TabIndex = 0;
@@ -347,15 +347,15 @@
             this.TaskBtn.Text = "업무";
             this.TaskBtn.UseVisualStyleBackColor = true;
             // 
-            // TimeBlock
+            // TimeBlockView
             // 
-            this.TimeBlock.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TimeBlock.HideSelection = false;
-            this.TimeBlock.Location = new System.Drawing.Point(0, 0);
-            this.TimeBlock.Name = "TimeBlock";
-            this.TimeBlock.Size = new System.Drawing.Size(191, 200);
-            this.TimeBlock.TabIndex = 0;
-            this.TimeBlock.UseCompatibleStateImageBehavior = false;
+            this.TimeBlockView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TimeBlockView.HideSelection = false;
+            this.TimeBlockView.Location = new System.Drawing.Point(0, 0);
+            this.TimeBlockView.Name = "TimeBlockView";
+            this.TimeBlockView.Size = new System.Drawing.Size(191, 200);
+            this.TimeBlockView.TabIndex = 0;
+            this.TimeBlockView.UseCompatibleStateImageBehavior = false;
             // 
             // MainForm
             // 
@@ -366,6 +366,7 @@
             this.Name = "MainForm";
             this.Padding = new System.Windows.Forms.Padding(5);
             this.Text = "MainForm";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -402,7 +403,7 @@
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.Button ScheduleBtn;
         private System.Windows.Forms.Button TaskBtn;
-        private System.Windows.Forms.ListView TimeBlock;
+        private System.Windows.Forms.ListView TimeBlockView;
         private System.Windows.Forms.SplitContainer splitContainer4;
         private System.Windows.Forms.Button PreBtn;
         private System.Windows.Forms.Button NextBtn;
