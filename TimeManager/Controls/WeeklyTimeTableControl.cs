@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TimeManager.Data.Model;
+using TimeManager.Extensions;
 
 namespace TimeManager.Controls
 {
@@ -39,7 +40,7 @@ namespace TimeManager.Controls
         {
             for (int i = 0; i < 48; i++)
             {
-                for (int j = 1; j < 8; j++)
+                for (int j = 0; j < 7; j++)
                 {
                     dataGridView.Rows[i].Cells[j].Value = null;
                     dataGridView.Rows[i].Cells[j].Style.BackColor = Color.White;
@@ -62,12 +63,33 @@ namespace TimeManager.Controls
 
                     for (int i = startRow; i < endRow; i++)
                     {
-                        dataGridView.Rows[i].Cells[block.StartDate.Day].Value = schedule.ScheduleId;
-                        dataGridView.Rows[i].Cells[block.StartDate.Day].Style.BackColor = Color.LightBlue;
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = schedule.ScheduleId;
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = Color.LightBlue;
                     }
                 }
-                
             }
         }
+
+        public void DrawTasks(TimeTable timeTable, Week week)
+        {
+            List<AssignedTask> tasks = timeTable.GetWeeklyAssignedTasks(week);
+
+            foreach (AssignedTask task in tasks)
+            {
+                foreach (DateTimeBlock block in task.AssignedBlocks)
+                {
+                    int startRow = block.StartDate.Hour * 2 + block.StartDate.Minute / 30;
+                    int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute / 30;
+
+                    for (int i = startRow; i < endRow; i++)
+                    {
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = task.TaskId;
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = Color.LightGreen;
+                    }
+                }
+            }
+        }
+
+
     }
 }
