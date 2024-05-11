@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using TimeManager.Data.Model;
 
 namespace TimeManager.Data.Repository
@@ -22,7 +21,7 @@ namespace TimeManager.Data.Repository
                 }
             }
         }
-        void Add(Model.Task task)
+        void Add(Task task)
         {
             int nextId;
             using (StreamReader reader = new StreamReader(filePath))
@@ -39,7 +38,7 @@ namespace TimeManager.Data.Repository
                 writer.WriteLine(++nextId);
             }
         }
-        void Update(Model.Task task)
+        void Update(Task task)
         {
             List<string> lines = File.ReadAllLines(filePath).ToList();
             for (int i = 1; i < lines.Count; i++)
@@ -53,12 +52,40 @@ namespace TimeManager.Data.Repository
             }
             File.WriteAllLines(filePath, lines);
         }
-        void Delete(Model.Task task)
+        void Delete(Task task)
         {
-
+            List<string> lines = File.ReadAllLines(filePath).ToList();
+            for (int i = 1; i < lines.Count; i++)
+            {
+                string[] parts = lines[i].Split(',');
+                if (int.Parse(parts[0]) == task.Id)
+                {
+                    lines.RemoveAt(i);
+                    break;
+                }
+            }
+            File.WriteAllLines(filePath, lines);
         }
-        IEnumerable<Model.Task> LoadAll() { 
-
+        IEnumerable<Task> LoadAll() { 
+            List<Task> task = new List<Task>();
+            List<string> lines = File.ReadAllLines(filePath).ToList();
+            for(int i = 1; i < lines.Count; i++)
+            {
+                string[] parts = lines[i].Split(',');
+                Task schedule = new Task
+                {
+                    Id = long.Parse(parts[0]),
+                    Name = parts[1],
+                    Description = parts[2],
+                    Type = (ETaskType)int.Parse(parts[3]),
+                    StartDate = DateTime.Parse(parts[4]),
+                    EndDate = DateTime.Parse(parts[5]),
+                    Duration = TimeSpan.Parse(parts[6]),
+                    FocusDays = int.Parse(parts[7]),
+                    WeeklyTimesWanted =WeeklyDateTimeBlock,
+                    NDaysOfWeekWanted = int.Parse(parts[9]), 
+                }
+            }
         }
     }
 }
