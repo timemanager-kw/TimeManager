@@ -8,6 +8,7 @@ using TimeManager.Data.Model;
 
 using System.Numerics;
 using System.Windows.Forms;
+using System.Collections;
 
 
 namespace TimeManager.Scheduler
@@ -56,30 +57,123 @@ namespace TimeManager.Scheduler
 
         private class ReplicaOfTask
         {
-            public long id;
+            public Data.Model.Task task;
             public DateTime? focusDate;
             public DateTime? endDate;
             public int Duration; // 몇시간만에 끝낼 작업인지
         }
 
 
-        private List<ReplicaOfTask> duplicate_task(List<Data.Model.Task> tasks)
+        private List<ReplicaOfTask> duplicateTaskOnShort(List<Data.Model.Task> tasks)
         {
             List<ReplicaOfTask> repl_tasks = new List<ReplicaOfTask>();
 
             // List<Task>에 있는 Task의 replica를 만들어 List<ReplicaOfTask>를 생성.
             foreach(Data.Model.Task task in tasks)
             {
-                ReplicaOfTask task_dup = new ReplicaOfTask();
-                task_dup.id = task.Id;
-                task_dup.focusDate = task.EndDate?.AddDays(-(double)task.FocusDays);
-                task_dup.endDate = task.EndDate;
-                task_dup.Duration = task.Duration.Value.Minutes / 30;
+                if(task.Type == ETaskType.LongTerm) continue;
 
-                repl_tasks.Add(task_dup);
+                ReplicaOfTask repl_task = new ReplicaOfTask();
+                repl_task.task = task;
+                repl_task.focusDate = task.EndDate?.AddDays(-(double)task.FocusDays);
+                repl_task.endDate = task.EndDate;
+                repl_task.Duration = task.Duration.Value.Minutes / 30;
+
+                repl_tasks.Add(repl_task);
             }
             return repl_tasks;
         }
+
+
+        // 전제 : repl_tasks는 focus_date가 빠른게 앞으로 오도록 하고
+        //        days는 빠른 날이 앞으로 오도록 해야 함.
+        private void FillDaysWithTasks(List<ReplicaOfTask> repl_tasks, List<Day> days)
+        {
+            // day와 task에 대한 iterator 먼저 설정
+
+            IEnumerator<ReplicaOfTask> task_iter = repl_tasks.GetEnumerator();
+            IEnumerator<Day> day_iter = days.GetEnumerator();
+
+            // task_iter가 모두 채워지거나 day_iter가 모두 채워질 때까지 반복
+
+            // 1. day_iter의 current에서의 잔여 가용시간 > task_iter의 duration 이라면
+            //      1) duration만큼 채우고 해당 task를 지움
+            //      2) 이후 task_iter를 reset하고 다시 조건을 만족하는 task를 찾음.
+            //      (조건) -> focusDate < day_iter.date
+
+            // 2. day_iter의 current에서의 잔여 가용시간 < task_iter의 duration 이라면
+            //      1) 잔여 가용시간을 전부 채우고 day_iter.MoveNext()함.
+
+            // ** 날짜가 넘어가거나 task를 다 채우면 무조건 task_iter.Reset().**
+
+            // iterator로 마지막 day까지 확인하여 작업을 끝낸 이후에도 task가 남아있다면
+            // -> 이는 불가능한 시간표임을 의미하는 것이므로, 오류 내보냄.
+            day_iter.Reset();
+
+            bool end = false;
+
+            while (!end)
+            {
+                // task_iter 초기화
+                task_iter.Reset();
+                // dateTime을 넣을 수 있는 날까지 MoveNext()하며 이동.
+                while((task_iter.Current.focusDate > day_iter.Current.dateTime))
+                {
+                    task_iter.MoveNext();
+                }
+                // 넣을 수 있는 시간이 넣으려고 하는 시간보다 더 크거나 같을 때
+                if((day_iter.Current.availableTime - day_iter.Current.time_allocated) >=task_iter.Current.Duration)
+                {
+                    // 같다면, 작업이 모두 끝난 이후 day_iter.MoveNext();
+                    bool MoveNext = false;   // 를 수행하기 위한 선행과정
+                    if ((day_iter.Current.availableTime - day_iter.Current.time_allocated) == task_iter.Current.Duration)
+                        MoveNext = true;
+
+
+                    int duration = task_iter.Current.Duration;
+                    Data.Model.Task task = task_iter.Current.task;
+                    int fill_location = day_iter.Current.time_allocated;
+
+                    // 1) [time_allocated]에서부터 duration만큼 array를 채움.
+                    for (int i=0; i < duration; i++)
+                    {
+                        day_iter.Current.task_arr[fill_location + i] = task;
+                    }
+                    // 2) time_allocated에 duration만큼 더함.
+                    day_iter.Current.time_allocated += duration;
+
+                    // 3) task_iter부분을 삭제 & MoveNext가 true라면 day_iter.MoveNext();
+                    repl_tasks.Remove(task_iter.Current);
+                    if (MoveNext)
+                    {
+                       end = !day_iter.MoveNext();      // 끝남을 확인하기 위한 if문
+                    }
+                    
+                }
+                // 넣을 수 있는 시간보다 넣으려고 하는 시간이 더 클때
+                else if ((day_iter.Current.availableTime - day_iter.Current.time_allocated) < task_iter.Current.Duration)
+                {
+                    int duration = task_iter.Current.Duration;
+                    Data.Model.Task task = task_iter.Current.task;
+                    int fill_location = day_iter.Current.time_allocated;
+
+                    // 1) [time_allocated]에서부터 availableTime까지 array를 채움.
+                    for (int i = fill_location; i < day_iter.Current.availableTime; i++)
+                    {
+                        day_iter.Current.task_arr[i] = task;
+                    }
+                    // 2) duration에서 (채운 시간) 만큼 빼야함.
+                    //  (채운 시간) = availableTime - time_allocated
+                    task_iter.Current.Duration -= (day_iter.Current.availableTime - day_iter.Current.time_allocated);
+                }
+            }
+
+
+        }
+
+
+
+
 
 
         public void Schedule(TimeTable timeTable, List<Data.Model.Task> tasks)
@@ -88,7 +182,6 @@ namespace TimeManager.Scheduler
             // 날짜별로 가용시간 총량을 받아옴.
             
             List<DateTimeBlock> dateTimeBlocks =  timeTable.GetAvailableTimesInThisWeekAsOfNow();
-
 
 
             List<Day> days = new List<Day>();
@@ -120,14 +213,12 @@ namespace TimeManager.Scheduler
 
             // post : days에 각 day별로 date와 AvailableTime이 들어감
 
-            // W.T.D : 마감 있는 Task를 배치하기 
-            foreach(Data.Model.Task task in tasks)
-            {
+            // W.T.D : 마감 있는 Task의 replica를 List로 만들기(repl_tasks) 
+            List<ReplicaOfTask> repl_tasks = duplicateTaskOnShort(tasks);
 
-            }
+            // W.T.D : 이제 days의 day에 repl_tasks의 repl_task를 넣기
 
-
-
+            FillDaysWithTasks(repl_tasks, days);
 
 
 
