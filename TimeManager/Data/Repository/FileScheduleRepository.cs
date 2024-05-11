@@ -32,7 +32,7 @@ namespace TimeManager.Data.Repository
             schedule.Id = nextId;
             using (StreamWriter writer = new StreamWriter(filePath))
             {
-                writer.WriteLine($"{schedule.Id}, {schedule.Name}, {schedule.Type}, {schedule.TimeBlock.StartDate}, {schedule.TimeBlock.EndDate}, {schedule.Description}");
+                writer.WriteLine($"{schedule.Id}, {schedule.Name}, {schedule.Description}, {schedule.Type}, {schedule.TimeBlock.StartDate}, {schedule.TimeBlock.EndDate}, {schedule.RegularTimeBlocks}");
             }
             using (StreamWriter writer = new StreamWriter(filePath))
             {
@@ -47,7 +47,7 @@ namespace TimeManager.Data.Repository
                 string[] parts = lines[i].Split(',');
                 if (int.Parse(parts[0]) == schedule.Id)
                 {
-                    lines[i] = $"{schedule.Id}, {schedule.Name}, {schedule.Type}, {schedule.TimeBlock.StartDate}, {schedule.TimeBlock.EndDate}, {schedule.Description}";
+                    lines[i] = $"{schedule.Id}, {schedule.Name}, {schedule.Description}, {schedule.Type}, {schedule.TimeBlock.StartDate}, {schedule.TimeBlock.EndDate}, {schedule.RegularTimeBlocks}";
                     break;
                 }
             }
@@ -78,13 +78,17 @@ namespace TimeManager.Data.Repository
                 {
                     Id = long.Parse(parts[0]),
                     Name = parts[1],
-                    Type = (EScheduleType)int.Parse(parts[2]),
+                    Description = parts[2],
+                    Type = (EScheduleType)int.Parse(parts[3]),
                     TimeBlock = new DateTimeBlock
                     {
-                        StartDate = DateTime.Parse(parts[3]),
-                        EndDate = DateTime.Parse(parts[4]),
+                        StartDate = DateTime.Parse(parts[4]),
+                        EndDate = DateTime.Parse(parts[5]),
                     },
-                    Description = parts[5]
+                    RegularTimeBlocks = new List<WeeklyDateTimeBlock>
+                    {
+
+                    }
                 };
                 schedules.Add(schedule);
             }
