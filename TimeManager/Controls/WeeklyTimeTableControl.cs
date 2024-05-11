@@ -86,7 +86,7 @@ namespace TimeManager.Controls
 
                     for (int i = startRow; i < endRow; i++)
                     {
-                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = schedule.ScheduleId;
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "Schedule " + schedule.ScheduleId;
                         dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = Color.LightBlue;
                     }
                 }
@@ -108,7 +108,7 @@ namespace TimeManager.Controls
 
                     for (int i = startRow; i < endRow; i++)
                     {
-                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = task.TaskId;
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "Task " + task.TaskId;
                         dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = Color.LightGreen;
                     }
                 }
