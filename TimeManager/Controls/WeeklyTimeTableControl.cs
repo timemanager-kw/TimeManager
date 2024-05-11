@@ -115,22 +115,6 @@ namespace TimeManager.Controls
             }
         }
 
-        private void MergeCellsVertical(PaintEventArgs e, int columnIndex, int rowIndexStart, int rowIndexEnd)
-        {
-            Rectangle rect = dataGridView.GetCellDisplayRectangle(columnIndex, rowIndexStart, false);
-            int width = rect.Width;
-            int height = rect.Height;
-
-            rect.X -= 1;
-            rect.Y -= 1;
-            rect.Width = width;
-            rect.Height = height * (rowIndexEnd - rowIndexStart);
-
-            e.Graphics.FillRectangle(new SolidBrush(dataGridView.Rows[rowIndexStart].Cells[columnIndex].InheritedStyle.BackColor), rect);
-            e.Graphics.DrawRectangle(new Pen(dataGridView.GridColor), rect);
-
-        }
-
         private void dataGridView_Paint(object sender, PaintEventArgs e)
         {
         }
