@@ -14,6 +14,15 @@ namespace TimeManager.Forms
 {
     public partial class MainForm : Form
     {
+        private TaskManager _taskManager;
+        private ScheduleManager _scheduleManager;
+
+        public void TimeBlockViewForm(TaskManager taskManager, ScheduleManager scheduleManager)
+        {
+            this._taskManager = taskManager;
+            this._scheduleManager = scheduleManager;
+        }
+
         public MainForm()
         {
             InitializeComponent();
@@ -34,7 +43,76 @@ namespace TimeManager.Forms
             TimeBlockView.Columns.RemoveByKey("last");
 
             TimeBlockView.Columns[0].TextAlign = HorizontalAlignment.Left;
-            TimeBlockView.Columns["Day"].TextAlign = HorizontalAlignment.Right;
+            TimeBlockView.Columns["Day"].TextAlign = HorizontalAlignment.Left;
+
+            UpdateTaskView();
+        }
+
+        private void TaskBtn_Click(object sender, EventArgs e)
+        {
+            UpdateTaskView();
+        }
+
+        private void ScheduleBtn_Click(object sender, EventArgs e)
+        {
+            UpdateScheduleView();
+        }
+
+        public void UpdateTaskView()
+        {
+            if (_taskManager == null) return;
+
+            TimeBlockView.Clear();
+
+            List<Task> tasks = _taskManager.GetAll().ToList();
+            if (tasks.Count > 0)
+            {
+                foreach (Task task in tasks)
+                {
+                    if (task.EndDate > DateTime.Now)
+                    {
+                        var lvItem = new ListViewItem(new string[TimeBlockView.Columns.Count]);
+
+                        lvItem.SubItems[0].Name = task.Name;
+                        lvItem.SubItems[1].Name = string.Format(task.EndDate.ToString(), "yyyy-MM-dd");
+
+                        TimeBlockView.Items.Add(lvItem);
+                    }
+                }
+            }
+            else
+            {
+                LogTxt.Text = "업무가 없습니다";
+            }
+        }
+
+        public void UpdateScheduleView()
+        {
+            if (_scheduleManager == null) return;
+
+            TimeBlockView.Clear();
+
+            List<Schedule> schedules = _scheduleManager.GetAll().ToList();
+            if (schedules.Count > 0)
+            {
+                foreach (Schedule schedule in schedules)
+                {
+                    var lvItem = new ListViewItem(new string[TimeBlockView.Columns.Count]);
+
+                    lvItem.SubItems[0].Name = schedule.Name;
+
+                    TimeBlockView.Items.Add(lvItem);
+                }
+            }
+            else
+            {
+                LogTxt.Text = "일정이 없습니다";
+            }
+        }
+
+        private void PreBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

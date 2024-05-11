@@ -156,6 +156,7 @@
             this.PreBtn.TabIndex = 0;
             this.PreBtn.Text = "<";
             this.PreBtn.UseVisualStyleBackColor = true;
+            this.PreBtn.Click += new System.EventHandler(this.PreBtn_Click);
             // 
             // splitContainer5
             // 
@@ -336,6 +337,7 @@
             this.ScheduleBtn.TabIndex = 1;
             this.ScheduleBtn.Text = "일정";
             this.ScheduleBtn.UseVisualStyleBackColor = true;
+            this.ScheduleBtn.Click += new System.EventHandler(this.ScheduleBtn_Click);
             // 
             // TaskBtn
             // 
