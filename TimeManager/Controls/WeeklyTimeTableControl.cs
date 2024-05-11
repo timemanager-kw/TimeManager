@@ -15,6 +15,19 @@ namespace TimeManager.Controls
         public WeeklyTimeTableControl()
         {
             InitializeComponent();
+            InitializeRows();
+        }
+
+        public void InitializeRows()
+        {
+            for (int i = 0; i < 48; i++)
+            {
+                DateTime dateTime = new DateTime(2000, 1, 1, 0, 0, 0);
+                dateTime = dateTime.AddMinutes(i * 30);
+
+                dataGridView.Rows.Add();
+                dataGridView.Rows[i].HeaderCell.Value = dateTime.ToString("HH:mm");
+            }
         }
     }
 }
