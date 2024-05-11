@@ -124,5 +124,28 @@ namespace TimeManager.Controls
             // restrict selection
             dataGridView.ClearSelection();
         }
+
+        private void dataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+
+        }
+
+        private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+
+        }
+
+        private bool IsSameCellValue(int column, int row)
+        {
+            DataGridViewCell cell1 = dataGridView[column, row];
+            DataGridViewCell cell2 = dataGridView[column, row - 1];
+
+            if (cell1.Value == null || cell2.Value == null)
+            {
+                return false;
+            }
+
+            return cell1.Value.Equals(cell2.Value);
+        }
     }
 }
