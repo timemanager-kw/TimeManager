@@ -6,7 +6,7 @@ using TimeManager.Data.Model;
 
 namespace TimeManager.Data.Manager
 {
-    interface ITaskManager
+    public interface ITaskManager
     {
         void Add(Task task);
         void Update(Task task);

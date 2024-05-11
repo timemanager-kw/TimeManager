@@ -7,7 +7,7 @@ using TimeManager.Extensions;
 
 namespace TimeManager.Data.Model
 {
-    struct Week
+    public struct Week
     {
         public int Year { get; set; }
         public int Month { get; set; }
