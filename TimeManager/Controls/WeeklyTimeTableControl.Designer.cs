@@ -53,13 +53,12 @@
             this.ColumnFriday,
             this.ColumnSaturday,
             this.ColumnSunday});
-            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView.Location = new System.Drawing.Point(0, 0);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 65;
             this.dataGridView.RowTemplate.Height = 23;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView.Size = new System.Drawing.Size(767, 321);
+            this.dataGridView.Size = new System.Drawing.Size(550, 208);
             this.dataGridView.TabIndex = 0;
             // 
             // ColumnMonday
@@ -104,6 +103,7 @@
             this.Controls.Add(this.dataGridView);
             this.Name = "WeeklyTimeTableControl";
             this.Size = new System.Drawing.Size(767, 321);
+            this.Load += new System.EventHandler(this.WeeklyTimeTableControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 

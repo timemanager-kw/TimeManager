@@ -13,9 +13,19 @@ namespace TimeManager.Controls
 {
     public partial class WeeklyTimeTableControl : UserControl
     {
+        private TimeTable _timeTable;
+        private Week _week;
+
         public WeeklyTimeTableControl(TimeTable timeTable, Week week)
         {
             InitializeComponent();
+
+            _timeTable = timeTable;
+            _week = week;
+        }
+
+        private void WeeklyTimeTableControl_Load(object sender, EventArgs e)
+        {
             InitializeRows();
         }
 
