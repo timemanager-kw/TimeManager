@@ -43,7 +43,7 @@ namespace TimeManager.Controls
                 for (int j = 0; j < 7; j++)
                 {
                     dataGridView.Rows[i].Cells[j].Value = null;
-                    dataGridView.Rows[i].Cells[j].Style.BackColor = Color.White;
+                    dataGridView.Rows[i].Cells[j].Style.BackColor = Color.LightGray;
                 }
             }
         }
@@ -51,8 +51,23 @@ namespace TimeManager.Controls
         public void DrawCells(TimeTable timeTable, Week week)
         {
             CleanCells();
+            DrawWorkTimes(timeTable);
             DrawSchedules(timeTable, week);
             DrawTasks(timeTable, week);
+        }
+
+        private void DrawWorkTimes(TimeTable timeTable)
+        {
+            foreach (DateTimeBlock block in timeTable.WorkTimes)
+            {
+                int startRow = block.StartDate.Hour * 2 + block.StartDate.Minute / 30;
+                int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute / 30;
+
+                for (int i = startRow; i < endRow; i++)
+                {
+                    dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = Color.White;
+                }
+            }
         }
 
         private void DrawSchedules(TimeTable timeTable, Week week)
