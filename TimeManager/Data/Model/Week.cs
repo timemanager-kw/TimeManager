@@ -23,5 +23,12 @@ namespace TimeManager.Data.Model
                 WeekOfMonth = (startOfWeek.Day - startOfWeek.FirstDayOfMonthHasDayOfWeek(DayOfWeek.Monday).Day) / 7 + 1
             };
         }
+
+        public bool IsInWeek(DateTime dateTime)
+        {
+            DateTime startOfWeek = new DateTime(Year, Month, 1).FirstDayOfMonthHasDayOfWeek(DayOfWeek.Monday).AddDays((WeekOfMonth - 1) * 7);
+            DateTime endOfWeek = startOfWeek.AddDays(7);
+            return dateTime >= startOfWeek && dateTime < endOfWeek;
+        }
     }
 }

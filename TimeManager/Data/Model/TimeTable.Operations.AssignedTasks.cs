@@ -41,7 +41,9 @@ namespace TimeManager.Data.Model
 
         public List<AssignedTask> GetWeeklyAssignedTasks(Week week)
         {
-            throw new NotImplementedException();
+            return _assignedTasks
+                .Where(t => t.AssignedBlocks.Any(b => week.IsInWeek(b.StartDate)))
+                .ToList();
         }
 
         public List<AssignedTask> GetAssignedTasksInThisWeekAsOfNow()
