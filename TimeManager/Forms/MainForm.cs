@@ -97,6 +97,9 @@ namespace TimeManager.Forms
             InitializeComponent();
 
             StandardTime = DateTime.Now;
+            StandardTime.AddDays(-(int)StandardTime.DayOfWeek);
+
+            UpdateWeekText();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
