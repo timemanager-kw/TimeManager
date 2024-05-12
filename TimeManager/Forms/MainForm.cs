@@ -89,7 +89,7 @@ namespace TimeManager.Forms
         public void UpdateWeekText()
         {
             Week week = Week.From(StandardTime);
-            WeekTxtBox.Text = $"{week.Year}.{week.Month} {week.WeekOfMonth}주차";
+            WeekLabel.Text = $"{week.Year}.{week.Month} {week.WeekOfMonth}주차";
         }
 
         public MainForm()

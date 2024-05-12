@@ -31,8 +31,6 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.AlgorithmStarter = new System.Windows.Forms.Button();
-            this.NextBtn = new System.Windows.Forms.Button();
-            this.WeekTxtBox = new System.Windows.Forms.TextBox();
             this.PreBtn = new System.Windows.Forms.Button();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
@@ -50,6 +48,8 @@
             this.ScheduleBtn = new System.Windows.Forms.Button();
             this.TaskBtn = new System.Windows.Forms.Button();
             this.TimeBlockView = new System.Windows.Forms.ListView();
+            this.WeekLabel = new System.Windows.Forms.Label();
+            this.NextBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -102,9 +102,9 @@
             // 
             // splitContainer4.Panel1
             // 
-            this.splitContainer4.Panel1.Controls.Add(this.AlgorithmStarter);
             this.splitContainer4.Panel1.Controls.Add(this.NextBtn);
-            this.splitContainer4.Panel1.Controls.Add(this.WeekTxtBox);
+            this.splitContainer4.Panel1.Controls.Add(this.WeekLabel);
+            this.splitContainer4.Panel1.Controls.Add(this.AlgorithmStarter);
             this.splitContainer4.Panel1.Controls.Add(this.PreBtn);
             this.splitContainer4.Panel1.Padding = new System.Windows.Forms.Padding(3);
             // 
@@ -125,29 +125,6 @@
             this.AlgorithmStarter.Text = "계획";
             this.AlgorithmStarter.UseVisualStyleBackColor = true;
             this.AlgorithmStarter.Click += new System.EventHandler(this.AlgorithmStarter_Click);
-            // 
-            // NextBtn
-            // 
-            this.NextBtn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.NextBtn.Location = new System.Drawing.Point(183, 3);
-            this.NextBtn.Name = "NextBtn";
-            this.NextBtn.Size = new System.Drawing.Size(40, 22);
-            this.NextBtn.TabIndex = 4;
-            this.NextBtn.Text = ">";
-            this.NextBtn.UseVisualStyleBackColor = true;
-            this.NextBtn.Click += new System.EventHandler(this.NextBtn_Click);
-            // 
-            // WeekTxtBox
-            // 
-            this.WeekTxtBox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.WeekTxtBox.Location = new System.Drawing.Point(43, 3);
-            this.WeekTxtBox.Multiline = true;
-            this.WeekTxtBox.Name = "WeekTxtBox";
-            this.WeekTxtBox.ReadOnly = true;
-            this.WeekTxtBox.Size = new System.Drawing.Size(140, 22);
-            this.WeekTxtBox.TabIndex = 3;
-            this.WeekTxtBox.Text = "2024.05 2주차";
-            this.WeekTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // PreBtn
             // 
@@ -362,6 +339,26 @@
             this.TimeBlockView.TabIndex = 0;
             this.TimeBlockView.UseCompatibleStateImageBehavior = false;
             // 
+            // WeekLabel
+            // 
+            this.WeekLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.WeekLabel.Location = new System.Drawing.Point(43, 3);
+            this.WeekLabel.Name = "WeekLabel";
+            this.WeekLabel.Size = new System.Drawing.Size(140, 22);
+            this.WeekLabel.TabIndex = 6;
+            this.WeekLabel.Text = "label1";
+            this.WeekLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // NextBtn
+            // 
+            this.NextBtn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.NextBtn.Location = new System.Drawing.Point(183, 3);
+            this.NextBtn.Name = "NextBtn";
+            this.NextBtn.Size = new System.Drawing.Size(40, 22);
+            this.NextBtn.TabIndex = 7;
+            this.NextBtn.Text = ">";
+            this.NextBtn.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -377,7 +374,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer4.Panel1.ResumeLayout(false);
-            this.splitContainer4.Panel1.PerformLayout();
             this.splitContainer4.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
@@ -411,8 +407,6 @@
         private System.Windows.Forms.ListView TimeBlockView;
         private System.Windows.Forms.SplitContainer splitContainer4;
         private System.Windows.Forms.Button PreBtn;
-        private System.Windows.Forms.Button NextBtn;
-        private System.Windows.Forms.TextBox WeekTxtBox;
         private System.Windows.Forms.Button AlgorithmStarter;
         private System.Windows.Forms.SplitContainer splitContainer5;
         private System.Windows.Forms.TextBox LogTxt;
@@ -425,5 +419,7 @@
         private System.Windows.Forms.TextBox week5;
         private System.Windows.Forms.TextBox week4;
         private System.Windows.Forms.TextBox week7;
+        private System.Windows.Forms.Button NextBtn;
+        private System.Windows.Forms.Label WeekLabel;
     }
 }
