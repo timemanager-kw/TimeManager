@@ -28,398 +28,228 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
-            this.AlgorithmStarter = new System.Windows.Forms.Button();
-            this.PreBtn = new System.Windows.Forms.Button();
-            this.splitContainer5 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer6 = new System.Windows.Forms.SplitContainer();
-            this.week7 = new System.Windows.Forms.TextBox();
-            this.week6 = new System.Windows.Forms.TextBox();
-            this.week5 = new System.Windows.Forms.TextBox();
-            this.week4 = new System.Windows.Forms.TextBox();
-            this.week3 = new System.Windows.Forms.TextBox();
-            this.week2 = new System.Windows.Forms.TextBox();
-            this.week1 = new System.Windows.Forms.TextBox();
-            this.week0 = new System.Windows.Forms.TextBox();
-            this.LogTxt = new System.Windows.Forms.TextBox();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.ScheduleBtn = new System.Windows.Forms.Button();
-            this.TaskBtn = new System.Windows.Forms.Button();
+            this.TimeBlockSettingPanel = new System.Windows.Forms.Panel();
+            this.AddPanel = new System.Windows.Forms.Panel();
+            this.TimeBlockPanel = new System.Windows.Forms.Panel();
             this.TimeBlockView = new System.Windows.Forms.ListView();
-            this.WeekLabel = new System.Windows.Forms.Label();
+            this.TimeBlockTitlePanel = new System.Windows.Forms.Panel();
+            this.AddBtn = new System.Windows.Forms.Button();
+            this.TaskBtn = new System.Windows.Forms.Button();
+            this.ScheduleBtn = new System.Windows.Forms.Button();
+            this.TitlePanel = new System.Windows.Forms.Panel();
             this.NextBtn = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
-            this.splitContainer4.Panel1.SuspendLayout();
-            this.splitContainer4.Panel2.SuspendLayout();
-            this.splitContainer4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
-            this.splitContainer5.Panel1.SuspendLayout();
-            this.splitContainer5.Panel2.SuspendLayout();
-            this.splitContainer5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).BeginInit();
-            this.splitContainer6.Panel1.SuspendLayout();
-            this.splitContainer6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
-            this.splitContainer3.Panel1.SuspendLayout();
-            this.splitContainer3.Panel2.SuspendLayout();
-            this.splitContainer3.SuspendLayout();
+            this.WeekLabel = new System.Windows.Forms.Label();
+            this.AlgorithmStarter = new System.Windows.Forms.Button();
+            this.PrevBtn = new System.Windows.Forms.Button();
+            this.LogTxt = new System.Windows.Forms.TextBox();
+            this.CalendarPanel = new System.Windows.Forms.Panel();
+            this.TimeBlockSettingPanel.SuspendLayout();
+            this.TimeBlockPanel.SuspendLayout();
+            this.TimeBlockTitlePanel.SuspendLayout();
+            this.TitlePanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // splitContainer1
+            // TimeBlockSettingPanel
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(5, 5);
-            this.splitContainer1.Name = "splitContainer1";
+            this.TimeBlockSettingPanel.Controls.Add(this.AddPanel);
+            this.TimeBlockSettingPanel.Controls.Add(this.TimeBlockPanel);
+            this.TimeBlockSettingPanel.Controls.Add(this.TimeBlockTitlePanel);
+            this.TimeBlockSettingPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.TimeBlockSettingPanel.Location = new System.Drawing.Point(741, 0);
+            this.TimeBlockSettingPanel.Name = "TimeBlockSettingPanel";
+            this.TimeBlockSettingPanel.Size = new System.Drawing.Size(200, 493);
+            this.TimeBlockSettingPanel.TabIndex = 2;
             // 
-            // splitContainer1.Panel1
+            // AddPanel
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.splitContainer4);
+            this.AddPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AddPanel.Location = new System.Drawing.Point(0, 290);
+            this.AddPanel.Name = "AddPanel";
+            this.AddPanel.Padding = new System.Windows.Forms.Padding(5);
+            this.AddPanel.Size = new System.Drawing.Size(200, 203);
+            this.AddPanel.TabIndex = 3;
             // 
-            // splitContainer1.Panel2
+            // TimeBlockPanel
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(878, 496);
-            this.splitContainer1.SplitterDistance = 682;
-            this.splitContainer1.SplitterWidth = 5;
-            this.splitContainer1.TabIndex = 0;
-            this.splitContainer1.TabStop = false;
-            // 
-            // splitContainer4
-            // 
-            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer4.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer4.Name = "splitContainer4";
-            this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer4.Panel1
-            // 
-            this.splitContainer4.Panel1.Controls.Add(this.NextBtn);
-            this.splitContainer4.Panel1.Controls.Add(this.WeekLabel);
-            this.splitContainer4.Panel1.Controls.Add(this.AlgorithmStarter);
-            this.splitContainer4.Panel1.Controls.Add(this.PreBtn);
-            this.splitContainer4.Panel1.Padding = new System.Windows.Forms.Padding(3);
-            // 
-            // splitContainer4.Panel2
-            // 
-            this.splitContainer4.Panel2.Controls.Add(this.splitContainer5);
-            this.splitContainer4.Size = new System.Drawing.Size(682, 496);
-            this.splitContainer4.SplitterDistance = 28;
-            this.splitContainer4.TabIndex = 0;
-            // 
-            // AlgorithmStarter
-            // 
-            this.AlgorithmStarter.Dock = System.Windows.Forms.DockStyle.Right;
-            this.AlgorithmStarter.Location = new System.Drawing.Point(619, 3);
-            this.AlgorithmStarter.Name = "AlgorithmStarter";
-            this.AlgorithmStarter.Size = new System.Drawing.Size(60, 22);
-            this.AlgorithmStarter.TabIndex = 5;
-            this.AlgorithmStarter.Text = "계획";
-            this.AlgorithmStarter.UseVisualStyleBackColor = true;
-            this.AlgorithmStarter.Click += new System.EventHandler(this.AlgorithmStarter_Click);
-            // 
-            // PreBtn
-            // 
-            this.PreBtn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.PreBtn.Location = new System.Drawing.Point(3, 3);
-            this.PreBtn.Name = "PreBtn";
-            this.PreBtn.Size = new System.Drawing.Size(40, 22);
-            this.PreBtn.TabIndex = 0;
-            this.PreBtn.Text = "<";
-            this.PreBtn.UseVisualStyleBackColor = true;
-            this.PreBtn.Click += new System.EventHandler(this.PreBtn_Click);
-            // 
-            // splitContainer5
-            // 
-            this.splitContainer5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer5.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer5.Name = "splitContainer5";
-            this.splitContainer5.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer5.Panel1
-            // 
-            this.splitContainer5.Panel1.Controls.Add(this.splitContainer6);
-            // 
-            // splitContainer5.Panel2
-            // 
-            this.splitContainer5.Panel2.Controls.Add(this.LogTxt);
-            this.splitContainer5.Size = new System.Drawing.Size(682, 464);
-            this.splitContainer5.SplitterDistance = 380;
-            this.splitContainer5.TabIndex = 0;
-            this.splitContainer5.TabStop = false;
-            // 
-            // splitContainer6
-            // 
-            this.splitContainer6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer6.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer6.Name = "splitContainer6";
-            this.splitContainer6.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer6.Panel1
-            // 
-            this.splitContainer6.Panel1.Controls.Add(this.week7);
-            this.splitContainer6.Panel1.Controls.Add(this.week6);
-            this.splitContainer6.Panel1.Controls.Add(this.week5);
-            this.splitContainer6.Panel1.Controls.Add(this.week4);
-            this.splitContainer6.Panel1.Controls.Add(this.week3);
-            this.splitContainer6.Panel1.Controls.Add(this.week2);
-            this.splitContainer6.Panel1.Controls.Add(this.week1);
-            this.splitContainer6.Panel1.Controls.Add(this.week0);
-            this.splitContainer6.Panel1.Padding = new System.Windows.Forms.Padding(3);
-            this.splitContainer6.Size = new System.Drawing.Size(682, 380);
-            this.splitContainer6.SplitterDistance = 30;
-            this.splitContainer6.TabIndex = 0;
-            // 
-            // week7
-            // 
-            this.week7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.week7.Location = new System.Drawing.Point(450, 3);
-            this.week7.Name = "week7";
-            this.week7.ReadOnly = true;
-            this.week7.Size = new System.Drawing.Size(63, 25);
-            this.week7.TabIndex = 7;
-            this.week7.Text = "일";
-            this.week7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // week6
-            // 
-            this.week6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.week6.Location = new System.Drawing.Point(387, 3);
-            this.week6.Name = "week6";
-            this.week6.ReadOnly = true;
-            this.week6.Size = new System.Drawing.Size(63, 25);
-            this.week6.TabIndex = 6;
-            this.week6.Text = "토";
-            this.week6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // week5
-            // 
-            this.week5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.week5.Location = new System.Drawing.Point(324, 3);
-            this.week5.Name = "week5";
-            this.week5.ReadOnly = true;
-            this.week5.Size = new System.Drawing.Size(63, 25);
-            this.week5.TabIndex = 5;
-            this.week5.Text = "금";
-            this.week5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // week4
-            // 
-            this.week4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.week4.Location = new System.Drawing.Point(261, 3);
-            this.week4.Name = "week4";
-            this.week4.ReadOnly = true;
-            this.week4.Size = new System.Drawing.Size(63, 25);
-            this.week4.TabIndex = 4;
-            this.week4.Text = "목";
-            this.week4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // week3
-            // 
-            this.week3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.week3.Location = new System.Drawing.Point(198, 3);
-            this.week3.Name = "week3";
-            this.week3.ReadOnly = true;
-            this.week3.Size = new System.Drawing.Size(63, 25);
-            this.week3.TabIndex = 3;
-            this.week3.Text = "수";
-            this.week3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // week2
-            // 
-            this.week2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.week2.Location = new System.Drawing.Point(135, 3);
-            this.week2.Name = "week2";
-            this.week2.ReadOnly = true;
-            this.week2.Size = new System.Drawing.Size(63, 25);
-            this.week2.TabIndex = 2;
-            this.week2.Text = "화";
-            this.week2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // week1
-            // 
-            this.week1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.week1.Location = new System.Drawing.Point(72, 3);
-            this.week1.Name = "week1";
-            this.week1.ReadOnly = true;
-            this.week1.Size = new System.Drawing.Size(63, 25);
-            this.week1.TabIndex = 1;
-            this.week1.Text = "월";
-            this.week1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // week0
-            // 
-            this.week0.Dock = System.Windows.Forms.DockStyle.Left;
-            this.week0.Location = new System.Drawing.Point(3, 3);
-            this.week0.Name = "week0";
-            this.week0.ReadOnly = true;
-            this.week0.Size = new System.Drawing.Size(69, 25);
-            this.week0.TabIndex = 0;
-            // 
-            // LogTxt
-            // 
-            this.LogTxt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LogTxt.Location = new System.Drawing.Point(0, 0);
-            this.LogTxt.Multiline = true;
-            this.LogTxt.Name = "LogTxt";
-            this.LogTxt.Size = new System.Drawing.Size(682, 80);
-            this.LogTxt.TabIndex = 0;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(191, 496);
-            this.splitContainer2.SplitterDistance = 239;
-            this.splitContainer2.TabIndex = 0;
-            // 
-            // splitContainer3
-            // 
-            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer3.Name = "splitContainer3";
-            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer3.Panel1
-            // 
-            this.splitContainer3.Panel1.Controls.Add(this.ScheduleBtn);
-            this.splitContainer3.Panel1.Controls.Add(this.TaskBtn);
-            this.splitContainer3.Panel1.Padding = new System.Windows.Forms.Padding(3);
-            // 
-            // splitContainer3.Panel2
-            // 
-            this.splitContainer3.Panel2.Controls.Add(this.TimeBlockView);
-            this.splitContainer3.Size = new System.Drawing.Size(191, 239);
-            this.splitContainer3.SplitterDistance = 35;
-            this.splitContainer3.TabIndex = 0;
-            // 
-            // ScheduleBtn
-            // 
-            this.ScheduleBtn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ScheduleBtn.Location = new System.Drawing.Point(53, 3);
-            this.ScheduleBtn.Name = "ScheduleBtn";
-            this.ScheduleBtn.Size = new System.Drawing.Size(50, 29);
-            this.ScheduleBtn.TabIndex = 1;
-            this.ScheduleBtn.Text = "일정";
-            this.ScheduleBtn.UseVisualStyleBackColor = true;
-            this.ScheduleBtn.Click += new System.EventHandler(this.ScheduleBtn_Click);
-            // 
-            // TaskBtn
-            // 
-            this.TaskBtn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.TaskBtn.Location = new System.Drawing.Point(3, 3);
-            this.TaskBtn.Name = "TaskBtn";
-            this.TaskBtn.Size = new System.Drawing.Size(50, 29);
-            this.TaskBtn.TabIndex = 0;
-            this.TaskBtn.Text = "업무";
-            this.TaskBtn.UseVisualStyleBackColor = true;
-            this.TaskBtn.Click += new System.EventHandler(this.TaskBtn_Click);
+            this.TimeBlockPanel.Controls.Add(this.TimeBlockView);
+            this.TimeBlockPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TimeBlockPanel.Location = new System.Drawing.Point(0, 40);
+            this.TimeBlockPanel.Name = "TimeBlockPanel";
+            this.TimeBlockPanel.Padding = new System.Windows.Forms.Padding(3);
+            this.TimeBlockPanel.Size = new System.Drawing.Size(200, 250);
+            this.TimeBlockPanel.TabIndex = 2;
             // 
             // TimeBlockView
             // 
             this.TimeBlockView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TimeBlockView.HideSelection = false;
-            this.TimeBlockView.Location = new System.Drawing.Point(0, 0);
+            this.TimeBlockView.Location = new System.Drawing.Point(3, 3);
             this.TimeBlockView.Name = "TimeBlockView";
-            this.TimeBlockView.Size = new System.Drawing.Size(191, 200);
+            this.TimeBlockView.Size = new System.Drawing.Size(194, 244);
             this.TimeBlockView.TabIndex = 0;
             this.TimeBlockView.UseCompatibleStateImageBehavior = false;
             // 
-            // WeekLabel
+            // TimeBlockTitlePanel
             // 
-            this.WeekLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.WeekLabel.Location = new System.Drawing.Point(43, 3);
-            this.WeekLabel.Name = "WeekLabel";
-            this.WeekLabel.Size = new System.Drawing.Size(140, 22);
-            this.WeekLabel.TabIndex = 6;
-            this.WeekLabel.Text = "label1";
-            this.WeekLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TimeBlockTitlePanel.Controls.Add(this.AddBtn);
+            this.TimeBlockTitlePanel.Controls.Add(this.TaskBtn);
+            this.TimeBlockTitlePanel.Controls.Add(this.ScheduleBtn);
+            this.TimeBlockTitlePanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TimeBlockTitlePanel.Location = new System.Drawing.Point(0, 0);
+            this.TimeBlockTitlePanel.MaximumSize = new System.Drawing.Size(0, 60);
+            this.TimeBlockTitlePanel.Name = "TimeBlockTitlePanel";
+            this.TimeBlockTitlePanel.Padding = new System.Windows.Forms.Padding(3);
+            this.TimeBlockTitlePanel.Size = new System.Drawing.Size(200, 40);
+            this.TimeBlockTitlePanel.TabIndex = 1;
+            // 
+            // AddBtn
+            // 
+            this.AddBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.AddBtn.Location = new System.Drawing.Point(163, 3);
+            this.AddBtn.Name = "AddBtn";
+            this.AddBtn.Size = new System.Drawing.Size(34, 34);
+            this.AddBtn.TabIndex = 2;
+            this.AddBtn.Text = "+";
+            this.AddBtn.UseVisualStyleBackColor = true;
+            this.AddBtn.Click += new System.EventHandler(this.AddBtn_Click);
+            // 
+            // TaskBtn
+            // 
+            this.TaskBtn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.TaskBtn.Location = new System.Drawing.Point(48, 3);
+            this.TaskBtn.Name = "TaskBtn";
+            this.TaskBtn.Size = new System.Drawing.Size(46, 34);
+            this.TaskBtn.TabIndex = 1;
+            this.TaskBtn.Text = "업무";
+            this.TaskBtn.UseVisualStyleBackColor = true;
+            this.TaskBtn.Click += new System.EventHandler(this.TaskBtn_Click);
+            // 
+            // ScheduleBtn
+            // 
+            this.ScheduleBtn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ScheduleBtn.Location = new System.Drawing.Point(3, 3);
+            this.ScheduleBtn.Name = "ScheduleBtn";
+            this.ScheduleBtn.Size = new System.Drawing.Size(45, 34);
+            this.ScheduleBtn.TabIndex = 0;
+            this.ScheduleBtn.Text = "일정";
+            this.ScheduleBtn.UseVisualStyleBackColor = true;
+            this.ScheduleBtn.Click += new System.EventHandler(this.ScheduleBtn_Click);
+            // 
+            // TitlePanel
+            // 
+            this.TitlePanel.Controls.Add(this.NextBtn);
+            this.TitlePanel.Controls.Add(this.WeekLabel);
+            this.TitlePanel.Controls.Add(this.AlgorithmStarter);
+            this.TitlePanel.Controls.Add(this.PrevBtn);
+            this.TitlePanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TitlePanel.Location = new System.Drawing.Point(1, 0);
+            this.TitlePanel.MaximumSize = new System.Drawing.Size(0, 60);
+            this.TitlePanel.Name = "TitlePanel";
+            this.TitlePanel.Padding = new System.Windows.Forms.Padding(5);
+            this.TitlePanel.Size = new System.Drawing.Size(740, 40);
+            this.TitlePanel.TabIndex = 3;
             // 
             // NextBtn
             // 
             this.NextBtn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.NextBtn.Location = new System.Drawing.Point(183, 3);
+            this.NextBtn.Location = new System.Drawing.Point(170, 5);
             this.NextBtn.Name = "NextBtn";
-            this.NextBtn.Size = new System.Drawing.Size(40, 22);
-            this.NextBtn.TabIndex = 7;
+            this.NextBtn.Size = new System.Drawing.Size(35, 30);
+            this.NextBtn.TabIndex = 4;
             this.NextBtn.Text = ">";
             this.NextBtn.UseVisualStyleBackColor = true;
+            this.NextBtn.Click += new System.EventHandler(this.NextBtn_Click);
+            // 
+            // WeekLabel
+            // 
+            this.WeekLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.WeekLabel.Location = new System.Drawing.Point(40, 5);
+            this.WeekLabel.Name = "WeekLabel";
+            this.WeekLabel.Size = new System.Drawing.Size(130, 30);
+            this.WeekLabel.TabIndex = 3;
+            this.WeekLabel.Text = "2024.05 2주차";
+            this.WeekLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // AlgorithmStarter
+            // 
+            this.AlgorithmStarter.Dock = System.Windows.Forms.DockStyle.Right;
+            this.AlgorithmStarter.Location = new System.Drawing.Point(685, 5);
+            this.AlgorithmStarter.Name = "AlgorithmStarter";
+            this.AlgorithmStarter.Size = new System.Drawing.Size(50, 30);
+            this.AlgorithmStarter.TabIndex = 2;
+            this.AlgorithmStarter.Text = "계획";
+            this.AlgorithmStarter.UseVisualStyleBackColor = true;
+            this.AlgorithmStarter.Click += new System.EventHandler(this.AlgorithmStarter_Click);
+            // 
+            // PrevBtn
+            // 
+            this.PrevBtn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.PrevBtn.Location = new System.Drawing.Point(5, 5);
+            this.PrevBtn.Name = "PrevBtn";
+            this.PrevBtn.Size = new System.Drawing.Size(35, 30);
+            this.PrevBtn.TabIndex = 0;
+            this.PrevBtn.Text = "<";
+            this.PrevBtn.UseVisualStyleBackColor = true;
+            this.PrevBtn.Click += new System.EventHandler(this.PreBtn_Click);
+            // 
+            // LogTxt
+            // 
+            this.LogTxt.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.LogTxt.Location = new System.Drawing.Point(1, 393);
+            this.LogTxt.Multiline = true;
+            this.LogTxt.Name = "LogTxt";
+            this.LogTxt.Size = new System.Drawing.Size(740, 100);
+            this.LogTxt.TabIndex = 5;
+            // 
+            // CalendarPanel
+            // 
+            this.CalendarPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CalendarPanel.Location = new System.Drawing.Point(1, 40);
+            this.CalendarPanel.Name = "CalendarPanel";
+            this.CalendarPanel.Size = new System.Drawing.Size(740, 353);
+            this.CalendarPanel.TabIndex = 6;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(888, 506);
-            this.Controls.Add(this.splitContainer1);
+            this.ClientSize = new System.Drawing.Size(942, 493);
+            this.Controls.Add(this.CalendarPanel);
+            this.Controls.Add(this.LogTxt);
+            this.Controls.Add(this.TitlePanel);
+            this.Controls.Add(this.TimeBlockSettingPanel);
+            this.IsMdiContainer = true;
             this.Name = "MainForm";
-            this.Padding = new System.Windows.Forms.Padding(5);
+            this.Padding = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.Text = "MainForm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            this.splitContainer4.Panel1.ResumeLayout(false);
-            this.splitContainer4.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
-            this.splitContainer4.ResumeLayout(false);
-            this.splitContainer5.Panel1.ResumeLayout(false);
-            this.splitContainer5.Panel2.ResumeLayout(false);
-            this.splitContainer5.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
-            this.splitContainer5.ResumeLayout(false);
-            this.splitContainer6.Panel1.ResumeLayout(false);
-            this.splitContainer6.Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).EndInit();
-            this.splitContainer6.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
-            this.splitContainer3.Panel1.ResumeLayout(false);
-            this.splitContainer3.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
-            this.splitContainer3.ResumeLayout(false);
+            this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
+            this.TimeBlockSettingPanel.ResumeLayout(false);
+            this.TimeBlockPanel.ResumeLayout(false);
+            this.TimeBlockTitlePanel.ResumeLayout(false);
+            this.TitlePanel.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.Button ScheduleBtn;
+        private System.Windows.Forms.Panel TimeBlockSettingPanel;
+        private System.Windows.Forms.Panel TimeBlockTitlePanel;
+        private System.Windows.Forms.Button AddBtn;
         private System.Windows.Forms.Button TaskBtn;
-        private System.Windows.Forms.ListView TimeBlockView;
-        private System.Windows.Forms.SplitContainer splitContainer4;
-        private System.Windows.Forms.Button PreBtn;
-        private System.Windows.Forms.Button AlgorithmStarter;
-        private System.Windows.Forms.SplitContainer splitContainer5;
-        private System.Windows.Forms.TextBox LogTxt;
-        private System.Windows.Forms.SplitContainer splitContainer6;
-        private System.Windows.Forms.TextBox week0;
-        private System.Windows.Forms.TextBox week2;
-        private System.Windows.Forms.TextBox week1;
-        private System.Windows.Forms.TextBox week3;
-        private System.Windows.Forms.TextBox week6;
-        private System.Windows.Forms.TextBox week5;
-        private System.Windows.Forms.TextBox week4;
-        private System.Windows.Forms.TextBox week7;
+        private System.Windows.Forms.Button ScheduleBtn;
+        private System.Windows.Forms.Panel TitlePanel;
         private System.Windows.Forms.Button NextBtn;
         private System.Windows.Forms.Label WeekLabel;
+        private System.Windows.Forms.Button AlgorithmStarter;
+        private System.Windows.Forms.Button PrevBtn;
+        private System.Windows.Forms.Panel AddPanel;
+        private System.Windows.Forms.Panel TimeBlockPanel;
+        private System.Windows.Forms.ListView TimeBlockView;
+        private System.Windows.Forms.TextBox LogTxt;
+        private System.Windows.Forms.Panel CalendarPanel;
     }
 }
