@@ -66,6 +66,7 @@
     <Compile Include="Data\Model\WeeklyDateTimeBlock.cs" />
     <Compile Include="Data\Repository\FileScheduleRepository.cs" />
     <Compile Include="Data\Repository\FileTaskRepository.cs" />
+    <Compile Include="Data\Repository\FileTimeTableRepository.cs" />
     <Compile Include="Data\Repository\IScheduleRepository.cs" />
     <Compile Include="Data\Repository\ITaskRepository.cs" />
     <Compile Include="Data\Repository\ITimeTableRepository.cs" />
