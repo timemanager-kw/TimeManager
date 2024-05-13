@@ -156,11 +156,12 @@ namespace TimeManager.Scheduler
                     TempBlock tempBlock = new TempBlock(task, duration);
                     day_iter.Current.tempBlocks.Add(tempBlock);
 
-                    // 1) [time_allocated]에서부터 duration만큼 array를 채움.
+/*                    // 1) [time_allocated]에서부터 duration만큼 array를 채움.
                     for (int i=0; i < duration; i++)
                     {
                         day_iter.Current.task_arr[fill_location + i] = task;
-                    }
+                    }*/
+
                     // 2) time_allocated에 duration만큼 더함.
                     day_iter.Current.time_allocated += duration;
 
@@ -183,11 +184,12 @@ namespace TimeManager.Scheduler
                     TempBlock tempBlock = new TempBlock(task, day_iter.Current.availableTime - day_iter.Current.time_allocated);
                     day_iter.Current.tempBlocks.Add(tempBlock);
 
-                    // 1) [time_allocated]에서부터 availableTime까지 array를 채움.
+/*                    // 1) [time_allocated]에서부터 availableTime까지 array를 채움.
                     for (int i = fill_location; i < day_iter.Current.availableTime; i++)
                     {
                         day_iter.Current.task_arr[i] = task;
-                    }
+                    }*/
+
                     // 2) duration에서 (채운 시간) 만큼 빼야함.
                     //  (채운 시간) = availableTime - time_allocated
                     task_iter.Current.Duration -= (day_iter.Current.availableTime - day_iter.Current.time_allocated);
@@ -202,6 +204,38 @@ namespace TimeManager.Scheduler
                 throw new TimeOverflowException("가용 시간이 부족합니다");
             }
         }
+
+
+        // W.T.D : n시간으로 등분되길 원한다면, n시간씩 쪼개어 다른곳(다른날)과 위치를 바꿈.
+        private void RandomArrange(List<Day> days, int interval)
+        {
+            // Day를 모두 순회하면서 Task들 또한 순회함.
+            // 순회하면서 각각의 Task 시간블럭을 확인함.
+            //
+            //  (확률을 적용하여 exchange 기능 설정?)
+            // if) Task A의 시간이 2n보다 큰가? & 이미 한번 훑은 적이 없는가?
+            //      then -> 뒤에 날짜를 보며(Task A의 마감기한까지.)
+            //      , 바꿀만한 Task B(Or 빈 시간)가 있는지 확인하기.(조건 : Task B의 마감기한 또한 Task A의 마감기한에 포함되어야 함.)
+            //      if) 바꿀 수 있다면, 바꾸는 함수인 Exchange() 적용.
+            // 
+
+
+            // day에 대한 iterator 먼저 설정
+            IEnumerator<Day> day_iter = days.GetEnumerator();
+            day_iter.Reset();
+
+            bool end = false;
+
+            while(!end)
+            {
+                day_iter.Current.
+            }
+
+
+
+        }
+
+
 
 
         public void Schedule(TimeTable timeTable, List<Data.Model.Task> tasks)
@@ -247,8 +281,9 @@ namespace TimeManager.Scheduler
             // W.T.D : 이제 days의 day에 repl_tasks의 repl_task를 넣기
             FillDaysWithTasks(repl_tasks, days);
 
-            // W.T.D : 덩어리가 큰 것들을 찾아 등분하여
+            // W.T.D : 덩어리가 큰 것들을 찾아 등분하여 다른곳과 바꿈
 
+            //
 
 
 
