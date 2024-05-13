@@ -39,9 +39,12 @@ namespace TimeManager.Scheduler
         {
             public TempBlock(Data.Model.Task task, int time_interval){
                 this.task = task; this.time_interval = time_interval;
+
             }
             public int time_interval {  get; set; }
             public Data.Model.Task task;
+
+            public bool Exchangable = false;        // Exchange 과정에서 사용하기 위해 만듦.
         }
 
         private class Day
@@ -207,7 +210,7 @@ namespace TimeManager.Scheduler
 
 
         // W.T.D : n시간으로 등분되길 원한다면, n시간씩 쪼개어 다른곳(다른날)과 위치를 바꿈.
-        private void RandomArrange(List<Day> days, int interval)
+        private void RandomArrange(List<Day> days, int least_interval)
         {
             // Day를 모두 순회하면서 Task들 또한 순회함.
             // 순회하면서 각각의 Task 시간블럭을 확인함.
@@ -235,8 +238,34 @@ namespace TimeManager.Scheduler
                 IEnumerator<Day> day_cursor = days.GetEnumerator();
                 day_cursor = day_iter;
 
+                // 모든 tempBlock 각각을 확인하며, 2n보다 클 경우에 분리를 시도함.
                 foreach(TempBlock tempBlock in tempBlocks)
                 {
+                    bool local_end = false;
+                    bool repeatable = true;
+                    while(!local_end)
+                    {
+                        // 2n보다 크다면 & 똑같은 크기로 다시 반복되는게 아니라면(or 바로 이전 loop에서 진행이 잘 되었다면)
+                        if (tempBlock.time_interval >= 2 * least_interval && repeatable)
+                        {
+                            // n만큼을 떼어 다른곳에 넣을 수 있는지 확인한다.
+                            // 이후 n만큼을 그 날짜에 넣고, 그 날짜에 있던 시간만큼을 앞으로 가져온다.
+                            // ※주의사항 1) 그 날짜에 같은 종류의 Task가 있다면 그곳에 넣기.
+                            //   주의사항 2) 앞으로 가져온 Task에 대해서는 바꾸는 행위를 하지 않는다.
+
+                        }
+                    }
+
+
+
+
+
+                    // 2n보다 큼을 확인.
+                    if(tempBlock.time_interval >=2*least_interval)
+                    {
+
+                    }
+
                     while (day_cursor.Current.dateTime <= tempBlock.task.EndDate)
                     {
 
