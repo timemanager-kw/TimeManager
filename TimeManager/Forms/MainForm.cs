@@ -56,13 +56,13 @@ namespace TimeManager.Forms
             TaskBtn.Size = new Size(TimeBlockTitlePanel.Size.Height * 45 / 34, TaskBtn.Size.Height);
             AddBtn.Size = new Size(AddBtn.Size.Height, AddBtn.Size.Height);
 
-            TitlePanel.Size = new Size(TitlePanel.Size.Width, this.Size.Height * 2 / 27);
+            //TitlePanel.Size = new Size(TitlePanel.Size.Width, this.Size.Height * 2 / 27);
             PrevBtn.Size = new Size(PrevBtn.Size.Height * 7 / 6, PrevBtn.Size.Height);
             WeekLabel.Size = new Size(WeekLabel.Size.Height * 13 / 3, WeekLabel.Size.Height);
             NextBtn.Size = new Size(NextBtn.Size.Height * 7 / 6, NextBtn.Size.Height);
             AlgorithmStarter.Size = new Size(AlgorithmStarter.Size.Height * 5 / 3, AlgorithmStarter.Size.Height);
 
-            TimeBlockSettingPanel.Size = new Size(this.Size.Width * 5 / 24, TimeBlockSettingPanel.Size.Height);
+            //TimeBlockSettingPanel.Size = new Size(this.Size.Width * 5 / 24, TimeBlockSettingPanel.Size.Height);
 
 
             ScheduleBtn.Font = new Font(ScheduleBtn.Font.FontFamily, ScheduleBtn.Size.Height * 11 / 37);
