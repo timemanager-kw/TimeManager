@@ -250,8 +250,10 @@ namespace TimeManager.Scheduler
                         // 2n보다 크다면 & 똑같은 크기로 다시 반복되는게 아니라면(or 바로 이전 loop에서 진행이 잘 되었다면)
                         // ※※※ (time_interval % n - 1)번 반복하도록 하는건 어떨까 ※※※
                         int repeat_num = tempBlock.time_interval % least_interval - 1; // (※※--※※) 반영하여 바꿈
-                        if ( 0 <= repeat_num-- && repeatable)
-                        {
+                        while(0 <= repeat_num-- && repeatable)
+                        { 
+
+
                             // n만큼을 떼어 다른곳에 넣을 수 있는지 확인한다.
                             // 이후 n만큼을 그 날짜에 넣고, 그 날짜에 있던 시간만큼을 앞으로 가져온다.
                             // ※주의사항 1) 그 날짜에 같은 종류의 Task가 있다면 그곳에 넣기.
