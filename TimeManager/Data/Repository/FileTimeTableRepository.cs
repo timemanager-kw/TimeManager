@@ -25,6 +25,7 @@ namespace TimeManager.Data.Repository
         //TimeTable의 WorkTimes, AssignedSchedules, AssignedTasks 속성을 저장/로드
         public void Update(TimeTable timeTable)
         {
+            List<string> lines = File.ReadAllLines(filePath).ToList();
 
         }
         public void Clear()

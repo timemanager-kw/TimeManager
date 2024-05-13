@@ -10,5 +10,6 @@ namespace TimeManager.Data.Model
     {
         public List<DateTimeBlock> AssignedBlocks { get; set; }
         public long TaskId { get; set; }
+        public string TaskName { get; set; }
     }
 }
