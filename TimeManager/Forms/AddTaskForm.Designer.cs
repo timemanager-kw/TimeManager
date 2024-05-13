@@ -224,6 +224,7 @@
             this.Name = "AddTaskForm";
             this.Padding = new System.Windows.Forms.Padding(5);
             this.ShowIcon = false;
+            this.TopMost = true;
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

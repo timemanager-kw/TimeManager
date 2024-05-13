@@ -78,6 +78,13 @@ namespace TimeManager.Forms
 
         void UpdateScheduleView()
         {
+            var testItem = new ListViewItem(new string[TimeBlockView.Columns.Count]);
+
+            testItem.SubItems[0].Text = "Test1";
+            testItem.SubItems[1].Text = "2024.05.15";
+
+            TimeBlockView.Items.Add(testItem);
+
             if (_scheduleManager == null) return;
 
             TimeBlockView.Clear();
@@ -89,7 +96,7 @@ namespace TimeManager.Forms
                 {
                     var lvItem = new ListViewItem(new string[TimeBlockView.Columns.Count]);
 
-                    lvItem.SubItems[0].Name = schedule.Name;
+                    lvItem.SubItems[0].Text = schedule.Name;
 
                     TimeBlockView.Items.Add(lvItem);
                 }
@@ -115,8 +122,8 @@ namespace TimeManager.Forms
                     {
                         var lvItem = new ListViewItem(new string[TimeBlockView.Columns.Count]);
 
-                        lvItem.SubItems[0].Name = task.Name;
-                        lvItem.SubItems[1].Name = string.Format(task.EndDate.ToString(), "yyyy-MM-dd");
+                        lvItem.SubItems[0].Text = task.Name;
+                        lvItem.SubItems[1].Text = string.Format(task.EndDate.ToString(), "yyyy-MM-dd");
 
                         TimeBlockView.Items.Add(lvItem);
                     }
@@ -145,6 +152,8 @@ namespace TimeManager.Forms
             AddForm = addScheduleForm;
             AddForm.MdiParent = this;
             AddForm.Size = AddPanel.Size;
+            AddForm.BringToFront();
+            //AddForm.Location = AddPanel.Location;
             AddForm.Show();
         }
 
@@ -159,6 +168,8 @@ namespace TimeManager.Forms
             addTaskForm.MdiParent = this;
             AddForm = addTaskForm;
             AddForm.Size = AddPanel.Size;
+            AddForm.BringToFront();
+            //AddForm.Location = AddPanel.Location;
             AddForm.Show();
         }
 
@@ -183,7 +194,7 @@ namespace TimeManager.Forms
             TimeBlockView.Columns.Add("Date", "Date");
             TimeBlockView.Columns.Add("last", "last");
 
-            TimeBlockView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.None);
+            TimeBlockView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             TimeBlockView.Columns.RemoveByKey("last");
 
             TimeBlockView.Columns[0].TextAlign = HorizontalAlignment.Left;
@@ -233,6 +244,16 @@ namespace TimeManager.Forms
         private void MainForm_SizeChanged(object sender, EventArgs e)
         {
             ResizeForm();
+        }
+
+        private void TimeBlockView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void TimeBlockView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            if (TimeBlockView.FocusedItem != null) AddBtn.Text = "*";
+            else AddBtn.Text = "+";
         }
     }
 }
