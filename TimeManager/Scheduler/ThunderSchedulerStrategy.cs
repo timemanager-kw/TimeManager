@@ -41,7 +41,7 @@ namespace TimeManager.Scheduler
                 this.task = task; this.time_interval = time_interval;
             }
             public int time_interval {  get; set; }
-            Data.Model.Task task;
+            public Data.Model.Task task;
         }
 
         private class Day
@@ -228,7 +228,23 @@ namespace TimeManager.Scheduler
 
             while(!end)
             {
-                day_iter.Current.
+                // day의 Block들을 가져옴.
+                List<TempBlock> tempBlocks = day_iter.Current.tempBlocks;
+
+                // cursor를 만들어, 마감일까지의 day를 둘러보게 함.
+                IEnumerator<Day> day_cursor = days.GetEnumerator();
+                day_cursor = day_iter;
+
+                foreach(TempBlock tempBlock in tempBlocks)
+                {
+                    while (day_cursor.Current.dateTime <= tempBlock.task.EndDate)
+                    {
+
+                    }
+                }
+
+
+
             }
 
 
