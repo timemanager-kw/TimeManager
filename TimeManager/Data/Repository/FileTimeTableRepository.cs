@@ -46,6 +46,7 @@ namespace TimeManager.Data.Repository
         }
         public void Clear()
         {
+            File.WriteAllText(filePath, string.Empty);
         }
         public TimeTable Load()
         {
