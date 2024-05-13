@@ -242,6 +242,7 @@ namespace TimeManager.Scheduler
 
                 // 모든 tempBlock 각각을 확인하며, 2n보다 클 경우에 분리를 시도함.
                 foreach(TempBlock tempBlock in tempBlocks)
+                    // ** iter로 바꿔야 할듯. (오류를 낼 수도 있다고 하므로.)
                 {
                     bool local_end = false;
                     bool repeatable = true;
@@ -252,8 +253,6 @@ namespace TimeManager.Scheduler
                         int repeat_num = tempBlock.time_interval % least_interval - 1; // (※※--※※) 반영하여 바꿈
                         while(0 <= repeat_num-- && repeatable)
                         { 
-
-
                             // n만큼을 떼어 다른곳에 넣을 수 있는지 확인한다.
                             // 이후 n만큼을 그 날짜에 넣고, 그 날짜에 있던 시간만큼을 앞으로 가져온다.
                             // ※주의사항 1) 그 날짜에 같은 종류의 Task가 있다면 그곳에 넣기.
@@ -266,11 +265,22 @@ namespace TimeManager.Scheduler
                             while (day_cursor.Current.dateTime <= tempBlock.task.EndDate)
                             {
                                 // 충분한 빈 공간이 있는가? -> 확률적으로 위치 배치
+                                if(day_cursor.Current.availableTime - day_cursor.Current.time_allocated >= least_interval)
+                                {
+                                    // 확률게임 먼저
 
+                                    // 바꾸기 수행하는.
+                                }
                                 // Task의 위치를 완전히 Exchange 할만한 곳은 있는가? -> 확률적으로 위치 배치
+                                        // foreach로 찾고, foreach문 break하여 나온 후 바꾸기
 
 
                             }
+
+                            // 바꾸지 않은 경우 : type 0
+                            // 빈공간에 넣는 경우 : type 1
+                            // Task와 Exchange하는 경우 : type 2
+                            // -> switch를 통해 동작 수행.
 
 
 
@@ -279,20 +289,6 @@ namespace TimeManager.Scheduler
                         }
                     }
 
-
-
-
-
-/*                  // 2n보다 큼을 확인.
-                    if(tempBlock.time_interval >=2*least_interval)
-                    {
-
-                    }
-
-                    while (day_cursor.Current.dateTime <= tempBlock.task.EndDate)
-                    {
-
-                    }*/
                 }
 
 
