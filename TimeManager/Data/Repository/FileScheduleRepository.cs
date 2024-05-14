@@ -32,12 +32,23 @@ namespace TimeManager.Data.Repository
             schedule.Id = nextId;
             using (StreamWriter writer = new StreamWriter(filePath))
             {
-                writer.WriteLine($"{schedule.Id}, {schedule.Name}, {schedule.Description}, {schedule.Type}, {schedule.TimeBlock.StartDate}, {schedule.TimeBlock.EndDate}, {schedule.RegularTimeBlocks}");
+                writer.WriteLine($"{schedule.Id}, {schedule.Name}, {schedule.Description}, {schedule.Type}, {schedule.TimeBlock.StartDate}, {schedule.TimeBlock.EndDate}, {SerializeWeeklyTimes(schedule.RegularTimeBlocks)}");
             }
             using (StreamWriter writer = new StreamWriter(filePath))
             {
                 writer.WriteLine(++nextId);
             }
+        }
+        
+        private string SerializeWeeklyTimes(List<WeeklyDateTimeBlock> regularTimeBlocks)
+        {
+            List<string> serializedTimes = new List<string>();
+            foreach(var time in regularTimeBlocks)
+            {
+                string serializedTime = $"{time.DayOfWeek}|{time.StartTime}|{time.EndTime}";
+                serializedTimes.Add(serializedTime);
+            }
+            return string.Join(";", serializedTimes);
         }
         public void Update(Schedule schedule)
         {
@@ -85,11 +96,19 @@ namespace TimeManager.Data.Repository
                         StartDate = DateTime.Parse(parts[4]),
                         EndDate = DateTime.Parse(parts[5]),
                     },
-                    RegularTimeBlocks = new List<WeeklyDateTimeBlock>
-                    {
-
-                    }
+                   RegularTimeBlocks = new List<WeeklyDateTimeBlock>(),
                 };
+                string[] weeklyTimesParts = parts[8].Split(';');
+                foreach(string weeklyTimesPart in weeklyTimesParts)
+                {
+                    string[] weeklyTimeSubParts = weeklyTimesPart.Split('|');
+                    WeeklyDateTimeBlock week = new WeeklyDateTimeBlock();
+                    DayOfWeek dayOfWeek;
+                    Enum.TryParse<DayOfWeek>(weeklyTimesParts[0], out dayOfWeek);
+                    week.DayOfWeek = dayOfWeek;
+                    week.StartTime = DateTime.Parse(weeklyTimesParts[1]);
+                    week.EndTime = DateTime.Parse(weeklyTimesParts[2]);
+                }
                 schedules.Add(schedule);
             }
             return schedules;
