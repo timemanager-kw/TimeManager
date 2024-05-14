@@ -24,6 +24,12 @@ namespace TimeManager.Data.Model
             }
         }
 
+        public DateTimeBlock(DateTime startDate, DateTime endDate)
+        {
+            StartDate = startDate;
+            EndDate = endDate;
+        }
+
         public static IEnumerable<DateTimeBlock> Difference(IEnumerable<DateTimeBlock> minuend, IEnumerable<DateTimeBlock> subtrahend)
         {
             throw new NotImplementedException();

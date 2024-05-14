@@ -16,5 +16,10 @@ namespace TimeManager.Data.Model
         public List<DateTimeBlock> AssignedBlocks { get; set; }
         public long ScheduleId { get; set; }
         public string ScheduleName { get; set; }
+
+        public AssignedSchedule()
+        {
+            AssignedBlocks = new List<DateTimeBlock>();
+        }
     }
 }

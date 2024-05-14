@@ -40,7 +40,9 @@ namespace TimeManager.Data.Model
 
         public List<AssignedSchedule> GetWeeklyAssignedSchedules(Week week)
         {
-            throw new NotImplementedException();
+            return _assignedSchedules
+                .Where(s => s.AssignedBlocks.Any(b => week.IsInWeek(b.StartDate)))
+                .ToList();
         }
 
         public List<AssignedSchedule> GetAssignedSchedulesInThisWeekAsOfNow()
