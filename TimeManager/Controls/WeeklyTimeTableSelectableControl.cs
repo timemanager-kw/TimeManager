@@ -47,6 +47,7 @@ namespace TimeManager.Controls
             {
                 for (int j = 0; j < 7; j++)
                 {
+                    _isSelectedCells[i, j] = false;
                     dataGridView.Rows[i].Cells[j].Value = null;
                     dataGridView.Rows[i].Cells[j].Style.BackColor = Color.LightGray;
                 }
