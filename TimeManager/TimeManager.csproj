@@ -113,6 +113,12 @@
     <Compile Include="Forms\Tests\TestWeeklyTimeTableControl.Designer.cs">
       <DependentUpon>TestWeeklyTimeTableControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Tests\TestWeeklyTimeTableSelectableControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tests\TestWeeklyTimeTableSelectableControl.Designer.cs">
+      <DependentUpon>TestWeeklyTimeTableSelectableControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scheduler\IScheduler.cs" />
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tests\TestWeeklyTimeTableControl.resx">
       <DependentUpon>TestWeeklyTimeTableControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tests\TestWeeklyTimeTableSelectableControl.resx">
+      <DependentUpon>TestWeeklyTimeTableSelectableControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
