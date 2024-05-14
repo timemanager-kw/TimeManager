@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +20,17 @@ namespace TimeManager.Forms.Tests
 
         private void btnShowSelected_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show(
+                string.Join("\n", weeklyTimeTableSelectableControl1
+                .GetSelectedBlocks()
+                .Select(block => 
+                    block.DayOfWeek.ToString() 
+                    + ": " 
+                    + block.StartTime.ToString("HH:mm")
+                    + " ~ "
+                    + block.EndTime.ToString("HH:mm")
+                )
+            ));
         }
     }
 }
