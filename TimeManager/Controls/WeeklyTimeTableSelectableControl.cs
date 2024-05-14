@@ -75,7 +75,7 @@ namespace TimeManager.Controls
         {
             InitializeRows();
             dataGridView.ClearSelection();
-            CleanCells();
+            DrawCells();
         }
 
         private void InitializeRows()
@@ -90,15 +90,16 @@ namespace TimeManager.Controls
             }
         }
 
-        public void CleanCells()
+        public void DrawCells()
         {
             for (int i = 0; i < 48; i++)
             {
                 for (int j = 0; j < 7; j++)
                 {
-                    _isSelectedCells[i, j] = false;
-                    dataGridView.Rows[i].Cells[j].Value = null;
-                    dataGridView.Rows[i].Cells[j].Style.BackColor = Color.LightGray;
+                    if (_isSelectedCells[i, j])
+                        dataGridView.Rows[i].Cells[j].Style.BackColor = Color.Beige;
+                    else
+                        dataGridView.Rows[i].Cells[j].Style.BackColor = Color.LightGray;
                 }
             }
         }
