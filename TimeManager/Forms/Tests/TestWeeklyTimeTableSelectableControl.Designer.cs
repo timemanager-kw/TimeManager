@@ -53,7 +53,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1618, 762);
+            this.ClientSize = new System.Drawing.Size(811, 383);
             this.Controls.Add(this.btnShowSelected);
             this.Controls.Add(this.weeklyTimeTableSelectableControl1);
             this.Name = "TestWeeklyTimeTableSelectableControl";
