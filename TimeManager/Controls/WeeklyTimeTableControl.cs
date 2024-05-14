@@ -59,14 +59,14 @@ namespace TimeManager.Controls
 
         private void DrawWorkTimes(TimeTable timeTable)
         {
-            foreach (DateTimeBlock block in timeTable.WorkTimes)
+            foreach (WeeklyDateTimeBlock block in timeTable.GetWeeklyWorkTimes(Week.From(DateTime.Now)))
             {
-                int startRow = block.StartDate.Hour * 2 + block.StartDate.Minute / 30;
-                int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute / 30;
+                int startRow = block.StartTime.Hour * 2 + block.StartTime.Minute / 30;
+                int endRow = block.EndTime.Hour * 2 + block.EndTime.Minute / 30;
 
                 for (int i = startRow; i < endRow; i++)
                 {
-                    dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = Color.White;
+                    dataGridView.Rows[i].Cells[block.DayOfWeek.GetDayOfWeekIndex()].Style.BackColor = Color.White;
                 }
             }
         }
