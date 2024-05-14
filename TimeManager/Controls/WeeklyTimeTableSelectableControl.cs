@@ -53,6 +53,39 @@ namespace TimeManager.Controls
             }
         }
 
+        public IEnumerable<WeeklyDateTimeBlock> GetSelectedBlocks()
+        {
+            List<WeeklyDateTimeBlock> blocks = new List<WeeklyDateTimeBlock>();
+            int nContinuousBlocks = 0;
+
+            DateTime today = DateTime.Today;
+
+            for (int i = 0; i < 7; i++)
+            {
+                for (int j = 0; j < 48+1; j++)
+                {
+                    if (j < 48 && _isSelectedCells[j, i])
+                    {
+                        nContinuousBlocks++;
+                    }
+                    else
+                    {
+                        if (nContinuousBlocks > 0)
+                        {
+                            DayOfWeek dayOfWeek = (DayOfWeek) ((i + 1) % 7);
+                            DateTime start = today.AddMinutes((j - nContinuousBlocks) * 30);
+                            DateTime end = today.AddMinutes(j * 30);
+
+                            blocks.Add(new WeeklyDateTimeBlock(dayOfWeek, start, end));
+                            nContinuousBlocks = 0;
+                        }
+                    }
+                }
+            }
+
+            return blocks;
+        }
+
         private void dataGridView_SelectionChanged(object sender, EventArgs e)
         {
             // restrict selection
