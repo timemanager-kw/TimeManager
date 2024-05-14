@@ -17,52 +17,49 @@ namespace TimeManager.Controls
         private bool[,] _isSelectedCells = new bool[48, 7];
         private bool _isMouseDownInCell = false;
 
-        public List<WeeklyDateTimeBlock> SelectedBlocks
+        public List<WeeklyDateTimeBlock> GetSelectedBlocks()
         {
-            get
+            List<WeeklyDateTimeBlock> blocks = new List<WeeklyDateTimeBlock>();
+            int nContinuousBlocks = 0;
+
+            DateTime today = DateTime.Today;
+
+            for (int i = 0; i < 7; i++)
             {
-                List<WeeklyDateTimeBlock> blocks = new List<WeeklyDateTimeBlock>();
-                int nContinuousBlocks = 0;
-
-                DateTime today = DateTime.Today;
-
-                for (int i = 0; i < 7; i++)
+                for (int j = 0; j < 48 + 1; j++)
                 {
-                    for (int j = 0; j < 48 + 1; j++)
+                    if (j < 48 && _isSelectedCells[j, i])
                     {
-                        if (j < 48 && _isSelectedCells[j, i])
+                        nContinuousBlocks++;
+                    }
+                    else
+                    {
+                        if (nContinuousBlocks > 0)
                         {
-                            nContinuousBlocks++;
-                        }
-                        else
-                        {
-                            if (nContinuousBlocks > 0)
-                            {
-                                DayOfWeek dayOfWeek = (DayOfWeek)((i + 1) % 7);
-                                DateTime start = today.AddMinutes((j - nContinuousBlocks) * 30);
-                                DateTime end = today.AddMinutes(j * 30);
+                            DayOfWeek dayOfWeek = (DayOfWeek)((i + 1) % 7);
+                            DateTime start = today.AddMinutes((j - nContinuousBlocks) * 30);
+                            DateTime end = today.AddMinutes(j * 30);
 
-                                blocks.Add(new WeeklyDateTimeBlock(dayOfWeek, start, end));
-                                nContinuousBlocks = 0;
-                            }
+                            blocks.Add(new WeeklyDateTimeBlock(dayOfWeek, start, end));
+                            nContinuousBlocks = 0;
                         }
                     }
                 }
-
-                return blocks;
             }
 
-            set
-            {
-                foreach (WeeklyDateTimeBlock block in value)
-                {
-                    int dayOfWeekIndex = block.DayOfWeek.GetDayOfWeekIndex();
-                    int startRowIndex = (int) (block.StartTime.TimeOfDay.TotalMinutes / 30);
-                    int endRowIndex = (int) (block.EndTime.TimeOfDay.TotalMinutes / 30);
+            return blocks;
+        }
 
-                    for (int i = startRowIndex; i < endRowIndex; i++)
-                        _isSelectedCells[i, dayOfWeekIndex] = true;
-                }
+        public void UpdateSelectedBlocks(IEnumerable<WeeklyDateTimeBlock> selectedBlocks)
+        {
+            foreach (WeeklyDateTimeBlock block in selectedBlocks)
+            {
+                int dayOfWeekIndex = block.DayOfWeek.GetDayOfWeekIndex();
+                int startRowIndex = (int)(block.StartTime.TimeOfDay.TotalMinutes / 30);
+                int endRowIndex = (int)(block.EndTime.TimeOfDay.TotalMinutes / 30);
+
+                for (int i = startRowIndex; i < endRowIndex; i++)
+                    _isSelectedCells[i, dayOfWeekIndex] = true;
             }
         }
 
