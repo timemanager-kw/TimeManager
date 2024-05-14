@@ -62,10 +62,7 @@
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView.Size = new System.Drawing.Size(767, 321);
             this.dataGridView.TabIndex = 0;
-            this.dataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_CellFormatting);
-            this.dataGridView.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGridView_CellPainting);
             this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
-            this.dataGridView.Paint += new System.Windows.Forms.PaintEventHandler(this.dataGridView_Paint);
             // 
             // ColumnMonday
             // 
@@ -116,12 +113,12 @@
             this.ColumnSunday.ReadOnly = true;
             this.ColumnSunday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
-            // WeeklyTimeTableControl
+            // WeeklyTimeTableSelectableControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGridView);
-            this.Name = "WeeklyTimeTableControl";
+            this.Name = "WeeklyTimeTableSelectableControl";
             this.Size = new System.Drawing.Size(767, 321);
             this.Load += new System.EventHandler(this.WeeklyTimeTableControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
