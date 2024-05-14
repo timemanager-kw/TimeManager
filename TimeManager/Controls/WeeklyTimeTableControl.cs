@@ -52,21 +52,21 @@ namespace TimeManager.Controls
         public void DrawCells(TimeTable timeTable, Week week)
         {
             CleanCells();
-            DrawWorkTimes(timeTable);
+            DrawWorkTimes(timeTable, week);
             DrawSchedules(timeTable, week);
             DrawTasks(timeTable, week);
         }
 
-        private void DrawWorkTimes(TimeTable timeTable)
+        private void DrawWorkTimes(TimeTable timeTable, Week week)
         {
-            foreach (DateTimeBlock block in timeTable.WorkTimes)
+            foreach (WeeklyDateTimeBlock block in timeTable.GetWeeklyWorkTimes(week))
             {
-                int startRow = block.StartDate.Hour * 2 + block.StartDate.Minute / 30;
-                int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute / 30;
+                int startRow = block.StartTime.Hour * 2 + block.StartTime.Minute / 30;
+                int endRow = block.EndTime.Hour * 2 + block.EndTime.Minute / 30;
 
                 for (int i = startRow; i < endRow; i++)
                 {
-                    dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = Color.White;
+                    dataGridView.Rows[i].Cells[block.DayOfWeek.GetDayOfWeekIndex()].Style.BackColor = Color.White;
                 }
             }
         }

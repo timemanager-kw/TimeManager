@@ -76,6 +76,7 @@
     <Compile Include="Data\Repository\ITaskRepository.cs" />
     <Compile Include="Data\Repository\ITimeTableRepository.cs" />
     <Compile Include="Extensions\DateTimeExtension.cs" />
+    <Compile Include="Extensions\DayOfWeekExtension.cs" />
     <Compile Include="Forms\AddScheduleForm.cs">
       <SubType>Form</SubType>
     </Compile>
