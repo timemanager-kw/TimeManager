@@ -54,7 +54,15 @@ namespace TimeManager.Controls
 
             set
             {
+                foreach (WeeklyDateTimeBlock block in value)
+                {
+                    int dayOfWeekIndex = block.DayOfWeek.GetDayOfWeekIndex();
+                    int startRowIndex = (int) (block.StartTime.TimeOfDay.TotalMinutes / 30);
+                    int endRowIndex = (int) (block.EndTime.TimeOfDay.TotalMinutes / 30);
 
+                    for (int i = startRowIndex; i < endRowIndex; i++)
+                        _isSelectedCells[i, dayOfWeekIndex] = true;
+                }
             }
         }
 
