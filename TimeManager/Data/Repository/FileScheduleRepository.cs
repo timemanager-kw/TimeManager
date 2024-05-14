@@ -32,12 +32,22 @@ namespace TimeManager.Data.Repository
             schedule.Id = nextId;
             using (StreamWriter writer = new StreamWriter(filePath))
             {
-                writer.WriteLine($"{schedule.Id}, {schedule.Name}, {schedule.Description}, {schedule.Type}, {schedule.TimeBlock.StartDate}, {schedule.TimeBlock.EndDate}, {schedule.RegularTimeBlocks}");
+                writer.WriteLine($"{schedule.Id}, {schedule.Name}, {schedule.Description}, {schedule.Type}, {schedule.TimeBlock.StartDate}, {schedule.TimeBlock.EndDate}, {SerializeWeeklyTimes(schedule.RegularTimeBlocks)}");
             }
             using (StreamWriter writer = new StreamWriter(filePath))
             {
                 writer.WriteLine(++nextId);
             }
+        }
+        private string SerializeWeeklyTimes(List<WeeklyDateTimeBlock> regularTimeBlocks)
+        {
+            List<string> serializedTimes = new List<string>();
+            foreach(var time in regularTimeBlocks)
+            {
+                string serializedTime = $"{time.DayOfWeek}|{time.StartTime}|{time.EndTime}";
+                serializedTimes.Add(serializedTime);
+            }
+            return string.Join(";", serializedTimes);
         }
         public void Update(Schedule schedule)
         {
