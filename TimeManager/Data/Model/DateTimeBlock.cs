@@ -28,11 +28,7 @@ namespace TimeManager.Data.Model
 
         public static IEnumerable<DateTimeBlock> Difference(IEnumerable<DateTimeBlock> minuend, IEnumerable<DateTimeBlock> subtrahend)
         {
-            throw new NotImplementedException();
-        }
 
-        public IEnumerable<DateTimeBlock> Difference(IEnumerable<DateTimeBlock> subtrahend)
-        {
             throw new NotImplementedException();
         }
     }
