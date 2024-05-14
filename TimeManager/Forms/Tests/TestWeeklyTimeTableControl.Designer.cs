@@ -44,7 +44,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(925, 449);
-            this.Controls.Add(this.weeklyTimeTableControl1);
+            //this.Controls.Add(this.weeklyTimeTableControl1);
             this.Name = "TestWeeklyTimeTableControl";
             this.Text = "TestWeeklyTimeTableControl";
             this.ResumeLayout(false);
