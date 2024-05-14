@@ -15,6 +15,7 @@ namespace TimeManager.Controls
     public partial class WeeklyTimeTableSelectableControl : UserControl
     {
         private bool[,] _isSelectedCells = new bool[48, 7];
+        private bool _isMouseDownInCell = false;
 
         public WeeklyTimeTableSelectableControl()
         {
@@ -58,14 +59,31 @@ namespace TimeManager.Controls
             dataGridView.ClearSelection();
         }
 
-        private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
-            _isSelectedCells[e.RowIndex, e.ColumnIndex] = !_isSelectedCells[e.RowIndex, e.ColumnIndex];
+            if (_isMouseDownInCell)
+                ToggleCell(e.RowIndex, e.ColumnIndex);
+        }
 
-            if (_isSelectedCells[e.RowIndex, e.ColumnIndex])
-                dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Beige;
+        private void dataGridView_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            _isMouseDownInCell = true;
+            ToggleCell(e.RowIndex, e.ColumnIndex);
+        }
+
+        private void dataGridView_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            _isMouseDownInCell = false;
+        }
+
+        private void ToggleCell(int rowIndex, int columnIndex)
+        {
+            _isSelectedCells[rowIndex, columnIndex] = !_isSelectedCells[rowIndex, columnIndex];
+
+            if (_isSelectedCells[rowIndex, columnIndex])
+                dataGridView.Rows[rowIndex].Cells[columnIndex].Style.BackColor = Color.Beige;
             else
-                dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.LightGray;
+                dataGridView.Rows[rowIndex].Cells[columnIndex].Style.BackColor = Color.LightGray;
         }
     }
 }
