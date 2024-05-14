@@ -14,6 +14,8 @@ namespace TimeManager.Controls
 {
     public partial class WeeklyTimeTableSelectableControl : UserControl
     {
+        private bool[,] _isSelectedCells = new bool[48, 7];
+
         public WeeklyTimeTableSelectableControl()
         {
             InitializeComponent();
@@ -23,6 +25,7 @@ namespace TimeManager.Controls
         {
             InitializeRows();
             dataGridView.ClearSelection();
+            CleanCells();
         }
 
         private void InitializeRows()
@@ -49,14 +52,20 @@ namespace TimeManager.Controls
             }
         }
 
-        private void dataGridView_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
         private void dataGridView_SelectionChanged(object sender, EventArgs e)
         {
             // restrict selection
             dataGridView.ClearSelection();
+        }
+
+        private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            _isSelectedCells[e.RowIndex, e.ColumnIndex] = !_isSelectedCells[e.RowIndex, e.ColumnIndex];
+
+            if (_isSelectedCells[e.RowIndex, e.ColumnIndex])
+                dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Beige;
+            else
+                dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.LightGray;
         }
     }
 }
