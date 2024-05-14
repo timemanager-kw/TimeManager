@@ -517,7 +517,6 @@
             // 
             // DayCheck
             // 
-            this.DayCheck.AutoSize = true;
             this.DayCheck.Location = new System.Drawing.Point(132, 48);
             this.DayCheck.Name = "DayCheck";
             this.DayCheck.Size = new System.Drawing.Size(18, 17);
