@@ -12,6 +12,7 @@ namespace TimeManager.Data.Model
         // TODO: 주 단위로 확장
         void SetWorkTimes(List<DateTimeBlock> workTimes);
         List<DateTimeBlock> GetWorkTimes();
+        List<WeeklyDateTimeBlock> GetWeeklyWorkTimes(Week week);
 
         /* AvailableTime Operations */
         List<DateTimeBlock> GetWeeklyAvailableTimes(Week week);
