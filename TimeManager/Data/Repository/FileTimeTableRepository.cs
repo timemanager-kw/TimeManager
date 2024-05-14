@@ -52,7 +52,7 @@ namespace TimeManager.Data.Repository
         }
         public TimeTable Load()
         {
-        
+            
         }
     }
 }
