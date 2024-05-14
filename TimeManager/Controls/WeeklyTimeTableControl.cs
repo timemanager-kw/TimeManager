@@ -52,14 +52,14 @@ namespace TimeManager.Controls
         public void DrawCells(TimeTable timeTable, Week week)
         {
             CleanCells();
-            DrawWorkTimes(timeTable);
+            DrawWorkTimes(timeTable, week);
             DrawSchedules(timeTable, week);
             DrawTasks(timeTable, week);
         }
 
-        private void DrawWorkTimes(TimeTable timeTable)
+        private void DrawWorkTimes(TimeTable timeTable, Week week)
         {
-            foreach (WeeklyDateTimeBlock block in timeTable.GetWeeklyWorkTimes(Week.From(DateTime.Now)))
+            foreach (WeeklyDateTimeBlock block in timeTable.GetWeeklyWorkTimes(week))
             {
                 int startRow = block.StartTime.Hour * 2 + block.StartTime.Minute / 30;
                 int endRow = block.EndTime.Hour * 2 + block.EndTime.Minute / 30;
