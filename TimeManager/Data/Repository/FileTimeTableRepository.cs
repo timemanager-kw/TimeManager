@@ -52,7 +52,64 @@ namespace TimeManager.Data.Repository
         }
         public TimeTable Load()
         {
-            
+            TimeTable timeTable = new TimeTable();
+            List<DateTimeBlock> blocks = new List<DateTimeBlock>();
+            List<AssignedSchedule> scheduleBlock = new List<AssignedSchedule>();
+            List<AssignedTask> taskBlock = new List<AssignedTask>();
+            using (StreamReader reader = new StreamReader(filePath))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    if (line.Contains("WorkTimes:"))
+                    {
+                        while ((line = reader.ReadLine()) != "")
+                        {
+                            string[] parts = line.Split(',');
+                            DateTime startDate = DateTime.Parse(parts[0]);
+                            DateTime endDate = DateTime.Parse(parts[1]);
+                            blocks.Add(new DateTimeBlock(startDate, endDate));
+                        }
+                    }
+                    else if (line.Contains("AssignedSchedule:"))
+                    {
+                        while ((line = reader.ReadLine()) != "")
+                        {
+                            string[] parts = line.Split(',');
+                            long scheduleId = long.Parse(parts[0]);
+                            string scheduleName = parts[1];
+                            string[] scheduleBlocks = parts[2].Split(',');
+                            List<DateTimeBlock> assignedBlocks = scheduleBlocks.Select(block =>
+                            {
+                                string[] blockParts = block.Split(',');
+                                DateTime startDate = DateTime.Parse(blockParts[0]);
+                                DateTime endDate = DateTime.Parse(blockParts[1]);
+                                return new DateTimeBlock(startDate, endDate);
+                            }).ToList();
+                            scheduleBlock.Add(new AssignedSchedule(assignedBlocks, scheduleId, scheduleName));
+                        }
+                    }
+                    else if (line.Contains("AssignedTasks:"))
+                    {
+                        while ((line = reader.ReadLine()) != "")
+                        {
+                            string[] parts = line.Split(',');
+                            long taskId = long.Parse(parts[0]);
+                            string taskName = parts[1];
+                            string[] taskBlocks = parts[2].Split(',');
+                            List<DateTimeBlock> assignedBlocks = taskBlocks.Select(block =>
+                            {
+                                string[] blockParts = block.Split(',');
+                                DateTime startDate = DateTime.Parse(blockParts[0]);
+                                DateTime endDate = DateTime.Parse(blockParts[1]);
+                                return new DateTimeBlock(startDate, endDate);
+                            }).ToList();
+                            taskBlock.Add(new AssignedTask(assignedBlocks, taskId, taskName));
+                        }
+                    }
+                }
+            }
+            return timeTable;
         }
     }
 }
