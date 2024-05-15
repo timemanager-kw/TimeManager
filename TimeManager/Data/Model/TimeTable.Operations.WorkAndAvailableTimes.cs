@@ -21,6 +21,27 @@ namespace TimeManager.Data.Model
             return _workTimes;
         }
 
+        public List<WeeklyDateTimeBlock> GetWeeklyWorkTimes(Week week)
+        {
+            if (_workTimes == null || _workTimes.Count == 0)
+                return new List<WeeklyDateTimeBlock>();
+
+            List<WeeklyDateTimeBlock> weeklyWorkTimes = _workTimes
+                .FindAll(b => week.IsInWeek(b.StartDate))
+                .Select(b => new WeeklyDateTimeBlock
+                {
+                    DayOfWeek = b.StartDate.DayOfWeek,
+                    StartTime = b.StartDate,
+                    EndTime = b.EndDate
+                })
+                .ToList();
+
+            if (weeklyWorkTimes.Count == 0)
+                return GetWeeklyWorkTimes(week.PreviousWeek);
+
+            return weeklyWorkTimes;
+        }
+
 
         /* AvailableTime Operations */
         public List<DateTimeBlock> GetWeeklyAvailableTimes(Week week)

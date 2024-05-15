@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using TimeManager.Data.Model;
 
 namespace TimeManager.Data.Repository
 {
-    public class FileScheduleRepository : IScheduleRepository
+    internal class FileTaskRepository:  ITaskRepository
     {
         private readonly string filePath;
-        public FileScheduleRepository(string filePath)
+        FileTaskRepository(string filePath)
         {
             this.filePath = filePath;
             if (!File.Exists(filePath))
@@ -22,55 +21,54 @@ namespace TimeManager.Data.Repository
                 }
             }
         }
-        public void Add(Schedule schedule)
+        public void Add(Task task)
         {
             int nextId;
             using (StreamReader reader = new StreamReader(filePath))
             {
                 nextId = int.Parse(reader.ReadLine());
             }
-            schedule.Id = nextId;
+            task.Id = nextId;
             using (StreamWriter writer = new StreamWriter(filePath))
             {
-                writer.WriteLine($"{schedule.Id}, {schedule.Name}, {schedule.Description}, {schedule.Type}, {schedule.TimeBlock.StartDate}, {schedule.TimeBlock.EndDate}, {SerializeWeeklyTimes(schedule.RegularTimeBlocks)}");
+                writer.WriteLine($"{task.Id}, {task.Name}, {task.Description}, {(int)task.Type}, {task.StartDate}, {task.EndDate},{task.Duration}, {task.FocusDays}, {SerializeWeeklyTimes(task.WeeklyTimesWanted)}, {task.NDaysOfWeekWanted}");
             }
             using (StreamWriter writer = new StreamWriter(filePath))
             {
                 writer.WriteLine(++nextId);
             }
         }
-        
-        private string SerializeWeeklyTimes(List<WeeklyDateTimeBlock> regularTimeBlocks)
+        private string SerializeWeeklyTimes(List<WeeklyDateTimeBlock> weeklyTimes)
         {
             List<string> serializedTimes = new List<string>();
-            foreach(var time in regularTimeBlocks)
+            foreach(var weeklyTime in weeklyTimes)
             {
-                string serializedTime = $"{time.DayOfWeek}|{time.StartTime}|{time.EndTime}";
+                string serializedTime = $"{weeklyTime.DayOfWeek}|{weeklyTime.StartTime}|{weeklyTime.EndTime}";
                 serializedTimes.Add(serializedTime);
             }
             return string.Join(";", serializedTimes);
         }
-        public void Update(Schedule schedule)
+        public void Update(Task task)
         {
             List<string> lines = File.ReadAllLines(filePath).ToList();
             for (int i = 1; i < lines.Count; i++)
             {
                 string[] parts = lines[i].Split(',');
-                if (int.Parse(parts[0]) == schedule.Id)
+                if (int.Parse(parts[0]) == task.Id)
                 {
-                    lines[i] = $"{schedule.Id}, {schedule.Name}, {schedule.Description}, {schedule.Type}, {schedule.TimeBlock.StartDate}, {schedule.TimeBlock.EndDate}, {schedule.RegularTimeBlocks}";
+                    lines[i] = $"{task.Id}, {task.Name}, {task.Description}, {task.Type}, {task.StartDate}, {task.EndDate},{task.Duration}, {task.FocusDays}, {SerializeWeeklyTimes(task.WeeklyTimesWanted)}, {task.NDaysOfWeekWanted}";
                     break;
                 }
             }
             File.WriteAllLines(filePath, lines);
         }
-        public void Delete(Schedule schedule)
+        public void Delete(Task task)
         {
             List<string> lines = File.ReadAllLines(filePath).ToList();
             for (int i = 1; i < lines.Count; i++)
             {
                 string[] parts = lines[i].Split(',');
-                if (int.Parse(parts[0]) == schedule.Id)
+                if (int.Parse(parts[0]) == task.Id)
                 {
                     lines.RemoveAt(i);
                     break;
@@ -78,25 +76,24 @@ namespace TimeManager.Data.Repository
             }
             File.WriteAllLines(filePath, lines);
         }
-        public IEnumerable<Schedule> LoadAll()
-        {
-            List<Schedule> schedules = new List<Schedule>();
+        public IEnumerable<Task> LoadAll() { 
+            List<Task> tasks = new List<Task>();
             List<string> lines = File.ReadAllLines(filePath).ToList();
-            for (int i = 1; i < lines.Count; i++)
+            for(int i = 1; i < lines.Count; i++)
             {
                 string[] parts = lines[i].Split(',');
-                Schedule schedule = new Schedule
+                Task task = new Task
                 {
                     Id = long.Parse(parts[0]),
                     Name = parts[1],
                     Description = parts[2],
-                    Type = (EScheduleType)int.Parse(parts[3]),
-                    TimeBlock = new DateTimeBlock
-                    {
-                        StartDate = DateTime.Parse(parts[4]),
-                        EndDate = DateTime.Parse(parts[5]),
-                    },
-                   RegularTimeBlocks = new List<WeeklyDateTimeBlock>(),
+                    Type = (ETaskType)int.Parse(parts[3]),
+                    StartDate = DateTime.Parse(parts[4]),
+                    EndDate = DateTime.Parse(parts[5]),
+                    Duration = TimeSpan.Parse(parts[6]),
+                    FocusDays = int.Parse(parts[7]),
+                    NDaysOfWeekWanted = int.Parse(parts[9]),
+                    WeeklyTimesWanted = new List<WeeklyDateTimeBlock>(),
                 };
                 string[] weeklyTimesParts = parts[8].Split(';');
                 foreach(string weeklyTimesPart in weeklyTimesParts)
@@ -104,14 +101,14 @@ namespace TimeManager.Data.Repository
                     string[] weeklyTimeSubParts = weeklyTimesPart.Split('|');
                     WeeklyDateTimeBlock week = new WeeklyDateTimeBlock();
                     DayOfWeek dayOfWeek;
-                    Enum.TryParse<DayOfWeek>(weeklyTimesParts[0], out dayOfWeek);
+                    Enum.TryParse<DayOfWeek>(weeklyTimeSubParts[0], out dayOfWeek);
                     week.DayOfWeek = dayOfWeek;
                     week.StartTime = DateTime.Parse(weeklyTimesParts[1]);
                     week.EndTime = DateTime.Parse(weeklyTimesParts[2]);
                 }
-                schedules.Add(schedule);
+            tasks.Add(task);
             }
-            return schedules;
+            return tasks;
         }
     }
 }

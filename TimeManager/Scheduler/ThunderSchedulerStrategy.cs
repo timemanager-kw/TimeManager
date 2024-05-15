@@ -21,7 +21,7 @@ namespace TimeManager.Scheduler
         
     }
 
-    class ThunderSchedulerStrategy : ISchedulerStrategy
+    public class ThunderSchedulerStrategy : ISchedulerStrategy
     {
         // Know 가용시간, tasks, 현재 날짜
         // W.T.G 1st : greedy timeTable -> 2nd : rearranged timeTable

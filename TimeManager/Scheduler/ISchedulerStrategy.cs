@@ -6,7 +6,7 @@ using TimeManager.Data.Model;
 
 namespace TimeManager.Scheduler
 {
-    interface ISchedulerStrategy
+    public interface ISchedulerStrategy
     {
         void Schedule(TimeTable timeTable, List<Task> tasks);
     }

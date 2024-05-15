@@ -7,7 +7,7 @@ using TimeManager.Data.Model;
 
 namespace TimeManager.Scheduler
 {
-    interface IScheduler
+    public interface IScheduler
     {
         TimeTable Run();
     }
