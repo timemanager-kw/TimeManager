@@ -74,12 +74,14 @@
             this.label8 = new System.Windows.Forms.Label();
             this.TaskNameTxt = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.TaskEditCancleBtn = new System.Windows.Forms.Button();
+            this.TaskEditOkBtn = new System.Windows.Forms.Button();
             this.TaskEndDatePicker = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.TaskStartDatePicker = new System.Windows.Forms.DateTimePicker();
             this.ShortTaskPanel = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.TaskDurationCmb = new System.Windows.Forms.ComboBox();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.TitlePanel.SuspendLayout();
@@ -558,61 +560,61 @@
             // 
             this.label8.Location = new System.Drawing.Point(5, 5);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(60, 25);
+            this.label8.Size = new System.Drawing.Size(70, 25);
             this.label8.TabIndex = 0;
-            this.label8.Text = "*업무명";
+            this.label8.Text = "업무명";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // TaskNameTxt
             // 
-            this.TaskNameTxt.Location = new System.Drawing.Point(70, 5);
+            this.TaskNameTxt.Location = new System.Drawing.Point(80, 5);
             this.TaskNameTxt.Name = "TaskNameTxt";
-            this.TaskNameTxt.Size = new System.Drawing.Size(120, 25);
+            this.TaskNameTxt.Size = new System.Drawing.Size(110, 25);
             this.TaskNameTxt.TabIndex = 1;
             // 
             // label7
             // 
             this.label7.Location = new System.Drawing.Point(5, 45);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(60, 25);
+            this.label7.Size = new System.Drawing.Size(75, 25);
             this.label7.TabIndex = 2;
-            this.label7.Text = "*마감일";
+            this.label7.Text = "마감일";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // button2
+            // TaskEditCancleBtn
             // 
-            this.button2.Location = new System.Drawing.Point(105, 195);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(45, 30);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "취소";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.EditCancle_Click);
+            this.TaskEditCancleBtn.Location = new System.Drawing.Point(105, 195);
+            this.TaskEditCancleBtn.Name = "TaskEditCancleBtn";
+            this.TaskEditCancleBtn.Size = new System.Drawing.Size(45, 30);
+            this.TaskEditCancleBtn.TabIndex = 12;
+            this.TaskEditCancleBtn.Text = "취소";
+            this.TaskEditCancleBtn.UseVisualStyleBackColor = true;
+            this.TaskEditCancleBtn.Click += new System.EventHandler(this.EditCancle_Click);
             // 
-            // button1
+            // TaskEditOkBtn
             // 
-            this.button1.Location = new System.Drawing.Point(150, 195);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(45, 30);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "수정";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.TaskEditOk_Click);
+            this.TaskEditOkBtn.Location = new System.Drawing.Point(150, 195);
+            this.TaskEditOkBtn.Name = "TaskEditOkBtn";
+            this.TaskEditOkBtn.Size = new System.Drawing.Size(45, 30);
+            this.TaskEditOkBtn.TabIndex = 13;
+            this.TaskEditOkBtn.Text = "수정";
+            this.TaskEditOkBtn.UseVisualStyleBackColor = true;
+            this.TaskEditOkBtn.Click += new System.EventHandler(this.TaskEditOk_Click);
             // 
             // TaskEndDatePicker
             // 
             this.TaskEndDatePicker.CustomFormat = "yyyy-MM-dd";
             this.TaskEndDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.TaskEndDatePicker.Location = new System.Drawing.Point(70, 45);
+            this.TaskEndDatePicker.Location = new System.Drawing.Point(80, 45);
             this.TaskEndDatePicker.Name = "TaskEndDatePicker";
-            this.TaskEndDatePicker.Size = new System.Drawing.Size(120, 25);
+            this.TaskEndDatePicker.Size = new System.Drawing.Size(110, 25);
             this.TaskEndDatePicker.TabIndex = 14;
             // 
             // label5
             // 
             this.label5.Location = new System.Drawing.Point(5, 85);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 25);
+            this.label5.Size = new System.Drawing.Size(75, 25);
             this.label5.TabIndex = 15;
             this.label5.Text = "시작일";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -621,18 +623,20 @@
             // 
             this.TaskStartDatePicker.CustomFormat = "yyyy-MM-dd";
             this.TaskStartDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.TaskStartDatePicker.Location = new System.Drawing.Point(70, 85);
+            this.TaskStartDatePicker.Location = new System.Drawing.Point(80, 85);
             this.TaskStartDatePicker.Name = "TaskStartDatePicker";
-            this.TaskStartDatePicker.Size = new System.Drawing.Size(120, 25);
+            this.TaskStartDatePicker.Size = new System.Drawing.Size(110, 25);
             this.TaskStartDatePicker.TabIndex = 16;
             // 
             // ShortTaskPanel
             // 
+            this.ShortTaskPanel.Controls.Add(this.TaskDurationCmb);
+            this.ShortTaskPanel.Controls.Add(this.label6);
             this.ShortTaskPanel.Controls.Add(this.TaskStartDatePicker);
             this.ShortTaskPanel.Controls.Add(this.label5);
             this.ShortTaskPanel.Controls.Add(this.TaskEndDatePicker);
-            this.ShortTaskPanel.Controls.Add(this.button1);
-            this.ShortTaskPanel.Controls.Add(this.button2);
+            this.ShortTaskPanel.Controls.Add(this.TaskEditOkBtn);
+            this.ShortTaskPanel.Controls.Add(this.TaskEditCancleBtn);
             this.ShortTaskPanel.Controls.Add(this.label7);
             this.ShortTaskPanel.Controls.Add(this.TaskNameTxt);
             this.ShortTaskPanel.Controls.Add(this.label8);
@@ -641,6 +645,24 @@
             this.ShortTaskPanel.Name = "ShortTaskPanel";
             this.ShortTaskPanel.Size = new System.Drawing.Size(200, 233);
             this.ShortTaskPanel.TabIndex = 21;
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label6.Location = new System.Drawing.Point(5, 125);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(75, 25);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "수행 시간";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // TaskDurationCmb
+            // 
+            this.TaskDurationCmb.FormattingEnabled = true;
+            this.TaskDurationCmb.Location = new System.Drawing.Point(80, 125);
+            this.TaskDurationCmb.Name = "TaskDurationCmb";
+            this.TaskDurationCmb.Size = new System.Drawing.Size(110, 23);
+            this.TaskDurationCmb.TabIndex = 18;
             // 
             // MainForm
             // 
@@ -722,11 +744,13 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox TaskNameTxt;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button TaskEditCancleBtn;
+        private System.Windows.Forms.Button TaskEditOkBtn;
         private System.Windows.Forms.DateTimePicker TaskEndDatePicker;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker TaskStartDatePicker;
         private System.Windows.Forms.Panel ShortTaskPanel;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox TaskDurationCmb;
     }
 }

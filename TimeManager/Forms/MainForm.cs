@@ -393,13 +393,15 @@ namespace TimeManager.Forms
 
                     TaskEndDatePicker.Text = ((DateTime)focusedTask.EndDate).ToString("yyyy-MM-dd");
                     TaskStartDatePicker.Text = focusedTask.StartDate.ToString("yyyy-MM-dd");
+
+                    int totMin = (int)((TimeSpan)focusedTask.Duration).TotalMinutes;
+                    TaskDurationCmb.Text = $"{totMin / 60}:{totMin % 60}";
                 },
                 () => {
-                    ScheduleRNameTxt.Text = focusedSchedule.Name;
-                    ScheduleRDay.Text = "월";
-                    DayCheck.Checked = focusedSchedule.RegularTimeBlocks[0].DayOfWeek == DayOfWeek.Monday;
-                    ScheduleRStartTime.Text = DayCheck.Checked ? focusedSchedule.RegularTimeBlocks[0].StartTime.ToString("HH:mm") : "";
-                    ScheduleREndTime.Text = DayCheck.Checked ? focusedSchedule.RegularTimeBlocks[0].EndTime.ToString("HH:mm") : "";
+                    TaskNameTxt.Text = focusedTask.Name;
+
+                    TaskEndDatePicker.Text = ((DateTime)focusedTask.EndDate).ToString("yyyy-MM-dd");
+                    TaskStartDatePicker.Text = focusedTask.StartDate.ToString("yyyy-MM-dd");
                 }
             };
             taskSet[(int)scheduleList[TimeBlockView.FocusedItem.Index].Type]();
@@ -479,6 +481,11 @@ namespace TimeManager.Forms
                 ScheduleREndTime.Items.Add($"{i}:30");
             }
 
+            for (int i = 30; i < 6000; i += 30)
+            {
+                TaskDurationCmb.Items.Add($"{i / 60}:{i % 60}");
+            }
+
             scheduleList = new List<Schedule>
             {
                 new Schedule(),
@@ -520,10 +527,15 @@ namespace TimeManager.Forms
             };
             taskList[0].Id = 3;
             taskList[0].Name = "Test Task1";
+            taskList[0].Type = ETaskType.ShortTerm;
+            taskList[0].StartDate = new DateTime(2024, 5, 17);
             taskList[0].EndDate = new DateTime(2024, 5, 20);
+            taskList[0].Duration = new TimeSpan(10, 30, 0);
 
             taskList[1].Id = 4;
             taskList[1].Name = "Test Task2";
+            taskList[1].Type = ETaskType.LongTerm;
+            taskList[1].StartDate = new DateTime(2024, 5, 20);
             taskList[1].EndDate = new DateTime(2024, 5, 25);
         }
 
