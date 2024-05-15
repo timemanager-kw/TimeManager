@@ -208,7 +208,7 @@ namespace TimeManager.Scheduler
             }
         }
 
-        bool PercentRandom(int percent)
+        private bool PercentRandom(int percent)
         {
             Random random = new Random((int)DateTime.Now.Ticks);
 
@@ -216,7 +216,7 @@ namespace TimeManager.Scheduler
             else return false;
         }
 
-        void RandomRange(List<TempBlock> tempBlocks)
+        private void RandomRange(List<TempBlock> tempBlocks)
         {
             int n = tempBlocks.Count;
             while (n > 1)
@@ -265,8 +265,6 @@ namespace TimeManager.Scheduler
 
             // 2) TempBlock_f의 interval을 줄인다.
             tempBlock_f.time_interval -= interval;
-
-
         }
 
 
