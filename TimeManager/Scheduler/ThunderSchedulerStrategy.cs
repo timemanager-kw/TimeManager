@@ -354,7 +354,7 @@ namespace TimeManager.Scheduler
 
 
         // W.T.D : n시간으로 등분되길 원한다면, n시간씩 쪼개어 다른곳(다른날)과 위치를 바꿈.
-        private void RandomArrange(List<Day> days, int least_interval)
+        private List<Day> RandomArrange(List<Day> days, int least_interval)
         {
             // Day를 모두 순회하면서 Task들 또한 순회함.
             // 순회하면서 각각의 Task 시간블럭을 확인함.
@@ -445,7 +445,7 @@ namespace TimeManager.Scheduler
                 }
                 day_iter.MoveNext();
             }
-
+            return days_copied;
         }
 
 
@@ -455,7 +455,7 @@ namespace TimeManager.Scheduler
 
 
 
-        public void Schedule(TimeTable timeTable, List<Data.Model.Task> tasks)
+        public void Schedule(TimeTable timeTable, List<Data.Model.Task> tasks, int least_interval)
         {
             // Let We have AvailableTime of each day.
             // 날짜별로 가용시간 총량을 받아옴.
@@ -499,8 +499,7 @@ namespace TimeManager.Scheduler
             FillDaysWithTasks(repl_tasks, days);
 
             // W.T.D : 덩어리가 큰 것들을 찾아 등분하여 다른곳과 바꿈
-
-            //
+            List<Day> daysRandomlyArranged = RandomArrange(days, least_interval);
 
 
 
