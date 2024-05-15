@@ -255,11 +255,13 @@ namespace TimeManager.Scheduler
                         }
                     }
                 }
+                day_cursor.MoveNext() ;
             }
             return null;
         }
 
-        private Day FindExchanableDay(Data.Model.Task task, IEnumerator<Day> day_iter, int interval)
+        // Empty 영역에서 바꿀 수 있는 곳이 있는지 찾는 메서드
+        private Day FindExchanableDay(Data.Model.Task task, IEnumerator<Day> day_cursor, int interval)
         {
 
         }
