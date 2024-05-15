@@ -263,7 +263,22 @@ namespace TimeManager.Scheduler
         // Empty 영역에서 바꿀 수 있는 곳이 있는지 찾는 메서드
         private Day FindExchanableDay(Data.Model.Task task, IEnumerator<Day> day_cursor, int interval)
         {
+            day_cursor.MoveNext();
+            bool end = false;   // end 사실상 쓰진 않았지만 일단 둠.
 
+            while (day_cursor.Current.dateTime <= task.EndDate && !end)
+            {
+                if(day_cursor.Current.availableTime - day_cursor.Current.time_allocated >= interval)
+                {
+                    if (PercentRandom(60))   // 여기서도 일단은 확률값은 받음.
+                    {
+                        return day_cursor.Current;
+                    }
+                }
+                day_cursor.MoveNext();
+
+            }
+            return null;
         }
 
         // 뒤의 빈 시간과 바꾸는 메서드
@@ -319,6 +334,7 @@ namespace TimeManager.Scheduler
             throw new Exception("day가 반환되지 않음");
         }
 
+ 
 
 
         // W.T.D : n시간으로 등분되길 원한다면, n시간씩 쪼개어 다른곳(다른날)과 위치를 바꿈.
