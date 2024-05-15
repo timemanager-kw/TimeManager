@@ -7,7 +7,7 @@ using TimeManager.Data.Model;
 
 namespace TimeManager.Scheduler
 {
-    class ThunderSchedulerStrategy : ISchedulerStrategy
+    public class ThunderSchedulerStrategy : ISchedulerStrategy
     {
         public void Schedule(TimeTable timeTable, List<Data.Model.Task> tasks)
         {
