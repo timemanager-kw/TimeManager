@@ -229,6 +229,46 @@ namespace TimeManager.Scheduler
             }
         }
 
+        // f : front , b : back (day_b는 copied가 x)
+        private void ExchangeTask(int interval, TempBlock tempBlock_f, TempBlock tempBlock_b, Day day_f_copied, Day day_b)
+        {
+            // TempBlock_b에 대해 1) 새로운 Temp_b를 만들어 day_f에 넣는다.
+            //                    2) TempBlock_b의 interval을 줄인다.
+            TempBlock temp_b = new TempBlock(tempBlock_b.task, interval);
+            day_f_copied.tempBlocks.Add(temp_b);
+
+            tempBlock_b.time_interval -= interval;
+
+            // TempBlock_f에 대해
+
+            // 1) day_b에 TempBlock_f.task를 가지고 있는 TempBlock이 있는지 확인한다.
+            bool exist = false;
+            foreach (TempBlock tempBlock in day_b.tempBlocks)
+            {
+                if(tempBlock.task ==  tempBlock_f.task)
+                {
+                    exist = true;
+                    break;
+                }
+            }
+            // 있다면 찾은 tempBlock의 interval값을 늘리고
+            if (exist)
+            {
+                tempBlock.time_interval += interval;
+            }
+            // 없다면 새로운 tempBlock을 만들어 넣음.
+            else
+            {
+                TempBlock tempBlock = new TempBlock(tempBlock_f.task, interval);
+                day_b.tempBlocks.Add(tempBlock);
+            }
+
+            // 2) TempBlock_f의 interval을 줄인다.
+            tempBlock_f.time_interval -= interval;
+
+
+        }
+
 
 
 
