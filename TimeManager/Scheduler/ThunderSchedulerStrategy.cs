@@ -287,6 +287,17 @@ namespace TimeManager.Scheduler
 
         }
 
+        void AutoAllocatedTimeHandle(Day day)
+        {
+            int time_allocated = 0;
+
+            foreach(TempBlock tempBlock in day.tempBlocks)
+            {
+                time_allocated += tempBlock.time_interval;
+            }
+
+            day.time_allocated = time_allocated;
+        }
 
         // f : front , b : back (day_b는 copied가 x)
         private void ExchangeTask(int interval, TempBlock tempBlock_f, TempBlock tempBlock_b, Day day_f_copied, Day day_b)
