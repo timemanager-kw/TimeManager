@@ -29,19 +29,19 @@ namespace TimeManager.Forms
         private ScheduleManager _scheduleManager;
         private TaskManager _taskManager;
 
-        Schedule focusedSchedule;
-        Task focusedTask;
-
-        List<Schedule> scheduleList;
-        List<Task> taskList;
         private TimeTable timeTable;
+        private Schedule focusedSchedule;
+        private Task focusedTask;
 
-        DateTime StandardTime;
+        private List<Schedule> scheduleList;
+        private List<Task> taskList;
 
-        TimeTableType viewType = TimeTableType.Schedule;
+        private DateTime StandardTime;
 
-        Panel[] schedulePanels;
-        Panel[] taskPanels;
+        private TimeTableType viewType = TimeTableType.Schedule;
+
+        private Panel[] schedulePanels;
+        private Panel[] taskPanels;
 
         public Action[] UpdateView;
         public Action[] CurrentTimeBlockInfo;
@@ -97,7 +97,7 @@ namespace TimeManager.Forms
             Week week = Week.From(StandardTime);
             WeekLabel.Text = $"{week.Year}.{week.Month} {week.WeekOfMonth}주차";
 
-            //TimeTable timeTable = _timeTableManager.Get();
+            //timeTable = _timeTableManager.Get();
 
             //DrawCells(timeTable, week);
 
@@ -117,7 +117,7 @@ namespace TimeManager.Forms
 
             timeTable = new TimeTable(workTimes, new List<AssignedSchedule> { assignedSchedule1 }, new List<AssignedTask> { assignedTask1 });
 
-            DrawCells(timeTable, week);
+            DrawCells(week);
         }
 
         private void InitializeRows()
@@ -144,15 +144,15 @@ namespace TimeManager.Forms
             }
         }
 
-        public void DrawCells(TimeTable timeTable, Week week)
+        public void DrawCells(Week week)
         {
             CleanCells();
-            DrawWorkTimes(timeTable, week);
-            DrawSchedules(timeTable, week);
-            DrawTasks(timeTable, week);
+            DrawWorkTimes(week);
+            DrawSchedules(week);
+            DrawTasks(week);
         }
 
-        private void DrawWorkTimes(TimeTable timeTable, Week week)
+        private void DrawWorkTimes(Week week)
         {
             foreach (WeeklyDateTimeBlock block in timeTable.GetWeeklyWorkTimes(week))
             {
@@ -166,7 +166,7 @@ namespace TimeManager.Forms
             }
         }
 
-        private void DrawSchedules(TimeTable timeTable, Week week)
+        private void DrawSchedules(Week week)
         {
             List<AssignedSchedule> schedules = timeTable.GetWeeklyAssignedSchedules(week);
 
@@ -188,7 +188,7 @@ namespace TimeManager.Forms
             }
         }
 
-        private void DrawTasks(TimeTable timeTable, Week week)
+        private void DrawTasks(Week week)
         {
             List<AssignedTask> tasks = timeTable.GetWeeklyAssignedTasks(week);
 
