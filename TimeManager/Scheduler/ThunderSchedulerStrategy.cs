@@ -307,9 +307,14 @@ namespace TimeManager.Scheduler
             tempBlock_f.time_interval -= interval;
         }
 
-        private Day FindCorresponedDayOfDaysCopied()
+        private Day FindCorresponedDayOfDaysCopied(DateTime dateTime, List<Day> days_copied)
         {
-
+            foreach(Day day in days_copied)
+            {
+                if(day.dateTime == dateTime)
+                    return day;
+            }
+            throw new Exception("day가 반환되지 않음");
         }
 
 
@@ -375,11 +380,19 @@ namespace TimeManager.Scheduler
                         // 일단 50% 확률로 빈공간에 채우기 or tempblock과 바꾸기
                         if (PercentRandom(50))
                         {
+                            // 위치를 바꿀 수 있는 Temp를 찾는다.(changableTemp)
                             TempBlock changableTemp =  FindExchangableTempBlock(tempBlock.task, day_cursor, interval);
+                            // 찾았다면, changableTemp는 day_f_copied로, tempBlock은 cursor 위치로 보낸다.
                             if(changableTemp != null)
                             {
-                                Day day_f_copied = FindCorresponedDayOfDaysCopied();
+                                Day day_f_copied = FindCorresponedDayOfDaysCopied(day_iter.Current.dateTime , days_copied);
                                 ExchangeTask(interval, tempBlock, changableTemp, day_f_copied, day_cursor.Current);
+
+                                // time_interval이 0이 된 temp는 지움.
+                                if(changableTemp.time_interval == 0)
+                                {
+                                    day_cursor.Current.tempBlocks.Remove(changableTemp);
+                                }
                             }
                         }
                         else
