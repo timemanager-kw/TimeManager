@@ -60,12 +60,12 @@ namespace TimeManager.Forms
 
         void ResizeForm()
         {
-            MainPanel.Size = new Size(this.Size.Width * 37 / 48, this.Size.Height * 2 / 27);
-            TitlePanel.Size = new Size(MainPanel.Size.Width, MainPanel.Height);
-            PrevBtn.Size = new Size(PrevBtn.Size.Height * 7 / 6, PrevBtn.Size.Height);
-            WeekLabel.Size = new Size(WeekLabel.Size.Height * 13 / 3, WeekLabel.Size.Height);
-            NextBtn.Size = new Size(NextBtn.Size.Height * 7 / 6, NextBtn.Size.Height);
-            AlgorithmStarter.Size = new Size(AlgorithmStarter.Size.Height, AlgorithmStarter.Size.Height);
+            MainPanel.Size = new Size(this.Size.Width * 37 / 48, this.Size.Height);
+            TitlePanel.Size = new Size(MainPanel.Size.Width, this.Size.Height * 2 / 27);
+            PrevBtn.Size = new Size(PrevBtn.Size.Height * 7 / 6, TitlePanel.Size.Height * 3 / 4);
+            WeekLabel.Size = new Size(WeekLabel.Size.Height * 13 / 3, TitlePanel.Size.Height * 3 / 4);
+            NextBtn.Size = new Size(NextBtn.Size.Height * 7 / 6, TitlePanel.Size.Height * 3 / 4);
+            AlgorithmStarter.Size = new Size(AlgorithmStarter.Size.Height, TitlePanel.Size.Height * 3 / 4);
 
             for(int i = 0; i < dataGridView.Columns.Count; i++)
             {
@@ -81,10 +81,10 @@ namespace TimeManager.Forms
             TimeBlockView.Size = new Size(TimeBlockTitlePanel.Size.Width, this.Size.Height * 11 / 27);
 
 
-            ScheduleBtn.Font = new Font(ScheduleBtn.Font.FontFamily, ScheduleBtn.Size.Height * 11 / 37);
+            ScheduleBtn.Font = new Font(ScheduleBtn.Font.FontFamily, Mathf.Clampf(ScheduleBtn.Size.Height * 11 / 35, 7, 9));
             TaskBtn.Font = new Font(TaskBtn.Font.FontFamily, ScheduleBtn.Font.Size);
             AddBtn.Font = new Font(AddBtn.Font.FontFamily, ScheduleBtn.Font.Size);
-            TimeBlockView.Font = new Font(TimeBlockView.Font.FontFamily, ScheduleBtn.Font.Size);
+            TimeBlockView.Font = new Font(TimeBlockView.Font.FontFamily, ScheduleBtn.Font.Size + 1);
 
             PrevBtn.Font = new Font(PrevBtn.Font.FontFamily, ScheduleBtn.Font.Size);
             WeekLabel.Font = new Font(WeekLabel.Font.FontFamily, ScheduleBtn.Font.Size);
@@ -256,16 +256,26 @@ namespace TimeManager.Forms
             return cell1.Value.Equals(cell2.Value);
         }
 
+        string ViewOffset()
+        {
+            string offset = "";
+            int offsetTmp = Mathf.Clamp((int)Math.Pow(1.2f, TimeBlockView.Width / 20), 0, 23);
+            for (int i = 0; i < offsetTmp; i++) offset += " ";
+            return offset;
+        }
+
         void UpdateScheduleView()
         {
             CleanEditPanel();
 
             TimeBlockView.Clear();
 
-            TimeBlockView.Columns.Add("Name", "Name");
+            TimeBlockView.Columns.Add("Name", "일정" + ViewOffset());
             TimeBlockView.Columns.Add("last", "last");
 
-            TimeBlockView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.None);
+            int colWidth = TextRenderer.MeasureText(TimeBlockView.Columns[0].Text, TimeBlockView.Font).Width + 10;
+            if (colWidth > TimeBlockView.Columns[0].Width) TimeBlockView.Columns[0].Width = colWidth;
+
             TimeBlockView.Columns.RemoveByKey("last");
 
             TimeBlockView.Columns[0].TextAlign = HorizontalAlignment.Left;
@@ -308,11 +318,15 @@ namespace TimeManager.Forms
 
             TimeBlockView.Clear();
 
-            TimeBlockView.Columns.Add("Name", "Name");
-            TimeBlockView.Columns.Add("Date", "Date");
+            TimeBlockView.Columns.Add("Name", "업무" + ViewOffset());
+            TimeBlockView.Columns.Add("Date", "마감일" + ViewOffset());
             TimeBlockView.Columns.Add("last", "last");
 
-            TimeBlockView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.None);
+            int colWidth = TextRenderer.MeasureText(TimeBlockView.Columns[0].Text, TimeBlockView.Font).Width + 10;
+            if (colWidth > TimeBlockView.Columns[0].Width) TimeBlockView.Columns[0].Width = colWidth;
+            colWidth = TextRenderer.MeasureText(TimeBlockView.Columns[1].Text, TimeBlockView.Font).Width + 10;
+            if (colWidth > TimeBlockView.Columns[1].Width) TimeBlockView.Columns[1].Width = colWidth;
+
             TimeBlockView.Columns.RemoveByKey("last");
 
             TimeBlockView.Columns[0].TextAlign = HorizontalAlignment.Left;
@@ -327,7 +341,7 @@ namespace TimeManager.Forms
                         var lvItem = new ListViewItem(new string[2]);
 
                         lvItem.SubItems[0].Text = task.Name;
-                        lvItem.SubItems[1].Text = string.Format(task.EndDate.ToString(), "yyyy-MM-dd");
+                        lvItem.SubItems[1].Text = ((DateTime)task.EndDate).ToString("yyyy-MM-dd");
 
                         TimeBlockView.Items.Add(lvItem);
                     }
@@ -548,6 +562,8 @@ namespace TimeManager.Forms
 
             TimeBlockView.View = View.Details;
 
+            TimeBlockView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+
             viewType = TimeTableType.Schedule;
 
             UpdateView[0]();
@@ -593,7 +609,10 @@ namespace TimeManager.Forms
 
         private void MainForm_SizeChanged(object sender, EventArgs e)
         {
+            if (UpdateView == null) return;
             ResizeForm();
+
+            UpdateView[(int)viewType]();
         }
 
         private void TimeBlockView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)

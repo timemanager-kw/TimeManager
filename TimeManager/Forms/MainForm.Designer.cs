@@ -212,7 +212,8 @@
             this.TitlePanel.Controls.Add(this.PrevBtn);
             this.TitlePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TitlePanel.Location = new System.Drawing.Point(0, 0);
-            this.TitlePanel.MaximumSize = new System.Drawing.Size(0, 60);
+            this.TitlePanel.MaximumSize = new System.Drawing.Size(0, 50);
+            this.TitlePanel.MinimumSize = new System.Drawing.Size(0, 30);
             this.TitlePanel.Name = "TitlePanel";
             this.TitlePanel.Padding = new System.Windows.Forms.Padding(5);
             this.TitlePanel.Size = new System.Drawing.Size(740, 40);
@@ -267,7 +268,7 @@
             this.TimeBlockTitlePanel.Controls.Add(this.ScheduleBtn);
             this.TimeBlockTitlePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TimeBlockTitlePanel.Location = new System.Drawing.Point(741, 0);
-            this.TimeBlockTitlePanel.MaximumSize = new System.Drawing.Size(0, 60);
+            this.TimeBlockTitlePanel.MaximumSize = new System.Drawing.Size(0, 50);
             this.TimeBlockTitlePanel.Name = "TimeBlockTitlePanel";
             this.TimeBlockTitlePanel.Padding = new System.Windows.Forms.Padding(5);
             this.TimeBlockTitlePanel.Size = new System.Drawing.Size(200, 40);
@@ -309,6 +310,7 @@
             // TimeBlockView
             // 
             this.TimeBlockView.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TimeBlockView.FullRowSelect = true;
             this.TimeBlockView.HideSelection = false;
             this.TimeBlockView.Location = new System.Drawing.Point(741, 40);
             this.TimeBlockView.MultiSelect = false;

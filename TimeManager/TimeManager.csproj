@@ -108,6 +108,7 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Mathf.cs" />
     <Compile Include="Forms\Tests\TestWeeklyTimeTableControl.cs">
       <SubType>Form</SubType>
     </Compile>
