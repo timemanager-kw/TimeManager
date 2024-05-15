@@ -208,6 +208,29 @@ namespace TimeManager.Scheduler
             }
         }
 
+        bool PercentRandom(int percent)
+        {
+            Random random = new Random((int)DateTime.Now.Ticks);
+
+            if (random.Next(1, 101) <= percent) return true;
+            else return false;
+        }
+
+        void RandomRange(List<TempBlock> tempBlocks)
+        {
+            int n = tempBlocks.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = random.(n + 1);
+                TempBlock tempBlock = tempBlocks[k];
+                tempBlocks[k] = tempBlocks[n];
+                tempBlocks[n] = tempBlock;
+            }
+        }
+
+
+
 
         // W.T.D : n시간으로 등분되길 원한다면, n시간씩 쪼개어 다른곳(다른날)과 위치를 바꿈.
         private void RandomArrange(List<Day> days, int least_interval)
@@ -221,6 +244,56 @@ namespace TimeManager.Scheduler
             //      , 바꿀만한 Task B(Or 빈 시간)가 있는지 확인하기.(조건 : Task B의 마감기한 또한 Task A의 마감기한에 포함되어야 함.)
             //      if) 바꿀 수 있다면, 바꾸는 함수인 Exchange() 적용.
             // 
+
+            Random random = = new Random((int)DateTime.Now.Ticks);
+
+            // Days의 복사본 생성
+            List<Day> days_copied = new List<Day>;
+            foreach(Day day in days)
+            {
+                days_copied.Add(new Day(day.dateTime, day.availableTime));
+            }
+
+            IEnumerator<Day> day_iter = days.GetEnumerator();
+            day_iter.Reset();
+
+
+            // days 속 day의 tasks를 랜덤으로 섞기
+            foreach (Day day in days)
+            {
+                RandomRange(day.tempBlocks);
+            }
+
+            // 배치 위치 교환 시작
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             // day에 대한 iterator 먼저 설정
