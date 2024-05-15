@@ -229,6 +229,19 @@ namespace TimeManager.Scheduler
             }
         }
 
+        private TempBlock FindExchangableTempBlock(Task task, IEnumerator<Day> day_iter, int interval)
+        {
+
+        }
+
+        private Day FindExchanableDay(Task task, IEnumerator<Day> day_iter, int interval)
+        {
+
+        }
+
+
+
+
         // f : front , b : back (day_b는 copied가 x)
         private void ExchangeTask(int interval, TempBlock tempBlock_f, TempBlock tempBlock_b, Day day_f_copied, Day day_b)
         {
@@ -302,9 +315,48 @@ namespace TimeManager.Scheduler
                 RandomRange(day.tempBlocks);
             }
 
-            // 배치 위치 교환 시작
+            /* 배치 위치 교환 시작 */
+            IEnumerator<Day> day_iter = days.GetEnumerator();
+
+            foreach (Day day in days)
+            {
+                foreach (TempBlock tempBlock in day.tempBlocks)
+                {
+                    if(tempBlock.time_interval >= 2*least_interval)
+                    {
+                        day_iter = day;
+
+                        // 일단 50%  확률로 빈공간에 채우기 or tempblock과 바꾸기
+                        if (PercentRandom(50))                           
+                        {
+                            FindExchangableTempBlock();
+                        }
+                        else
+                        {
+                            FindExchanableDay();
+                        }
+                        tempBlock.time_interval -= least_interval;
+                    }
+                    else
+                    {
 
 
+
+                        tempBlock.time_interval = 0;
+                    }
+
+                    day_iter = day;
+
+
+                    FindExchangableDay()
+                }
+
+
+
+
+
+
+            }
 
 
 
