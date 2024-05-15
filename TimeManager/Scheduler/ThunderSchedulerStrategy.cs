@@ -282,9 +282,14 @@ namespace TimeManager.Scheduler
         }
 
         // 뒤의 빈 시간과 바꾸는 메서드
-        private void ExchangeTaskWithEmpty(int interval, TempBlock tempBlock_f, Day day_f_copied, Day day_b)
+        private void ExchangeTaskWithEmpty(int interval, TempBlock tempBlock_f, Day day_b)
         {
+            // day_b에 tempBlock_f를 옮기고
+            TempBlock tempBlock = new TempBlock(tempBlock_f.task, interval);
+            day_b.tempBlocks.Add(tempBlock);
 
+            // time_allocate 값 조정하기
+            AutoAllocatedTimeHandle(day_b);
         }
 
         void AutoAllocatedTimeHandle(Day day)
@@ -332,7 +337,7 @@ namespace TimeManager.Scheduler
             }
 
             // 2) TempBlock_f의 interval을 줄인다.
-            tempBlock_f.time_interval -= interval;
+            /*tempBlock_f.time_interval -= interval;*/
         }
 
         private Day FindCorresponedDayOfDaysCopied(DateTime dateTime, List<Day> days_copied)
@@ -426,96 +431,21 @@ namespace TimeManager.Scheduler
                         }
                         else
                         {
-                            Day changableDay = FindExchanableDay(tempBlock.task, day_cursor, least_interval);
+                            Day changableDay = FindExchanableDay(tempBlock.task, day_cursor, interval);
                             if(changableDay != null)
                             {
-
+                                ExchangeTaskWithEmpty(interval, tempBlock, changableDay);
                             }
                         }
-
                         // 이후 tempBlock에서 interval만큼 빼주기
                         tempBlock.time_interval -= interval;
 
                     }
 
-
-                  
-
-
                 }
                 day_iter.MoveNext();
             }
 
-            /*
-
-
-
-                        // day에 대한 iterator 먼저 설정
-                        *//*IEnumerator<Day> day_iter = days.GetEnumerator();
-                        day_iter.Reset();*//*
-
-                        bool end = false;
-
-
-                        // day를 순회하며
-                        while(!end)
-                        {
-                            // day의 Block들을 가져옴.
-                            List<TempBlock> tempBlocks = day_iter.Current.tempBlocks;
-
-                            // cursor를 만들어, 마감일까지의 day를 둘러보게 함.
-                            IEnumerator<Day> day_cursor = days.GetEnumerator();
-                            day_cursor = day_iter;
-
-                            // 모든 tempBlock 각각을 확인하며, 2n보다 클 경우에 분리를 시도함.
-                            foreach(TempBlock tempBlock in tempBlocks)
-                                // ** iter로 바꿔야 할듯. (오류를 낼 수도 있다고 하므로.)
-                            {
-                                bool local_end = false;
-                                bool repeatable = true;
-                                while(!local_end)
-                                {
-                                    // 2n보다 크다면 & 똑같은 크기로 다시 반복되는게 아니라면(or 바로 이전 loop에서 진행이 잘 되었다면)
-                                    // ※※※ (time_interval % n - 1)번 반복하도록 하는건 어떨까 ※※※
-                                    int repeat_num = tempBlock.time_interval % least_interval - 1; // (※※--※※) 반영하여 바꿈
-                                    while(0 <= repeat_num-- && repeatable)
-                                    { 
-                                        // n만큼을 떼어 다른곳에 넣을 수 있는지 확인한다.
-                                        // 이후 n만큼을 그 날짜에 넣고, 그 날짜에 있던 시간만큼을 앞으로 가져온다.
-                                        // ※주의사항 1) 그 날짜에 같은 종류의 Task가 있다면 그곳에 넣기.
-                                        //   주의사항 2) 앞으로 가져온 Task에 대해서는 바꾸는 행위를 하지 않는다.(Exchagable 사용.)
-
-
-                                        day_cursor.MoveNext();      // 우선 다음날로 넘어가서
-
-                                        // 다른 곳에 넣을 수 있는 곳이 있는지 확인한다.
-                                        while (day_cursor.Current.dateTime <= tempBlock.task.EndDate)
-                                        {
-                                            // 충분한 빈 공간이 있는가? -> 확률적으로 위치 배치
-                                            if(day_cursor.Current.availableTime - day_cursor.Current.time_allocated >= least_interval)
-                                            {
-                                                // 확률게임 먼저
-
-                                                // 바꾸기 수행하는.
-                                            }
-                                            // Task의 위치를 완전히 Exchange 할만한 곳은 있는가? -> 확률적으로 위치 배치
-                                                    // foreach로 찾고, foreach문 break하여 나온 후 바꾸기
-
-
-                                        }
-
-                                        // 바꾸지 않은 경우 : type 0
-                                        // 빈공간에 넣는 경우 : type 1
-                                        // Task와 Exchange하는 경우 : type 2
-                                        // -> switch를 통해 동작 수행.
-
-
-
-
-
-                                    }
-                                }
-                        */
         }
 
 
