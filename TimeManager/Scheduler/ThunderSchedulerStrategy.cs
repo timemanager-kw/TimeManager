@@ -36,6 +36,9 @@ namespace TimeManager.Scheduler
         // 
 
         // Day에 여러 정보를 담아 하나로 채우는게 목적인 클래스
+
+        public int least_interval;
+
         private class TempBlock
         {
             public TempBlock(Data.Model.Task task, int time_interval){
@@ -455,7 +458,7 @@ namespace TimeManager.Scheduler
 
 
 
-        public void Schedule(TimeTable timeTable, List<Data.Model.Task> tasks, int least_interval)
+        public void Schedule(TimeTable timeTable, List<Data.Model.Task> tasks)
         {
             // Let We have AvailableTime of each day.
             // 날짜별로 가용시간 총량을 받아옴.
