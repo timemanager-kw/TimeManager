@@ -32,8 +32,8 @@ namespace TimeManager.Forms
         Schedule focusedSchedule;
         Task focusedTask;
 
-        List<Schedule> testSchedule;
-        List<Task> testTask;
+        List<Schedule> scheduleList;
+        List<Task> taskList;
         private TimeTable timeTable;
 
         DateTime StandardTime;
@@ -258,7 +258,7 @@ namespace TimeManager.Forms
 
         void UpdateScheduleView()
         {
-            ClearEditPanel();
+            CleanEditPanel();
 
             TimeBlockView.Clear();
 
@@ -272,7 +272,7 @@ namespace TimeManager.Forms
 
             if (_scheduleManager == null)
             {
-                foreach (Schedule schedule in testSchedule)
+                foreach (Schedule schedule in scheduleList)
                 {
                     var lvItem = new ListViewItem(new string[TimeBlockView.Columns.Count]);
 
@@ -304,7 +304,7 @@ namespace TimeManager.Forms
 
         void UpdateTaskView()
         {
-            ClearEditPanel();
+            CleanEditPanel();
 
             TimeBlockView.Clear();
 
@@ -320,7 +320,7 @@ namespace TimeManager.Forms
 
             if (_taskManager == null)
             {
-                foreach (Task task in testTask)
+                foreach (Task task in taskList)
                 {
                     if (task.EndDate > DateTime.Now)
                     {
@@ -359,7 +359,7 @@ namespace TimeManager.Forms
 
         void EditScheduleForm()
         {
-            ClearEditPanel();
+            CleanEditPanel();
 
             Action[] scheduleSet = new Action[2]
             {
@@ -377,19 +377,37 @@ namespace TimeManager.Forms
                     ScheduleREndTime.Text = DayCheck.Checked ? focusedSchedule.RegularTimeBlocks[0].EndTime.ToString("HH:mm") : "";
                 }
             };
-            scheduleSet[(int)testSchedule[TimeBlockView.FocusedItem.Index].Type]();
+            scheduleSet[(int)scheduleList[TimeBlockView.FocusedItem.Index].Type]();
 
             schedulePanels[(int)focusedSchedule.Type].Visible = true;
         }
 
         void EditTaskForm()
         {
-            ClearEditPanel();
+            CleanEditPanel();
+
+            Action[] taskSet = new Action[2]
+            {
+                () => {
+                    TaskNameTxt.Text = focusedTask.Name;
+
+                    TaskDatePicker.Text = ((DateTime)focusedTask.EndDate).ToString("yyyy-MM-dd");
+                    TaskStartDatePicker.Text = focusedTask.StartDate.ToString("yyyy-MM-dd");
+                },
+                () => {
+                    ScheduleRNameTxt.Text = focusedSchedule.Name;
+                    ScheduleRDay.Text = "월";
+                    DayCheck.Checked = focusedSchedule.RegularTimeBlocks[0].DayOfWeek == DayOfWeek.Monday;
+                    ScheduleRStartTime.Text = DayCheck.Checked ? focusedSchedule.RegularTimeBlocks[0].StartTime.ToString("HH:mm") : "";
+                    ScheduleREndTime.Text = DayCheck.Checked ? focusedSchedule.RegularTimeBlocks[0].EndTime.ToString("HH:mm") : "";
+                }
+            };
+            taskSet[(int)scheduleList[TimeBlockView.FocusedItem.Index].Type]();
 
             taskPanels[(int)focusedTask.Type].Visible = true;
         }
 
-        void ClearEditPanel()
+        void CleanEditPanel()
         {
             foreach (var panelTmp in schedulePanels)
             {
@@ -435,6 +453,9 @@ namespace TimeManager.Forms
         {
             InitializeComponent();
 
+            //scheduleList = (List<Schedule>)_scheduleManager.GetAll();
+            //taskList = (List<Task>)_taskManager.GetAll();
+
             StandardTime = DateTime.Now;
             StandardTime.AddDays(-(int)StandardTime.DayOfWeek);
 
@@ -458,20 +479,20 @@ namespace TimeManager.Forms
                 ScheduleREndTime.Items.Add($"{i}:30");
             }
 
-            testSchedule = new List<Schedule>
+            scheduleList = new List<Schedule>
             {
                 new Schedule(),
                 new Schedule()
             };
-            testSchedule[0].Id = 1;
-            testSchedule[0].Name = "Test Schedule1";
-            testSchedule[0].Type = EScheduleType.Singular;
-            testSchedule[0].TimeBlock = new DateTimeBlock(DateTime.Now, new DateTime(2024, 5, 14, 18, 30, 0));
+            scheduleList[0].Id = 1;
+            scheduleList[0].Name = "Test Schedule1";
+            scheduleList[0].Type = EScheduleType.Singular;
+            scheduleList[0].TimeBlock = new DateTimeBlock(DateTime.Now, new DateTime(2024, 5, 14, 18, 30, 0));
 
-            testSchedule[1].Id = 2;
-            testSchedule[1].Name = "Test Schedule2";
-            testSchedule[1].Type = EScheduleType.Regular;
-            testSchedule[1].TimeBlock = new DateTimeBlock(DateTime.Now, new DateTime(2024, 5, 25));
+            scheduleList[1].Id = 2;
+            scheduleList[1].Name = "Test Schedule2";
+            scheduleList[1].Type = EScheduleType.Regular;
+            scheduleList[1].TimeBlock = new DateTimeBlock(DateTime.Now, new DateTime(2024, 5, 25));
             WeeklyDateTimeBlock test1 = new WeeklyDateTimeBlock();
             WeeklyDateTimeBlock test2 = new WeeklyDateTimeBlock();
             WeeklyDateTimeBlock test3 = new WeeklyDateTimeBlock();
@@ -490,20 +511,20 @@ namespace TimeManager.Forms
                 test2,
                 test3
             };
-            testSchedule[1].RegularTimeBlocks = testSchedulTimeBlocks;
+            scheduleList[1].RegularTimeBlocks = testSchedulTimeBlocks;
 
-            testTask = new List<Task>
+            taskList = new List<Task>
             {
                 new Task(),
                 new Task()
             };
-            testTask[0].Id = 3;
-            testTask[0].Name = "Test Task1";
-            testTask[0].EndDate = new DateTime(2024, 5, 20);
+            taskList[0].Id = 3;
+            taskList[0].Name = "Test Task1";
+            taskList[0].EndDate = new DateTime(2024, 5, 20);
 
-            testTask[1].Id = 4;
-            testTask[1].Name = "Test Task2";
-            testTask[1].EndDate = new DateTime(2024, 5, 25);
+            taskList[1].Id = 4;
+            taskList[1].Name = "Test Task2";
+            taskList[1].EndDate = new DateTime(2024, 5, 25);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -521,8 +542,7 @@ namespace TimeManager.Forms
 
             TimeTableView();
 
-            SingleSchedulePanel.Visible = false;
-            //TaskPanel.Visible = false;
+            CleanEditPanel();
         }
 
         private void ScheduleBtn_Click(object sender, EventArgs e)
@@ -571,12 +591,12 @@ namespace TimeManager.Forms
                 () =>
                 {
                     focusedTask = null;
-                    focusedSchedule = TimeBlockView.FocusedItem != null ? testSchedule[TimeBlockView.FocusedItem.Index] : null;
+                    focusedSchedule = TimeBlockView.FocusedItem != null ? scheduleList[TimeBlockView.FocusedItem.Index] : null;
                 },
                 () =>
                 {
                     focusedSchedule = null;
-                    focusedTask = TimeBlockView.FocusedItem != null ? testTask[TimeBlockView.FocusedItem.Index] : null;
+                    focusedTask = TimeBlockView.FocusedItem != null ? taskList[TimeBlockView.FocusedItem.Index] : null;
                 }
             };
 
