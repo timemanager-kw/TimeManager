@@ -71,12 +71,24 @@
             this.ScheduleREdit = new System.Windows.Forms.Button();
             this.DayCheck = new System.Windows.Forms.CheckBox();
             this.RegularSchedulePanel = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.TaskNameTxt = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.TaskStartTime = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.TaskEndTime = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.TaskDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.ShortTaskPanel = new System.Windows.Forms.Panel();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.TitlePanel.SuspendLayout();
             this.TimeBlockTitlePanel.SuspendLayout();
             this.SingleSchedulePanel.SuspendLayout();
             this.RegularSchedulePanel.SuspendLayout();
+            this.ShortTaskPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainPanel
@@ -115,6 +127,9 @@
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView.Size = new System.Drawing.Size(740, 393);
             this.dataGridView.TabIndex = 2;
+            this.dataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_CellFormatting);
+            this.dataGridView.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGridView_CellPainting);
+            this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
             // 
             // ColumnMonday
             // 
@@ -302,7 +317,6 @@
             this.TimeBlockView.TabIndex = 7;
             this.TimeBlockView.UseCompatibleStateImageBehavior = false;
             this.TimeBlockView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.TimeBlockView_ItemSelectionChanged);
-            this.TimeBlockView.SelectedIndexChanged += new System.EventHandler(this.TimeBlockView_SelectedIndexChanged);
             // 
             // SingleSchedulePanel
             // 
@@ -542,11 +556,120 @@
             this.RegularSchedulePanel.Size = new System.Drawing.Size(200, 233);
             this.RegularSchedulePanel.TabIndex = 19;
             // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(5, 5);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(60, 25);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "업무 명";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // TaskNameTxt
+            // 
+            this.TaskNameTxt.Location = new System.Drawing.Point(70, 5);
+            this.TaskNameTxt.Name = "TaskNameTxt";
+            this.TaskNameTxt.Size = new System.Drawing.Size(120, 25);
+            this.TaskNameTxt.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.Location = new System.Drawing.Point(5, 45);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(60, 25);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "요일";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(5, 85);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 25);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "시간";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // TaskStartTime
+            // 
+            this.TaskStartTime.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.TaskStartTime.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.TaskStartTime.FormattingEnabled = true;
+            this.TaskStartTime.Location = new System.Drawing.Point(70, 85);
+            this.TaskStartTime.Name = "TaskStartTime";
+            this.TaskStartTime.Size = new System.Drawing.Size(100, 23);
+            this.TaskStartTime.TabIndex = 5;
+            // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(5, 125);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(60, 25);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "~";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // TaskEndTime
+            // 
+            this.TaskEndTime.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.TaskEndTime.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.TaskEndTime.FormattingEnabled = true;
+            this.TaskEndTime.Location = new System.Drawing.Point(70, 125);
+            this.TaskEndTime.Name = "TaskEndTime";
+            this.TaskEndTime.Size = new System.Drawing.Size(100, 23);
+            this.TaskEndTime.TabIndex = 9;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(105, 195);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(45, 30);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "취소";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(150, 195);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(45, 30);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "수정";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // TaskDatePicker
+            // 
+            this.TaskDatePicker.CustomFormat = "yyyy-MM-dd";
+            this.TaskDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.TaskDatePicker.Location = new System.Drawing.Point(70, 45);
+            this.TaskDatePicker.Name = "TaskDatePicker";
+            this.TaskDatePicker.Size = new System.Drawing.Size(120, 25);
+            this.TaskDatePicker.TabIndex = 14;
+            // 
+            // TaskPanel
+            // 
+            this.ShortTaskPanel.Controls.Add(this.TaskDatePicker);
+            this.ShortTaskPanel.Controls.Add(this.button1);
+            this.ShortTaskPanel.Controls.Add(this.button2);
+            this.ShortTaskPanel.Controls.Add(this.TaskEndTime);
+            this.ShortTaskPanel.Controls.Add(this.label5);
+            this.ShortTaskPanel.Controls.Add(this.TaskStartTime);
+            this.ShortTaskPanel.Controls.Add(this.label6);
+            this.ShortTaskPanel.Controls.Add(this.label7);
+            this.ShortTaskPanel.Controls.Add(this.TaskNameTxt);
+            this.ShortTaskPanel.Controls.Add(this.label8);
+            this.ShortTaskPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ShortTaskPanel.Location = new System.Drawing.Point(741, 260);
+            this.ShortTaskPanel.Name = "TaskPanel";
+            this.ShortTaskPanel.Size = new System.Drawing.Size(200, 233);
+            this.ShortTaskPanel.TabIndex = 21;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(942, 493);
+            this.Controls.Add(this.ShortTaskPanel);
             this.Controls.Add(this.RegularSchedulePanel);
             this.Controls.Add(this.SingleSchedulePanel);
             this.Controls.Add(this.TimeBlockView);
@@ -567,6 +690,8 @@
             this.SingleSchedulePanel.PerformLayout();
             this.RegularSchedulePanel.ResumeLayout(false);
             this.RegularSchedulePanel.PerformLayout();
+            this.ShortTaskPanel.ResumeLayout(false);
+            this.ShortTaskPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -580,14 +705,6 @@
         private System.Windows.Forms.Label WeekLabel;
         private System.Windows.Forms.TextBox LogTxt;
         private System.Windows.Forms.Button AlgorithmStarter;
-        private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMonday;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTuesday;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnWednesday;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnThursday;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFriday;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSaturday;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSunday;
         private System.Windows.Forms.Panel TimeBlockTitlePanel;
         private System.Windows.Forms.Button AddBtn;
         private System.Windows.Forms.Button TaskBtn;
@@ -616,5 +733,24 @@
         private System.Windows.Forms.Button ScheduleREdit;
         private System.Windows.Forms.CheckBox DayCheck;
         private System.Windows.Forms.Panel RegularSchedulePanel;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox TaskNameTxt;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox TaskStartTime;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox TaskEndTime;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DateTimePicker TaskDatePicker;
+        private System.Windows.Forms.Panel ShortTaskPanel;
+        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMonday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTuesday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnWednesday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnThursday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFriday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSaturday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSunday;
     }
 }

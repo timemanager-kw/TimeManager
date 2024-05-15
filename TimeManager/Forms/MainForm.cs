@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
+using TimeManager.Controls;
 using TimeManager.Data.Manager;
 using TimeManager.Data.Model;
+using TimeManager.Extensions;
 using TimeManager.Scheduler;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -21,8 +25,7 @@ namespace TimeManager.Forms
 {
     public partial class MainForm : Form
     {
-        private IScheduler _scheduler;
-
+        private TimeTableManager _timeTableManager;
         private ScheduleManager _scheduleManager;
         private TaskManager _taskManager;
 
@@ -31,6 +34,7 @@ namespace TimeManager.Forms
 
         List<Schedule> testSchedule;
         List<Task> testTask;
+        private TimeTable timeTable;
 
         DateTime StandardTime;
 
@@ -47,8 +51,9 @@ namespace TimeManager.Forms
         //    this._scheduler = scheduler;
         //}
 
-        public void TimeBlockViewForm(ScheduleManager scheduleManager, TaskManager taskManager)
+        public void TimeBlockViewForm(TimeTableManager timeTableManager, ScheduleManager scheduleManager, TaskManager taskManager)
         {
+            this._timeTableManager = timeTableManager;
             this._scheduleManager = scheduleManager;
             this._taskManager = taskManager;
         }
@@ -64,9 +69,9 @@ namespace TimeManager.Forms
 
             for(int i = 0; i < dataGridView.Columns.Count; i++)
             {
-                dataGridView.Columns[i].Width = (dataGridView.Width - 65) / 7 - 1;
+                dataGridView.Columns[i].Width = (dataGridView.Width - 65) / 7 - 4;
             }
-            dataGridView.RowHeadersWidth = dataGridView.Width - dataGridView.Columns[0].Width * 7 - 3;
+            dataGridView.RowHeadersWidth = dataGridView.Width - dataGridView.Columns[0].Width * 7 - 20;
 
             TimeBlockTitlePanel.Size = new Size(TimeBlockTitlePanel.Size.Width, this.Size.Height * 2 / 27);
             ScheduleBtn.Size = new Size(TimeBlockTitlePanel.Size.Height * 45 / 34, ScheduleBtn.Size.Height);
@@ -74,7 +79,6 @@ namespace TimeManager.Forms
             AddBtn.Size = new Size(AddBtn.Size.Height, AddBtn.Size.Height);
 
             TimeBlockView.Size = new Size(TimeBlockTitlePanel.Size.Width, this.Size.Height * 11 / 27);
-            //TimeBlockSettingPanel.Size = new Size(this.Size.Width * 5 / 24, TimeBlockSettingPanel.Size.Height);
 
 
             ScheduleBtn.Font = new Font(ScheduleBtn.Font.FontFamily, ScheduleBtn.Size.Height * 11 / 37);
@@ -86,6 +90,170 @@ namespace TimeManager.Forms
             WeekLabel.Font = new Font(WeekLabel.Font.FontFamily, ScheduleBtn.Font.Size);
             NextBtn.Font = new Font(NextBtn.Font.FontFamily, ScheduleBtn.Font.Size);
             AlgorithmStarter.Font = new Font(AlgorithmStarter.Font.FontFamily, ScheduleBtn.Font.Size);
+        }
+
+        public void TimeTableView()
+        {
+            Week week = Week.From(StandardTime);
+            WeekLabel.Text = $"{week.Year}.{week.Month} {week.WeekOfMonth}주차";
+
+            //TimeTable timeTable = _timeTableManager.Get();
+
+            //DrawCells(timeTable, week);
+
+            AssignedSchedule assignedSchedule1 = new AssignedSchedule();
+            assignedSchedule1.ScheduleId = 1;
+            assignedSchedule1.AssignedBlocks.Add(new DateTimeBlock(new DateTime(2024, 5, 6, 8, 0, 0), new DateTime(2024, 5, 6, 12, 0, 0)));
+
+            AssignedTask assignedTask1 = new AssignedTask();
+            assignedTask1.TaskId = 1;
+            assignedTask1.AssignedBlocks.Add(new DateTimeBlock(new DateTime(2024, 5, 6, 13, 0, 0), new DateTime(2024, 5, 6, 17, 0, 0)));
+
+            List<DateTimeBlock> workTimes = new List<DateTimeBlock>();
+            for (int i = 0; i < 7; i++)
+            {
+                workTimes.Add(new DateTimeBlock(new DateTime(2024, 5, 6 + i, 8, 0, 0), new DateTime(2024, 5, 6 + i, 22, 0, 0)));
+            }
+
+            timeTable = new TimeTable(workTimes, new List<AssignedSchedule> { assignedSchedule1 }, new List<AssignedTask> { assignedTask1 });
+
+            DrawCells(timeTable, week);
+        }
+
+        private void InitializeRows()
+        {
+            for (int i = 0; i < 48; i++)
+            {
+                DateTime dateTime = new DateTime(2000, 1, 1, 0, 0, 0);
+                dateTime = dateTime.AddMinutes(i * 30);
+
+                dataGridView.Rows.Add();
+                dataGridView.Rows[i].HeaderCell.Value = dateTime.ToString("HH:mm");
+            }
+        }
+
+        public void CleanCells()
+        {
+            for (int i = 0; i < 48; i++)
+            {
+                for (int j = 0; j < 7; j++)
+                {
+                    dataGridView.Rows[i].Cells[j].Value = null;
+                    dataGridView.Rows[i].Cells[j].Style.BackColor = Color.LightGray;
+                }
+            }
+        }
+
+        public void DrawCells(TimeTable timeTable, Week week)
+        {
+            CleanCells();
+            DrawWorkTimes(timeTable, week);
+            DrawSchedules(timeTable, week);
+            DrawTasks(timeTable, week);
+        }
+
+        private void DrawWorkTimes(TimeTable timeTable, Week week)
+        {
+            foreach (WeeklyDateTimeBlock block in timeTable.GetWeeklyWorkTimes(week))
+            {
+                int startRow = block.StartTime.Hour * 2 + block.StartTime.Minute / 30;
+                int endRow = block.EndTime.Hour * 2 + block.EndTime.Minute / 30;
+
+                for (int i = startRow; i < endRow; i++)
+                {
+                    dataGridView.Rows[i].Cells[block.DayOfWeek.GetDayOfWeekIndex()].Style.BackColor = Color.White;
+                }
+            }
+        }
+
+        private void DrawSchedules(TimeTable timeTable, Week week)
+        {
+            List<AssignedSchedule> schedules = timeTable.GetWeeklyAssignedSchedules(week);
+
+            foreach (AssignedSchedule schedule in schedules)
+            {
+                foreach (DateTimeBlock block in schedule.AssignedBlocks)
+                {
+                    if (!week.IsInWeek(block.StartDate)) continue;
+
+                    int startRow = block.StartDate.Hour * 2 + block.StartDate.Minute / 30;
+                    int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute / 30;
+
+                    for (int i = startRow; i < endRow; i++)
+                    {
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "Schedule " + schedule.ScheduleId;
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = Color.LightBlue;
+                    }
+                }
+            }
+        }
+
+        private void DrawTasks(TimeTable timeTable, Week week)
+        {
+            List<AssignedTask> tasks = timeTable.GetWeeklyAssignedTasks(week);
+
+            foreach (AssignedTask task in tasks)
+            {
+                foreach (DateTimeBlock block in task.AssignedBlocks)
+                {
+                    if (!week.IsInWeek(block.StartDate)) continue;
+
+                    int startRow = block.StartDate.Hour * 2 + block.StartDate.Minute / 30;
+                    int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute / 30;
+
+                    for (int i = startRow; i < endRow; i++)
+                    {
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "Task " + task.TaskId;
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = Color.LightGreen;
+                    }
+                }
+            }
+        }
+
+        private void dataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            // restrict selection
+            dataGridView.ClearSelection();
+        }
+
+        private void dataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            e.AdvancedBorderStyle.Bottom = DataGridViewAdvancedCellBorderStyle.None;
+
+            if (e.RowIndex < 1 || e.ColumnIndex < 0)
+            {
+                e.AdvancedBorderStyle.Top = dataGridView.AdvancedCellBorderStyle.Top;
+                return;
+            }
+
+            if (IsSameCellValue(e.ColumnIndex, e.RowIndex))
+                e.AdvancedBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.None;
+            else
+                e.AdvancedBorderStyle.Top = dataGridView.AdvancedCellBorderStyle.Top;
+        }
+
+        private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 1) return;
+
+            if (IsSameCellValue(e.ColumnIndex, e.RowIndex))
+            {
+                e.Value = "";
+                e.FormattingApplied = true;
+            }
+        }
+
+        private bool IsSameCellValue(int column, int row)
+        {
+            DataGridViewCell cell1 = dataGridView[column, row];
+            DataGridViewCell cell2 = dataGridView[column, row - 1];
+
+            if (cell1.Value == null || cell2.Value == null)
+            {
+                return false;
+            }
+
+            return cell1.Value.Equals(cell2.Value);
         }
 
         void UpdateScheduleView()
@@ -189,12 +357,6 @@ namespace TimeManager.Forms
             }
         }
 
-        public void UpdateWeekText()
-        {
-            Week week = Week.From(StandardTime);
-            WeekLabel.Text = $"{week.Year}.{week.Month} {week.WeekOfMonth}주차";
-        }
-
         void EditScheduleForm()
         {
             ClearEditPanel();
@@ -217,7 +379,6 @@ namespace TimeManager.Forms
             };
             scheduleSet[(int)testSchedule[TimeBlockView.FocusedItem.Index].Type]();
 
-            //TaskPanel.Visible = false;
             schedulePanels[(int)focusedSchedule.Type].Visible = true;
         }
 
@@ -225,8 +386,7 @@ namespace TimeManager.Forms
         {
             ClearEditPanel();
 
-            //TaskPanel.Visible = true;
-            SingleSchedulePanel.Visible = false;
+            taskPanels[(int)focusedTask.Type].Visible = true;
         }
 
         void ClearEditPanel()
@@ -235,10 +395,40 @@ namespace TimeManager.Forms
             {
                 panelTmp.Visible = false;
             }
-            /*foreach (var panelTmp in taskPanels)
+            foreach (var panelTmp in taskPanels)
             {
                 panelTmp.Visible = false;
-            }*/
+            }
+        }
+
+        public DayOfWeek StringToDayOfWeek(string dayStr)
+        {
+            switch (dayStr)
+            {
+                case "월":
+                    return DayOfWeek.Monday;
+
+                case "화":
+                    return DayOfWeek.Tuesday;
+
+                case "수":
+                    return DayOfWeek.Wednesday;
+
+                case "목":
+                    return DayOfWeek.Thursday;
+
+                case "금":
+                    return DayOfWeek.Friday;
+
+                case "토":
+                    return DayOfWeek.Saturday;
+
+                case "일":
+                    return DayOfWeek.Sunday;
+
+                default:
+                    return DayOfWeek.Saturday;
+            }
         }
 
         public MainForm()
@@ -253,6 +443,7 @@ namespace TimeManager.Forms
             CurrentTimeBlockInfo = new Action[] { EditScheduleForm, EditTaskForm };
 
             schedulePanels = new Panel[] { SingleSchedulePanel, RegularSchedulePanel };
+            taskPanels = new Panel[] { ShortTaskPanel };
 
             for (int i = 0; i < 24; i++)
             {
@@ -319,13 +510,16 @@ namespace TimeManager.Forms
         {
             ResizeForm();
 
+            InitializeRows();
+            dataGridView.ClearSelection();
+
             TimeBlockView.View = View.Details;
 
             viewType = TimeTableType.Schedule;
 
             UpdateView[0]();
 
-            UpdateWeekText();
+            TimeTableView();
 
             SingleSchedulePanel.Visible = false;
             //TaskPanel.Visible = false;
@@ -346,13 +540,13 @@ namespace TimeManager.Forms
         private void PreBtn_Click(object sender, EventArgs e)
         {
             StandardTime = StandardTime.AddDays(-7);
-            UpdateWeekText();
+            TimeTableView();
         }
 
         private void NextBtn_Click(object sender, EventArgs e)
         {
             StandardTime = StandardTime.AddDays(7);
-            UpdateWeekText();
+            TimeTableView();
         }
 
         private void AlgorithmStarter_Click(object sender, EventArgs e)
@@ -368,11 +562,6 @@ namespace TimeManager.Forms
         private void MainForm_SizeChanged(object sender, EventArgs e)
         {
             ResizeForm();
-        }
-
-        private void TimeBlockView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void TimeBlockView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
@@ -402,46 +591,47 @@ namespace TimeManager.Forms
 
         private void ScheduleEditOk_Click(object sender, EventArgs e)
         {
-            focusedSchedule.Name = ScheduleNameTxt.Text;
+            if (focusedSchedule.Type == EScheduleType.Singular)
+            {
+                string[] startHM = ScheduleStartTime.Text.Split(':');
+                string[] endHM = ScheduleEndTime.Text.Split(':');
+                DateTime startTmp = new DateTime(ScheduleDatePicker.Value.Year, ScheduleDatePicker.Value.Month, ScheduleDatePicker.Value.Day, int.Parse(startHM[0]), int.Parse(startHM[1]), 0);
+                DateTime endTmp = new DateTime(ScheduleDatePicker.Value.Year, ScheduleDatePicker.Value.Month, ScheduleDatePicker.Value.Day, int.Parse(endHM[0]), int.Parse(endHM[1]), 0);
 
-            string[] startHM = ScheduleStartTime.Text.Split(':');
-            string[] endHM = ScheduleEndTime.Text.Split(':');
-            DateTime startTmp = new DateTime(ScheduleDatePicker.Value.Year, ScheduleDatePicker.Value.Month, ScheduleDatePicker.Value.Day, int.Parse(startHM[0]), int.Parse(startHM[1]), 0);
-            DateTime endTmp = new DateTime(ScheduleDatePicker.Value.Year, ScheduleDatePicker.Value.Month, ScheduleDatePicker.Value.Day, int.Parse(endHM[0]), int.Parse(endHM[1]), 0);
+                focusedSchedule.TimeBlock = new DateTimeBlock(startTmp, endTmp);
+            }
+            else
+            {
+                List<WeeklyDateTimeBlock> weeklyDateTimeBlock = new List<WeeklyDateTimeBlock>();
 
-            focusedSchedule.TimeBlock = new DateTimeBlock(startTmp, endTmp);
+                DayOfWeek dayOfWeek = StringToDayOfWeek(ScheduleRDay.Text);
+
+                foreach (var items in focusedSchedule.RegularTimeBlocks)
+                {
+                    if (items.DayOfWeek < dayOfWeek)
+                    {
+                        weeklyDateTimeBlock.Add(items);
+                    }
+                    else
+                    {
+                        WeeklyDateTimeBlock weeklyDateTimeBlockTmp = new WeeklyDateTimeBlock();
+                        weeklyDateTimeBlockTmp.DayOfWeek = dayOfWeek;
+                        string[] hm = ScheduleRStartTime.Text.Split(':');
+                        weeklyDateTimeBlockTmp.StartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, int.Parse(hm[0]), int.Parse(hm[1]), 0);
+                        hm = ScheduleREndTime.Text.Split(':');
+                        weeklyDateTimeBlockTmp.EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, int.Parse(hm[0]), int.Parse(hm[1]), 0);
+
+                        weeklyDateTimeBlock.Add(weeklyDateTimeBlockTmp);
+                    }
+                }
+
+                focusedSchedule.RegularTimeBlocks = weeklyDateTimeBlock;
+            }
         }
 
         private void ScheduleRDayCmb_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            DayOfWeek dayOfWeek;
-
-            switch (ScheduleRDay.Text)
-            {
-                case "월":
-                    dayOfWeek = DayOfWeek.Monday; break;
-
-                case "화":
-                    dayOfWeek = DayOfWeek.Tuesday; break;
-
-                case "수":
-                    dayOfWeek = DayOfWeek.Wednesday; break;
-
-                case "목":
-                    dayOfWeek = DayOfWeek.Thursday; break;
-
-                case "금":
-                    dayOfWeek = DayOfWeek.Friday; break;
-
-                case "토":
-                    dayOfWeek = DayOfWeek.Saturday; break;
-
-                case "일":
-                    dayOfWeek = DayOfWeek.Sunday; break;
-
-                default:
-                    dayOfWeek= DayOfWeek.Saturday; break;
-            }
+            DayOfWeek dayOfWeek = StringToDayOfWeek(ScheduleRDay.Text);
 
             DayCheck.Checked = false;
             ScheduleRStartTime.Text = "";
@@ -458,6 +648,18 @@ namespace TimeManager.Forms
                     break;
                 }
             }
+        }
+
+        private void TaskEditOk_Click(object sender, EventArgs e)
+        {
+            focusedTask.Name = TaskNameTxt.Text;
+
+            string[] startHM = ScheduleStartTime.Text.Split(':');
+            string[] endHM = ScheduleEndTime.Text.Split(':');
+            DateTime startTmp = new DateTime(ScheduleDatePicker.Value.Year, ScheduleDatePicker.Value.Month, ScheduleDatePicker.Value.Day, int.Parse(startHM[0]), int.Parse(startHM[1]), 0);
+            DateTime endTmp = new DateTime(ScheduleDatePicker.Value.Year, ScheduleDatePicker.Value.Month, ScheduleDatePicker.Value.Day, int.Parse(endHM[0]), int.Parse(endHM[1]), 0);
+
+            focusedSchedule.TimeBlock = new DateTimeBlock(startTmp, endTmp);
         }
     }
 }
