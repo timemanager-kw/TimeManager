@@ -391,7 +391,7 @@ namespace TimeManager.Forms
                 () => {
                     TaskNameTxt.Text = focusedTask.Name;
 
-                    TaskDatePicker.Text = ((DateTime)focusedTask.EndDate).ToString("yyyy-MM-dd");
+                    TaskEndDatePicker.Text = ((DateTime)focusedTask.EndDate).ToString("yyyy-MM-dd");
                     TaskStartDatePicker.Text = focusedTask.StartDate.ToString("yyyy-MM-dd");
                 },
                 () => {
@@ -604,15 +604,17 @@ namespace TimeManager.Forms
             if (focusedSchedule != null || focusedTask != null) CurrentTimeBlockInfo[(int)viewType]();
         }
 
-        private void ScheduleEditCancle_Click(object sender, EventArgs e)
+        private void EditCancle_Click(object sender, EventArgs e)
         {
-            SingleSchedulePanel.Visible = false;
+            CleanEditPanel();
         }
 
         private void ScheduleEditOk_Click(object sender, EventArgs e)
         {
             if (focusedSchedule.Type == EScheduleType.Singular)
             {
+                focusedSchedule.Name = ScheduleNameTxt.Text;
+
                 string[] startHM = ScheduleStartTime.Text.Split(':');
                 string[] endHM = ScheduleEndTime.Text.Split(':');
                 DateTime startTmp = new DateTime(ScheduleDatePicker.Value.Year, ScheduleDatePicker.Value.Month, ScheduleDatePicker.Value.Day, int.Parse(startHM[0]), int.Parse(startHM[1]), 0);
@@ -622,6 +624,8 @@ namespace TimeManager.Forms
             }
             else
             {
+                focusedSchedule.Name = ScheduleRNameTxt.Text;
+
                 List<WeeklyDateTimeBlock> weeklyDateTimeBlock = new List<WeeklyDateTimeBlock>();
 
                 DayOfWeek dayOfWeek = StringToDayOfWeek(ScheduleRDay.Text);
@@ -672,14 +676,17 @@ namespace TimeManager.Forms
 
         private void TaskEditOk_Click(object sender, EventArgs e)
         {
-            focusedTask.Name = TaskNameTxt.Text;
+            if (focusedTask.Type == ETaskType.ShortTerm)
+            {
+                focusedTask.Name = TaskNameTxt.Text;
 
-            string[] startHM = ScheduleStartTime.Text.Split(':');
-            string[] endHM = ScheduleEndTime.Text.Split(':');
-            DateTime startTmp = new DateTime(ScheduleDatePicker.Value.Year, ScheduleDatePicker.Value.Month, ScheduleDatePicker.Value.Day, int.Parse(startHM[0]), int.Parse(startHM[1]), 0);
-            DateTime endTmp = new DateTime(ScheduleDatePicker.Value.Year, ScheduleDatePicker.Value.Month, ScheduleDatePicker.Value.Day, int.Parse(endHM[0]), int.Parse(endHM[1]), 0);
+                focusedTask.StartDate = TaskStartDatePicker.Value;
+                focusedTask.EndDate = TaskEndDatePicker.Value;
+            }
+            else
+            {
 
-            focusedSchedule.TimeBlock = new DateTimeBlock(startTmp, endTmp);
+            }
         }
     }
 }

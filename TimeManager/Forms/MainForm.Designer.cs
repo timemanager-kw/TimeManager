@@ -76,10 +76,10 @@
             this.label7 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.TaskDatePicker = new System.Windows.Forms.DateTimePicker();
-            this.ShortTaskPanel = new System.Windows.Forms.Panel();
-            this.TaskStartDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.TaskEndDatePicker = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
+            this.TaskStartDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.ShortTaskPanel = new System.Windows.Forms.Panel();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.TitlePanel.SuspendLayout();
@@ -515,7 +515,7 @@
             this.ScheduleRCancle.TabIndex = 12;
             this.ScheduleRCancle.Text = "취소";
             this.ScheduleRCancle.UseVisualStyleBackColor = true;
-            this.ScheduleRCancle.Click += new System.EventHandler(this.ScheduleEditCancle_Click);
+            this.ScheduleRCancle.Click += new System.EventHandler(this.EditCancle_Click);
             // 
             // ScheduleREdit
             // 
@@ -587,6 +587,7 @@
             this.button2.TabIndex = 12;
             this.button2.Text = "취소";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.EditCancle_Click);
             // 
             // button1
             // 
@@ -596,31 +597,25 @@
             this.button1.TabIndex = 13;
             this.button1.Text = "수정";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.TaskEditOk_Click);
             // 
-            // TaskDatePicker
+            // TaskEndDatePicker
             // 
-            this.TaskDatePicker.CustomFormat = "yyyy-MM-dd";
-            this.TaskDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.TaskDatePicker.Location = new System.Drawing.Point(70, 45);
-            this.TaskDatePicker.Name = "TaskDatePicker";
-            this.TaskDatePicker.Size = new System.Drawing.Size(120, 25);
-            this.TaskDatePicker.TabIndex = 14;
+            this.TaskEndDatePicker.CustomFormat = "yyyy-MM-dd";
+            this.TaskEndDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.TaskEndDatePicker.Location = new System.Drawing.Point(70, 45);
+            this.TaskEndDatePicker.Name = "TaskEndDatePicker";
+            this.TaskEndDatePicker.Size = new System.Drawing.Size(120, 25);
+            this.TaskEndDatePicker.TabIndex = 14;
             // 
-            // ShortTaskPanel
+            // label5
             // 
-            this.ShortTaskPanel.Controls.Add(this.TaskStartDatePicker);
-            this.ShortTaskPanel.Controls.Add(this.label5);
-            this.ShortTaskPanel.Controls.Add(this.TaskDatePicker);
-            this.ShortTaskPanel.Controls.Add(this.button1);
-            this.ShortTaskPanel.Controls.Add(this.button2);
-            this.ShortTaskPanel.Controls.Add(this.label7);
-            this.ShortTaskPanel.Controls.Add(this.TaskNameTxt);
-            this.ShortTaskPanel.Controls.Add(this.label8);
-            this.ShortTaskPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ShortTaskPanel.Location = new System.Drawing.Point(741, 260);
-            this.ShortTaskPanel.Name = "ShortTaskPanel";
-            this.ShortTaskPanel.Size = new System.Drawing.Size(200, 233);
-            this.ShortTaskPanel.TabIndex = 21;
+            this.label5.Location = new System.Drawing.Point(5, 85);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(60, 25);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "시작일";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // TaskStartDatePicker
             // 
@@ -631,14 +626,21 @@
             this.TaskStartDatePicker.Size = new System.Drawing.Size(120, 25);
             this.TaskStartDatePicker.TabIndex = 16;
             // 
-            // label5
+            // ShortTaskPanel
             // 
-            this.label5.Location = new System.Drawing.Point(5, 85);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 25);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "시작일";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ShortTaskPanel.Controls.Add(this.TaskStartDatePicker);
+            this.ShortTaskPanel.Controls.Add(this.label5);
+            this.ShortTaskPanel.Controls.Add(this.TaskEndDatePicker);
+            this.ShortTaskPanel.Controls.Add(this.button1);
+            this.ShortTaskPanel.Controls.Add(this.button2);
+            this.ShortTaskPanel.Controls.Add(this.label7);
+            this.ShortTaskPanel.Controls.Add(this.TaskNameTxt);
+            this.ShortTaskPanel.Controls.Add(this.label8);
+            this.ShortTaskPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ShortTaskPanel.Location = new System.Drawing.Point(741, 260);
+            this.ShortTaskPanel.Name = "ShortTaskPanel";
+            this.ShortTaskPanel.Size = new System.Drawing.Size(200, 233);
+            this.ShortTaskPanel.TabIndex = 21;
             // 
             // MainForm
             // 
@@ -709,13 +711,6 @@
         private System.Windows.Forms.Button ScheduleREdit;
         private System.Windows.Forms.CheckBox DayCheck;
         private System.Windows.Forms.Panel RegularSchedulePanel;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox TaskNameTxt;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DateTimePicker TaskDatePicker;
-        private System.Windows.Forms.Panel ShortTaskPanel;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMonday;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTuesday;
@@ -724,7 +719,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFriday;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSaturday;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSunday;
-        private System.Windows.Forms.DateTimePicker TaskStartDatePicker;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox TaskNameTxt;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DateTimePicker TaskEndDatePicker;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DateTimePicker TaskStartDatePicker;
+        private System.Windows.Forms.Panel ShortTaskPanel;
     }
 }
