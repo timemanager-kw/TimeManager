@@ -248,10 +248,13 @@ namespace TimeManager.Forms
             TimeBlockView.Clear();
 
             TimeBlockView.Columns.Add("Name", "일정" + ViewOffset());
+            TimeBlockView.Columns.Add("Date", "날짜(요일)" + ViewOffset());
             TimeBlockView.Columns.Add("last", "last");
 
             int colWidth = TextRenderer.MeasureText(TimeBlockView.Columns[0].Text, TimeBlockView.Font).Width + 10;
             if (colWidth > TimeBlockView.Columns[0].Width) TimeBlockView.Columns[0].Width = colWidth;
+            colWidth = TextRenderer.MeasureText(TimeBlockView.Columns[1].Text, TimeBlockView.Font).Width + 10;
+            if (colWidth > TimeBlockView.Columns[1].Width) TimeBlockView.Columns[1].Width = colWidth;
 
             TimeBlockView.Columns.RemoveByKey("last");
 
@@ -264,6 +267,17 @@ namespace TimeManager.Forms
                     var lvItem = new ListViewItem(new string[TimeBlockView.Columns.Count]);
 
                     lvItem.SubItems[0].Text = schedule.Name;
+                    if (schedule.Type == EScheduleType.Singular) lvItem.SubItems[1].Text = schedule.TimeBlock.EndDate.ToString("yyyy-MM-dd");
+                    else
+                    {
+                        string days = string.Empty;
+                        foreach (var dayOfWeek in schedule.RegularTimeBlocks)
+                        {
+                            days += $"{DayOfWeekToString(dayOfWeek.DayOfWeek)} | ";
+                        }
+                        days = days.Remove(days.Length - 3);
+                        lvItem.SubItems[1].Text = days;
+                    }
 
                     TimeBlockView.Items.Add(lvItem);
                 }
@@ -279,6 +293,17 @@ namespace TimeManager.Forms
                     var lvItem = new ListViewItem(new string[TimeBlockView.Columns.Count]);
 
                     lvItem.SubItems[0].Text = schedule.Name;
+                    if (schedule.Type == EScheduleType.Singular) lvItem.SubItems[1].Text = schedule.TimeBlock.EndDate.ToString("yyyy-MM-dd");
+                    else
+                    {
+                        string days = string.Empty;
+                        foreach (var dayOfWeek in schedule.RegularTimeBlocks)
+                        {
+                            days += $"{DayOfWeekToString(dayOfWeek.DayOfWeek)} | ";
+                        }
+                        days = days.Remove(days.Length - 3);
+                        lvItem.SubItems[1].Text = days;
+                    }
 
                     TimeBlockView.Items.Add(lvItem);
                 }
@@ -440,7 +465,37 @@ namespace TimeManager.Forms
                     return DayOfWeek.Sunday;
 
                 default:
-                    return DayOfWeek.Saturday;
+                    return DayOfWeek.Monday;
+            }
+        }
+
+        public char DayOfWeekToString(DayOfWeek dayOfWeek)
+        {
+            switch (dayOfWeek)
+            {
+                case DayOfWeek.Monday:
+                    return '월';
+
+                case DayOfWeek.Tuesday:
+                    return '화';
+
+                case DayOfWeek.Wednesday:
+                    return '수';
+
+                case DayOfWeek.Thursday:
+                    return '목';
+
+                case DayOfWeek.Friday:
+                    return '금';
+
+                case DayOfWeek.Saturday:
+                    return '토';
+
+                case DayOfWeek.Sunday:
+                    return '일';
+
+                default:
+                    return '월';
             }
         }
 
