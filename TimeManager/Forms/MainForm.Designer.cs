@@ -79,9 +79,10 @@
             this.TaskEndDatePicker = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.TaskStartDatePicker = new System.Windows.Forms.DateTimePicker();
-            this.ShortTaskPanel = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.TaskDurationCmb = new System.Windows.Forms.ComboBox();
+            this.ShortTaskPanel = new System.Windows.Forms.Panel();
+            this.WithEndDateCheck = new System.Windows.Forms.CheckBox();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.TitlePanel.SuspendLayout();
@@ -562,7 +563,7 @@
             // 
             this.label8.Location = new System.Drawing.Point(5, 5);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(70, 25);
+            this.label8.Size = new System.Drawing.Size(75, 25);
             this.label8.TabIndex = 0;
             this.label8.Text = "업무명";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -614,7 +615,7 @@
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(5, 85);
+            this.label5.Location = new System.Drawing.Point(5, 100);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(75, 25);
             this.label5.TabIndex = 15;
@@ -625,13 +626,32 @@
             // 
             this.TaskStartDatePicker.CustomFormat = "yyyy-MM-dd";
             this.TaskStartDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.TaskStartDatePicker.Location = new System.Drawing.Point(80, 85);
+            this.TaskStartDatePicker.Location = new System.Drawing.Point(80, 100);
             this.TaskStartDatePicker.Name = "TaskStartDatePicker";
             this.TaskStartDatePicker.Size = new System.Drawing.Size(110, 25);
             this.TaskStartDatePicker.TabIndex = 16;
             // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label6.Location = new System.Drawing.Point(5, 140);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(75, 25);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "수행 시간";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // TaskDurationCmb
+            // 
+            this.TaskDurationCmb.FormattingEnabled = true;
+            this.TaskDurationCmb.Location = new System.Drawing.Point(80, 140);
+            this.TaskDurationCmb.Name = "TaskDurationCmb";
+            this.TaskDurationCmb.Size = new System.Drawing.Size(110, 23);
+            this.TaskDurationCmb.TabIndex = 18;
+            // 
             // ShortTaskPanel
             // 
+            this.ShortTaskPanel.Controls.Add(this.WithEndDateCheck);
             this.ShortTaskPanel.Controls.Add(this.TaskDurationCmb);
             this.ShortTaskPanel.Controls.Add(this.label6);
             this.ShortTaskPanel.Controls.Add(this.TaskStartDatePicker);
@@ -648,23 +668,16 @@
             this.ShortTaskPanel.Size = new System.Drawing.Size(200, 233);
             this.ShortTaskPanel.TabIndex = 21;
             // 
-            // label6
+            // WithEndDateCheck
             // 
-            this.label6.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label6.Location = new System.Drawing.Point(5, 125);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 25);
-            this.label6.TabIndex = 17;
-            this.label6.Text = "수행 시간";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // TaskDurationCmb
-            // 
-            this.TaskDurationCmb.FormattingEnabled = true;
-            this.TaskDurationCmb.Location = new System.Drawing.Point(80, 125);
-            this.TaskDurationCmb.Name = "TaskDurationCmb";
-            this.TaskDurationCmb.Size = new System.Drawing.Size(110, 23);
-            this.TaskDurationCmb.TabIndex = 18;
+            this.WithEndDateCheck.AutoSize = true;
+            this.WithEndDateCheck.Location = new System.Drawing.Point(80, 75);
+            this.WithEndDateCheck.Name = "WithEndDateCheck";
+            this.WithEndDateCheck.Size = new System.Drawing.Size(109, 19);
+            this.WithEndDateCheck.TabIndex = 19;
+            this.WithEndDateCheck.Text = "마감일 포함";
+            this.WithEndDateCheck.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.WithEndDateCheck.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -751,8 +764,9 @@
         private System.Windows.Forms.DateTimePicker TaskEndDatePicker;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker TaskStartDatePicker;
-        private System.Windows.Forms.Panel ShortTaskPanel;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox TaskDurationCmb;
+        private System.Windows.Forms.Panel ShortTaskPanel;
+        private System.Windows.Forms.CheckBox WithEndDateCheck;
     }
 }

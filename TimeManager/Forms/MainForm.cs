@@ -410,6 +410,8 @@ namespace TimeManager.Forms
 
                     int totMin = (int)((TimeSpan)focusedTask.Duration).TotalMinutes;
                     TaskDurationCmb.Text = $"{totMin / 60}:{totMin % 60}";
+
+                    WithEndDateCheck.Checked = (int)((TimeSpan)(focusedTask.EndDate - focusedTask.StartDate)).TotalDays != focusedTask.FocusDays;
                 },
                 () => {
                     TaskNameTxt.Text = focusedTask.Name;
@@ -503,17 +505,23 @@ namespace TimeManager.Forms
             scheduleList = new List<Schedule>
             {
                 new Schedule(),
+                new Schedule(),
                 new Schedule()
             };
             scheduleList[0].Id = 1;
             scheduleList[0].Name = "Test Schedule1";
             scheduleList[0].Type = EScheduleType.Singular;
-            scheduleList[0].TimeBlock = new DateTimeBlock(DateTime.Now, new DateTime(2024, 5, 14, 18, 30, 0));
+            scheduleList[0].TimeBlock = new DateTimeBlock(DateTime.Now, new DateTime(2024, 5, 18, 18, 30, 0));
 
             scheduleList[1].Id = 2;
             scheduleList[1].Name = "Test Schedule2";
-            scheduleList[1].Type = EScheduleType.Regular;
-            scheduleList[1].TimeBlock = new DateTimeBlock(DateTime.Now, new DateTime(2024, 5, 25));
+            scheduleList[1].Type = EScheduleType.Singular;
+            scheduleList[1].TimeBlock = new DateTimeBlock(DateTime.Now, new DateTime(2024, 5, 18, 20, 30, 0));
+
+            scheduleList[2].Id = 3;
+            scheduleList[2].Name = "Test Schedule3";
+            scheduleList[2].Type = EScheduleType.Regular;
+            scheduleList[2].TimeBlock = new DateTimeBlock(DateTime.Now, new DateTime(2024, 5, 25));
             WeeklyDateTimeBlock test1 = new WeeklyDateTimeBlock();
             WeeklyDateTimeBlock test2 = new WeeklyDateTimeBlock();
             WeeklyDateTimeBlock test3 = new WeeklyDateTimeBlock();
@@ -532,25 +540,35 @@ namespace TimeManager.Forms
                 test2,
                 test3
             };
-            scheduleList[1].RegularTimeBlocks = testSchedulTimeBlocks;
+            scheduleList[2].RegularTimeBlocks = testSchedulTimeBlocks;
 
             taskList = new List<Task>
             {
                 new Task(),
+                new Task(),
                 new Task()
             };
-            taskList[0].Id = 3;
+            taskList[0].Id = 4;
             taskList[0].Name = "Test Task1";
             taskList[0].Type = ETaskType.ShortTerm;
             taskList[0].StartDate = new DateTime(2024, 5, 17);
             taskList[0].EndDate = new DateTime(2024, 5, 20);
             taskList[0].Duration = new TimeSpan(10, 30, 0);
+            taskList[0].FocusDays = 3;
 
-            taskList[1].Id = 4;
+            taskList[1].Id = 5;
             taskList[1].Name = "Test Task2";
-            taskList[1].Type = ETaskType.LongTerm;
-            taskList[1].StartDate = new DateTime(2024, 5, 20);
-            taskList[1].EndDate = new DateTime(2024, 5, 25);
+            taskList[1].Type = ETaskType.ShortTerm;
+            taskList[1].StartDate = new DateTime(2024, 5, 19);
+            taskList[1].EndDate = new DateTime(2024, 5, 22);
+            taskList[1].Duration = new TimeSpan(10, 30, 0);
+            taskList[1].FocusDays = 4;
+
+            taskList[2].Id = 6;
+            taskList[2].Name = "Test Task3";
+            taskList[2].Type = ETaskType.LongTerm;
+            taskList[2].StartDate = new DateTime(2024, 5, 20);
+            taskList[2].EndDate = new DateTime(2024, 5, 25);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -617,16 +635,17 @@ namespace TimeManager.Forms
 
         private void TimeBlockView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
+            focusedSchedule = null;
+            focusedTask = null;
+
             Action[] focusedSet = new Action[]
             {
                 () =>
                 {
-                    focusedTask = null;
                     focusedSchedule = TimeBlockView.FocusedItem != null ? scheduleList[TimeBlockView.FocusedItem.Index] : null;
                 },
                 () =>
                 {
-                    focusedSchedule = null;
                     focusedTask = TimeBlockView.FocusedItem != null ? taskList[TimeBlockView.FocusedItem.Index] : null;
                 }
             };
@@ -713,6 +732,8 @@ namespace TimeManager.Forms
 
                 focusedTask.StartDate = TaskStartDatePicker.Value;
                 focusedTask.EndDate = TaskEndDatePicker.Value;
+
+                focusedTask.FocusDays = (int)((TimeSpan)(focusedTask.EndDate - focusedTask.StartDate)).TotalDays + (WithEndDateCheck.Checked ? 1 : 0);
             }
             else
             {
