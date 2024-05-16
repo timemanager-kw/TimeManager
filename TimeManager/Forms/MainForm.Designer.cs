@@ -81,8 +81,8 @@
             this.TaskStartDatePicker = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.TaskDurationCmb = new System.Windows.Forms.ComboBox();
-            this.ShortTaskPanel = new System.Windows.Forms.Panel();
             this.WithEndDateCheck = new System.Windows.Forms.CheckBox();
+            this.ShortTaskPanel = new System.Windows.Forms.Panel();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.TitlePanel.SuspendLayout();
@@ -357,6 +357,7 @@
             this.ScheduleEditOk.TabIndex = 13;
             this.ScheduleEditOk.Text = "수정";
             this.ScheduleEditOk.UseVisualStyleBackColor = true;
+            this.ScheduleEditOk.Click += new System.EventHandler(this.ScheduleEditOk_Click);
             // 
             // ScheduleEditCancle
             // 
@@ -366,6 +367,7 @@
             this.ScheduleEditCancle.TabIndex = 12;
             this.ScheduleEditCancle.Text = "취소";
             this.ScheduleEditCancle.UseVisualStyleBackColor = true;
+            this.ScheduleEditCancle.Click += new System.EventHandler(this.EditCancle_Click);
             // 
             // ScheduleEndTime
             // 
@@ -649,6 +651,17 @@
             this.TaskDurationCmb.Size = new System.Drawing.Size(110, 23);
             this.TaskDurationCmb.TabIndex = 18;
             // 
+            // WithEndDateCheck
+            // 
+            this.WithEndDateCheck.AutoSize = true;
+            this.WithEndDateCheck.Location = new System.Drawing.Point(80, 75);
+            this.WithEndDateCheck.Name = "WithEndDateCheck";
+            this.WithEndDateCheck.Size = new System.Drawing.Size(109, 19);
+            this.WithEndDateCheck.TabIndex = 19;
+            this.WithEndDateCheck.Text = "마감일 포함";
+            this.WithEndDateCheck.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.WithEndDateCheck.UseVisualStyleBackColor = true;
+            // 
             // ShortTaskPanel
             // 
             this.ShortTaskPanel.Controls.Add(this.WithEndDateCheck);
@@ -667,17 +680,6 @@
             this.ShortTaskPanel.Name = "ShortTaskPanel";
             this.ShortTaskPanel.Size = new System.Drawing.Size(200, 233);
             this.ShortTaskPanel.TabIndex = 21;
-            // 
-            // WithEndDateCheck
-            // 
-            this.WithEndDateCheck.AutoSize = true;
-            this.WithEndDateCheck.Location = new System.Drawing.Point(80, 75);
-            this.WithEndDateCheck.Name = "WithEndDateCheck";
-            this.WithEndDateCheck.Size = new System.Drawing.Size(109, 19);
-            this.WithEndDateCheck.TabIndex = 19;
-            this.WithEndDateCheck.Text = "마감일 포함";
-            this.WithEndDateCheck.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.WithEndDateCheck.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -766,7 +768,7 @@
         private System.Windows.Forms.DateTimePicker TaskStartDatePicker;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox TaskDurationCmb;
-        private System.Windows.Forms.Panel ShortTaskPanel;
         private System.Windows.Forms.CheckBox WithEndDateCheck;
+        private System.Windows.Forms.Panel ShortTaskPanel;
     }
 }

@@ -46,11 +46,6 @@ namespace TimeManager.Forms
         public Action[] UpdateView;
         public Action[] CurrentTimeBlockInfo;
 
-        //public void SchedulerForm(IScheduler scheduler)
-        //{
-        //    this._scheduler = scheduler;
-        //}
-
         public void TimeBlockViewForm(TimeTableManager timeTableManager, ScheduleManager scheduleManager, TaskManager taskManager)
         {
             this._timeTableManager = timeTableManager;
@@ -98,24 +93,6 @@ namespace TimeManager.Forms
             WeekLabel.Text = $"{week.Year}.{week.Month} {week.WeekOfMonth}주차";
 
             //timeTable = _timeTableManager.Get();
-
-            //DrawCells(timeTable, week);
-
-            AssignedSchedule assignedSchedule1 = new AssignedSchedule();
-            assignedSchedule1.ScheduleId = 1;
-            assignedSchedule1.AssignedBlocks.Add(new DateTimeBlock(new DateTime(2024, 5, 6, 8, 0, 0), new DateTime(2024, 5, 6, 12, 0, 0)));
-
-            AssignedTask assignedTask1 = new AssignedTask();
-            assignedTask1.TaskId = 1;
-            assignedTask1.AssignedBlocks.Add(new DateTimeBlock(new DateTime(2024, 5, 6, 13, 0, 0), new DateTime(2024, 5, 6, 17, 0, 0)));
-
-            List<DateTimeBlock> workTimes = new List<DateTimeBlock>();
-            for (int i = 0; i < 7; i++)
-            {
-                workTimes.Add(new DateTimeBlock(new DateTime(2024, 5, 6 + i, 8, 0, 0), new DateTime(2024, 5, 6 + i, 22, 0, 0)));
-            }
-
-            timeTable = new TimeTable(workTimes, new List<AssignedSchedule> { assignedSchedule1 }, new List<AssignedTask> { assignedTask1 });
 
             DrawCells(week);
         }
@@ -471,9 +448,6 @@ namespace TimeManager.Forms
         {
             InitializeComponent();
 
-            //scheduleList = (List<Schedule>)_scheduleManager.GetAll();
-            //taskList = (List<Task>)_taskManager.GetAll();
-
             StandardTime = DateTime.Now;
             StandardTime.AddDays(-(int)StandardTime.DayOfWeek);
 
@@ -569,6 +543,23 @@ namespace TimeManager.Forms
             taskList[2].Type = ETaskType.LongTerm;
             taskList[2].StartDate = new DateTime(2024, 5, 20);
             taskList[2].EndDate = new DateTime(2024, 5, 25);
+
+
+            AssignedSchedule assignedSchedule1 = new AssignedSchedule();
+            assignedSchedule1.ScheduleId = 1;
+            assignedSchedule1.AssignedBlocks.Add(new DateTimeBlock(new DateTime(2024, 5, 6, 8, 0, 0), new DateTime(2024, 5, 6, 12, 0, 0)));
+
+            AssignedTask assignedTask1 = new AssignedTask();
+            assignedTask1.TaskId = 1;
+            assignedTask1.AssignedBlocks.Add(new DateTimeBlock(new DateTime(2024, 5, 6, 13, 0, 0), new DateTime(2024, 5, 6, 17, 0, 0)));
+
+            List<DateTimeBlock> workTimes = new List<DateTimeBlock>();
+            for (int i = 0; i < 7; i++)
+            {
+                workTimes.Add(new DateTimeBlock(new DateTime(2024, 5, 6 + i, 8, 0, 0), new DateTime(2024, 5, 6 + i, 22, 0, 0)));
+            }
+
+            timeTable = new TimeTable(workTimes, new List<AssignedSchedule> { assignedSchedule1 }, new List<AssignedTask> { assignedTask1 });
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -701,6 +692,8 @@ namespace TimeManager.Forms
 
                 focusedSchedule.RegularTimeBlocks = weeklyDateTimeBlock;
             }
+
+            UpdateView[(int)viewType]();
         }
 
         private void ScheduleRDayCmb_SelectionChangeCommitted(object sender, EventArgs e)
@@ -734,11 +727,15 @@ namespace TimeManager.Forms
                 focusedTask.EndDate = TaskEndDatePicker.Value;
 
                 focusedTask.FocusDays = (int)((TimeSpan)(focusedTask.EndDate - focusedTask.StartDate)).TotalDays + (WithEndDateCheck.Checked ? 1 : 0);
+                string[] hm = TaskDurationCmb.Text.Split(':');
+                focusedTask.Duration = new TimeSpan(int.Parse(hm[0]), int.Parse(hm[1]), 0);
             }
             else
             {
 
             }
+
+            UpdateView[(int)viewType]();
         }
     }
 }
