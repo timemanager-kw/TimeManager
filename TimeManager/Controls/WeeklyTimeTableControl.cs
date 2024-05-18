@@ -14,7 +14,7 @@ namespace TimeManager.Controls
 {
     public partial class WeeklyTimeTableControl : UserControl
     {
-        [Description("Occurs when an item(assigned schedule or task) is selected."), Category("TimeTable")]
+        [Description("본 컨트롤에 그려진 아이템(Schedule 혹은 Task)가 선택되었을 때 발생하는 이벤트입니다."), Category("아이템")]
         public event EventHandler ItemSelected;
 
         public WeeklyTimeTableControl()
