@@ -14,6 +14,9 @@ namespace TimeManager.Controls
 {
     public partial class WeeklyTimeTableControl : UserControl
     {
+        [Description("Occurs when an item(assigned schedule or task) is selected."), Category("TimeTable")]
+        public event EventHandler ItemSelected;
+
         public WeeklyTimeTableControl()
         {
             InitializeComponent();
