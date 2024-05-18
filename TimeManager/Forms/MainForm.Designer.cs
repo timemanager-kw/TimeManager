@@ -28,15 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.MainPanel = new System.Windows.Forms.Panel();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.ColumnMonday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTuesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnWednesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnThursday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnFriday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnSaturday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnSunday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MainPanel = new System.Windows.Forms.Panel();
             this.LogTxt = new System.Windows.Forms.TextBox();
             this.TitlePanel = new System.Windows.Forms.Panel();
             this.AlgorithmStarter = new System.Windows.Forms.Button();
@@ -83,25 +78,36 @@
             this.TaskDurationCmb = new System.Windows.Forms.ComboBox();
             this.WithEndDateCheck = new System.Windows.Forms.CheckBox();
             this.ShortTaskPanel = new System.Windows.Forms.Panel();
-            this.MainPanel.SuspendLayout();
+            this.LongTaskPanel = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.TaskRName = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.ColumnMonday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTuesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnWednesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnThursday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnFriday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSaturday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSunday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            this.MainPanel.SuspendLayout();
             this.TitlePanel.SuspendLayout();
             this.TimeBlockTitlePanel.SuspendLayout();
             this.SingleSchedulePanel.SuspendLayout();
             this.RegularSchedulePanel.SuspendLayout();
             this.ShortTaskPanel.SuspendLayout();
+            this.LongTaskPanel.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // MainPanel
-            // 
-            this.MainPanel.Controls.Add(this.dataGridView);
-            this.MainPanel.Controls.Add(this.LogTxt);
-            this.MainPanel.Controls.Add(this.TitlePanel);
-            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.MainPanel.Location = new System.Drawing.Point(1, 0);
-            this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(740, 493);
-            this.MainPanel.TabIndex = 1;
             // 
             // dataGridView
             // 
@@ -132,68 +138,16 @@
             this.dataGridView.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGridView_CellPainting);
             this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
             // 
-            // ColumnMonday
+            // MainPanel
             // 
-            this.ColumnMonday.HeaderText = "월";
-            this.ColumnMonday.MinimumWidth = 6;
-            this.ColumnMonday.Name = "ColumnMonday";
-            this.ColumnMonday.ReadOnly = true;
-            this.ColumnMonday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnMonday.Width = 85;
-            // 
-            // ColumnTuesday
-            // 
-            this.ColumnTuesday.HeaderText = "화";
-            this.ColumnTuesday.MinimumWidth = 6;
-            this.ColumnTuesday.Name = "ColumnTuesday";
-            this.ColumnTuesday.ReadOnly = true;
-            this.ColumnTuesday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnTuesday.Width = 85;
-            // 
-            // ColumnWednesday
-            // 
-            this.ColumnWednesday.HeaderText = "수";
-            this.ColumnWednesday.MinimumWidth = 6;
-            this.ColumnWednesday.Name = "ColumnWednesday";
-            this.ColumnWednesday.ReadOnly = true;
-            this.ColumnWednesday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnWednesday.Width = 85;
-            // 
-            // ColumnThursday
-            // 
-            this.ColumnThursday.HeaderText = "목";
-            this.ColumnThursday.MinimumWidth = 6;
-            this.ColumnThursday.Name = "ColumnThursday";
-            this.ColumnThursday.ReadOnly = true;
-            this.ColumnThursday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnThursday.Width = 85;
-            // 
-            // ColumnFriday
-            // 
-            this.ColumnFriday.HeaderText = "금";
-            this.ColumnFriday.MinimumWidth = 6;
-            this.ColumnFriday.Name = "ColumnFriday";
-            this.ColumnFriday.ReadOnly = true;
-            this.ColumnFriday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnFriday.Width = 85;
-            // 
-            // ColumnSaturday
-            // 
-            this.ColumnSaturday.HeaderText = "토";
-            this.ColumnSaturday.MinimumWidth = 6;
-            this.ColumnSaturday.Name = "ColumnSaturday";
-            this.ColumnSaturday.ReadOnly = true;
-            this.ColumnSaturday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnSaturday.Width = 85;
-            // 
-            // ColumnSunday
-            // 
-            this.ColumnSunday.HeaderText = "일";
-            this.ColumnSunday.MinimumWidth = 6;
-            this.ColumnSunday.Name = "ColumnSunday";
-            this.ColumnSunday.ReadOnly = true;
-            this.ColumnSunday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnSunday.Width = 85;
+            this.MainPanel.Controls.Add(this.dataGridView);
+            this.MainPanel.Controls.Add(this.LogTxt);
+            this.MainPanel.Controls.Add(this.TitlePanel);
+            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.MainPanel.Location = new System.Drawing.Point(1, 0);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(740, 493);
+            this.MainPanel.TabIndex = 1;
             // 
             // LogTxt
             // 
@@ -295,7 +249,7 @@
             // 
             this.TaskBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.TaskBtn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.TaskBtn.Font = new System.Drawing.Font("함초롬바탕", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.TaskBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.TaskBtn.Location = new System.Drawing.Point(50, 5);
             this.TaskBtn.Name = "TaskBtn";
             this.TaskBtn.Size = new System.Drawing.Size(45, 30);
@@ -308,7 +262,7 @@
             // 
             this.ScheduleBtn.BackColor = System.Drawing.SystemColors.Control;
             this.ScheduleBtn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ScheduleBtn.Font = new System.Drawing.Font("함초롬바탕", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ScheduleBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ScheduleBtn.Location = new System.Drawing.Point(5, 5);
             this.ScheduleBtn.Name = "ScheduleBtn";
             this.ScheduleBtn.Size = new System.Drawing.Size(45, 30);
@@ -354,13 +308,14 @@
             this.ScheduleDatePicker.CustomFormat = "yyyy-MM-dd";
             this.ScheduleDatePicker.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ScheduleDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.ScheduleDatePicker.Location = new System.Drawing.Point(70, 45);
+            this.ScheduleDatePicker.Location = new System.Drawing.Point(80, 45);
             this.ScheduleDatePicker.Name = "ScheduleDatePicker";
-            this.ScheduleDatePicker.Size = new System.Drawing.Size(120, 25);
+            this.ScheduleDatePicker.Size = new System.Drawing.Size(110, 25);
             this.ScheduleDatePicker.TabIndex = 14;
             // 
             // ScheduleEditOk
             // 
+            this.ScheduleEditOk.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ScheduleEditOk.Location = new System.Drawing.Point(150, 195);
             this.ScheduleEditOk.Name = "ScheduleEditOk";
             this.ScheduleEditOk.Size = new System.Drawing.Size(45, 30);
@@ -371,6 +326,7 @@
             // 
             // ScheduleEditCancle
             // 
+            this.ScheduleEditCancle.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ScheduleEditCancle.Location = new System.Drawing.Point(105, 195);
             this.ScheduleEditCancle.Name = "ScheduleEditCancle";
             this.ScheduleEditCancle.Size = new System.Drawing.Size(45, 30);
@@ -384,14 +340,15 @@
             this.ScheduleEndTime.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.ScheduleEndTime.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ScheduleEndTime.FormattingEnabled = true;
-            this.ScheduleEndTime.Location = new System.Drawing.Point(70, 125);
+            this.ScheduleEndTime.Location = new System.Drawing.Point(80, 125);
             this.ScheduleEndTime.Name = "ScheduleEndTime";
             this.ScheduleEndTime.Size = new System.Drawing.Size(100, 23);
             this.ScheduleEndTime.TabIndex = 9;
             // 
             // ScheduleLabel물결
             // 
-            this.ScheduleLabel물결.Location = new System.Drawing.Point(5, 125);
+            this.ScheduleLabel물결.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ScheduleLabel물결.Location = new System.Drawing.Point(15, 125);
             this.ScheduleLabel물결.Name = "ScheduleLabel물결";
             this.ScheduleLabel물결.Size = new System.Drawing.Size(60, 25);
             this.ScheduleLabel물결.TabIndex = 8;
@@ -403,14 +360,15 @@
             this.ScheduleStartTime.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.ScheduleStartTime.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ScheduleStartTime.FormattingEnabled = true;
-            this.ScheduleStartTime.Location = new System.Drawing.Point(70, 85);
+            this.ScheduleStartTime.Location = new System.Drawing.Point(80, 85);
             this.ScheduleStartTime.Name = "ScheduleStartTime";
             this.ScheduleStartTime.Size = new System.Drawing.Size(100, 23);
             this.ScheduleStartTime.TabIndex = 5;
             // 
             // ScheduleTimeLabel
             // 
-            this.ScheduleTimeLabel.Location = new System.Drawing.Point(5, 85);
+            this.ScheduleTimeLabel.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ScheduleTimeLabel.Location = new System.Drawing.Point(15, 85);
             this.ScheduleTimeLabel.Name = "ScheduleTimeLabel";
             this.ScheduleTimeLabel.Size = new System.Drawing.Size(60, 25);
             this.ScheduleTimeLabel.TabIndex = 4;
@@ -419,7 +377,8 @@
             // 
             // ScheduleDayLabel
             // 
-            this.ScheduleDayLabel.Location = new System.Drawing.Point(5, 45);
+            this.ScheduleDayLabel.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ScheduleDayLabel.Location = new System.Drawing.Point(15, 45);
             this.ScheduleDayLabel.Name = "ScheduleDayLabel";
             this.ScheduleDayLabel.Size = new System.Drawing.Size(60, 25);
             this.ScheduleDayLabel.TabIndex = 2;
@@ -428,14 +387,15 @@
             // 
             // ScheduleNameTxt
             // 
-            this.ScheduleNameTxt.Location = new System.Drawing.Point(70, 5);
+            this.ScheduleNameTxt.Location = new System.Drawing.Point(80, 5);
             this.ScheduleNameTxt.Name = "ScheduleNameTxt";
-            this.ScheduleNameTxt.Size = new System.Drawing.Size(120, 25);
+            this.ScheduleNameTxt.Size = new System.Drawing.Size(110, 25);
             this.ScheduleNameTxt.TabIndex = 1;
             // 
             // ScheduleNameLabel
             // 
-            this.ScheduleNameLabel.Location = new System.Drawing.Point(5, 5);
+            this.ScheduleNameLabel.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ScheduleNameLabel.Location = new System.Drawing.Point(15, 5);
             this.ScheduleNameLabel.Name = "ScheduleNameLabel";
             this.ScheduleNameLabel.Size = new System.Drawing.Size(60, 25);
             this.ScheduleNameLabel.TabIndex = 0;
@@ -444,7 +404,8 @@
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(5, 5);
+            this.label4.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.Location = new System.Drawing.Point(15, 5);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 25);
             this.label4.TabIndex = 0;
@@ -453,14 +414,15 @@
             // 
             // ScheduleRNameTxt
             // 
-            this.ScheduleRNameTxt.Location = new System.Drawing.Point(70, 5);
+            this.ScheduleRNameTxt.Location = new System.Drawing.Point(80, 5);
             this.ScheduleRNameTxt.Name = "ScheduleRNameTxt";
-            this.ScheduleRNameTxt.Size = new System.Drawing.Size(120, 25);
+            this.ScheduleRNameTxt.Size = new System.Drawing.Size(110, 25);
             this.ScheduleRNameTxt.TabIndex = 1;
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(5, 45);
+            this.label3.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label3.Location = new System.Drawing.Point(15, 45);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 25);
             this.label3.TabIndex = 2;
@@ -480,7 +442,7 @@
             "금",
             "토",
             "일"});
-            this.ScheduleRDay.Location = new System.Drawing.Point(70, 45);
+            this.ScheduleRDay.Location = new System.Drawing.Point(80, 45);
             this.ScheduleRDay.Name = "ScheduleRDay";
             this.ScheduleRDay.Size = new System.Drawing.Size(50, 23);
             this.ScheduleRDay.TabIndex = 3;
@@ -488,7 +450,8 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(5, 85);
+            this.label2.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.Location = new System.Drawing.Point(15, 85);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 25);
             this.label2.TabIndex = 4;
@@ -500,14 +463,14 @@
             this.ScheduleRStartTime.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.ScheduleRStartTime.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ScheduleRStartTime.FormattingEnabled = true;
-            this.ScheduleRStartTime.Location = new System.Drawing.Point(70, 85);
+            this.ScheduleRStartTime.Location = new System.Drawing.Point(80, 85);
             this.ScheduleRStartTime.Name = "ScheduleRStartTime";
             this.ScheduleRStartTime.Size = new System.Drawing.Size(100, 23);
             this.ScheduleRStartTime.TabIndex = 5;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(5, 125);
+            this.label1.Location = new System.Drawing.Point(15, 125);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 25);
             this.label1.TabIndex = 8;
@@ -519,13 +482,14 @@
             this.ScheduleREndTime.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.ScheduleREndTime.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ScheduleREndTime.FormattingEnabled = true;
-            this.ScheduleREndTime.Location = new System.Drawing.Point(70, 125);
+            this.ScheduleREndTime.Location = new System.Drawing.Point(80, 125);
             this.ScheduleREndTime.Name = "ScheduleREndTime";
             this.ScheduleREndTime.Size = new System.Drawing.Size(100, 23);
             this.ScheduleREndTime.TabIndex = 9;
             // 
             // ScheduleRCancle
             // 
+            this.ScheduleRCancle.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ScheduleRCancle.Location = new System.Drawing.Point(105, 195);
             this.ScheduleRCancle.Name = "ScheduleRCancle";
             this.ScheduleRCancle.Size = new System.Drawing.Size(45, 30);
@@ -536,6 +500,7 @@
             // 
             // ScheduleREdit
             // 
+            this.ScheduleREdit.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ScheduleREdit.Location = new System.Drawing.Point(150, 195);
             this.ScheduleREdit.Name = "ScheduleREdit";
             this.ScheduleREdit.Size = new System.Drawing.Size(45, 30);
@@ -546,7 +511,7 @@
             // 
             // DayCheck
             // 
-            this.DayCheck.Location = new System.Drawing.Point(132, 48);
+            this.DayCheck.Location = new System.Drawing.Point(140, 48);
             this.DayCheck.Name = "DayCheck";
             this.DayCheck.Size = new System.Drawing.Size(18, 17);
             this.DayCheck.TabIndex = 14;
@@ -600,7 +565,7 @@
             // 
             // TaskEditCancleBtn
             // 
-            this.TaskEditCancleBtn.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.TaskEditCancleBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.TaskEditCancleBtn.Location = new System.Drawing.Point(105, 195);
             this.TaskEditCancleBtn.Name = "TaskEditCancleBtn";
             this.TaskEditCancleBtn.Size = new System.Drawing.Size(45, 30);
@@ -611,7 +576,7 @@
             // 
             // TaskEditOkBtn
             // 
-            this.TaskEditOkBtn.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.TaskEditOkBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.TaskEditOkBtn.Location = new System.Drawing.Point(150, 195);
             this.TaskEditOkBtn.Name = "TaskEditOkBtn";
             this.TaskEditOkBtn.Size = new System.Drawing.Size(45, 30);
@@ -681,6 +646,7 @@
             // ShortTaskPanel
             // 
             this.ShortTaskPanel.BackColor = System.Drawing.Color.AliceBlue;
+            this.ShortTaskPanel.Controls.Add(this.LongTaskPanel);
             this.ShortTaskPanel.Controls.Add(this.WithEndDateCheck);
             this.ShortTaskPanel.Controls.Add(this.TaskDurationCmb);
             this.ShortTaskPanel.Controls.Add(this.label6);
@@ -698,6 +664,215 @@
             this.ShortTaskPanel.Size = new System.Drawing.Size(200, 233);
             this.ShortTaskPanel.TabIndex = 21;
             // 
+            // LongTaskPanel
+            // 
+            this.LongTaskPanel.BackColor = System.Drawing.Color.AliceBlue;
+            this.LongTaskPanel.Controls.Add(this.groupBox1);
+            this.LongTaskPanel.Controls.Add(this.button1);
+            this.LongTaskPanel.Controls.Add(this.button2);
+            this.LongTaskPanel.Controls.Add(this.TaskRName);
+            this.LongTaskPanel.Controls.Add(this.label12);
+            this.LongTaskPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LongTaskPanel.Location = new System.Drawing.Point(0, 0);
+            this.LongTaskPanel.Name = "LongTaskPanel";
+            this.LongTaskPanel.Size = new System.Drawing.Size(200, 233);
+            this.LongTaskPanel.TabIndex = 22;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button1.Location = new System.Drawing.Point(150, 195);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(45, 30);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "수정";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button2.Location = new System.Drawing.Point(105, 195);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(45, 30);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "취소";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // TaskRName
+            // 
+            this.TaskRName.Location = new System.Drawing.Point(80, 5);
+            this.TaskRName.Name = "TaskRName";
+            this.TaskRName.Size = new System.Drawing.Size(110, 25);
+            this.TaskRName.TabIndex = 1;
+            // 
+            // label12
+            // 
+            this.label12.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label12.Location = new System.Drawing.Point(5, 5);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(75, 25);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "업무명";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.checkBox7);
+            this.groupBox1.Controls.Add(this.checkBox6);
+            this.groupBox1.Controls.Add(this.checkBox5);
+            this.groupBox1.Controls.Add(this.checkBox4);
+            this.groupBox1.Controls.Add(this.checkBox3);
+            this.groupBox1.Controls.Add(this.checkBox2);
+            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox1.Location = new System.Drawing.Point(9, 36);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(181, 153);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "희망 요일";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(10, 25);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(45, 23);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "월";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(10, 50);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(45, 23);
+            this.checkBox2.TabIndex = 1;
+            this.checkBox2.Text = "화";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(10, 75);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(45, 23);
+            this.checkBox3.TabIndex = 2;
+            this.checkBox3.Text = "수";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(10, 100);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(45, 23);
+            this.checkBox4.TabIndex = 3;
+            this.checkBox4.Text = "목";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Location = new System.Drawing.Point(10, 125);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(45, 23);
+            this.checkBox5.TabIndex = 4;
+            this.checkBox5.Text = "금";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.ForeColor = System.Drawing.Color.SteelBlue;
+            this.checkBox6.Location = new System.Drawing.Point(100, 25);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(45, 23);
+            this.checkBox6.TabIndex = 5;
+            this.checkBox6.Text = "토";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.ForeColor = System.Drawing.Color.Crimson;
+            this.checkBox7.Location = new System.Drawing.Point(100, 50);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(45, 23);
+            this.checkBox7.TabIndex = 6;
+            this.checkBox7.Text = "일";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // ColumnMonday
+            // 
+            this.ColumnMonday.HeaderText = "월";
+            this.ColumnMonday.MinimumWidth = 6;
+            this.ColumnMonday.Name = "ColumnMonday";
+            this.ColumnMonday.ReadOnly = true;
+            this.ColumnMonday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnMonday.Width = 85;
+            // 
+            // ColumnTuesday
+            // 
+            this.ColumnTuesday.HeaderText = "화";
+            this.ColumnTuesday.MinimumWidth = 6;
+            this.ColumnTuesday.Name = "ColumnTuesday";
+            this.ColumnTuesday.ReadOnly = true;
+            this.ColumnTuesday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnTuesday.Width = 85;
+            // 
+            // ColumnWednesday
+            // 
+            this.ColumnWednesday.HeaderText = "수";
+            this.ColumnWednesday.MinimumWidth = 6;
+            this.ColumnWednesday.Name = "ColumnWednesday";
+            this.ColumnWednesday.ReadOnly = true;
+            this.ColumnWednesday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnWednesday.Width = 85;
+            // 
+            // ColumnThursday
+            // 
+            this.ColumnThursday.HeaderText = "목";
+            this.ColumnThursday.MinimumWidth = 6;
+            this.ColumnThursday.Name = "ColumnThursday";
+            this.ColumnThursday.ReadOnly = true;
+            this.ColumnThursday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnThursday.Width = 85;
+            // 
+            // ColumnFriday
+            // 
+            this.ColumnFriday.HeaderText = "금";
+            this.ColumnFriday.MinimumWidth = 6;
+            this.ColumnFriday.Name = "ColumnFriday";
+            this.ColumnFriday.ReadOnly = true;
+            this.ColumnFriday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnFriday.Width = 85;
+            // 
+            // ColumnSaturday
+            // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.SteelBlue;
+            this.ColumnSaturday.DefaultCellStyle = dataGridViewCellStyle1;
+            this.ColumnSaturday.HeaderText = "토";
+            this.ColumnSaturday.MinimumWidth = 6;
+            this.ColumnSaturday.Name = "ColumnSaturday";
+            this.ColumnSaturday.ReadOnly = true;
+            this.ColumnSaturday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnSaturday.Width = 85;
+            // 
+            // ColumnSunday
+            // 
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Crimson;
+            this.ColumnSunday.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ColumnSunday.HeaderText = "일";
+            this.ColumnSunday.MinimumWidth = 6;
+            this.ColumnSunday.Name = "ColumnSunday";
+            this.ColumnSunday.ReadOnly = true;
+            this.ColumnSunday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnSunday.Width = 85;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -705,8 +880,8 @@
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(942, 493);
             this.Controls.Add(this.ShortTaskPanel);
-            this.Controls.Add(this.RegularSchedulePanel);
             this.Controls.Add(this.SingleSchedulePanel);
+            this.Controls.Add(this.RegularSchedulePanel);
             this.Controls.Add(this.TimeBlockView);
             this.Controls.Add(this.TimeBlockTitlePanel);
             this.Controls.Add(this.MainPanel);
@@ -714,12 +889,11 @@
             this.Name = "MainForm";
             this.Padding = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.ShowIcon = false;
-            this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.MainPanel.ResumeLayout(false);
             this.MainPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.TitlePanel.ResumeLayout(false);
             this.TimeBlockTitlePanel.ResumeLayout(false);
             this.SingleSchedulePanel.ResumeLayout(false);
@@ -728,6 +902,10 @@
             this.RegularSchedulePanel.PerformLayout();
             this.ShortTaskPanel.ResumeLayout(false);
             this.ShortTaskPanel.PerformLayout();
+            this.LongTaskPanel.ResumeLayout(false);
+            this.LongTaskPanel.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -770,13 +948,6 @@
         private System.Windows.Forms.CheckBox DayCheck;
         private System.Windows.Forms.Panel RegularSchedulePanel;
         private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMonday;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTuesday;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnWednesday;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnThursday;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFriday;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSaturday;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSunday;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox TaskNameTxt;
         private System.Windows.Forms.Label label7;
@@ -789,5 +960,25 @@
         private System.Windows.Forms.ComboBox TaskDurationCmb;
         private System.Windows.Forms.CheckBox WithEndDateCheck;
         private System.Windows.Forms.Panel ShortTaskPanel;
+        private System.Windows.Forms.Panel LongTaskPanel;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox TaskRName;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox checkBox7;
+        private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMonday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTuesday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnWednesday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnThursday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFriday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSaturday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSunday;
     }
 }
