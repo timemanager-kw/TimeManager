@@ -46,6 +46,8 @@ namespace TimeManager.Forms
         public Action[] UpdateView;
         public Action[] CurrentTimeBlockInfo;
 
+        Color noneSelectedColor, selectedColor;
+
         public void TimeBlockViewForm(TimeTableManager timeTableManager, ScheduleManager scheduleManager, TaskManager taskManager)
         {
             this._timeTableManager = timeTableManager;
@@ -243,6 +245,9 @@ namespace TimeManager.Forms
 
         void UpdateScheduleView()
         {
+            ScheduleBtn.BackColor = selectedColor;
+            TaskBtn.BackColor = noneSelectedColor;
+
             CleanEditPanel();
 
             TimeBlockView.Clear();
@@ -316,6 +321,9 @@ namespace TimeManager.Forms
 
         void UpdateTaskView()
         {
+            ScheduleBtn.BackColor = noneSelectedColor;
+            TaskBtn.BackColor = selectedColor;
+
             CleanEditPanel();
 
             TimeBlockView.Clear();
@@ -502,6 +510,9 @@ namespace TimeManager.Forms
         public MainForm()
         {
             InitializeComponent();
+
+            selectedColor = ScheduleBtn.BackColor;
+            noneSelectedColor = TaskBtn.BackColor;
 
             StandardTime = DateTime.Now;
             StandardTime.AddDays(-(int)StandardTime.DayOfWeek);
