@@ -28,13 +28,16 @@ namespace TimeManager.Forms
         private TimeTableManager _timeTableManager;
         private ScheduleManager _scheduleManager;
         private TaskManager _taskManager;
-
         private TimeTable timeTable;
+
         private Schedule focusedSchedule;
         private Task focusedTask;
 
         private List<Schedule> scheduleList;
         private List<Task> taskList;
+
+        private List<AssignedSchedule> assignedScheduleList;
+        private List<AssignedTask> assignedTaskList;
 
         private DateTime StandardTime;
 
@@ -48,12 +51,7 @@ namespace TimeManager.Forms
 
         Color noneSelectedColor, selectedColor;
 
-        public void TimeBlockViewForm(TimeTableManager timeTableManager, ScheduleManager scheduleManager, TaskManager taskManager)
-        {
-            this._timeTableManager = timeTableManager;
-            this._scheduleManager = scheduleManager;
-            this._taskManager = taskManager;
-        }
+        AddScheduleForm AddScheduleForm;
 
         void ResizeForm()
         {
@@ -506,7 +504,7 @@ namespace TimeManager.Forms
                     return '월';
             }
         }
-
+        
         public MainForm()
         {
             InitializeComponent();
@@ -628,6 +626,52 @@ namespace TimeManager.Forms
             timeTable = new TimeTable(workTimes, new List<AssignedSchedule> { assignedSchedule1 }, new List<AssignedTask> { assignedTask1 });
         }
 
+        public MainForm(TimeTableManager timeTableManager, ScheduleManager scheduleManager, TaskManager taskManager)
+        {
+            InitializeComponent();
+
+            _timeTableManager = timeTableManager;
+            _scheduleManager = scheduleManager;
+            _taskManager = taskManager;
+
+            selectedColor = ScheduleBtn.BackColor;
+            noneSelectedColor = TaskBtn.BackColor;
+
+            StandardTime = DateTime.Now;
+            StandardTime.AddDays(-(int)StandardTime.DayOfWeek);
+
+            UpdateView = new Action[] { UpdateScheduleView, UpdateTaskView };
+
+            CurrentTimeBlockInfo = new Action[] { EditScheduleForm, EditTaskForm };
+
+            schedulePanels = new Panel[] { SingleSchedulePanel, RegularSchedulePanel };
+            taskPanels = new Panel[] { ShortTaskPanel, LongTaskPanel };
+
+            for (int i = 0; i < 24; i++)
+            {
+                ScheduleStartTime.Items.Add($"{i}:00");
+                ScheduleStartTime.Items.Add($"{i}:30");
+                ScheduleRStartTime.Items.Add($"{i}:00");
+                ScheduleRStartTime.Items.Add($"{i}:30");
+
+                ScheduleEndTime.Items.Add($"{i}:00");
+                ScheduleEndTime.Items.Add($"{i}:30");
+                ScheduleREndTime.Items.Add($"{i}:00");
+                ScheduleREndTime.Items.Add($"{i}:30");
+            }
+
+            for (int i = 30; i < 6000; i += 30)
+            {
+                TaskDurationCmb.Items.Add($"{i / 60}:{i % 60}");
+            }
+
+            scheduleList = _scheduleManager.GetAll().ToList();
+
+            taskList = _taskManager.GetAll().ToList();
+
+            timeTable = _timeTableManager.Get();
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             ResizeForm();
@@ -679,7 +723,8 @@ namespace TimeManager.Forms
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
-
+            AddScheduleForm = new AddScheduleForm();
+            AddScheduleForm.Show();
         }
 
         private void MainForm_SizeChanged(object sender, EventArgs e)

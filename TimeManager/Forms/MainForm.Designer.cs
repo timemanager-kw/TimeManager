@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.ColumnMonday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTuesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -187,9 +187,9 @@
             // 
             // ColumnSaturday
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.SteelBlue;
-            this.ColumnSaturday.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.SteelBlue;
+            this.ColumnSaturday.DefaultCellStyle = dataGridViewCellStyle5;
             this.ColumnSaturday.HeaderText = "토";
             this.ColumnSaturday.MinimumWidth = 6;
             this.ColumnSaturday.Name = "ColumnSaturday";
@@ -199,9 +199,9 @@
             // 
             // ColumnSunday
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Crimson;
-            this.ColumnSunday.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Crimson;
+            this.ColumnSunday.DefaultCellStyle = dataGridViewCellStyle6;
             this.ColumnSunday.HeaderText = "일";
             this.ColumnSunday.MinimumWidth = 6;
             this.ColumnSunday.Name = "ColumnSunday";
