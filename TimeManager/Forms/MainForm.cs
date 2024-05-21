@@ -522,7 +522,7 @@ namespace TimeManager.Forms
             CurrentTimeBlockInfo = new Action[] { EditScheduleForm, EditTaskForm };
 
             schedulePanels = new Panel[] { SingleSchedulePanel, RegularSchedulePanel };
-            taskPanels = new Panel[] { ShortTaskPanel };
+            taskPanels = new Panel[] { ShortTaskPanel, LongTaskPanel };
 
             for (int i = 0; i < 24; i++)
             {
