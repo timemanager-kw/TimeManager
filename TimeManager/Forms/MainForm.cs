@@ -540,6 +540,10 @@ namespace TimeManager.Forms
                 TaskDurationCmb.Items.Add($"{i / 60}:{i % 60}");
             }
 
+            _scheduleManager = null;
+            _taskManager = null;
+            _timeTableManager = null;
+
             scheduleList = new List<Schedule>
             {
                 new Schedule(),
@@ -723,8 +727,11 @@ namespace TimeManager.Forms
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
-            AddScheduleForm = new AddScheduleForm();
-            AddScheduleForm.Show();
+            if (viewType == TimeTableType.Schedule)
+            {
+                AddScheduleForm = new AddScheduleForm(_scheduleManager);
+                AddScheduleForm.Show();
+            }
         }
 
         private void MainForm_SizeChanged(object sender, EventArgs e)

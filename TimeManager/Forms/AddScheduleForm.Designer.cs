@@ -359,6 +359,7 @@
             this.AddScheduleEndTime.Name = "AddScheduleEndTime";
             this.AddScheduleEndTime.Size = new System.Drawing.Size(143, 25);
             this.AddScheduleEndTime.TabIndex = 8;
+            this.AddScheduleEndTime.Text = "00:00";
             // 
             // label7
             // 
@@ -381,6 +382,7 @@
             this.AddScheduleStartTime.Name = "AddScheduleStartTime";
             this.AddScheduleStartTime.Size = new System.Drawing.Size(143, 25);
             this.AddScheduleStartTime.TabIndex = 6;
+            this.AddScheduleStartTime.Text = "00:00";
             // 
             // label8
             // 
