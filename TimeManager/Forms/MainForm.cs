@@ -729,7 +729,7 @@ namespace TimeManager.Forms
         {
             if (viewType == TimeTableType.Schedule)
             {
-                AddScheduleForm = new AddScheduleForm(_scheduleManager);
+                AddScheduleForm = new AddScheduleForm(this);
                 AddScheduleForm.Show();
             }
         }
@@ -854,6 +854,12 @@ namespace TimeManager.Forms
             }
 
             UpdateView[(int)viewType]();
+        }
+
+        public void CloseAddSchedule(bool isAdd, Schedule schedule)
+        {
+            if (isAdd) _scheduleManager.Add(schedule);
+            AddScheduleForm = null;
         }
     }
 }

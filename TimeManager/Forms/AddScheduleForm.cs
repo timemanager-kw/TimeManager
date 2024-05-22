@@ -14,7 +14,8 @@ namespace TimeManager.Forms
 {
     public partial class AddScheduleForm : Form
     {
-        ScheduleManager _scheduleManager;
+        MainForm MainForm;
+
         Schedule Schedule;
 
         DayOfWeek dayOfWeek;
@@ -24,11 +25,11 @@ namespace TimeManager.Forms
             
         bool[] daysBool = new bool[] { false, false, false, false, false, false, false };
 
-        public AddScheduleForm(ScheduleManager scheduleManager)
+        public AddScheduleForm(MainForm mainForm)
         {
             InitializeComponent();
 
-            _scheduleManager = scheduleManager;
+            MainForm = mainForm;
 
             dayOfWeek = DayOfWeek.Monday;
 
@@ -117,6 +118,8 @@ namespace TimeManager.Forms
             Schedule.Type = AddScheduleIsRegular.Checked ? EScheduleType.Regular : EScheduleType.Singular;
             Schedule.Description = AddScheduleMemo.Text;
 
+            MainForm.CloseAddSchedule(true, Schedule);
+
             Close();
         }
 
@@ -128,6 +131,7 @@ namespace TimeManager.Forms
 
         private void AddScheduleCancle_Click(object sender, EventArgs e)
         {
+            MainForm.CloseAddSchedule(false, null);
             Close();
         }
 
