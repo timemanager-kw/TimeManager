@@ -61,10 +61,13 @@ namespace TimeManager.Forms
             {
                 AddSingleSchedulePanel.Visible = true;
                 AddRegularSchedulePanel.Visible = false;
+                AddScheduleTimePanel.Enabled = true;
+
                 return;
             }
             AddSingleSchedulePanel.Visible = !AddScheduleIsRegular.Checked;
             AddRegularSchedulePanel.Visible = AddScheduleIsRegular.Checked;
+            AddScheduleTimePanel.Enabled = daysBool[(int)DayOfWeek.Monday];
         }
 
         void UpdateTimeBlock()
