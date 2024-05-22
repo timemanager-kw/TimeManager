@@ -860,6 +860,7 @@ namespace TimeManager.Forms
         {
             if (isAdd) _scheduleManager.Add(schedule);
             AddScheduleForm = null;
+            UpdateScheduleView();
         }
     }
 }
