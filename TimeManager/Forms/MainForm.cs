@@ -858,7 +858,11 @@ namespace TimeManager.Forms
 
         public void CloseAddSchedule(bool isAdd, Schedule schedule)
         {
-            if (isAdd) _scheduleManager.Add(schedule);
+            if (isAdd)
+            {
+                if (_scheduleManager != null) _scheduleManager.Add(schedule);
+                else scheduleList.Add(schedule);
+            }
             AddScheduleForm = null;
             UpdateScheduleView();
         }

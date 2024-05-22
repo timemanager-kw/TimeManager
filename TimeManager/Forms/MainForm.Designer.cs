@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.ColumnMonday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTuesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,6 +51,8 @@
             this.ScheduleBtn = new System.Windows.Forms.Button();
             this.TimeBlockView = new System.Windows.Forms.ListView();
             this.SingleSchedulePanel = new System.Windows.Forms.Panel();
+            this.SingleScheduleMemo = new System.Windows.Forms.TextBox();
+            this.SingleSchedulrMemo = new System.Windows.Forms.Label();
             this.ScheduleDatePicker = new System.Windows.Forms.DateTimePicker();
             this.ScheduleEditOk = new System.Windows.Forms.Button();
             this.ScheduleEditCancle = new System.Windows.Forms.Button();
@@ -98,8 +100,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.TaskRName = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.SingleSchedulrMemo = new System.Windows.Forms.Label();
-            this.SingleScheduleMemo = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.MainPanel.SuspendLayout();
             this.TitlePanel.SuspendLayout();
@@ -187,9 +187,9 @@
             // 
             // ColumnSaturday
             // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.SteelBlue;
-            this.ColumnSaturday.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.SteelBlue;
+            this.ColumnSaturday.DefaultCellStyle = dataGridViewCellStyle1;
             this.ColumnSaturday.HeaderText = "토";
             this.ColumnSaturday.MinimumWidth = 6;
             this.ColumnSaturday.Name = "ColumnSaturday";
@@ -199,9 +199,9 @@
             // 
             // ColumnSunday
             // 
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Crimson;
-            this.ColumnSunday.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Crimson;
+            this.ColumnSunday.DefaultCellStyle = dataGridViewCellStyle2;
             this.ColumnSunday.HeaderText = "일";
             this.ColumnSunday.MinimumWidth = 6;
             this.ColumnSunday.Name = "ColumnSunday";
@@ -371,10 +371,28 @@
             this.SingleSchedulePanel.Controls.Add(this.ScheduleNameTxt);
             this.SingleSchedulePanel.Controls.Add(this.ScheduleNameLabel);
             this.SingleSchedulePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SingleSchedulePanel.Location = new System.Drawing.Point(1, 0);
+            this.SingleSchedulePanel.Location = new System.Drawing.Point(741, 260);
             this.SingleSchedulePanel.Name = "SingleSchedulePanel";
-            this.SingleSchedulePanel.Size = new System.Drawing.Size(940, 493);
+            this.SingleSchedulePanel.Size = new System.Drawing.Size(200, 233);
             this.SingleSchedulePanel.TabIndex = 8;
+            // 
+            // SingleScheduleMemo
+            // 
+            this.SingleScheduleMemo.Location = new System.Drawing.Point(75, 165);
+            this.SingleScheduleMemo.Multiline = true;
+            this.SingleScheduleMemo.Name = "SingleScheduleMemo";
+            this.SingleScheduleMemo.Size = new System.Drawing.Size(110, 25);
+            this.SingleScheduleMemo.TabIndex = 16;
+            // 
+            // SingleSchedulrMemo
+            // 
+            this.SingleSchedulrMemo.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.SingleSchedulrMemo.Location = new System.Drawing.Point(20, 165);
+            this.SingleSchedulrMemo.Name = "SingleSchedulrMemo";
+            this.SingleSchedulrMemo.Size = new System.Drawing.Size(60, 25);
+            this.SingleSchedulrMemo.TabIndex = 15;
+            this.SingleSchedulrMemo.Text = "메모";
+            this.SingleSchedulrMemo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // ScheduleDatePicker
             // 
@@ -877,36 +895,18 @@
             this.label12.Text = "업무명";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // SingleSchedulrMemo
-            // 
-            this.SingleSchedulrMemo.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.SingleSchedulrMemo.Location = new System.Drawing.Point(20, 165);
-            this.SingleSchedulrMemo.Name = "SingleSchedulrMemo";
-            this.SingleSchedulrMemo.Size = new System.Drawing.Size(60, 25);
-            this.SingleSchedulrMemo.TabIndex = 15;
-            this.SingleSchedulrMemo.Text = "메모";
-            this.SingleSchedulrMemo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // SingleScheduleMemo
-            // 
-            this.SingleScheduleMemo.Location = new System.Drawing.Point(75, 165);
-            this.SingleScheduleMemo.Multiline = true;
-            this.SingleScheduleMemo.Name = "SingleScheduleMemo";
-            this.SingleScheduleMemo.Size = new System.Drawing.Size(110, 25);
-            this.SingleScheduleMemo.TabIndex = 16;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(942, 493);
+            this.Controls.Add(this.SingleSchedulePanel);
             this.Controls.Add(this.ShortTaskPanel);
             this.Controls.Add(this.RegularSchedulePanel);
             this.Controls.Add(this.TimeBlockView);
             this.Controls.Add(this.TimeBlockTitlePanel);
             this.Controls.Add(this.MainPanel);
-            this.Controls.Add(this.SingleSchedulePanel);
             this.IsMdiContainer = true;
             this.Name = "MainForm";
             this.Padding = new System.Windows.Forms.Padding(1, 0, 1, 0);

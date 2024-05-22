@@ -105,12 +105,14 @@ namespace TimeManager.Forms
                     dateTimeBlock.StartDate = new DateTime(AddSingleScheduleDatePicker.Value.Year, AddSingleScheduleDatePicker.Value.Month, AddSingleScheduleDatePicker.Value.Day, int.Parse(hm[0]), int.Parse(hm[1]), 0);
                     hm = AddScheduleEndTime.Text.Split(':');
                     dateTimeBlock.EndDate = new DateTime(AddSingleScheduleDatePicker.Value.Year, AddSingleScheduleDatePicker.Value.Month, AddSingleScheduleDatePicker.Value.Day, int.Parse(hm[0]), int.Parse(hm[1]), 0);
+                    Schedule.TimeBlock = dateTimeBlock;
                 },
                 () => {
                     for (int i = 0;i < 7; i++)
                     {
                         if (daysBool[i]) weeklyDateTimeBlocks.Add(weeklyBlock[i]);
                     }
+                    Schedule.RegularTimeBlocks = weeklyDateTimeBlocks;
                 }
             };
             Schedule.Name = AddScheduleName.Text;
@@ -118,8 +120,9 @@ namespace TimeManager.Forms
             Schedule.Type = AddScheduleIsRegular.Checked ? EScheduleType.Regular : EScheduleType.Singular;
             Schedule.Description = AddScheduleMemo.Text;
 
-            MainForm.CloseAddSchedule(true, Schedule);
+            AddType[(int)Schedule.Type]();
 
+            MainForm.CloseAddSchedule(true, Schedule);
             Close();
         }
 
