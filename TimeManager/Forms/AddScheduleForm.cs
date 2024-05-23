@@ -106,13 +106,33 @@ namespace TimeManager.Forms
                     hm = AddScheduleEndTime.Text.Split(':');
                     dateTimeBlock.EndDate = new DateTime(AddSingleScheduleDatePicker.Value.Year, AddSingleScheduleDatePicker.Value.Month, AddSingleScheduleDatePicker.Value.Day, int.Parse(hm[0]), int.Parse(hm[1]), 0);
                     Schedule.TimeBlock = dateTimeBlock;
+
+                    if (dateTimeBlock.StartDate.CompareTo(dateTimeBlock.EndDate) >= 0)
+                    {
+                        MessageBox.Show("시작 시간이 종료시간보다 뒤에 올 수 없습니다.");
+                        return;
+                    }
+
+                    MainForm.CloseAddSchedule(true, Schedule);
+                    Close();
                 },
                 () => {
                     for (int i = 0;i < 7; i++)
                     {
-                        if (daysBool[i]) weeklyDateTimeBlocks.Add(weeklyBlock[i]);
+                        if (daysBool[i])
+                        {
+                            if (weeklyBlock[i].StartTime.CompareTo(weeklyBlock[i].EndTime) >= 0)
+                            {
+                                MessageBox.Show("시작 시간이 종료시간보다 뒤에 올 수 없습니다.");
+                                return;
+                            }
+                            weeklyDateTimeBlocks.Add(weeklyBlock[i]);
+                        }
                     }
                     Schedule.RegularTimeBlocks = weeklyDateTimeBlocks;
+
+                    MainForm.CloseAddSchedule(true, Schedule);
+                    Close();
                 }
             };
             Schedule.Name = AddScheduleName.Text;
@@ -121,9 +141,6 @@ namespace TimeManager.Forms
             Schedule.Description = AddScheduleMemo.Text;
 
             AddType[(int)Schedule.Type]();
-
-            MainForm.CloseAddSchedule(true, Schedule);
-            Close();
         }
 
         private void AddRegularScheduleIsTrue_CheckedChanged(object sender, EventArgs e)

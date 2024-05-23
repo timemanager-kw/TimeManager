@@ -399,6 +399,7 @@ namespace TimeManager.Forms
                     ScheduleREndTime.Text = DayCheck.Checked ? focusedSchedule.RegularTimeBlocks[0].EndTime.ToString("HH:mm") : "";
                 }
             };
+            SingleScheduleMemo.Text = focusedSchedule.Description;
             scheduleSet[(int)scheduleList[TimeBlockView.FocusedItem.Index].Type]();
 
             schedulePanels[(int)focusedSchedule.Type].Visible = true;

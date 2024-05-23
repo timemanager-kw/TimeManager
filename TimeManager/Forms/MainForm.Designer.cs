@@ -75,6 +75,8 @@
             this.ScheduleREdit = new System.Windows.Forms.Button();
             this.DayCheck = new System.Windows.Forms.CheckBox();
             this.RegularSchedulePanel = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.TaskNameTxt = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -98,8 +100,12 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.TaskRName = new System.Windows.Forms.TextBox();
+            this.TaskLName = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.LongTaskMemo = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.ShortTaskMemo = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.MainPanel.SuspendLayout();
             this.TitlePanel.SuspendLayout();
@@ -378,16 +384,17 @@
             // 
             // SingleScheduleMemo
             // 
-            this.SingleScheduleMemo.Location = new System.Drawing.Point(75, 165);
+            this.SingleScheduleMemo.Location = new System.Drawing.Point(80, 160);
             this.SingleScheduleMemo.Multiline = true;
             this.SingleScheduleMemo.Name = "SingleScheduleMemo";
-            this.SingleScheduleMemo.Size = new System.Drawing.Size(110, 25);
+            this.SingleScheduleMemo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.SingleScheduleMemo.Size = new System.Drawing.Size(105, 25);
             this.SingleScheduleMemo.TabIndex = 16;
             // 
             // SingleSchedulrMemo
             // 
             this.SingleSchedulrMemo.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.SingleSchedulrMemo.Location = new System.Drawing.Point(20, 165);
+            this.SingleSchedulrMemo.Location = new System.Drawing.Point(20, 160);
             this.SingleSchedulrMemo.Name = "SingleSchedulrMemo";
             this.SingleSchedulrMemo.Size = new System.Drawing.Size(60, 25);
             this.SingleSchedulrMemo.TabIndex = 15;
@@ -610,6 +617,8 @@
             // 
             // RegularSchedulePanel
             // 
+            this.RegularSchedulePanel.Controls.Add(this.textBox1);
+            this.RegularSchedulePanel.Controls.Add(this.label9);
             this.RegularSchedulePanel.Controls.Add(this.DayCheck);
             this.RegularSchedulePanel.Controls.Add(this.ScheduleREdit);
             this.RegularSchedulePanel.Controls.Add(this.ScheduleRCancle);
@@ -626,6 +635,25 @@
             this.RegularSchedulePanel.Name = "RegularSchedulePanel";
             this.RegularSchedulePanel.Size = new System.Drawing.Size(200, 233);
             this.RegularSchedulePanel.TabIndex = 19;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(80, 160);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBox1.Size = new System.Drawing.Size(105, 25);
+            this.textBox1.TabIndex = 18;
+            // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label9.Location = new System.Drawing.Point(20, 160);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(60, 25);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "메모";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label8
             // 
@@ -707,7 +735,7 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label6.Location = new System.Drawing.Point(5, 140);
+            this.label6.Location = new System.Drawing.Point(5, 130);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(75, 25);
             this.label6.TabIndex = 17;
@@ -717,7 +745,7 @@
             // TaskDurationCmb
             // 
             this.TaskDurationCmb.FormattingEnabled = true;
-            this.TaskDurationCmb.Location = new System.Drawing.Point(80, 140);
+            this.TaskDurationCmb.Location = new System.Drawing.Point(80, 130);
             this.TaskDurationCmb.Name = "TaskDurationCmb";
             this.TaskDurationCmb.Size = new System.Drawing.Size(110, 23);
             this.TaskDurationCmb.TabIndex = 18;
@@ -738,6 +766,8 @@
             // 
             this.ShortTaskPanel.BackColor = System.Drawing.Color.AliceBlue;
             this.ShortTaskPanel.Controls.Add(this.LongTaskPanel);
+            this.ShortTaskPanel.Controls.Add(this.ShortTaskMemo);
+            this.ShortTaskPanel.Controls.Add(this.label11);
             this.ShortTaskPanel.Controls.Add(this.WithEndDateCheck);
             this.ShortTaskPanel.Controls.Add(this.TaskDurationCmb);
             this.ShortTaskPanel.Controls.Add(this.label6);
@@ -758,10 +788,12 @@
             // LongTaskPanel
             // 
             this.LongTaskPanel.BackColor = System.Drawing.Color.AliceBlue;
+            this.LongTaskPanel.Controls.Add(this.LongTaskMemo);
+            this.LongTaskPanel.Controls.Add(this.label10);
             this.LongTaskPanel.Controls.Add(this.groupBox1);
             this.LongTaskPanel.Controls.Add(this.button1);
             this.LongTaskPanel.Controls.Add(this.button2);
-            this.LongTaskPanel.Controls.Add(this.TaskRName);
+            this.LongTaskPanel.Controls.Add(this.TaskLName);
             this.LongTaskPanel.Controls.Add(this.label12);
             this.LongTaskPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LongTaskPanel.Location = new System.Drawing.Point(0, 0);
@@ -781,7 +813,7 @@
             this.groupBox1.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox1.Location = new System.Drawing.Point(9, 36);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(181, 153);
+            this.groupBox1.Size = new System.Drawing.Size(181, 112);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "희망 요일";
@@ -790,7 +822,7 @@
             // 
             this.checkBox7.AutoSize = true;
             this.checkBox7.ForeColor = System.Drawing.Color.Crimson;
-            this.checkBox7.Location = new System.Drawing.Point(100, 50);
+            this.checkBox7.Location = new System.Drawing.Point(125, 50);
             this.checkBox7.Name = "checkBox7";
             this.checkBox7.Size = new System.Drawing.Size(45, 23);
             this.checkBox7.TabIndex = 6;
@@ -801,7 +833,7 @@
             // 
             this.checkBox6.AutoSize = true;
             this.checkBox6.ForeColor = System.Drawing.Color.SteelBlue;
-            this.checkBox6.Location = new System.Drawing.Point(100, 25);
+            this.checkBox6.Location = new System.Drawing.Point(125, 25);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(45, 23);
             this.checkBox6.TabIndex = 5;
@@ -811,7 +843,7 @@
             // checkBox5
             // 
             this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(10, 125);
+            this.checkBox5.Location = new System.Drawing.Point(65, 50);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(45, 23);
             this.checkBox5.TabIndex = 4;
@@ -821,7 +853,7 @@
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(10, 100);
+            this.checkBox4.Location = new System.Drawing.Point(65, 25);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(45, 23);
             this.checkBox4.TabIndex = 3;
@@ -878,12 +910,12 @@
             this.button2.Text = "취소";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // TaskRName
+            // TaskLName
             // 
-            this.TaskRName.Location = new System.Drawing.Point(80, 5);
-            this.TaskRName.Name = "TaskRName";
-            this.TaskRName.Size = new System.Drawing.Size(110, 25);
-            this.TaskRName.TabIndex = 1;
+            this.TaskLName.Location = new System.Drawing.Point(80, 5);
+            this.TaskLName.Name = "TaskLName";
+            this.TaskLName.Size = new System.Drawing.Size(110, 25);
+            this.TaskLName.TabIndex = 1;
             // 
             // label12
             // 
@@ -895,15 +927,53 @@
             this.label12.Text = "업무명";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // LongTaskMemo
+            // 
+            this.LongTaskMemo.Location = new System.Drawing.Point(80, 160);
+            this.LongTaskMemo.Multiline = true;
+            this.LongTaskMemo.Name = "LongTaskMemo";
+            this.LongTaskMemo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.LongTaskMemo.Size = new System.Drawing.Size(105, 25);
+            this.LongTaskMemo.TabIndex = 20;
+            // 
+            // label10
+            // 
+            this.label10.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label10.Location = new System.Drawing.Point(20, 160);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(60, 25);
+            this.label10.TabIndex = 19;
+            this.label10.Text = "메모";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // ShortTaskMemo
+            // 
+            this.ShortTaskMemo.Location = new System.Drawing.Point(80, 160);
+            this.ShortTaskMemo.Multiline = true;
+            this.ShortTaskMemo.Name = "ShortTaskMemo";
+            this.ShortTaskMemo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.ShortTaskMemo.Size = new System.Drawing.Size(105, 25);
+            this.ShortTaskMemo.TabIndex = 22;
+            // 
+            // label11
+            // 
+            this.label11.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label11.Location = new System.Drawing.Point(20, 160);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(60, 25);
+            this.label11.TabIndex = 21;
+            this.label11.Text = "메모";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(942, 493);
-            this.Controls.Add(this.SingleSchedulePanel);
             this.Controls.Add(this.ShortTaskPanel);
             this.Controls.Add(this.RegularSchedulePanel);
+            this.Controls.Add(this.SingleSchedulePanel);
             this.Controls.Add(this.TimeBlockView);
             this.Controls.Add(this.TimeBlockTitlePanel);
             this.Controls.Add(this.MainPanel);
@@ -1000,9 +1070,15 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox TaskRName;
+        private System.Windows.Forms.TextBox TaskLName;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox SingleScheduleMemo;
         private System.Windows.Forms.Label SingleSchedulrMemo;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox LongTaskMemo;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox ShortTaskMemo;
+        private System.Windows.Forms.Label label11;
     }
 }
