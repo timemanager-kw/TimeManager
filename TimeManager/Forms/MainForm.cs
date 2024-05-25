@@ -52,6 +52,7 @@ namespace TimeManager.Forms
         Color noneSelectedColor, selectedColor;
 
         AddScheduleForm AddScheduleForm;
+        AddTaskForm AddTaskForm;
 
         void ResizeForm()
         {
@@ -866,6 +867,17 @@ namespace TimeManager.Forms
             }
             AddScheduleForm = null;
             UpdateScheduleView();
+        }
+
+        public void CloseAddTask(bool isAdd, Task task)
+        {
+            if (isAdd)
+            {
+                if (_taskManager != null) _taskManager.Add(task);
+                else taskList.Add(task);
+            }
+            AddTaskForm = null;
+            UpdateTaskView();
         }
     }
 }

@@ -109,7 +109,7 @@ namespace TimeManager.Forms
 
                     if (dateTimeBlock.StartDate.CompareTo(dateTimeBlock.EndDate) >= 0)
                     {
-                        MessageBox.Show("시작 시간이 종료시간보다 뒤에 올 수 없습니다.");
+                        MessageBox.Show("시작 시간이 종료 시간 뒤에 올 수 없습니다.");
                         return;
                     }
 
@@ -123,7 +123,7 @@ namespace TimeManager.Forms
                         {
                             if (weeklyBlock[i].StartTime.CompareTo(weeklyBlock[i].EndTime) >= 0)
                             {
-                                MessageBox.Show("시작 시간이 종료시간보다 뒤에 올 수 없습니다.");
+                                MessageBox.Show("시작 시간이 종료 시간 뒤에 올 수 없습니다.");
                                 return;
                             }
                             weeklyDateTimeBlocks.Add(weeklyBlock[i]);

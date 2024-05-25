@@ -89,23 +89,23 @@
             this.TaskDurationCmb = new System.Windows.Forms.ComboBox();
             this.WithEndDateCheck = new System.Windows.Forms.CheckBox();
             this.ShortTaskPanel = new System.Windows.Forms.Panel();
-            this.LongTaskPanel = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.TaskLName = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.LongTaskMemo = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.ShortTaskMemo = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.TaskLName = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.LongTaskMemo = new System.Windows.Forms.TextBox();
+            this.LongTaskPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.MainPanel.SuspendLayout();
             this.TitlePanel.SuspendLayout();
@@ -113,8 +113,8 @@
             this.SingleSchedulePanel.SuspendLayout();
             this.RegularSchedulePanel.SuspendLayout();
             this.ShortTaskPanel.SuspendLayout();
-            this.LongTaskPanel.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.LongTaskPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView
@@ -785,167 +785,6 @@
             this.ShortTaskPanel.Size = new System.Drawing.Size(200, 233);
             this.ShortTaskPanel.TabIndex = 21;
             // 
-            // LongTaskPanel
-            // 
-            this.LongTaskPanel.BackColor = System.Drawing.Color.AliceBlue;
-            this.LongTaskPanel.Controls.Add(this.LongTaskMemo);
-            this.LongTaskPanel.Controls.Add(this.label10);
-            this.LongTaskPanel.Controls.Add(this.groupBox1);
-            this.LongTaskPanel.Controls.Add(this.button1);
-            this.LongTaskPanel.Controls.Add(this.button2);
-            this.LongTaskPanel.Controls.Add(this.TaskLName);
-            this.LongTaskPanel.Controls.Add(this.label12);
-            this.LongTaskPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LongTaskPanel.Location = new System.Drawing.Point(0, 0);
-            this.LongTaskPanel.Name = "LongTaskPanel";
-            this.LongTaskPanel.Size = new System.Drawing.Size(200, 233);
-            this.LongTaskPanel.TabIndex = 22;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.checkBox7);
-            this.groupBox1.Controls.Add(this.checkBox6);
-            this.groupBox1.Controls.Add(this.checkBox5);
-            this.groupBox1.Controls.Add(this.checkBox4);
-            this.groupBox1.Controls.Add(this.checkBox3);
-            this.groupBox1.Controls.Add(this.checkBox2);
-            this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox1.Location = new System.Drawing.Point(9, 36);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(181, 112);
-            this.groupBox1.TabIndex = 14;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "희망 요일";
-            // 
-            // checkBox7
-            // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.ForeColor = System.Drawing.Color.Crimson;
-            this.checkBox7.Location = new System.Drawing.Point(125, 50);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(45, 23);
-            this.checkBox7.TabIndex = 6;
-            this.checkBox7.Text = "일";
-            this.checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // checkBox6
-            // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.ForeColor = System.Drawing.Color.SteelBlue;
-            this.checkBox6.Location = new System.Drawing.Point(125, 25);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(45, 23);
-            this.checkBox6.TabIndex = 5;
-            this.checkBox6.Text = "토";
-            this.checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(65, 50);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(45, 23);
-            this.checkBox5.TabIndex = 4;
-            this.checkBox5.Text = "금";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(65, 25);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(45, 23);
-            this.checkBox4.TabIndex = 3;
-            this.checkBox4.Text = "목";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(10, 75);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(45, 23);
-            this.checkBox3.TabIndex = 2;
-            this.checkBox3.Text = "수";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(10, 50);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(45, 23);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "화";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(10, 25);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(45, 23);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "월";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.Location = new System.Drawing.Point(150, 195);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(45, 30);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "수정";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button2.Location = new System.Drawing.Point(105, 195);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(45, 30);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "취소";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // TaskLName
-            // 
-            this.TaskLName.Location = new System.Drawing.Point(80, 5);
-            this.TaskLName.Name = "TaskLName";
-            this.TaskLName.Size = new System.Drawing.Size(110, 25);
-            this.TaskLName.TabIndex = 1;
-            // 
-            // label12
-            // 
-            this.label12.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label12.Location = new System.Drawing.Point(5, 5);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(75, 25);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "업무명";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // LongTaskMemo
-            // 
-            this.LongTaskMemo.Location = new System.Drawing.Point(80, 160);
-            this.LongTaskMemo.Multiline = true;
-            this.LongTaskMemo.Name = "LongTaskMemo";
-            this.LongTaskMemo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.LongTaskMemo.Size = new System.Drawing.Size(105, 25);
-            this.LongTaskMemo.TabIndex = 20;
-            // 
-            // label10
-            // 
-            this.label10.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label10.Location = new System.Drawing.Point(20, 160);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(60, 25);
-            this.label10.TabIndex = 19;
-            this.label10.Text = "메모";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // ShortTaskMemo
             // 
             this.ShortTaskMemo.Location = new System.Drawing.Point(80, 160);
@@ -964,6 +803,167 @@
             this.label11.TabIndex = 21;
             this.label11.Text = "메모";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label12
+            // 
+            this.label12.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label12.Location = new System.Drawing.Point(5, 5);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(75, 25);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "업무명";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // TaskLName
+            // 
+            this.TaskLName.Location = new System.Drawing.Point(80, 5);
+            this.TaskLName.Name = "TaskLName";
+            this.TaskLName.Size = new System.Drawing.Size(110, 25);
+            this.TaskLName.TabIndex = 1;
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button2.Location = new System.Drawing.Point(105, 195);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(45, 30);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "취소";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button1.Location = new System.Drawing.Point(150, 195);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(45, 30);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "수정";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.checkBox7);
+            this.groupBox1.Controls.Add(this.checkBox6);
+            this.groupBox1.Controls.Add(this.checkBox5);
+            this.groupBox1.Controls.Add(this.checkBox4);
+            this.groupBox1.Controls.Add(this.checkBox3);
+            this.groupBox1.Controls.Add(this.checkBox2);
+            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox1.Location = new System.Drawing.Point(9, 36);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(181, 112);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "희망 요일";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(10, 25);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(45, 23);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "월";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(10, 50);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(45, 23);
+            this.checkBox2.TabIndex = 1;
+            this.checkBox2.Text = "화";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(10, 75);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(45, 23);
+            this.checkBox3.TabIndex = 2;
+            this.checkBox3.Text = "수";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(65, 25);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(45, 23);
+            this.checkBox4.TabIndex = 3;
+            this.checkBox4.Text = "목";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Location = new System.Drawing.Point(65, 50);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(45, 23);
+            this.checkBox5.TabIndex = 4;
+            this.checkBox5.Text = "금";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.ForeColor = System.Drawing.Color.SteelBlue;
+            this.checkBox6.Location = new System.Drawing.Point(125, 25);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(45, 23);
+            this.checkBox6.TabIndex = 5;
+            this.checkBox6.Text = "토";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.ForeColor = System.Drawing.Color.Crimson;
+            this.checkBox7.Location = new System.Drawing.Point(125, 50);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(45, 23);
+            this.checkBox7.TabIndex = 6;
+            this.checkBox7.Text = "일";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label10.Location = new System.Drawing.Point(20, 160);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(60, 25);
+            this.label10.TabIndex = 19;
+            this.label10.Text = "메모";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // LongTaskMemo
+            // 
+            this.LongTaskMemo.Location = new System.Drawing.Point(80, 160);
+            this.LongTaskMemo.Multiline = true;
+            this.LongTaskMemo.Name = "LongTaskMemo";
+            this.LongTaskMemo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.LongTaskMemo.Size = new System.Drawing.Size(105, 25);
+            this.LongTaskMemo.TabIndex = 20;
+            // 
+            // LongTaskPanel
+            // 
+            this.LongTaskPanel.BackColor = System.Drawing.Color.AliceBlue;
+            this.LongTaskPanel.Controls.Add(this.LongTaskMemo);
+            this.LongTaskPanel.Controls.Add(this.label10);
+            this.LongTaskPanel.Controls.Add(this.groupBox1);
+            this.LongTaskPanel.Controls.Add(this.button1);
+            this.LongTaskPanel.Controls.Add(this.button2);
+            this.LongTaskPanel.Controls.Add(this.TaskLName);
+            this.LongTaskPanel.Controls.Add(this.label12);
+            this.LongTaskPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LongTaskPanel.Location = new System.Drawing.Point(0, 0);
+            this.LongTaskPanel.Name = "LongTaskPanel";
+            this.LongTaskPanel.Size = new System.Drawing.Size(200, 233);
+            this.LongTaskPanel.TabIndex = 22;
             // 
             // MainForm
             // 
@@ -994,10 +994,10 @@
             this.RegularSchedulePanel.PerformLayout();
             this.ShortTaskPanel.ResumeLayout(false);
             this.ShortTaskPanel.PerformLayout();
-            this.LongTaskPanel.ResumeLayout(false);
-            this.LongTaskPanel.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.LongTaskPanel.ResumeLayout(false);
+            this.LongTaskPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1059,7 +1059,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFriday;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSaturday;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSunday;
+        private System.Windows.Forms.TextBox SingleScheduleMemo;
+        private System.Windows.Forms.Label SingleSchedulrMemo;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox ShortTaskMemo;
+        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel LongTaskPanel;
+        private System.Windows.Forms.TextBox LongTaskMemo;
+        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox checkBox7;
         private System.Windows.Forms.CheckBox checkBox6;
@@ -1072,13 +1080,5 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox TaskLName;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox SingleScheduleMemo;
-        private System.Windows.Forms.Label SingleSchedulrMemo;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox LongTaskMemo;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox ShortTaskMemo;
-        private System.Windows.Forms.Label label11;
     }
 }
