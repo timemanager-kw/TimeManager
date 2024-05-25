@@ -108,6 +108,7 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Mathf.cs" />
     <Compile Include="Forms\Tests\TestWeeklyTimeTableControl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddScheduleForm.resx">
       <DependentUpon>AddScheduleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddTaskForm.resx">
+      <DependentUpon>AddTaskForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
