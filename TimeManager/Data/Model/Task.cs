@@ -40,6 +40,6 @@ namespace TimeManager.Data.Model
         /// </summary>
         public int? FocusDays { get; set; }
 
-
+        public List<longTermProperties> WeeklyTimesWanted { get; set; }
     }
 }
