@@ -322,8 +322,7 @@ namespace TimeManager.Scheduler
                 day_b.tempBlocks.Add(tempBlock);
             }
 
-            // 2) TempBlock_f의 interval을 줄인다.
-            /*tempBlock_f.time_interval -= interval;*/
+            // 2) TempBlock_f의 interval을 줄인다. -> RandomArrange의 안쪽 while문에서 한번에 처리함.
         }
 
         private Day FindCorresponedDayOfDaysCopied(DateTime dateTime, List<Day> days_copied)
@@ -412,7 +411,7 @@ namespace TimeManager.Scheduler
                             }
                             else if(changableTemp == null)
                             {
-
+                                // 바꾸지 않은 interval 크기의 task를 copied_day에 넣음.
                             }
                         }
                         else
@@ -424,7 +423,7 @@ namespace TimeManager.Scheduler
                             }
                             else if (changableDay == null)
                             {
-
+                                // 바꾸지 않은 interval 크기의 task를 copied_day에 넣음.
                             }
                         }
                         // 이후 tempBlock에서 interval만큼 빼주기
