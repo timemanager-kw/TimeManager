@@ -398,9 +398,9 @@ namespace TimeManager.Scheduler
                             // 위치를 바꿀 수 있는 Temp를 찾는다.(changableTemp)
                             TempBlock changableTemp =  FindExchangableTempBlock(tempBlock.task, day_cursor, interval);
                             // 찾았다면, changableTemp는 day_f_copied로, tempBlock은 cursor 위치로 보낸다.
-                            if(changableTemp != null)
+                            Day day_f_copied = FindCorresponedDayOfDaysCopied(day_iter.Current.dateTime, days_copied);
+                            if (changableTemp != null)
                             {
-                                Day day_f_copied = FindCorresponedDayOfDaysCopied(day_iter.Current.dateTime , days_copied);
                                 ExchangeTask(interval, tempBlock, changableTemp, day_f_copied, day_cursor.Current);
 
                                 // time_interval이 0이 된 temp(= changableTemp)는 지움.
@@ -409,9 +409,11 @@ namespace TimeManager.Scheduler
                                     day_cursor.Current.tempBlocks.Remove(changableTemp);
                                 }
                             }
+                            // 찾지 못했다면, day_f_copied로 interval 크기의 task를 넣는다.
                             else if(changableTemp == null)
                             {
                                 // 바꾸지 않은 interval 크기의 task를 copied_day에 넣음.
+                                // 만약 그곳에 task가 존재한다면 interval값을 올려줌.
                             }
                         }
                         else
@@ -421,9 +423,11 @@ namespace TimeManager.Scheduler
                             {
                                 ExchangeTaskWithEmpty(interval, tempBlock, changableDay);
                             }
+                            // 찾지 못했다면, day_f_copied로 interval 크기의 task를 넣는다.
                             else if (changableDay == null)
                             {
                                 // 바꾸지 않은 interval 크기의 task를 copied_day에 넣음.
+                                // 만약 그곳에 task가 존재한다면 interval값을 올려줌.
                             }
                         }
                         // 이후 tempBlock에서 interval만큼 빼주기
