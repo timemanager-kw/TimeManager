@@ -404,8 +404,8 @@ namespace TimeManager.Scheduler
                                 Day day_f_copied = FindCorresponedDayOfDaysCopied(day_iter.Current.dateTime , days_copied);
                                 ExchangeTask(interval, tempBlock, changableTemp, day_f_copied, day_cursor.Current);
 
-                                // time_interval이 0이 된 temp는 지움.
-                                if(changableTemp.time_interval == 0)
+                                // time_interval이 0이 된 temp(= changableTemp)는 지움.
+                                if (changableTemp.time_interval == 0)
                                 {
                                     day_cursor.Current.tempBlocks.Remove(changableTemp);
                                 }
