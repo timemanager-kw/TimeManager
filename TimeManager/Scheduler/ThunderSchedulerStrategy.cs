@@ -382,7 +382,7 @@ namespace TimeManager.Scheduler
                 foreach (TempBlock tempBlock in day_iter.Current.tempBlocks)
                 {
                     int interval;
-                    while (tempBlock.time_interval == 0)
+                    while (tempBlock.time_interval != 0)
                     {
                         day_cursor = day_iter;
                         // 현재 time_interval 값을 통해 interval값 결정.(interval : 잘라낼 timeblock의 interval)
