@@ -428,7 +428,7 @@ namespace TimeManager.Scheduler
                         }
                         // 이후 tempBlock에서 interval만큼 빼주기
                         tempBlock.time_interval -= interval;
-
+                        // 0이 되더라도 처리할 필요 x(∵ while(조건) 부분에서 처리함.)
                     }
 
                 }
