@@ -163,7 +163,6 @@ namespace TimeManager.Scheduler
                 // 넣을 수 있는 시간공간보다 넣으려고 하는 시간이 더 클때
                 else if ((day_iter.Current.availableTime - day_iter.Current.time_allocated) < task_iter.Current.Duration)
                 {
-                    int duration = task_iter.Current.Duration;
                     Data.Model.Task task = task_iter.Current.task;
 
                     // 0) TempBlock에 정보를 넣어 TempBlocks에 넣음.
