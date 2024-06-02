@@ -348,8 +348,6 @@ namespace TimeManager.Scheduler
             //      , 바꿀만한 Task B(Or 빈 시간)가 있는지 확인하기.(조건 : Task B의 마감기한 또한 Task A의 마감기한에 포함되어야 함.)
             //      if) 바꿀 수 있다면, 바꾸는 함수인 Exchange() 적용.
             // 
-
-            Random random = new Random((int)DateTime.Now.Ticks);
             
             // Days의 복사본 생성
             List<Day> days_copied = new List<Day>();
