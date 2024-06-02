@@ -356,7 +356,6 @@ namespace TimeManager.Scheduler
                 days_copied.Add(new Day(day.dateTime, day.availableTime));
             }
 
-
             // days 속 day의 tasks를 랜덤으로 섞기
             foreach (Day day in days)
             {
@@ -368,19 +367,18 @@ namespace TimeManager.Scheduler
             IEnumerator<Day> day_cursor = days.GetEnumerator();
             day_iter.Reset();
 
-            bool first = true;
+            // bool first = true;
 
             // day들을 순회하며 tempBlocks의 tempblock들을 바꾸기 위한 반복문
             while(day_iter.MoveNext())
             {
                 // While문 처음 들어왔을 때 첫 인덱스(첫날)부터 접근하게 하기 위한 방법
-                if(first)
+                /*if(first)
                 {
                     first = false;
                     day_iter.Reset();
-                }
+                }*/
 
-                //
                 foreach (TempBlock tempBlock in day_iter.Current.tempBlocks)
                 {
                     int interval;
