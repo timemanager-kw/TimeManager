@@ -174,7 +174,10 @@ namespace TimeManager.Scheduler
                     //  (채운 시간) = availableTime - time_allocated
                     task_iter.Current.Duration -= (day_iter.Current.availableTime - day_iter.Current.time_allocated);
 
-                    // 3) 해당 day의 availableTime을 모두 채웠으므로, day_iter.MoveNext();
+                    // 3) time_allocated에 duration만큼 더함.
+                    AutoAllocatedTimeHandle(day_iter.Current);
+
+                    // 4) 해당 day의 availableTime을 모두 채웠으므로, day_iter.MoveNext();
                     end = !day_iter.MoveNext();
                 }
             }
