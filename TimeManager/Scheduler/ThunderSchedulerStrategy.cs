@@ -101,52 +101,38 @@ namespace TimeManager.Scheduler
         }
 
 
-        // 전제 : repl_tasks는 focus_date가 빠른게 앞으로 오도록 하고
+        // 전제 : repl_tasks는 마감일이 빠른게 앞으로 오도록 하고
         //        days는 빠른 날이 앞으로 오도록 해야 함.
         private void FillDaysWithTasks(List<ReplicaOfTask> repl_tasks, List<Day> days)
         {
-            // day와 task에 대한 iterator 먼저 설정
-
             IEnumerator<ReplicaOfTask> task_iter = repl_tasks.GetEnumerator();
             IEnumerator<Day> day_iter = days.GetEnumerator();
 
-            // task_iter가 모두 채워지거나 day_iter가 모두 채워질 때까지 반복
-
-            // 1. day_iter의 current에서의 잔여 가용시간 > task_iter의 duration 이라면
-            //      1) duration만큼 채우고 해당 task를 지움
-            //      2) 이후 task_iter를 reset하고 다시 조건을 만족하는 task를 찾음.
-            //      (조건) -> focusDate < day_iter.date
-
-            // 2. day_iter의 current에서의 잔여 가용시간 < task_iter의 duration 이라면
-            //      1) 잔여 가용시간을 전부 채우고 day_iter.MoveNext()함.
-
-            // ** 날짜가 넘어가거나 task를 다 채우면 무조건 task_iter.Reset().**
-
-            // iterator로 마지막 day까지 확인하여 작업을 끝낸 이후에도 task가 남아있다면
-            // -> 이는 불가능한 시간표임을 의미하는 것이므로, 오류 내보냄.
-            day_iter.Reset();
-
             bool end = false;
+
 
             while (!end)
             {
-                // task_iter 초기화
+                // 마감일이 빠른게 앞으로 오게 배열되어있음
+                // <-> 시작일은 배열 순서와 무관함
                 task_iter.Reset();
-                task_iter.MoveNext();
-                // dateTime을 넣을 수 있는 날까지 MoveNext()하며 이동.
+                task_iter.MoveNext(); // Reset을 한다 == 마감일이 빠른것을 보겠다
+
+                // focusDate보다 
                 while((task_iter.Current.focusDate > day_iter.Current.dateTime))
                 {
-                    // 임의의 day에 대해 그 앞에 마감일이 지난 task가 존재한다는 것은, 이행이 불가능한 시간표라는 것이므로
-                    // 작업을 끝내는 동작을 한다.
+                    // repl_tasks에 들어있는 마감일이 가장 빠른것부터 차례로 확인함
+                    // 
                     if(day_iter.Current.dateTime > task_iter.Current.endDate)
                     {
                         end = true; break;
                     }
-                    // 그런 상황이 아니라면, 이후의 task를 확인하며 채우는 동작을 진행한다.
                     task_iter.MoveNext();
                 }
 
                 if (end) break; // (*)의 연장선 상의 작업
+
+
 
                 // 넣을 수 있는 시간공간이 넣으려고 하는 시간보다 더 크거나 같을 때
                 if ((day_iter.Current.availableTime - day_iter.Current.time_allocated) >=task_iter.Current.Duration)
@@ -158,20 +144,13 @@ namespace TimeManager.Scheduler
 
                     int duration = task_iter.Current.Duration;
                     Data.Model.Task task = task_iter.Current.task;
-                    int fill_location = day_iter.Current.time_allocated;
 
                     // 0) TempBlock에 정보를 넣어 TempBlocks에 넣음.
                     TempBlock tempBlock = new TempBlock(task, duration);
                     day_iter.Current.tempBlocks.Add(tempBlock);
 
-/*                    // 1) [time_allocated]에서부터 duration만큼 array를 채움.
-                    for (int i=0; i < duration; i++)
-                    {
-                        day_iter.Current.task_arr[fill_location + i] = task;
-                    }*/
-
                     // 2) time_allocated에 duration만큼 더함.
-                    day_iter.Current.time_allocated += duration;
+                    AutoAllocatedTimeHandle(day_iter.Current);
 
                     // 3) task_iter부분을 삭제 & MoveNext가 true라면 day_iter.MoveNext();
                     repl_tasks.Remove(task_iter.Current);
@@ -186,17 +165,10 @@ namespace TimeManager.Scheduler
                 {
                     int duration = task_iter.Current.Duration;
                     Data.Model.Task task = task_iter.Current.task;
-                    int fill_location = day_iter.Current.time_allocated;
 
                     // 0) TempBlock에 정보를 넣어 TempBlocks에 넣음.
                     TempBlock tempBlock = new TempBlock(task, day_iter.Current.availableTime - day_iter.Current.time_allocated);
                     day_iter.Current.tempBlocks.Add(tempBlock);
-
-/*                    // 1) [time_allocated]에서부터 availableTime까지 array를 채움.
-                    for (int i = fill_location; i < day_iter.Current.availableTime; i++)
-                    {
-                        day_iter.Current.task_arr[i] = task;
-                    }*/
 
                     // 2) duration에서 (채운 시간) 만큼 빼야함.
                     //  (채운 시간) = availableTime - time_allocated
