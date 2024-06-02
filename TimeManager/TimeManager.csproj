@@ -68,6 +68,7 @@
     <Compile Include="Data\Model\AssignedTask.cs" />
     <Compile Include="Data\Model\DateTimeBlock.cs" />
     <Compile Include="Data\Model\ITimeTable.cs" />
+    <Compile Include="Data\Model\longTermProperties.cs" />
     <Compile Include="Data\Model\Schedule.cs" />
     <Compile Include="Data\Model\Task.cs" />
     <Compile Include="Data\Model\TimeTable.cs" />

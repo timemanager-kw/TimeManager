@@ -40,5 +40,6 @@ namespace TimeManager.Data.Model
         /// </summary>
         public int? FocusDays { get; set; }
 
+
     }
 }
