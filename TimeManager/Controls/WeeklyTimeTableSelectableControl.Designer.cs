@@ -45,6 +45,7 @@
             this.dataGridView.AllowUserToDeleteRows = false;
             this.dataGridView.AllowUserToResizeColumns = false;
             this.dataGridView.AllowUserToResizeRows = false;
+            this.dataGridView.ColumnHeadersHeight = 34;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnMonday,
@@ -56,13 +57,15 @@
             this.ColumnSunday});
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.RowHeadersWidth = 65;
             this.dataGridView.RowTemplate.Height = 23;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView.Size = new System.Drawing.Size(767, 321);
+            this.dataGridView.Size = new System.Drawing.Size(1096, 482);
             this.dataGridView.TabIndex = 0;
+            this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             this.dataGridView.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_CellMouseDown);
             this.dataGridView.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellMouseEnter);
             this.dataGridView.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_CellMouseUp);
@@ -71,59 +74,74 @@
             // ColumnMonday
             // 
             this.ColumnMonday.HeaderText = "월";
+            this.ColumnMonday.MinimumWidth = 8;
             this.ColumnMonday.Name = "ColumnMonday";
             this.ColumnMonday.ReadOnly = true;
             this.ColumnMonday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnMonday.Width = 150;
             // 
             // ColumnTuesday
             // 
             this.ColumnTuesday.HeaderText = "화";
+            this.ColumnTuesday.MinimumWidth = 8;
             this.ColumnTuesday.Name = "ColumnTuesday";
             this.ColumnTuesday.ReadOnly = true;
             this.ColumnTuesday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnTuesday.Width = 150;
             // 
             // ColumnWednesday
             // 
             this.ColumnWednesday.HeaderText = "수";
+            this.ColumnWednesday.MinimumWidth = 8;
             this.ColumnWednesday.Name = "ColumnWednesday";
             this.ColumnWednesday.ReadOnly = true;
             this.ColumnWednesday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnWednesday.Width = 150;
             // 
             // ColumnThursday
             // 
             this.ColumnThursday.HeaderText = "목";
+            this.ColumnThursday.MinimumWidth = 8;
             this.ColumnThursday.Name = "ColumnThursday";
             this.ColumnThursday.ReadOnly = true;
             this.ColumnThursday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnThursday.Width = 150;
             // 
             // ColumnFriday
             // 
             this.ColumnFriday.HeaderText = "금";
+            this.ColumnFriday.MinimumWidth = 8;
             this.ColumnFriday.Name = "ColumnFriday";
             this.ColumnFriday.ReadOnly = true;
             this.ColumnFriday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnFriday.Width = 150;
             // 
             // ColumnSaturday
             // 
             this.ColumnSaturday.HeaderText = "토";
+            this.ColumnSaturday.MinimumWidth = 8;
             this.ColumnSaturday.Name = "ColumnSaturday";
             this.ColumnSaturday.ReadOnly = true;
             this.ColumnSaturday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnSaturday.Width = 150;
             // 
             // ColumnSunday
             // 
             this.ColumnSunday.HeaderText = "일";
+            this.ColumnSunday.MinimumWidth = 8;
             this.ColumnSunday.Name = "ColumnSunday";
             this.ColumnSunday.ReadOnly = true;
             this.ColumnSunday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnSunday.Width = 150;
             // 
             // WeeklyTimeTableSelectableControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGridView);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "WeeklyTimeTableSelectableControl";
-            this.Size = new System.Drawing.Size(767, 321);
+            this.Size = new System.Drawing.Size(1096, 482);
             this.Load += new System.EventHandler(this.WeeklyTimeTableControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
