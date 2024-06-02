@@ -410,6 +410,10 @@ namespace TimeManager.Scheduler
                                     day_cursor.Current.tempBlocks.Remove(changableTemp);
                                 }
                             }
+                            else if(changableTemp == null)
+                            {
+
+                            }
                         }
                         else
                         {
@@ -417,6 +421,10 @@ namespace TimeManager.Scheduler
                             if(changableDay != null)
                             {
                                 ExchangeTaskWithEmpty(interval, tempBlock, changableDay);
+                            }
+                            else if (changableDay == null)
+                            {
+
                             }
                         }
                         // 이후 tempBlock에서 interval만큼 빼주기
