@@ -132,5 +132,10 @@ namespace TimeManager.Controls
             else
                 dataGridView.Rows[rowIndex].Cells[columnIndex].Style.BackColor = Color.LightGray;
         }
+
+        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
