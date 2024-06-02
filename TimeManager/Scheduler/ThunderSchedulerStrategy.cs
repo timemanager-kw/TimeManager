@@ -115,9 +115,13 @@ namespace TimeManager.Scheduler
             {
                 // 마감일이 빠른게 앞으로 오게 배열되어있음
                 // <-> 시작일은 배열 순서와 무관함
-                task_iter.Reset();
-                task_iter.MoveNext(); // Reset을 한다 == 마감일이 빠른것을 보겠다
-
+                task_iter.Reset();          // Reset을 한다 == 마감일이 빠른것을 보겠다
+                // 처음 MoveNext()를 했는데 비어있다 == 남아있는 Task가 없다.
+                // ∴ 반복문 빠져나감.
+                if (task_iter.MoveNext())   
+                {
+                    break;
+                }
                 /* focusDate가 dateTime보다 작아지는 상황을 찾는중*/
                 while((task_iter.Current.focusDate > day_iter.Current.dateTime))
                 {
@@ -134,8 +138,6 @@ namespace TimeManager.Scheduler
                     // 강제로 반복문을 빠져나옴.
                     break;
                 }
-
-
 
                 // 넣을 수 있는 시간공간이 넣으려고 하는 시간보다 더 크거나 같을 때
                 if ((day_iter.Current.availableTime - day_iter.Current.time_allocated) >=task_iter.Current.Duration)
