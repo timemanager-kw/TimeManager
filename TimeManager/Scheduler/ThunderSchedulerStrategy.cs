@@ -110,7 +110,7 @@ namespace TimeManager.Scheduler
 
             bool end = false;
 
-
+            // W.T.D 마감일이 빠른것을 잡아 day_iter 위치에 때려박는다.
             while (!end)
             {
                 // 마감일이 빠른게 앞으로 오게 배열되어있음
@@ -118,19 +118,22 @@ namespace TimeManager.Scheduler
                 task_iter.Reset();
                 task_iter.MoveNext(); // Reset을 한다 == 마감일이 빠른것을 보겠다
 
-                // focusDate보다 
+                /* focusDate가 dateTime보다 작아지는 상황을 찾는중*/
                 while((task_iter.Current.focusDate > day_iter.Current.dateTime))
                 {
                     // repl_tasks에 들어있는 마감일이 가장 빠른것부터 차례로 확인함
-                    // 
-                    if(day_iter.Current.dateTime > task_iter.Current.endDate)
-                    {
-                        end = true; break;
-                    }
                     task_iter.MoveNext();
                 }
+                // while문을 빠져나와서 여기에 왔다
+                // <-> 마감일(endDate)이 빠른 것 중에서 focusDate가 dateTime보다
+                //     앞에 있는 것이 task_iter에 들어있다
 
-                if (end) break; // (*)의 연장선 상의 작업
+                // 넣을 수 없는 일정이 발생했을 때(∵ dateTime 앞에 마감일이 지난 일정이 있음.)
+                if (day_iter.Current.dateTime > task_iter.Current.endDate)
+                {
+                    // 강제로 반복문을 빠져나옴.
+                    break;
+                }
 
 
 
