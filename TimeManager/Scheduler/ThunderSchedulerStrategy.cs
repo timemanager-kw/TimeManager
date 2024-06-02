@@ -132,6 +132,7 @@ namespace TimeManager.Scheduler
             {
                 // task_iter 초기화
                 task_iter.Reset();
+                task_iter.MoveNext();
                 // dateTime을 넣을 수 있는 날까지 MoveNext()하며 이동.
                 while((task_iter.Current.focusDate > day_iter.Current.dateTime))
                 {
