@@ -229,8 +229,11 @@ namespace TimeManager.Scheduler
                 foreach (TempBlock tempBlock in day_cursor.Current.tempBlocks)
                 {
                     // 적합한 조건을 만족한다면
+                    // 1) 뒤의 task를 앞으로 가져올 수 있다.
+                    // 2) time_interval이 interval보다 크거나 같다
+                    // 3) 뒤의 task와 앞의 task가 같지 않다.
                     if (dateTime >= tempBlock.task.EndDate?.AddDays(-(double)(task.FocusDays - 1))
-                        && tempBlock.time_interval >=interval)
+                        && tempBlock.time_interval >=interval && tempBlock.task != task)
                     {
                         if(PercentRandom(60))   // 여기서도 일단은 확률값은 받음.
                         {
