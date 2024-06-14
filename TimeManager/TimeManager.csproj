@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\EventArgs\WeeklyTimeTableControlItemEventArgs.cs" />
     <Compile Include="Controls\WeeklyTimeTableSelectableControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
