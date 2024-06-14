@@ -33,9 +33,9 @@
             // 
             // weeklyTimeTableControl1
             // 
-            this.weeklyTimeTableControl1.Location = new System.Drawing.Point(12, 12);
+            this.weeklyTimeTableControl1.Location = new System.Drawing.Point(30, 23);
             this.weeklyTimeTableControl1.Name = "weeklyTimeTableControl1";
-            this.weeklyTimeTableControl1.Size = new System.Drawing.Size(784, 321);
+            this.weeklyTimeTableControl1.Size = new System.Drawing.Size(825, 321);
             this.weeklyTimeTableControl1.TabIndex = 0;
             this.weeklyTimeTableControl1.Load += new System.EventHandler(this.weeklyTimeTableControl1_Load);
             // 
@@ -44,7 +44,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(925, 449);
-            //this.Controls.Add(this.weeklyTimeTableControl1);
+            this.Controls.Add(this.weeklyTimeTableControl1);
             this.Name = "TestWeeklyTimeTableControl";
             this.Text = "TestWeeklyTimeTableControl";
             this.ResumeLayout(false);
