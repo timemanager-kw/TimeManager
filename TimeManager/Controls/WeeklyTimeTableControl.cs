@@ -17,6 +17,9 @@ namespace TimeManager.Controls
         [Description("본 컨트롤에 그려진 아이템(Schedule 혹은 Task)가 선택되었을 때 발생하는 이벤트입니다."), Category("아이템")]
         public event EventHandler<WeeklyTimeTableControlItemEventArgs> ItemSelected;
 
+        private Color _ScheduleBackColor = Color.LightBlue;
+        private Color _TaskBackColor = Color.LightGreen;
+
         public WeeklyTimeTableControl()
         {
             InitializeComponent();
@@ -90,7 +93,7 @@ namespace TimeManager.Controls
                     for (int i = startRow; i < endRow; i++)
                     {
                         dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(S" + schedule.ScheduleId + ") " + schedule.ScheduleName;
-                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = Color.LightBlue;
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = _ScheduleBackColor;
                     }
                 }
             }
@@ -112,7 +115,7 @@ namespace TimeManager.Controls
                     for (int i = startRow; i < endRow; i++)
                     {
                         dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(T" + task.TaskId + ") " + task.TaskName;
-                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = Color.LightGreen;
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = _TaskBackColor;
                     }
                 }
             }
@@ -124,6 +127,21 @@ namespace TimeManager.Controls
 
         private void dataGridView_SelectionChanged(object sender, EventArgs e)
         {
+            // if select one is schedule or task, raise event
+            if (dataGridView.SelectedCells.Count == 1 && (dataGridView.SelectedCells[0].Style.BackColor == _ScheduleBackColor || dataGridView.SelectedCells[0].Style.BackColor == _TaskBackColor))
+            {
+                int rowIndex = dataGridView.SelectedCells[0].RowIndex;
+                int columnIndex = dataGridView.SelectedCells[0].ColumnIndex;
+
+                if (rowIndex < 1 || columnIndex < 0) return;
+
+                string cellValue = dataGridView.Rows[rowIndex].Cells[columnIndex].Value.ToString();
+                EAssignedItemType assignedItemType = cellValue.Contains("(S") ? EAssignedItemType.Schedule : EAssignedItemType.Task;
+                int assignedItemId = int.Parse(cellValue.Substring(2, cellValue.IndexOf(")") - 2));
+
+                ItemSelected?.Invoke(this, new WeeklyTimeTableControlItemEventArgs { AssignedItemType = assignedItemType, AssignedItemId = assignedItemId });
+            }
+
             // restrict selection
             dataGridView.ClearSelection();
         }
