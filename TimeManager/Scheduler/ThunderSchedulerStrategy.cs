@@ -506,7 +506,7 @@ namespace TimeManager.Scheduler
 
 
 
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

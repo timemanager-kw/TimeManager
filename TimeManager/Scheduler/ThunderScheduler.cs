@@ -67,28 +67,6 @@ namespace TimeManager.Scheduler
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public override void AssignSchdules()
         {
 
@@ -120,11 +98,84 @@ namespace TimeManager.Scheduler
             _timeTable = newTimeTable;
         }
 
+
+        public DateTime ChangeToFocusDate(DateTime endDate, int focusDays)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int ChangeToFocusDays(DateTime endDate, DateTime focusDate)
+        {
+            throw new NotImplementedException();
+        }
+
+
         public override void ScheduleTasks()
         {
-            IEnumerable<Task> tasks = _taskManager.GetAll();
+            List<Task> tasks______________ = (List<Task>)_taskManager.GetAll();
 
-            throw new NotImplementedException();
+            // tasks의 복사본 필요. -> repTasks
+            List<Task> repTasks = new List<Task>();
+
+            foreach(Task task in tasks______________)
+            {
+                Task task_ = new Task();
+                task_.Id = task.Id;
+                task_.Name = task.Name;
+                task_.FocusDays = task.FocusDays;
+                task_.EndDate = task.EndDate;
+                task_.Duration = task.Duration;
+                task_.Type = task.Type;
+
+                repTasks.Add(task_);
+            }
+
+            // ShortTerm에 대해 focus date 조정, duration 조정
+            foreach (Task repTask in repTasks)
+            {
+                if (repTask.Type == ETaskType.LongTerm)
+                    continue;
+                if (repTask.EndDate?.Day <= DateTime.Today.Date.Day)
+                    continue;
+                // Shortterm에 대해 할것임. (& 마감일이 내일 이후인 것들만 확인할 것임.)
+
+                AssignedTask as_task;
+
+                // AssignedTasks에서 assignedTask의 DateTimeBlock들을 확인할것임 
+                // DateTimeBlock에서 '내일 전'의 일정들에 할당된 시간만큼 지우기.
+                
+                foreach (AssignedTask assignedTask in _timeTable.AssignedTasks)
+                {
+                    if(assignedTask.TaskId == repTask.Id)
+                    {
+                        as_task = assignedTask;
+                        break;
+                    }
+                }
+                // FocusDays 변경
+                repTask.FocusDays = ChangeToFocusDays(repTask.EndDate.GetValueOrDefault(), DateTime.Now.Date);
+
+                // Duration 변경(앞에 사용된 시간만큼 줄이기)
+                foreach (AssignedTask assignedTask in _timeTable.AssignedTasks)
+                {
+                    foreach(DateTimeBlock timeBlock in assignedTask.AssignedBlocks)
+                    {
+                        //timeBlock이 내일 전인 것들을 찾는다.
+                        if (timeBlock.EndDate.Day <= DateTime.Today.Day)
+                        {
+                            // 그 시간블럭 크기만큼 줄인다.
+                            repTask.Duration -= timeBlock.Duration;
+                        }
+                    }
+                }
+            }
+
+            _schedulerStrategy.Schedule(_timeTable, repTasks);
+
+
+            /*여기서부터 longTerm에 대해서 만들기*/
+            // 요일별로만 따지는것이므로 아마 앞의 것들을 볼 필요 없이 그대로 가면 될듯
+
 
             _timeTableManager.Save(_timeTable);
         }
