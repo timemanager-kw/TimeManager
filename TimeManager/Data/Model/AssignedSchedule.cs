@@ -8,7 +8,7 @@ namespace TimeManager.Data.Model
 {
     public class AssignedSchedule
     {
-        public AssignedSchedule(List<DateTimeBlock> assignedblocks, long scheduleid, string schedulename) {
+        public AssignedSchedule(List<DateTimeBlock> assignedblocks, long scheduleid) {
             AssignedBlocks = assignedblocks;
             ScheduleId = scheduleid;
         }
