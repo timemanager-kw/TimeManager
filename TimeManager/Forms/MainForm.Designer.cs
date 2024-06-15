@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.ColumnMonday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTuesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -100,8 +100,8 @@
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.taskLongEditOkBtn = new System.Windows.Forms.Button();
+            this.taskLongEditCancleBtn = new System.Windows.Forms.Button();
             this.TaskLName = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.ShortTaskMemo = new System.Windows.Forms.TextBox();
@@ -193,9 +193,9 @@
             // 
             // ColumnSaturday
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.ColumnSaturday.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.SteelBlue;
+            this.ColumnSaturday.DefaultCellStyle = dataGridViewCellStyle3;
             this.ColumnSaturday.HeaderText = "토";
             this.ColumnSaturday.MinimumWidth = 6;
             this.ColumnSaturday.Name = "ColumnSaturday";
@@ -205,9 +205,9 @@
             // 
             // ColumnSunday
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Crimson;
-            this.ColumnSunday.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Crimson;
+            this.ColumnSunday.DefaultCellStyle = dataGridViewCellStyle4;
             this.ColumnSunday.HeaderText = "일";
             this.ColumnSunday.MinimumWidth = 6;
             this.ColumnSunday.Name = "ColumnSunday";
@@ -791,8 +791,8 @@
             this.LongTaskPanel.Controls.Add(this.LongTaskMemo);
             this.LongTaskPanel.Controls.Add(this.label10);
             this.LongTaskPanel.Controls.Add(this.groupBox1);
-            this.LongTaskPanel.Controls.Add(this.button1);
-            this.LongTaskPanel.Controls.Add(this.button2);
+            this.LongTaskPanel.Controls.Add(this.taskLongEditOkBtn);
+            this.LongTaskPanel.Controls.Add(this.taskLongEditCancleBtn);
             this.LongTaskPanel.Controls.Add(this.TaskLName);
             this.LongTaskPanel.Controls.Add(this.label12);
             this.LongTaskPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -909,25 +909,27 @@
             this.checkBox1.Text = "월";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // taskLongEditOkBtn
             // 
-            this.button1.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.Location = new System.Drawing.Point(150, 195);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(45, 30);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "수정";
-            this.button1.UseVisualStyleBackColor = true;
+            this.taskLongEditOkBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.taskLongEditOkBtn.Location = new System.Drawing.Point(150, 195);
+            this.taskLongEditOkBtn.Name = "taskLongEditOkBtn";
+            this.taskLongEditOkBtn.Size = new System.Drawing.Size(45, 30);
+            this.taskLongEditOkBtn.TabIndex = 13;
+            this.taskLongEditOkBtn.Text = "수정";
+            this.taskLongEditOkBtn.UseVisualStyleBackColor = true;
+            this.taskLongEditOkBtn.Click += new System.EventHandler(this.TaskEditOk_Click);
             // 
-            // button2
+            // taskLongEditCancleBtn
             // 
-            this.button2.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button2.Location = new System.Drawing.Point(105, 195);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(45, 30);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "취소";
-            this.button2.UseVisualStyleBackColor = true;
+            this.taskLongEditCancleBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.taskLongEditCancleBtn.Location = new System.Drawing.Point(105, 195);
+            this.taskLongEditCancleBtn.Name = "taskLongEditCancleBtn";
+            this.taskLongEditCancleBtn.Size = new System.Drawing.Size(45, 30);
+            this.taskLongEditCancleBtn.TabIndex = 12;
+            this.taskLongEditCancleBtn.Text = "취소";
+            this.taskLongEditCancleBtn.UseVisualStyleBackColor = true;
+            this.taskLongEditCancleBtn.Click += new System.EventHandler(this.EditCancle_Click);
             // 
             // TaskLName
             // 
@@ -1076,8 +1078,8 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button taskLongEditOkBtn;
+        private System.Windows.Forms.Button taskLongEditCancleBtn;
         private System.Windows.Forms.TextBox TaskLName;
         private System.Windows.Forms.Label label12;
     }
