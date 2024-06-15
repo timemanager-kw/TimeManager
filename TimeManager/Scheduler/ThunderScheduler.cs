@@ -26,15 +26,94 @@ namespace TimeManager.Scheduler
             _scheduleManager = scheduleManager;
             _taskManager = taskManager;
 
-            // TODO: 지난 일에 대한 타임테이블은 포함되어 있어야 함 (향후 수정)
-            _timeTable = new TimeTable();
+            _timeTable = _timeTableManager.Get();
         }
+
+
+        public void DeleteAllScheduleFromTommorow(TimeTable newTimeTable)
+        {
+            // newtimeTable에서 오늘 이후의 일정 다 지우기.
+
+            // <DateTimeBlock>List의 크기가 0인 것들을 모아두는 List
+            List<AssignedSchedule> delSchedule_list = new List<AssignedSchedule>();
+
+            foreach (AssignedSchedule a_Schedule in newTimeTable.AssignedSchedules)
+            {
+                List<DateTimeBlock> delBlock_list = new List<DateTimeBlock>();
+                // 지울것들을 배열에 넣어놓은 후
+                foreach (DateTimeBlock del_dateTime in a_Schedule.AssignedBlocks)
+                {
+                    // 지울것을 List에 넣어놓기.
+                    if (del_dateTime.StartDate.Day > DateTime.Today.Day)
+                    {
+                        delBlock_list.Add(del_dateTime);
+                    }
+                }
+                // 배열에 있는것들 지우기
+                foreach (DateTimeBlock del_element in delBlock_list)
+                {
+                    a_Schedule.AssignedBlocks.Remove(del_element);
+                }
+                // 만약 아무것도 들어가있지 않게 되었다면
+                if (a_Schedule.AssignedBlocks.Count == 0)
+                {
+                    // List에 추가
+                    delSchedule_list.Add(a_Schedule);
+                }
+            }
+
+            // 0개 List를 갖고 있는 AssignedSchedule 지우기
+            foreach (AssignedSchedule del_element in delSchedule_list)
+            {
+                newTimeTable.AssignedSchedules.Remove(del_element);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public override void AssignSchdules()
         {
-            IEnumerable<Schedule> schedules = _scheduleManager.GetAll();
+            // _timeTable의 복사본  - new TimeTable
+            TimeTable newTimeTable = new TimeTable(_timeTable.WorkTimes, _timeTable.AssignedSchedules, _timeTable.AssignedTasks);
+
+            // newtimeTable에서 오늘 이후의 일정 다 지우기.
+
+            DeleteAllScheduleFromTommorow(newTimeTable);
+
+
+
+
+
+
+
+
+
+
+
 
             throw new NotImplementedException();
+
+            _timeTableManager.Save(_timeTable);
         }
 
         public override void ScheduleTasks()
@@ -42,7 +121,8 @@ namespace TimeManager.Scheduler
             IEnumerable<Task> tasks = _taskManager.GetAll();
 
             throw new NotImplementedException();
+
+            _timeTableManager.Save(_timeTable);
         }
     }
 }
-
