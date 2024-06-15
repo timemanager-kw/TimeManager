@@ -56,7 +56,7 @@ namespace TimeManager.Data.Repository
                 string[] parts = lines[i].Split(',');
                 if (int.Parse(parts[0]) == task.Id)
                 {
-                    lines[i] = $"{task.Id}, {task.Name}, {task.Description}, {task.Type}, {task.StartDate}, {task.EndDate},{task.Duration}, {task.FocusDays}, {SerializeWeeklyTimes(task.WeeklyTimesWanted)}, {task.NDaysOfWeekWanted}";
+                    lines[i] = $"{task.Id}, {task.Name}, {task.Description}, {task.Type}, {task.StartDate}, {task.EndDate},{task.Duration}, {task.FocusDays}, {SerializeWeeklyTimes(task.WeeklyTimesWanted)}";
                     break;
                 }
             }
