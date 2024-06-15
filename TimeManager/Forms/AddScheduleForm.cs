@@ -140,7 +140,7 @@ namespace TimeManager.Forms
                 }
             };
             Schedule.Name = AddScheduleName.Text;
-            //ID 추가
+            Schedule.Id = lastID + 1;
             Schedule.Type = AddScheduleIsRegular.Checked ? EScheduleType.Regular : EScheduleType.Singular;
             Schedule.Description = AddScheduleMemo.Text;
 

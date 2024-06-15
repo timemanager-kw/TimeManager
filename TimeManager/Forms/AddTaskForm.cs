@@ -70,7 +70,7 @@ namespace TimeManager.Forms
                 }
             };
             Task.Name = AddTaskName.Text;
-            //ID 추가
+            Task.Id = lastID + 1;
             Task.Type = AddTaskIsLong.Checked ? ETaskType.LongTerm : ETaskType.ShortTerm;
             Task.Description = AddTaskMemo.Text;
 
