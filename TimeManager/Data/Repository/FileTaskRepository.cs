@@ -31,19 +31,19 @@ namespace TimeManager.Data.Repository
             task.Id = nextId;
             using (StreamWriter writer = new StreamWriter(filePath))
             {
-                writer.WriteLine($"{task.Id}, {task.Name}, {task.Description}, {(int)task.Type}, {task.StartDate}, {task.EndDate},{task.Duration}, {task.FocusDays}, {SerializeWeeklyTimes(task.WeeklyTimesWanted)}, {task.NDaysOfWeekWanted}");
+                writer.WriteLine($"{task.Id}, {task.Name}, {task.Description}, {(int)task.Type}, {task.StartDate}, {task.EndDate},{task.Duration}, {task.FocusDays}, {SerializeWeeklyTimes(task.WeeklyTimesWanted)}");
             }
             using (StreamWriter writer = new StreamWriter(filePath))
             {
                 writer.WriteLine(++nextId);
             }
         }
-        private string SerializeWeeklyTimes(List<WeeklyDateTimeBlock> weeklyTimes)
+        private string SerializeWeeklyTimes(List<longTermProperties> weeklyTimes)
         {
             List<string> serializedTimes = new List<string>();
             foreach(var weeklyTime in weeklyTimes)
             {
-                string serializedTime = $"{weeklyTime.DayOfWeek}|{weeklyTime.StartTime}|{weeklyTime.EndTime}";
+                string serializedTime = $"{weeklyTime.dayOfWeek}|{weeklyTime.time}";
                 serializedTimes.Add(serializedTime);
             }
             return string.Join(";", serializedTimes);
@@ -56,7 +56,7 @@ namespace TimeManager.Data.Repository
                 string[] parts = lines[i].Split(',');
                 if (int.Parse(parts[0]) == task.Id)
                 {
-                    lines[i] = $"{task.Id}, {task.Name}, {task.Description}, {task.Type}, {task.StartDate}, {task.EndDate},{task.Duration}, {task.FocusDays}, {SerializeWeeklyTimes(task.WeeklyTimesWanted)}, {task.NDaysOfWeekWanted}";
+                    lines[i] = $"{task.Id}, {task.Name}, {task.Description}, {task.Type}, {task.StartDate}, {task.EndDate},{task.Duration}, {task.FocusDays}, {SerializeWeeklyTimes(task.WeeklyTimesWanted)}";
                     break;
                 }
             }
@@ -92,19 +92,17 @@ namespace TimeManager.Data.Repository
                     EndDate = DateTime.Parse(parts[5]),
                     Duration = TimeSpan.Parse(parts[6]),
                     FocusDays = int.Parse(parts[7]),
-                    NDaysOfWeekWanted = int.Parse(parts[9]),
-                    WeeklyTimesWanted = new List<WeeklyDateTimeBlock>(),
+                    WeeklyTimesWanted = new List<longTermProperties>(),
                 };
                 string[] weeklyTimesParts = parts[8].Split(';');
                 foreach(string weeklyTimesPart in weeklyTimesParts)
                 {
                     string[] weeklyTimeSubParts = weeklyTimesPart.Split('|');
-                    WeeklyDateTimeBlock week = new WeeklyDateTimeBlock();
+                    longTermProperties week = new longTermProperties();
                     DayOfWeek dayOfWeek;
                     Enum.TryParse<DayOfWeek>(weeklyTimeSubParts[0], out dayOfWeek);
-                    week.DayOfWeek = dayOfWeek;
-                    week.StartTime = DateTime.Parse(weeklyTimesParts[1]);
-                    week.EndTime = DateTime.Parse(weeklyTimesParts[2]);
+                    week.dayOfWeek = dayOfWeek;
+                    week.time = TimeSpan.Parse(weeklyTimesParts[1]);
                 }
             tasks.Add(task);
             }
