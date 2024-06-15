@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace TimeManager.Data.Model
 {
@@ -59,7 +60,8 @@ namespace TimeManager.Data.Model
 
         public List<AssignedTask> GetAllAssignedTasksAsOfNow()
         {
-            throw new NotImplementedException();
+            var now = DateTime.Now;
+            return _assignedTasks.Where(task => task.AssignedBlocks.Any(block => block.StartDate <= now && block.EndDate >= now)).ToList();
         }
 
         public List<AssignedTask> GetWeeklyAssignedTasks(Week week)
