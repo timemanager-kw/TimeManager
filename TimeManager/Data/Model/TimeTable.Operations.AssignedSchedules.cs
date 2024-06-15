@@ -31,7 +31,15 @@ namespace TimeManager.Data.Model
 
         public void UnassignSchedule(long scheduleId)
         {
-            throw new NotImplementedException();
+            var scheduleToRemove = _assignedSchedules.FirstOrDefault(s=>s.ScheduleId == scheduleId);
+            if(scheduleToRemove != null)
+            {
+                _assignedSchedules.Remove(scheduleToRemove);
+            }
+            else
+            {
+                throw new ArgumentException("scheduleId에 해당하는 schedule가 없습니다.");
+            }
         }
 
         public List<AssignedSchedule> GetAllAssignedSchedules()
