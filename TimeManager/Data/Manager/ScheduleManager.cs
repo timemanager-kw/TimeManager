@@ -36,6 +36,15 @@ namespace TimeManager.Data.Manager
             return _schedules;
         }
 
+        public Schedule GetById(long id)
+        {
+            var schedule = _schedules.Find(s => s.Id == id);
+            if (schedule == null)
+                throw new ArgumentException("존재하지 않는 스케줄입니다.");
+
+            return schedule;
+        }
+
         public void Update(Schedule schedule)
         {
             int idx = _schedules.FindIndex(s => s.Id == schedule.Id);
