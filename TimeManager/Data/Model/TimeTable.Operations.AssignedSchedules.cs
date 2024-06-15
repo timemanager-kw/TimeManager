@@ -44,7 +44,7 @@ namespace TimeManager.Data.Model
 
         public List<AssignedSchedule> GetAllAssignedSchedules()
         {
-            throw new NotImplementedException();
+            return _assignedSchedules;
         }
 
         public List<AssignedSchedule> GetAssignedSchedulesByScheduleId(long scheduleId)
