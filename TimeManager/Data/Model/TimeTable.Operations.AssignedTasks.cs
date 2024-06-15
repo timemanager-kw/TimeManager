@@ -11,7 +11,11 @@ namespace TimeManager.Data.Model
         /* AssignedTask Operations */
         public void AssignTask(long taskId, IEnumerable<DateTimeBlock> assignedTimeBlocks)
         {
-            throw new NotImplementedException();
+            AssignedTask assignedTask = new AssignedTask();
+            foreach(var block in assignedTimeBlocks)
+            {
+                assignedTask.AssignedBlocks.Add(block);
+            }   
         }
 
         public void ReassignTask(long taskId, IEnumerable<DateTimeBlock> assignedTimeBlocks)
