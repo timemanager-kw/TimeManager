@@ -54,7 +54,8 @@ namespace TimeManager.Data.Model
 
         public List<AssignedSchedule> GetAllAssignedSchedulesAsOfNow()
         {
-            throw new NotImplementedException();
+            var now = DateTime.Now;
+            return _assignedSchedules.Where(s => s.AssignedBlocks.Any(b => b.StartDate <= now && b.EndDate >= now)).ToList();
         }
 
         public List<AssignedSchedule> GetWeeklyAssignedSchedules(Week week)
