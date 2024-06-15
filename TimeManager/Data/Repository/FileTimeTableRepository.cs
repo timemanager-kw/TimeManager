@@ -37,12 +37,12 @@ namespace TimeManager.Data.Repository
                 foreach(var schedule in timeTable.AssignedSchedules)
                 {
                     string assignedBlocks = string.Join(",", schedule.AssignedBlocks.Select(block => $"{block.StartDate}, {block.EndDate}, {block.Duration}"));
-                    writer.WriteLine($"{"AssignedSchedules:"}, {schedule.ScheduleId}, {schedule.ScheduleName}, {assignedBlocks}");
+                    writer.WriteLine($"{"AssignedSchedules:"}, {schedule.ScheduleId}, {assignedBlocks}");
                 }
                 foreach(var task in timeTable.AssignedTasks)
                 {
                     string assignedBlocks = string.Join(",",task.AssignedBlocks.Select(block =>$"{block.StartDate}, {block.EndDate}, {block.Duration}"));
-                    writer.WriteLine($"{"AssignedTasks"}, {task.TaskId}, {task.TaskName}, {assignedBlocks}");
+                    writer.WriteLine($"{"AssignedTasks"}, {task.TaskId}, {assignedBlocks}");
                 }
             }
         }
