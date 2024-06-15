@@ -15,7 +15,6 @@ namespace TimeManager.Scheduler
         private ITaskManager _taskManager;
 
         private TimeTable _timeTable;
-        private TimeTable newTimeTable;
 
         public ThunderScheduler(ThunderSchedulerStrategy thunderSchedulerStrategy,
             ITimeTableManager timeTableManager,
@@ -26,8 +25,6 @@ namespace TimeManager.Scheduler
             _timeTableManager = timeTableManager;
             _scheduleManager = scheduleManager;
             _taskManager = taskManager;
-
-            _timeTable = _timeTableManager.Get();
         }
 
 
@@ -94,6 +91,9 @@ namespace TimeManager.Scheduler
 
         public override void AssignSchdules()
         {
+
+            _timeTable = _timeTableManager.Get();
+
             // _timeTable의 복사본  - new TimeTable
             TimeTable newTimeTable = new TimeTable(_timeTable.WorkTimes, _timeTable.AssignedSchedules, _timeTable.AssignedTasks);
 
@@ -116,6 +116,8 @@ namespace TimeManager.Scheduler
                     newTimeTable.AssignedSchedules.Add(assignedSchedule);
                 }
             }
+
+            _timeTable = newTimeTable;
         }
 
         public override void ScheduleTasks()
