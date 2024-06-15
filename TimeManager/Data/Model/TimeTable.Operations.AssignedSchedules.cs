@@ -80,7 +80,8 @@ namespace TimeManager.Data.Model
 
         private List<AssignedSchedule> GetDailyAssignedSchedules(DateTime date)
         {
-            throw new NotImplementedException();
+            DateTime today = date.Date;
+            return _assignedSchedules.Where(s=>s.AssignedBlocks.Any(b=>b.StartDate.Date==today || b.EndDate.Date == today)).ToList();
         }
     }
 }
