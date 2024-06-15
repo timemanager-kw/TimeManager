@@ -77,6 +77,8 @@ namespace TimeManager.Forms
             TimeBlockView.Size = new Size(TimeBlockTitlePanel.Size.Width, this.Size.Height * 11 / 27);
 
 
+
+
             ScheduleBtn.Font = new Font(ScheduleBtn.Font.FontFamily, Mathf.Clampf(ScheduleBtn.Size.Height * 11 / 35, 7, 9));
             TaskBtn.Font = new Font(TaskBtn.Font.FontFamily, ScheduleBtn.Font.Size);
             AddBtn.Font = new Font(AddBtn.Font.FontFamily, ScheduleBtn.Font.Size);
@@ -733,6 +735,11 @@ namespace TimeManager.Forms
             {
                 AddScheduleForm = new AddScheduleForm(this);
                 AddScheduleForm.Show();
+            }
+            else
+            {
+                AddTaskForm = new AddTaskForm(this);
+                AddTaskForm.Show();
             }
         }
 
