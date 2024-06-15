@@ -73,7 +73,10 @@ namespace TimeManager.Data.Model
 
         public List<AssignedTask> GetAssignedTasksInThisWeekAsOfNow()
         {
-            throw new NotImplementedException();
+            var now = DateTime.Now;
+            var startOfWeek = now.AddDays(-(int)now.DayOfWeek);
+            var endOfWeek = startOfWeek.AddDays(6);
+            return _assignedTasks.Where (t => t.AssignedBlocks.Any(b=>b.StartDate.Date<=endOfWeek && b.StartDate.Date>=startOfWeek)).ToList();
         }
         
         public List<AssignedTask> GetAssignedTasksInBlock(DateTimeBlock timeBlock)
