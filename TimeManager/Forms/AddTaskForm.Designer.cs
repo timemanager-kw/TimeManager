@@ -58,7 +58,7 @@
             this.AddLongTaskMon = new System.Windows.Forms.RadioButton();
             this.label8 = new System.Windows.Forms.Label();
             this.TaskDurationCmb = new System.Windows.Forms.ComboBox();
-            this.AddShortTaskTimePanel = new System.Windows.Forms.Panel();
+            this.AddTaskTimePanel = new System.Windows.Forms.Panel();
             this.AddTaskMemoPanel.SuspendLayout();
             this.AddCanclePanel.SuspendLayout();
             this.AddShortTaskPanel.SuspendLayout();
@@ -67,7 +67,7 @@
             this.NamePanel.SuspendLayout();
             this.AddLongTaskPanel.SuspendLayout();
             this.AddRegularScheduleDays.SuspendLayout();
-            this.AddShortTaskTimePanel.SuspendLayout();
+            this.AddTaskTimePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // AddTaskMemoPanel
@@ -126,6 +126,7 @@
             this.AddTaskCancle.TabIndex = 21;
             this.AddTaskCancle.Text = "취소";
             this.AddTaskCancle.UseVisualStyleBackColor = true;
+            this.AddTaskCancle.Click += new System.EventHandler(this.AddTaskCancle_Click);
             // 
             // AddTask
             // 
@@ -299,6 +300,7 @@
             this.AddLongTaskIsTrue.TabIndex = 17;
             this.AddLongTaskIsTrue.Text = "포함";
             this.AddLongTaskIsTrue.UseVisualStyleBackColor = true;
+            this.AddLongTaskIsTrue.CheckedChanged += new System.EventHandler(this.AddLongTaskIsTrue_CheckedChanged);
             // 
             // AddRegularScheduleDays
             // 
@@ -331,6 +333,7 @@
             this.AddLongTaskSun.TabStop = true;
             this.AddLongTaskSun.Text = "일";
             this.AddLongTaskSun.UseVisualStyleBackColor = true;
+            this.AddLongTaskSun.CheckedChanged += new System.EventHandler(this.AddLongTaskSun_CheckedChanged);
             // 
             // AddLongTaskSat
             // 
@@ -345,6 +348,7 @@
             this.AddLongTaskSat.TabStop = true;
             this.AddLongTaskSat.Text = "토";
             this.AddLongTaskSat.UseVisualStyleBackColor = true;
+            this.AddLongTaskSat.CheckedChanged += new System.EventHandler(this.AddLongTaskSat_CheckedChanged);
             // 
             // AddLongTaskFri
             // 
@@ -358,6 +362,7 @@
             this.AddLongTaskFri.TabStop = true;
             this.AddLongTaskFri.Text = "금";
             this.AddLongTaskFri.UseVisualStyleBackColor = true;
+            this.AddLongTaskFri.CheckedChanged += new System.EventHandler(this.AddLongTaskFri_CheckedChanged);
             // 
             // AddLongTaskThu
             // 
@@ -371,6 +376,7 @@
             this.AddLongTaskThu.TabStop = true;
             this.AddLongTaskThu.Text = "목";
             this.AddLongTaskThu.UseVisualStyleBackColor = true;
+            this.AddLongTaskThu.CheckedChanged += new System.EventHandler(this.AddLongTaskThu_CheckedChanged);
             // 
             // AddLongTaskWed
             // 
@@ -384,6 +390,7 @@
             this.AddLongTaskWed.TabStop = true;
             this.AddLongTaskWed.Text = "수";
             this.AddLongTaskWed.UseVisualStyleBackColor = true;
+            this.AddLongTaskWed.CheckedChanged += new System.EventHandler(this.AddLongTaskWed_CheckedChanged);
             // 
             // AddLongTaskTue
             // 
@@ -397,6 +404,7 @@
             this.AddLongTaskTue.TabStop = true;
             this.AddLongTaskTue.Text = "화";
             this.AddLongTaskTue.UseVisualStyleBackColor = true;
+            this.AddLongTaskTue.CheckedChanged += new System.EventHandler(this.AddLongTaskTue_CheckedChanged);
             // 
             // AddLongTaskMon
             // 
@@ -411,6 +419,7 @@
             this.AddLongTaskMon.TabStop = true;
             this.AddLongTaskMon.Text = "월";
             this.AddLongTaskMon.UseVisualStyleBackColor = true;
+            this.AddLongTaskMon.CheckedChanged += new System.EventHandler(this.AddLongTaskMon_CheckedChanged);
             // 
             // label8
             // 
@@ -435,17 +444,17 @@
             this.TaskDurationCmb.TabIndex = 6;
             this.TaskDurationCmb.Text = "00:00";
             // 
-            // AddShortTaskTimePanel
+            // AddTaskTimePanel
             // 
-            this.AddShortTaskTimePanel.Controls.Add(this.TaskDurationCmb);
-            this.AddShortTaskTimePanel.Controls.Add(this.label8);
-            this.AddShortTaskTimePanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.AddShortTaskTimePanel.Location = new System.Drawing.Point(0, 210);
-            this.AddShortTaskTimePanel.Margin = new System.Windows.Forms.Padding(10);
-            this.AddShortTaskTimePanel.Name = "AddShortTaskTimePanel";
-            this.AddShortTaskTimePanel.Padding = new System.Windows.Forms.Padding(10);
-            this.AddShortTaskTimePanel.Size = new System.Drawing.Size(800, 47);
-            this.AddShortTaskTimePanel.TabIndex = 30;
+            this.AddTaskTimePanel.Controls.Add(this.TaskDurationCmb);
+            this.AddTaskTimePanel.Controls.Add(this.label8);
+            this.AddTaskTimePanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.AddTaskTimePanel.Location = new System.Drawing.Point(0, 210);
+            this.AddTaskTimePanel.Margin = new System.Windows.Forms.Padding(10);
+            this.AddTaskTimePanel.Name = "AddTaskTimePanel";
+            this.AddTaskTimePanel.Padding = new System.Windows.Forms.Padding(10);
+            this.AddTaskTimePanel.Size = new System.Drawing.Size(800, 47);
+            this.AddTaskTimePanel.TabIndex = 30;
             // 
             // AddTaskForm
             // 
@@ -454,7 +463,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
             this.Controls.Add(this.AddTaskMemoPanel);
-            this.Controls.Add(this.AddShortTaskTimePanel);
+            this.Controls.Add(this.AddTaskTimePanel);
             this.Controls.Add(this.AddLongTaskPanel);
             this.Controls.Add(this.AddCanclePanel);
             this.Controls.Add(this.AddShortTaskPanel);
@@ -476,8 +485,8 @@
             this.AddLongTaskPanel.PerformLayout();
             this.AddRegularScheduleDays.ResumeLayout(false);
             this.AddRegularScheduleDays.PerformLayout();
-            this.AddShortTaskTimePanel.ResumeLayout(false);
-            this.AddShortTaskTimePanel.PerformLayout();
+            this.AddTaskTimePanel.ResumeLayout(false);
+            this.AddTaskTimePanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -514,6 +523,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox TaskDurationCmb;
-        private System.Windows.Forms.Panel AddShortTaskTimePanel;
+        private System.Windows.Forms.Panel AddTaskTimePanel;
     }
 }

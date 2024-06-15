@@ -16,6 +16,13 @@ namespace TimeManager.Forms
 
         Task Task;
 
+        DayOfWeek dayOfWeek;
+
+        List<longTermProperties> weeklyWanted;
+        longTermProperties[] weeklyBlock = new longTermProperties[7];
+
+        bool[] daysBool = new bool[] { false, false, false, false, false, false, false };
+
         int lastID;
 
         public AddTaskForm(MainForm mainForm, int lastID)
@@ -26,21 +33,50 @@ namespace TimeManager.Forms
 
             Task = new Task();
 
+            for (int i = 0; i < 7; i++)
+            {
+                weeklyBlock[i].dayOfWeek = (DayOfWeek)i;
+                weeklyBlock[i].time = new TimeSpan(0);
+            }
+
             for (int i = 30; i < 6000; i += 30)
             {
                 TaskDurationCmb.Items.Add($"{i / 60}:{i % 60}");
             }
 
+            weeklyWanted = new List<longTermProperties>();
+            dayOfWeek = DayOfWeek.Monday;
+
             this.lastID = lastID;
 
-            UpdateAddScheduleView();
+            UpdateAddTaskView();
         }
 
-        void UpdateAddScheduleView()
+        void UpdateAddTaskView()
         {
             AddShortTaskPanel.Visible = !AddTaskIsLong.Checked;
             AddLongTaskPanel.Visible = AddTaskIsLong.Checked;
-            AddShortTaskTimePanel.Visible = AddTaskIsLong.Checked;
+            TaskDurationCmb.Enabled = !AddTaskIsLong.Checked;
+        }
+
+        void UpdateLongTaskView()
+        {
+            AddLongTaskIsTrue.Checked = daysBool[(int)dayOfWeek];
+            if (!daysBool[(int)dayOfWeek])
+            {
+                TaskDurationCmb.Text = "00:00";
+            }
+            else
+            {
+                TaskDurationCmb.Text = weeklyBlock[(int)dayOfWeek].time.TotalMinutes == 0 ? "00:00" : $"{(int)(weeklyBlock[(int)dayOfWeek].time.TotalMinutes / 60)}:{weeklyBlock[(int)dayOfWeek].time.TotalMinutes % 60}";
+            }
+        }
+
+        void UpdateTimeBlock()
+        {
+            if (!AddLongTaskIsTrue.Checked) return;
+            string[] hm = TaskDurationCmb.Text.Split(':');
+            weeklyBlock[(int)dayOfWeek].time = new TimeSpan(int.Parse(hm[0]), int.Parse(hm[1]), 0);
         }
 
         private void AddTask_Click(object sender, EventArgs e)
@@ -64,6 +100,20 @@ namespace TimeManager.Forms
                     Close();
                 },
                 () => {
+                    UpdateTimeBlock();
+                    for (int i = 0;i < 7; i++)
+                    {
+                        if (daysBool[i])
+                        {
+                            if (weeklyBlock[i].time.TotalMinutes <= 0)
+                            {
+                                MessageBox.Show("시작 시간이 종료 시간 뒤에 올 수 없습니다.");
+                                return;
+                            }
+                            weeklyWanted.Add(weeklyBlock[i]);
+                        }
+                    }
+                    Task.WeeklyTimesWanted = weeklyWanted;
 
                     MainForm.CloseAddTask(true, Task);
                     Close();
@@ -79,7 +129,96 @@ namespace TimeManager.Forms
 
         private void AddTaskIsLong_CheckedChanged(object sender, EventArgs e)
         {
-            UpdateAddScheduleView();
+            UpdateAddTaskView();
+        }
+
+        private void AddLongTaskMon_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!AddLongTaskMon.Checked) return;
+
+            UpdateTimeBlock();
+
+            dayOfWeek = DayOfWeek.Monday;
+
+            UpdateLongTaskView();
+        }
+
+        private void AddLongTaskTue_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!AddLongTaskTue.Checked) return;
+
+            UpdateTimeBlock();
+
+            dayOfWeek = DayOfWeek.Tuesday;
+
+            UpdateLongTaskView();
+        }
+
+        private void AddLongTaskWed_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!AddLongTaskWed.Checked) return;
+
+            UpdateTimeBlock();
+
+            dayOfWeek = DayOfWeek.Wednesday;
+
+            UpdateLongTaskView();
+        }
+
+        private void AddLongTaskThu_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!AddLongTaskThu.Checked) return;
+
+            UpdateTimeBlock();
+
+            dayOfWeek = DayOfWeek.Thursday;
+
+            UpdateLongTaskView();
+        }
+
+        private void AddLongTaskFri_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!AddLongTaskFri.Checked) return;
+
+            UpdateTimeBlock();
+
+            dayOfWeek = DayOfWeek.Friday;
+
+            UpdateLongTaskView();
+        }
+
+        private void AddLongTaskSat_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!AddLongTaskSat.Checked) return;
+
+            UpdateTimeBlock();
+
+            dayOfWeek = DayOfWeek.Saturday;
+
+            UpdateLongTaskView();
+        }
+
+        private void AddLongTaskSun_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!AddLongTaskSun.Checked) return;
+
+            UpdateTimeBlock();
+
+            dayOfWeek = DayOfWeek.Sunday;
+
+            UpdateLongTaskView();
+        }
+
+        private void AddLongTaskIsTrue_CheckedChanged(object sender, EventArgs e)
+        {
+            daysBool[(int)dayOfWeek] = AddLongTaskIsTrue.Checked;
+            TaskDurationCmb.Enabled = daysBool[(int)dayOfWeek];
+        }
+
+        private void AddTaskCancle_Click(object sender, EventArgs e)
+        {
+            MainForm.CloseAddTask(false, null);
+            Close();
         }
     }
 }

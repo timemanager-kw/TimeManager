@@ -24,7 +24,7 @@ namespace TimeManager.Forms
 
         List<WeeklyDateTimeBlock> weeklyDateTimeBlocks;
         WeeklyDateTimeBlock[] weeklyBlock = new WeeklyDateTimeBlock[7];
-            
+
         bool[] daysBool = new bool[] { false, false, false, false, false, false, false };
 
         public AddScheduleForm(MainForm mainForm, int lastID)
@@ -121,6 +121,7 @@ namespace TimeManager.Forms
                     Close();
                 },
                 () => {
+                    UpdateTimeBlock();
                     for (int i = 0;i < 7; i++)
                     {
                         if (daysBool[i])

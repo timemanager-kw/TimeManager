@@ -31,7 +31,7 @@ namespace TimeManager.Data.Repository
             task.Id = nextId;
             using (StreamWriter writer = new StreamWriter(filePath))
             {
-                writer.WriteLine($"{task.Id}, {task.Name}, {task.Description}, {(int)task.Type}, {task.StartDate}, {task.EndDate},{task.Duration}, {task.FocusDays}, {SerializeWeeklyTimes(task.WeeklyTimesWanted)}, {task.NDaysOfWeekWanted}");
+                //writer.WriteLine($"{task.Id}, {task.Name}, {task.Description}, {(int)task.Type}, {task.StartDate}, {task.EndDate},{task.Duration}, {task.FocusDays}, {SerializeWeeklyTimes(task.WeeklyTimesWanted)}, {task.NDaysOfWeekWanted}");
             }
             using (StreamWriter writer = new StreamWriter(filePath))
             {
@@ -56,7 +56,7 @@ namespace TimeManager.Data.Repository
                 string[] parts = lines[i].Split(',');
                 if (int.Parse(parts[0]) == task.Id)
                 {
-                    lines[i] = $"{task.Id}, {task.Name}, {task.Description}, {task.Type}, {task.StartDate}, {task.EndDate},{task.Duration}, {task.FocusDays}, {SerializeWeeklyTimes(task.WeeklyTimesWanted)}, {task.NDaysOfWeekWanted}";
+                    //lines[i] = $"{task.Id}, {task.Name}, {task.Description}, {task.Type}, {task.StartDate}, {task.EndDate},{task.Duration}, {task.FocusDays}, {SerializeWeeklyTimes(task.WeeklyTimesWanted)}, {task.NDaysOfWeekWanted}";
                     break;
                 }
             }
@@ -92,8 +92,8 @@ namespace TimeManager.Data.Repository
                     EndDate = DateTime.Parse(parts[5]),
                     Duration = TimeSpan.Parse(parts[6]),
                     FocusDays = int.Parse(parts[7]),
-                    NDaysOfWeekWanted = int.Parse(parts[9]),
-                    WeeklyTimesWanted = new List<WeeklyDateTimeBlock>(),
+                    //NDaysOfWeekWanted = int.Parse(parts[9]),
+                    //WeeklyTimesWanted = new List<WeeklyDateTimeBlock>(),
                 };
                 string[] weeklyTimesParts = parts[8].Split(';');
                 foreach(string weeklyTimesPart in weeklyTimesParts)

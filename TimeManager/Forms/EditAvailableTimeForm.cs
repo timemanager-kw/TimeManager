@@ -12,9 +12,13 @@ namespace TimeManager.Forms
 {
     public partial class EditAvailableTimeForm : Form
     {
-        public EditAvailableTimeForm()
+        MainForm mainForm;
+
+        public EditAvailableTimeForm(MainForm mainForm)
         {
             InitializeComponent();
+
+            this.mainForm = mainForm;
         }
 
         private void selectedTimes_Click(object sender, EventArgs e)
@@ -30,6 +34,13 @@ namespace TimeManager.Forms
                     + block.EndTime.ToString("HH:mm")
                 )
             ));
+        }
+
+        private void doneBtn_Click(object sender, EventArgs e)
+        {
+            //메인 폼에 시간 전달
+
+            Close();
         }
     }
 }
