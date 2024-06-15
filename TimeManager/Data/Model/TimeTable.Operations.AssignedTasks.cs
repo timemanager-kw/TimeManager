@@ -54,7 +54,7 @@ namespace TimeManager.Data.Model
 
         public List<AssignedTask> GetAllAssignedTasks()
         {
-            throw new NotImplementedException();
+            return _assignedTasks;
         }
 
         public List<AssignedTask> GetAllAssignedTasksAsOfNow()
