@@ -16,8 +16,8 @@ namespace TimeManager.Data.Model
             {
                 throw new ArgumentException("이미 있는 task입니다.");
             }
-            //var newTask = new AssignedTask(assignedblocks, taskId);
-            //timetable.AssignedTasks.Add(newTask); 
+            var newTask = new AssignedTask(assignedTimeBlocks.ToList(), taskId);
+            timetable.AssignedTasks.Add(newTask); 
         }
 
         public void ReassignTask(long taskId, IEnumerable<DateTimeBlock> assignedTimeBlocks)
