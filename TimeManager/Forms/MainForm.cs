@@ -53,6 +53,7 @@ namespace TimeManager.Forms
 
         AddScheduleForm AddScheduleForm;
         AddTaskForm AddTaskForm;
+        EditAvailableTimeForm EditAvailableTimeForm;
 
         int lastTaskID;
         int lastScheduleID;
@@ -65,7 +66,7 @@ namespace TimeManager.Forms
             WeekLabel.Size = new Size(WeekLabel.Size.Height * 13 / 3, TitlePanel.Size.Height * 3 / 4);
             NextBtn.Size = new Size(NextBtn.Size.Height * 7 / 6, TitlePanel.Size.Height * 3 / 4);
             AlgorithmStarter.Size = new Size(AlgorithmStarter.Size.Height, TitlePanel.Size.Height * 3 / 4);
-
+            
             for(int i = 0; i < dataGridView.Columns.Count; i++)
             {
                 dataGridView.Columns[i].Width = (dataGridView.Width - 65) / 7 - 4;
@@ -877,6 +878,12 @@ namespace TimeManager.Forms
             }
             AddScheduleForm = null;
             UpdateScheduleView();
+        }
+
+        private void openEditAvailableBtn_Click(object sender, EventArgs e)
+        {
+            EditAvailableTimeForm = new EditAvailableTimeForm();
+            EditAvailableTimeForm.Show();
         }
 
         public void CloseAddTask(bool isAdd, Task task)
