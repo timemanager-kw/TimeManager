@@ -92,19 +92,17 @@ namespace TimeManager.Data.Repository
                     EndDate = DateTime.Parse(parts[5]),
                     Duration = TimeSpan.Parse(parts[6]),
                     FocusDays = int.Parse(parts[7]),
-                    NDaysOfWeekWanted = int.Parse(parts[9]),
-                    WeeklyTimesWanted = new List<WeeklyDateTimeBlock>(),
+                    WeeklyTimesWanted = new List<longTermProperties>(),
                 };
                 string[] weeklyTimesParts = parts[8].Split(';');
                 foreach(string weeklyTimesPart in weeklyTimesParts)
                 {
                     string[] weeklyTimeSubParts = weeklyTimesPart.Split('|');
-                    WeeklyDateTimeBlock week = new WeeklyDateTimeBlock();
+                    longTermProperties week = new longTermProperties();
                     DayOfWeek dayOfWeek;
                     Enum.TryParse<DayOfWeek>(weeklyTimeSubParts[0], out dayOfWeek);
-                    week.DayOfWeek = dayOfWeek;
-                    week.StartTime = DateTime.Parse(weeklyTimesParts[1]);
-                    week.EndTime = DateTime.Parse(weeklyTimesParts[2]);
+                    week.dayOfWeek = dayOfWeek;
+                    week.time = TimeSpan.Parse(weeklyTimesParts[1]);
                 }
             tasks.Add(task);
             }
