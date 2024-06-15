@@ -37,7 +37,15 @@ namespace TimeManager.Data.Model
 
         public void UnassignTask(long taskId)
         {
-            throw new NotImplementedException();
+            var taskToRemove = timeTable.AssignedTasks.FirstOrDefault(t => t.TaskId == taskId);
+            if(taskToRemove != null)
+            {
+                timeTable.AssignedTasks.Remove(taskToRemove);
+            }
+            else
+            {
+                throw new ArgumentException("taskId에 해당하는 task가 없습니다.");
+            }
         }
 
         public List<AssignedTask> GetAssignedTasksByTaskId(long taskId)
