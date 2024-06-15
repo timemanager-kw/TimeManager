@@ -75,7 +75,7 @@ namespace TimeManager.Data.Model
 
         public List<AssignedSchedule> GetAssignedSchedulesInBlock(DateTimeBlock timeBlock)
         {
-            throw new NotImplementedException();
+            return _assignedSchedules.Where(s => s.AssignedBlocks.Any(b => b.StartDate <= timeBlock.EndDate && b.EndDate <= timeBlock.StartDate.Date)).ToList();
         }
 
         private List<AssignedSchedule> GetDailyAssignedSchedules(DateTime date)
