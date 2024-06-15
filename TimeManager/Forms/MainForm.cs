@@ -595,7 +595,7 @@ namespace TimeManager.Forms
                 new Task(),
                 new Task()
             };
-            taskList[0].Id = 4;
+            taskList[0].Id = 1;
             taskList[0].Name = "Test Task1";
             taskList[0].Type = ETaskType.ShortTerm;
             taskList[0].StartDate = new DateTime(2024, 5, 17);
@@ -603,7 +603,7 @@ namespace TimeManager.Forms
             taskList[0].Duration = new TimeSpan(10, 30, 0);
             taskList[0].FocusDays = 3;
 
-            taskList[1].Id = 5;
+            taskList[1].Id = 2;
             taskList[1].Name = "Test Task2";
             taskList[1].Type = ETaskType.ShortTerm;
             taskList[1].StartDate = new DateTime(2024, 5, 19);
@@ -611,7 +611,7 @@ namespace TimeManager.Forms
             taskList[1].Duration = new TimeSpan(10, 30, 0);
             taskList[1].FocusDays = 4;
 
-            taskList[2].Id = 6;
+            taskList[2].Id = 3;
             taskList[2].Name = "Test Task3";
             taskList[2].Type = ETaskType.LongTerm;
             taskList[2].StartDate = new DateTime(2024, 5, 20);
@@ -821,6 +821,7 @@ namespace TimeManager.Forms
                 focusedSchedule.RegularTimeBlocks = weeklyDateTimeBlock;
             }
 
+            _scheduleManager.Update(focusedSchedule);
             UpdateView[(int)viewType]();
         }
 
@@ -863,6 +864,7 @@ namespace TimeManager.Forms
 
             }
 
+            _taskManager.Update(focusedTask);
             UpdateView[(int)viewType]();
         }
 
@@ -871,7 +873,7 @@ namespace TimeManager.Forms
             if (isAdd)
             {
                 if (_scheduleManager != null) _scheduleManager.Add(schedule);
-                else scheduleList.Add(schedule);
+                scheduleList.Add(schedule);
             }
             AddScheduleForm = null;
             UpdateScheduleView();
@@ -882,7 +884,7 @@ namespace TimeManager.Forms
             if (isAdd)
             {
                 if (_taskManager != null) _taskManager.Add(task);
-                else taskList.Add(task);
+                taskList.Add(task);
             }
             AddTaskForm = null;
             UpdateTaskView();
