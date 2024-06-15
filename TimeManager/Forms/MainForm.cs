@@ -54,6 +54,9 @@ namespace TimeManager.Forms
         AddScheduleForm AddScheduleForm;
         AddTaskForm AddTaskForm;
 
+        int lastTaskID;
+        int lastScheduleID;
+
         void ResizeForm()
         {
             MainPanel.Size = new Size(this.Size.Width * 37 / 48, this.Size.Height);
@@ -75,8 +78,6 @@ namespace TimeManager.Forms
             AddBtn.Size = new Size(AddBtn.Size.Height, AddBtn.Size.Height);
 
             TimeBlockView.Size = new Size(TimeBlockTitlePanel.Size.Width, this.Size.Height * 11 / 27);
-
-
 
 
             ScheduleBtn.Font = new Font(ScheduleBtn.Font.FontFamily, Mathf.Clampf(ScheduleBtn.Size.Height * 11 / 35, 7, 9));
@@ -733,12 +734,12 @@ namespace TimeManager.Forms
         {
             if (viewType == TimeTableType.Schedule)
             {
-                AddScheduleForm = new AddScheduleForm(this);
+                AddScheduleForm = new AddScheduleForm(this, lastScheduleID);
                 AddScheduleForm.Show();
             }
             else
             {
-                AddTaskForm = new AddTaskForm(this);
+                AddTaskForm = new AddTaskForm(this, lastTaskID);
                 AddTaskForm.Show();
             }
         }

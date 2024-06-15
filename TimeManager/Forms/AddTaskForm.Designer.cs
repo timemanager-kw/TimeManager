@@ -34,7 +34,7 @@
             this.AddCanclePanel = new System.Windows.Forms.Panel();
             this.AddTaskCancle = new System.Windows.Forms.Button();
             this.AddTask = new System.Windows.Forms.Button();
-            this.AddLongTaskPanel = new System.Windows.Forms.Panel();
+            this.AddShortTaskPanel = new System.Windows.Forms.Panel();
             this.AddShortTaskStartDatePanel = new System.Windows.Forms.Panel();
             this.AddShortTaskEndDatePicker = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,7 +46,7 @@
             this.AddTaskIsLong = new System.Windows.Forms.CheckBox();
             this.AddTaskName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.AddShortTaskPanel = new System.Windows.Forms.Panel();
+            this.AddLongTaskPanel = new System.Windows.Forms.Panel();
             this.AddLongTaskIsTrue = new System.Windows.Forms.CheckBox();
             this.AddRegularScheduleDays = new System.Windows.Forms.GroupBox();
             this.AddLongTaskSun = new System.Windows.Forms.RadioButton();
@@ -58,16 +58,16 @@
             this.AddLongTaskMon = new System.Windows.Forms.RadioButton();
             this.label8 = new System.Windows.Forms.Label();
             this.TaskDurationCmb = new System.Windows.Forms.ComboBox();
-            this.AddTaskTimePanel = new System.Windows.Forms.Panel();
+            this.AddShortTaskTimePanel = new System.Windows.Forms.Panel();
             this.AddTaskMemoPanel.SuspendLayout();
             this.AddCanclePanel.SuspendLayout();
-            this.AddLongTaskPanel.SuspendLayout();
+            this.AddShortTaskPanel.SuspendLayout();
             this.AddShortTaskStartDatePanel.SuspendLayout();
             this.AddShortTaskEndDatePanel.SuspendLayout();
             this.NamePanel.SuspendLayout();
-            this.AddShortTaskPanel.SuspendLayout();
+            this.AddLongTaskPanel.SuspendLayout();
             this.AddRegularScheduleDays.SuspendLayout();
-            this.AddTaskTimePanel.SuspendLayout();
+            this.AddShortTaskTimePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // AddTaskMemoPanel
@@ -139,15 +139,15 @@
             this.AddTask.UseVisualStyleBackColor = true;
             this.AddTask.Click += new System.EventHandler(this.AddTask_Click);
             // 
-            // AddLongTaskPanel
+            // AddShortTaskPanel
             // 
-            this.AddLongTaskPanel.Controls.Add(this.AddShortTaskStartDatePanel);
-            this.AddLongTaskPanel.Controls.Add(this.AddShortTaskEndDatePanel);
-            this.AddLongTaskPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.AddLongTaskPanel.Location = new System.Drawing.Point(0, 47);
-            this.AddLongTaskPanel.Name = "AddLongTaskPanel";
-            this.AddLongTaskPanel.Size = new System.Drawing.Size(800, 81);
-            this.AddLongTaskPanel.TabIndex = 27;
+            this.AddShortTaskPanel.Controls.Add(this.AddShortTaskStartDatePanel);
+            this.AddShortTaskPanel.Controls.Add(this.AddShortTaskEndDatePanel);
+            this.AddShortTaskPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.AddShortTaskPanel.Location = new System.Drawing.Point(0, 47);
+            this.AddShortTaskPanel.Name = "AddShortTaskPanel";
+            this.AddShortTaskPanel.Size = new System.Drawing.Size(800, 81);
+            this.AddShortTaskPanel.TabIndex = 27;
             // 
             // AddShortTaskStartDatePanel
             // 
@@ -254,6 +254,7 @@
             this.AddTaskIsLong.TabIndex = 3;
             this.AddTaskIsLong.Text = "정기 업무";
             this.AddTaskIsLong.UseVisualStyleBackColor = true;
+            this.AddTaskIsLong.CheckedChanged += new System.EventHandler(this.AddTaskIsLong_CheckedChanged);
             // 
             // AddTaskName
             // 
@@ -276,17 +277,17 @@
             this.label1.Text = "업무";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // AddShortTaskPanel
+            // AddLongTaskPanel
             // 
-            this.AddShortTaskPanel.Controls.Add(this.AddLongTaskIsTrue);
-            this.AddShortTaskPanel.Controls.Add(this.AddRegularScheduleDays);
-            this.AddShortTaskPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.AddShortTaskPanel.Location = new System.Drawing.Point(0, 128);
-            this.AddShortTaskPanel.Margin = new System.Windows.Forms.Padding(10);
-            this.AddShortTaskPanel.Name = "AddShortTaskPanel";
-            this.AddShortTaskPanel.Padding = new System.Windows.Forms.Padding(10);
-            this.AddShortTaskPanel.Size = new System.Drawing.Size(800, 82);
-            this.AddShortTaskPanel.TabIndex = 29;
+            this.AddLongTaskPanel.Controls.Add(this.AddLongTaskIsTrue);
+            this.AddLongTaskPanel.Controls.Add(this.AddRegularScheduleDays);
+            this.AddLongTaskPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.AddLongTaskPanel.Location = new System.Drawing.Point(0, 128);
+            this.AddLongTaskPanel.Margin = new System.Windows.Forms.Padding(10);
+            this.AddLongTaskPanel.Name = "AddLongTaskPanel";
+            this.AddLongTaskPanel.Padding = new System.Windows.Forms.Padding(10);
+            this.AddLongTaskPanel.Size = new System.Drawing.Size(800, 82);
+            this.AddLongTaskPanel.TabIndex = 29;
             // 
             // AddLongTaskIsTrue
             // 
@@ -434,17 +435,17 @@
             this.TaskDurationCmb.TabIndex = 6;
             this.TaskDurationCmb.Text = "00:00";
             // 
-            // AddTaskTimePanel
+            // AddShortTaskTimePanel
             // 
-            this.AddTaskTimePanel.Controls.Add(this.TaskDurationCmb);
-            this.AddTaskTimePanel.Controls.Add(this.label8);
-            this.AddTaskTimePanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.AddTaskTimePanel.Location = new System.Drawing.Point(0, 210);
-            this.AddTaskTimePanel.Margin = new System.Windows.Forms.Padding(10);
-            this.AddTaskTimePanel.Name = "AddTaskTimePanel";
-            this.AddTaskTimePanel.Padding = new System.Windows.Forms.Padding(10);
-            this.AddTaskTimePanel.Size = new System.Drawing.Size(800, 47);
-            this.AddTaskTimePanel.TabIndex = 30;
+            this.AddShortTaskTimePanel.Controls.Add(this.TaskDurationCmb);
+            this.AddShortTaskTimePanel.Controls.Add(this.label8);
+            this.AddShortTaskTimePanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.AddShortTaskTimePanel.Location = new System.Drawing.Point(0, 210);
+            this.AddShortTaskTimePanel.Margin = new System.Windows.Forms.Padding(10);
+            this.AddShortTaskTimePanel.Name = "AddShortTaskTimePanel";
+            this.AddShortTaskTimePanel.Padding = new System.Windows.Forms.Padding(10);
+            this.AddShortTaskTimePanel.Size = new System.Drawing.Size(800, 47);
+            this.AddShortTaskTimePanel.TabIndex = 30;
             // 
             // AddTaskForm
             // 
@@ -453,10 +454,10 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
             this.Controls.Add(this.AddTaskMemoPanel);
-            this.Controls.Add(this.AddTaskTimePanel);
-            this.Controls.Add(this.AddShortTaskPanel);
-            this.Controls.Add(this.AddCanclePanel);
+            this.Controls.Add(this.AddShortTaskTimePanel);
             this.Controls.Add(this.AddLongTaskPanel);
+            this.Controls.Add(this.AddCanclePanel);
+            this.Controls.Add(this.AddShortTaskPanel);
             this.Controls.Add(this.NamePanel);
             this.Name = "AddTaskForm";
             this.ShowIcon = false;
@@ -464,19 +465,19 @@
             this.AddTaskMemoPanel.ResumeLayout(false);
             this.AddTaskMemoPanel.PerformLayout();
             this.AddCanclePanel.ResumeLayout(false);
-            this.AddLongTaskPanel.ResumeLayout(false);
+            this.AddShortTaskPanel.ResumeLayout(false);
             this.AddShortTaskStartDatePanel.ResumeLayout(false);
             this.AddShortTaskStartDatePanel.PerformLayout();
             this.AddShortTaskEndDatePanel.ResumeLayout(false);
             this.AddShortTaskEndDatePanel.PerformLayout();
             this.NamePanel.ResumeLayout(false);
             this.NamePanel.PerformLayout();
-            this.AddShortTaskPanel.ResumeLayout(false);
-            this.AddShortTaskPanel.PerformLayout();
+            this.AddLongTaskPanel.ResumeLayout(false);
+            this.AddLongTaskPanel.PerformLayout();
             this.AddRegularScheduleDays.ResumeLayout(false);
             this.AddRegularScheduleDays.PerformLayout();
-            this.AddTaskTimePanel.ResumeLayout(false);
-            this.AddTaskTimePanel.PerformLayout();
+            this.AddShortTaskTimePanel.ResumeLayout(false);
+            this.AddShortTaskTimePanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -489,12 +490,12 @@
         private System.Windows.Forms.Panel AddCanclePanel;
         private System.Windows.Forms.Button AddTaskCancle;
         private System.Windows.Forms.Button AddTask;
-        private System.Windows.Forms.Panel AddLongTaskPanel;
+        private System.Windows.Forms.Panel AddShortTaskPanel;
         private System.Windows.Forms.Panel NamePanel;
         private System.Windows.Forms.CheckBox AddTaskIsLong;
         private System.Windows.Forms.TextBox AddTaskName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel AddShortTaskPanel;
+        private System.Windows.Forms.Panel AddLongTaskPanel;
         private System.Windows.Forms.Panel AddShortTaskEndDatePanel;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.DateTimePicker AddShortTaskStartDatePicker;
@@ -513,6 +514,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox TaskDurationCmb;
-        private System.Windows.Forms.Panel AddTaskTimePanel;
+        private System.Windows.Forms.Panel AddShortTaskTimePanel;
     }
 }
