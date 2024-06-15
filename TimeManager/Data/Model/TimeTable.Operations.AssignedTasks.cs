@@ -81,7 +81,7 @@ namespace TimeManager.Data.Model
         
         public List<AssignedTask> GetAssignedTasksInBlock(DateTimeBlock timeBlock)
         {
-            throw new NotImplementedException();
+            return _assignedTasks.Where(t => t.AssignedBlocks.Any(b => b.StartDate <= timeBlock.EndDate && b.EndDate >= timeBlock.StartDate)).ToList();
         }
     }
 }
