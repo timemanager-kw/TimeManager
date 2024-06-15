@@ -11,7 +11,12 @@ namespace TimeManager.Data.Model
         /* AssignedSchedule Operations */
         public void AssignSchedule(long scheduleId, IEnumerable<DateTimeBlock> assignedTimeBlocks)
         {
-            throw new NotImplementedException();
+            if(_assignedSchedules.Any(s=>s.ScheduleId == scheduleId))
+            {
+                throw new ArgumentException("이미 있는 schedule입니다.");
+            }
+            var newSchedule = new AssignedSchedule(assignedTimeBlocks.ToList(), scheduleId);
+            _assignedSchedules.Add(newSchedule);
         }
         public void ReassignSchedule(long scheduleId, IEnumerable<DateTimeBlock> assignedTimeBlocks)
         {
