@@ -8,21 +8,31 @@ namespace TimeManager.Data.Model
 {
     public partial class TimeTable : ITimeTable
     {
-        private TimeTable timetable = new TimeTable();
+        private TimeTable timeTable = new TimeTable();
         /* AssignedTask Operations */
         public void AssignTask(long taskId, IEnumerable<DateTimeBlock> assignedTimeBlocks)
         {
-           if(timetable.AssignedTasks.Any(t =>t.TaskId == taskId))
+           if(timeTable.AssignedTasks.Any(t =>t.TaskId == taskId))
             {
                 throw new ArgumentException("이미 있는 task입니다.");
             }
             var newTask = new AssignedTask(assignedTimeBlocks.ToList(), taskId);
-            timetable.AssignedTasks.Add(newTask); 
+            timeTable.AssignedTasks.Add(newTask); 
         }
 
         public void ReassignTask(long taskId, IEnumerable<DateTimeBlock> assignedTimeBlocks)
         {
-            
+            var task = timeTable.AssignedTasks.FirstOrDefault(t=>t.TaskId == taskId);
+            if(task != null)
+            {
+                task.AssignedBlocks.Clear();
+                var newTask = new AssignedTask(assignedTimeBlocks.ToList(), taskId);
+                timeTable.AssignedTasks.Add(newTask);
+            }
+            else
+            {
+                throw new ArgumentException("taskId에 해당하는 task가 없습니다.");
+            }
         }
 
         public void UnassignTask(long taskId)
