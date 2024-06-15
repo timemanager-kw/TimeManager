@@ -50,7 +50,7 @@ namespace TimeManager.Data.Model
 
         public List<AssignedTask> GetAssignedTasksByTaskId(long taskId)
         {
-            throw new NotImplementedException();
+            return timeTable.AssignedTasks.Where(t=>t.TaskId == taskId).ToList();
         }
 
         public List<AssignedTask> GetAllAssignedTasks()
