@@ -31,19 +31,19 @@ namespace TimeManager.Data.Repository
             task.Id = nextId;
             using (StreamWriter writer = new StreamWriter(filePath))
             {
-                writer.WriteLine($"{task.Id}, {task.Name}, {task.Description}, {(int)task.Type}, {task.StartDate}, {task.EndDate},{task.Duration}, {task.FocusDays}, {SerializeWeeklyTimes(task.WeeklyTimesWanted)}, {task.NDaysOfWeekWanted}");
+                writer.WriteLine($"{task.Id}, {task.Name}, {task.Description}, {(int)task.Type}, {task.StartDate}, {task.EndDate},{task.Duration}, {task.FocusDays}, {SerializeWeeklyTimes(task.WeeklyTimesWanted)}");
             }
             using (StreamWriter writer = new StreamWriter(filePath))
             {
                 writer.WriteLine(++nextId);
             }
         }
-        private string SerializeWeeklyTimes(List<WeeklyDateTimeBlock> weeklyTimes)
+        private string SerializeWeeklyTimes(List<longTermProperties> weeklyTimes)
         {
             List<string> serializedTimes = new List<string>();
             foreach(var weeklyTime in weeklyTimes)
             {
-                string serializedTime = $"{weeklyTime.DayOfWeek}|{weeklyTime.StartTime}|{weeklyTime.EndTime}";
+                string serializedTime = $"{weeklyTime.dayOfWeek}|{weeklyTime.time}";
                 serializedTimes.Add(serializedTime);
             }
             return string.Join(";", serializedTimes);
