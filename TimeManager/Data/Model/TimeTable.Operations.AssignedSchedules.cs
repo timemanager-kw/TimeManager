@@ -49,7 +49,7 @@ namespace TimeManager.Data.Model
 
         public List<AssignedSchedule> GetAssignedSchedulesByScheduleId(long scheduleId)
         {
-            throw new NotImplementedException();
+            return _assignedSchedules.Where(s=>s.ScheduleId==scheduleId).ToList();
         }
 
         public List<AssignedSchedule> GetAllAssignedSchedulesAsOfNow()
