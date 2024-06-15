@@ -15,6 +15,7 @@ namespace TimeManager.Scheduler
         private ITaskManager _taskManager;
 
         private TimeTable _timeTable;
+        private TimeTable newTimeTable;
 
         public ThunderScheduler(ThunderSchedulerStrategy thunderSchedulerStrategy,
             ITimeTableManager timeTableManager,
