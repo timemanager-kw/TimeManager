@@ -20,7 +20,13 @@ namespace TimeManager.Data.Model
         }
         public void ReassignSchedule(long scheduleId, IEnumerable<DateTimeBlock> assignedTimeBlocks)
         {
-            throw new NotImplementedException();
+            var schedule = _assignedSchedules.FirstOrDefault(s=>s.ScheduleId == scheduleId);
+            if (schedule != null)
+            {
+                schedule.AssignedBlocks.Clear();
+                var newSchedule = new AssignedSchedule(assignedTimeBlocks.ToList(), scheduleId);
+                _assignedSchedules.Add(newSchedule);
+            }
         }
 
         public void UnassignSchedule(long scheduleId)
