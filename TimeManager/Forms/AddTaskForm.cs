@@ -16,7 +16,9 @@ namespace TimeManager.Forms
 
         Task Task;
 
-        public AddTaskForm(MainForm mainForm)
+        int lastID;
+
+        public AddTaskForm(MainForm mainForm, int lastID)
         {
             InitializeComponent();
 
@@ -28,6 +30,17 @@ namespace TimeManager.Forms
             {
                 TaskDurationCmb.Items.Add($"{i / 60}:{i % 60}");
             }
+
+            this.lastID = lastID;
+
+            UpdateAddScheduleView();
+        }
+
+        void UpdateAddScheduleView()
+        {
+            AddShortTaskPanel.Visible = !AddTaskIsLong.Checked;
+            AddLongTaskPanel.Visible = AddTaskIsLong.Checked;
+            AddShortTaskTimePanel.Visible = AddTaskIsLong.Checked;
         }
 
         private void AddTask_Click(object sender, EventArgs e)
@@ -57,11 +70,16 @@ namespace TimeManager.Forms
                 }
             };
             Task.Name = AddTaskName.Text;
-            //ID 추가
+            Task.Id = lastID + 1;
             Task.Type = AddTaskIsLong.Checked ? ETaskType.LongTerm : ETaskType.ShortTerm;
             Task.Description = AddTaskMemo.Text;
 
             AddType[(int)Task.Type]();
+        }
+
+        private void AddTaskIsLong_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateAddScheduleView();
         }
     }
 }

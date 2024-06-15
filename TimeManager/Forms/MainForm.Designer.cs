@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.ColumnMonday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTuesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -100,12 +102,14 @@
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.taskLongEditOkBtn = new System.Windows.Forms.Button();
+            this.taskLongEditCancleBtn = new System.Windows.Forms.Button();
             this.TaskLName = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.ShortTaskMemo = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.openEditAvailableBtn = new System.Windows.Forms.Button();
+            this.images = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.MainPanel.SuspendLayout();
             this.TitlePanel.SuspendLayout();
@@ -238,6 +242,7 @@
             // 
             // TitlePanel
             // 
+            this.TitlePanel.Controls.Add(this.openEditAvailableBtn);
             this.TitlePanel.Controls.Add(this.AlgorithmStarter);
             this.TitlePanel.Controls.Add(this.NextBtn);
             this.TitlePanel.Controls.Add(this.WeekLabel);
@@ -255,6 +260,8 @@
             // 
             this.AlgorithmStarter.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.AlgorithmStarter.Dock = System.Windows.Forms.DockStyle.Right;
+            this.AlgorithmStarter.ImageIndex = 0;
+            this.AlgorithmStarter.ImageList = this.images;
             this.AlgorithmStarter.Location = new System.Drawing.Point(700, 5);
             this.AlgorithmStarter.Name = "AlgorithmStarter";
             this.AlgorithmStarter.Size = new System.Drawing.Size(35, 30);
@@ -791,8 +798,8 @@
             this.LongTaskPanel.Controls.Add(this.LongTaskMemo);
             this.LongTaskPanel.Controls.Add(this.label10);
             this.LongTaskPanel.Controls.Add(this.groupBox1);
-            this.LongTaskPanel.Controls.Add(this.button1);
-            this.LongTaskPanel.Controls.Add(this.button2);
+            this.LongTaskPanel.Controls.Add(this.taskLongEditOkBtn);
+            this.LongTaskPanel.Controls.Add(this.taskLongEditCancleBtn);
             this.LongTaskPanel.Controls.Add(this.TaskLName);
             this.LongTaskPanel.Controls.Add(this.label12);
             this.LongTaskPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -909,25 +916,27 @@
             this.checkBox1.Text = "월";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // taskLongEditOkBtn
             // 
-            this.button1.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.Location = new System.Drawing.Point(150, 195);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(45, 30);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "수정";
-            this.button1.UseVisualStyleBackColor = true;
+            this.taskLongEditOkBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.taskLongEditOkBtn.Location = new System.Drawing.Point(150, 195);
+            this.taskLongEditOkBtn.Name = "taskLongEditOkBtn";
+            this.taskLongEditOkBtn.Size = new System.Drawing.Size(45, 30);
+            this.taskLongEditOkBtn.TabIndex = 13;
+            this.taskLongEditOkBtn.Text = "수정";
+            this.taskLongEditOkBtn.UseVisualStyleBackColor = true;
+            this.taskLongEditOkBtn.Click += new System.EventHandler(this.TaskEditOk_Click);
             // 
-            // button2
+            // taskLongEditCancleBtn
             // 
-            this.button2.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button2.Location = new System.Drawing.Point(105, 195);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(45, 30);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "취소";
-            this.button2.UseVisualStyleBackColor = true;
+            this.taskLongEditCancleBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.taskLongEditCancleBtn.Location = new System.Drawing.Point(105, 195);
+            this.taskLongEditCancleBtn.Name = "taskLongEditCancleBtn";
+            this.taskLongEditCancleBtn.Size = new System.Drawing.Size(45, 30);
+            this.taskLongEditCancleBtn.TabIndex = 12;
+            this.taskLongEditCancleBtn.Text = "취소";
+            this.taskLongEditCancleBtn.UseVisualStyleBackColor = true;
+            this.taskLongEditCancleBtn.Click += new System.EventHandler(this.EditCancle_Click);
             // 
             // TaskLName
             // 
@@ -964,6 +973,23 @@
             this.label11.TabIndex = 21;
             this.label11.Text = "메모";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // openEditAvailableBtn
+            // 
+            this.openEditAvailableBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.openEditAvailableBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.openEditAvailableBtn.Location = new System.Drawing.Point(665, 5);
+            this.openEditAvailableBtn.Name = "openEditAvailableBtn";
+            this.openEditAvailableBtn.Size = new System.Drawing.Size(35, 30);
+            this.openEditAvailableBtn.TabIndex = 4;
+            this.openEditAvailableBtn.UseVisualStyleBackColor = false;
+            this.openEditAvailableBtn.Click += new System.EventHandler(this.openEditAvailableBtn_Click);
+            // 
+            // images
+            // 
+            this.images.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("images.ImageStream")));
+            this.images.TransparentColor = System.Drawing.Color.Transparent;
+            this.images.Images.SetKeyName(0, "search.png");
             // 
             // MainForm
             // 
@@ -1076,9 +1102,11 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button taskLongEditOkBtn;
+        private System.Windows.Forms.Button taskLongEditCancleBtn;
         private System.Windows.Forms.TextBox TaskLName;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button openEditAvailableBtn;
+        private System.Windows.Forms.ImageList images;
     }
 }

@@ -20,12 +20,14 @@ namespace TimeManager.Forms
 
         DayOfWeek dayOfWeek;
 
+        int lastID;
+
         List<WeeklyDateTimeBlock> weeklyDateTimeBlocks;
         WeeklyDateTimeBlock[] weeklyBlock = new WeeklyDateTimeBlock[7];
             
         bool[] daysBool = new bool[] { false, false, false, false, false, false, false };
 
-        public AddScheduleForm(MainForm mainForm)
+        public AddScheduleForm(MainForm mainForm, int lastID)
         {
             InitializeComponent();
 
@@ -52,6 +54,8 @@ namespace TimeManager.Forms
             }
 
             AddScheduleTimePanel.Enabled = false;
+
+            this.lastID = lastID;
 
             UpdateAddScheduleView();
         }
@@ -136,7 +140,7 @@ namespace TimeManager.Forms
                 }
             };
             Schedule.Name = AddScheduleName.Text;
-            //ID 추가
+            Schedule.Id = lastID + 1;
             Schedule.Type = AddScheduleIsRegular.Checked ? EScheduleType.Regular : EScheduleType.Singular;
             Schedule.Description = AddScheduleMemo.Text;
 
