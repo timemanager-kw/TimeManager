@@ -67,7 +67,10 @@ namespace TimeManager.Data.Model
 
         public List<AssignedSchedule> GetAssignedSchedulesInThisWeekAsOfNow()
         {
-            throw new NotImplementedException();
+            var now = DateTime.Now;
+            var startOfWeek = now.AddDays(-(int)now.DayOfWeek);
+            var endOfWeek = startOfWeek.AddDays(6);
+            return _assignedSchedules.Where(s => s.AssignedBlocks.Any(b => b.StartDate.Date < endOfWeek && b.StartDate.Date >= startOfWeek)).ToList();
         }
 
         public List<AssignedSchedule> GetAssignedSchedulesInBlock(DateTimeBlock timeBlock)
