@@ -86,7 +86,7 @@ namespace TimeManager.Data.Repository
                                 DateTime endDate = DateTime.Parse(blockParts[1]);
                                 return new DateTimeBlock(startDate, endDate);
                             }).ToList();
-                            scheduleBlock.Add(new AssignedSchedule(assignedBlocks, scheduleId, scheduleName));
+                            scheduleBlock.Add(new AssignedSchedule(assignedBlocks, scheduleId));
                         }
                     }
                     else if (line.Contains("AssignedTasks:"))
@@ -104,7 +104,7 @@ namespace TimeManager.Data.Repository
                                 DateTime endDate = DateTime.Parse(blockParts[1]);
                                 return new DateTimeBlock(startDate, endDate);
                             }).ToList();
-                            taskBlock.Add(new AssignedTask(assignedBlocks, taskId, taskName));
+                            taskBlock.Add(new AssignedTask(assignedBlocks, taskId));
                         }
                     }
                 }
