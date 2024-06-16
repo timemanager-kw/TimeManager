@@ -13,5 +13,6 @@ namespace TimeManager.Data.Manager
         void Update(Schedule schedule);
         void Delete(Schedule schedule);
         IEnumerable<Schedule> GetAll();
+        Schedule GetById(long id);
     }
 }

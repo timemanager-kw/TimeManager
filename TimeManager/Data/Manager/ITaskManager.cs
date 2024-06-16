@@ -12,5 +12,6 @@ namespace TimeManager.Data.Manager
         void Update(Task task);
         void Delete(Task task);
         IEnumerable<Task> GetAll();
+        Task GetById(long id);
     }
 }

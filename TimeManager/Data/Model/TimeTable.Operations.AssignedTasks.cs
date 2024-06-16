@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace TimeManager.Data.Model
 {
@@ -11,32 +12,56 @@ namespace TimeManager.Data.Model
         /* AssignedTask Operations */
         public void AssignTask(long taskId, IEnumerable<DateTimeBlock> assignedTimeBlocks)
         {
-            throw new NotImplementedException();
+           if(_assignedTasks.Any(t =>t.TaskId == taskId))
+            {
+                throw new ArgumentException("이미 있는 task입니다.");
+            }
+            var newTask = new AssignedTask(assignedTimeBlocks.ToList(), taskId);
+            _assignedTasks.Add(newTask); 
         }
 
         public void ReassignTask(long taskId, IEnumerable<DateTimeBlock> assignedTimeBlocks)
         {
-            throw new NotImplementedException();
+            var task = _assignedTasks.FirstOrDefault(t=>t.TaskId == taskId);
+            if(task != null)
+            {
+                task.AssignedBlocks.Clear();
+                var newTask = new AssignedTask(assignedTimeBlocks.ToList(), taskId);
+                _assignedTasks.Add(newTask);
+            }
+            else
+            {
+                throw new ArgumentException("taskId에 해당하는 task가 없습니다.");
+            }
         }
 
         public void UnassignTask(long taskId)
         {
-            throw new NotImplementedException();
+            var taskToRemove = _assignedTasks.FirstOrDefault(t => t.TaskId == taskId);
+            if(taskToRemove != null)
+            {
+                _assignedTasks.Remove(taskToRemove);
+            }
+            else
+            {
+                throw new ArgumentException("taskId에 해당하는 task가 없습니다.");
+            }
         }
 
         public List<AssignedTask> GetAssignedTasksByTaskId(long taskId)
         {
-            throw new NotImplementedException();
+            return _assignedTasks.Where(t=>t.TaskId == taskId).ToList();
         }
 
         public List<AssignedTask> GetAllAssignedTasks()
         {
-            throw new NotImplementedException();
+            return _assignedTasks;
         }
 
         public List<AssignedTask> GetAllAssignedTasksAsOfNow()
         {
-            throw new NotImplementedException();
+            var now = DateTime.Now;
+            return _assignedTasks.Where(task => task.AssignedBlocks.Any(block => block.StartDate <= now && block.EndDate >= now)).ToList();
         }
 
         public List<AssignedTask> GetWeeklyAssignedTasks(Week week)
@@ -48,12 +73,15 @@ namespace TimeManager.Data.Model
 
         public List<AssignedTask> GetAssignedTasksInThisWeekAsOfNow()
         {
-            throw new NotImplementedException();
+            var now = DateTime.Now;
+            var startOfWeek = now.AddDays(-(int)now.DayOfWeek);
+            var endOfWeek = startOfWeek.AddDays(6);
+            return _assignedTasks.Where (t => t.AssignedBlocks.Any(b=>b.StartDate.Date<=endOfWeek && b.StartDate.Date>=startOfWeek)).ToList();
         }
         
         public List<AssignedTask> GetAssignedTasksInBlock(DateTimeBlock timeBlock)
         {
-            throw new NotImplementedException();
+            return _assignedTasks.Where(t => t.AssignedBlocks.Any(b => b.StartDate <= timeBlock.EndDate && b.EndDate >= timeBlock.StartDate)).ToList();
         }
     }
 }

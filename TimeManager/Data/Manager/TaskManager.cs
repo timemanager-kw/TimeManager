@@ -35,6 +35,15 @@ namespace TimeManager.Data.Manager
             return _tasks;
         }
 
+        public Task GetById(long id)
+        {
+            var task = _tasks.Find(s => s.Id == id);
+            if (task == null)
+                throw new ArgumentException("존재하지 않는 태스크입니다.");
+            
+            return task;
+        }
+
         public void Update(Task task)
         {
             int idx = _tasks.FindIndex(s => s.Id == task.Id);
