@@ -128,6 +128,7 @@
     <Compile Include="Scheduler\IScheduler.cs" />
     <Compile Include="Scheduler\ISchedulerStrategy.cs" />
     <Compile Include="Scheduler\Scheduler.cs" />
+    <Compile Include="Scheduler\ThunderScheduler.cs" />
     <Compile Include="Scheduler\ThunderSchedulerStrategy.cs" />
     <EmbeddedResource Include="Controls\WeeklyTimeTableSelectableControl.resx">
       <DependentUpon>WeeklyTimeTableSelectableControl.cs</DependentUpon>

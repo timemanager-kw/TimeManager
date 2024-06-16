@@ -7,15 +7,15 @@ using TimeManager.Data.Model;
 
 namespace TimeManager.Scheduler
 {
-    public abstract class Scheduler : IScheduler
+    public abstract class Scheduler
     {
-        public TimeTable Run()
+        public void Run()
         {
             AssignSchdules();
-            return ScheduleTasks();
+            ScheduleTasks();
         }
 
         abstract public void AssignSchdules();
-        abstract public TimeTable ScheduleTasks();
+        abstract public void ScheduleTasks();
     }
 }
