@@ -24,9 +24,12 @@ namespace TimeManager.Controls
         private Color _ScheduleBackColor = Color.LightBlue;
         private Color _TaskBackColor = Color.LightGreen;
 
-        public WeeklyTimeTableControl()
+        public WeeklyTimeTableControl(IScheduleManager scheduleManager, ITaskManager taskManager)
         {
             InitializeComponent();
+
+            _scheduleManager = scheduleManager;
+            _taskManager = taskManager;
         }
 
         private void WeeklyTimeTableControl_Load(object sender, EventArgs e)
