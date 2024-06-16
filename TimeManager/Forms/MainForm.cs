@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
@@ -670,7 +671,7 @@ namespace TimeManager.Forms
             List<DateTimeBlock> workTimes = new List<DateTimeBlock>();
             for (int i = 0; i < 7; i++)
             {
-                workTimes.Add(new DateTimeBlock(new DateTime(2024, 5, 6 + i, 8, 0, 0), new DateTime(2024, 5, 6 + i, 22, 0, 0)));
+                workTimes.Add(new DateTimeBlock(new DateTime(2024, 6, 10 + i, 8, 0, 0), new DateTime(2024, 6, 10 + i, 22, 0, 0)));
             }
 
             timeTable = new TimeTable(workTimes, new List<AssignedSchedule> { assignedSchedule1 }, new List<AssignedTask> { assignedTask1 });
@@ -931,7 +932,7 @@ namespace TimeManager.Forms
                 }
             }
 
-            //_taskManager.Update(focusedTask);
+            _taskManager.Update(focusedTask);
             UpdateView[(int)viewType]();
         }
 
@@ -948,7 +949,7 @@ namespace TimeManager.Forms
 
         private void openEditAvailableBtn_Click(object sender, EventArgs e)
         {
-            EditAvailableTimeForm = new EditAvailableTimeForm(this);
+            EditAvailableTimeForm = new EditAvailableTimeForm(this, timeTable, Week.From(StandardTime));
             EditAvailableTimeForm.Show();
         }
 
@@ -980,6 +981,13 @@ namespace TimeManager.Forms
             }
             AddTaskForm = null;
             UpdateTaskView();
+        }
+
+        public void CloseAvailableTime(TimeTable updateBlock)
+        {
+            timeTable = updateBlock;
+            //_timeTableManager.Save(timeTable);
+            TimeTableView();
         }
     }
 }
