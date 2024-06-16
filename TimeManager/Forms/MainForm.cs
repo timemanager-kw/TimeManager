@@ -37,9 +37,6 @@ namespace TimeManager.Forms
         private List<Schedule> scheduleList;
         private List<Task> taskList;
 
-        private List<AssignedSchedule> assignedScheduleList;
-        private List<AssignedTask> assignedTaskList;
-
         private DateTime StandardTime;
 
         private TimeTableType viewType = TimeTableType.Schedule;
@@ -98,7 +95,7 @@ namespace TimeManager.Forms
             Week week = Week.From(StandardTime);
             WeekLabel.Text = $"{week.Year}.{week.Month} {week.WeekOfMonth}주차";
 
-            //timeTable = _timeTableManager.Get();
+            timeTable = _timeTableManager.Get();
 
             DrawCells(week);
         }
@@ -739,6 +736,9 @@ namespace TimeManager.Forms
 
             viewType = TimeTableType.Schedule;
 
+            lastScheduleID = timeTable.GetAllAssignedSchedules().Count;
+            lastTaskID = timeTable.GetAllAssignedTasks().Count;
+
             UpdateView[0]();
 
             TimeTableView();
@@ -986,7 +986,7 @@ namespace TimeManager.Forms
         public void CloseAvailableTime(TimeTable updateBlock)
         {
             timeTable = updateBlock;
-            //_timeTableManager.Save(timeTable);
+            _timeTableManager.Save(timeTable);
             TimeTableView();
         }
     }
