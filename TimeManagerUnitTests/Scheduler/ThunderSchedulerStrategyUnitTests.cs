@@ -38,8 +38,7 @@ namespace TimeManagerUnitTests.Scheduler
                         {
                             new DateTimeBlock(DateTime.Today.AddDays(1).AddHours(12), DateTime.Today.AddDays(1).AddHours(16))
                         },
-                        0,
-                        "Schedule 0"
+                        0
                     )
                 },
                 new List<AssignedTask>()
