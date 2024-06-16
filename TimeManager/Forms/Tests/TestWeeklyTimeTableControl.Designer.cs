@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.weeklyTimeTableControl1 = new TimeManager.Controls.WeeklyTimeTableControl();
+            this.weeklyTimeTableControl1 = new TimeManager.Controls.WeeklyTimeTableControl(scheduleManager, taskManager);
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 

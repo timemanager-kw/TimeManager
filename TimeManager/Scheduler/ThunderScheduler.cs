@@ -111,7 +111,7 @@ namespace TimeManager.Scheduler
                     AssignedSchedule assignedSchedule = new AssignedSchedule();
                     assignedSchedule.AssignedBlocks.Add(new DateTimeBlock(schedule.TimeBlock.StartDate, schedule.TimeBlock.EndDate));
                     assignedSchedule.ScheduleId = schedule.Id;
-                    assignedSchedule.ScheduleName = schedule.Name;
+                    //assignedSchedule.ScheduleName = schedule.Name;
 
                     newTimeTable.AssignedSchedules.Add(assignedSchedule);
                 }

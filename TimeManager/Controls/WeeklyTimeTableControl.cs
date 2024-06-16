@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TimeManager.Data.Manager;
 using TimeManager.Data.Model;
 using TimeManager.Extensions;
 
@@ -17,12 +18,18 @@ namespace TimeManager.Controls
         [Description("본 컨트롤에 그려진 아이템(Schedule 혹은 Task)가 선택되었을 때 발생하는 이벤트입니다."), Category("아이템")]
         public event EventHandler<WeeklyTimeTableControlItemEventArgs> ItemSelected;
 
+        private IScheduleManager _scheduleManager;
+        private ITaskManager _taskManager;
+
         private Color _ScheduleBackColor = Color.LightBlue;
         private Color _TaskBackColor = Color.LightGreen;
 
-        public WeeklyTimeTableControl()
+        public WeeklyTimeTableControl(IScheduleManager scheduleManager, ITaskManager taskManager)
         {
             InitializeComponent();
+
+            _scheduleManager = scheduleManager;
+            _taskManager = taskManager;
         }
 
         private void WeeklyTimeTableControl_Load(object sender, EventArgs e)
@@ -92,7 +99,8 @@ namespace TimeManager.Controls
 
                     for (int i = startRow; i < endRow; i++)
                     {
-                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(S" + schedule.ScheduleId + ") " + schedule.ScheduleName;
+                        string name = this._scheduleManager.GetById(schedule.ScheduleId).Name;
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(S" + schedule.ScheduleId + ") " + name;
                         dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = _ScheduleBackColor;
                     }
                 }
@@ -114,7 +122,8 @@ namespace TimeManager.Controls
 
                     for (int i = startRow; i < endRow; i++)
                     {
-                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(T" + task.TaskId + ") " + task.TaskName;
+                        string name = this._taskManager.GetById(task.TaskId).Name;
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(T" + task.TaskId + ") " + name;
                         dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = _TaskBackColor;
                     }
                 }
