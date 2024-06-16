@@ -49,6 +49,9 @@ namespace TimeManager.Forms
 
         Color noneSelectedColor, selectedColor;
 
+        private Color _ScheduleBackColor = Color.LightBlue;
+        private Color _TaskBackColor = Color.LightGreen;
+
         AddScheduleForm AddScheduleForm;
         AddTaskForm AddTaskForm;
         EditAvailableTimeForm EditAvailableTimeForm;
@@ -161,8 +164,8 @@ namespace TimeManager.Forms
 
                     for (int i = startRow; i < endRow; i++)
                     {
-                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "Schedule " + schedule.ScheduleId;
-                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = Color.LightBlue;
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(S" + schedule.ScheduleId + ") " + _scheduleManager.GetById(schedule.ScheduleId).Name;
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = _ScheduleBackColor;
                     }
                 }
             }
@@ -183,8 +186,8 @@ namespace TimeManager.Forms
 
                     for (int i = startRow; i < endRow; i++)
                     {
-                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "Task " + task.TaskId;
-                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = Color.LightGreen;
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(T" + task.TaskId + ") " + _taskManager.GetById(task.TaskId).Name;
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = _TaskBackColor;
                     }
                 }
             }
