@@ -60,6 +60,7 @@
             this.doneBtn.TabIndex = 2;
             this.doneBtn.Text = "완료";
             this.doneBtn.UseVisualStyleBackColor = true;
+            this.doneBtn.Click += new System.EventHandler(this.doneBtn_Click);
             // 
             // EditAvailableTimeForm
             // 
