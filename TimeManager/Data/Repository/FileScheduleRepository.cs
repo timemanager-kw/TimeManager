@@ -10,6 +10,7 @@ namespace TimeManager.Data.Repository
 {
     public class FileScheduleRepository : IScheduleRepository
     {
+        long nextId;
         private string filePath = Path.Combine(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName), "SchedulePath");
         public FileScheduleRepository(string filePath)
         {
@@ -23,24 +24,25 @@ namespace TimeManager.Data.Repository
         }
         public void Add(Schedule schedule)
         {
-            long nextId;
             using (StreamReader reader = new StreamReader(filePath))
             {
                 string line;
                 if ((line = reader.ReadLine()) == null)
                 {
-                    nextId = 1;
+                    nextId = 0;
                 }
                 else
                 {
                     nextId = long.Parse(line.Split(',')[0]);
                 }
+
             }
+            ++nextId;
             schedule.Id = nextId;
-            using (StreamWriter writer = new StreamWriter(filePath))
+            using (StreamWriter writer = new StreamWriter(filePath,true))
             {
                 writer.WriteLine($"{schedule.Id}, {schedule.Name}, {schedule.Description}, {schedule.Type}, {schedule.TimeBlock.StartDate}, {schedule.TimeBlock.EndDate}, {SerializeWeeklyTimes(schedule.RegularTimeBlocks)}");
-                writer.WriteLine(++nextId);
+                
             }
         }
         
@@ -89,7 +91,7 @@ namespace TimeManager.Data.Repository
         {
             List<Schedule> schedules = new List<Schedule>();
             List<string> lines = File.ReadAllLines(filePath).ToList();
-            for (int i = 1; i < lines.Count; i++)
+            for (int i = 0; i < lines.Count; i++)
             {
                 string[] parts = lines[i].Split(',');
                 Schedule schedule = new Schedule
@@ -97,24 +99,27 @@ namespace TimeManager.Data.Repository
                     Id = long.Parse(parts[0]),
                     Name = parts[1],
                     Description = parts[2],
-                    Type = (EScheduleType)int.Parse(parts[3]),
+                    Type = (EScheduleType)Enum.Parse(typeof(EScheduleType), parts[3]),
                     TimeBlock = new DateTimeBlock
                     {
                         StartDate = DateTime.Parse(parts[4]),
                         EndDate = DateTime.Parse(parts[5]),
                     },
-                   RegularTimeBlocks = new List<WeeklyDateTimeBlock>(),
+                    RegularTimeBlocks = new List<WeeklyDateTimeBlock>(),
                 };
-                string[] weeklyTimesParts = parts[8].Split(';');
-                foreach(string weeklyTimesPart in weeklyTimesParts)
+                if (schedule.Type != EScheduleType.Singular)
                 {
-                    string[] weeklyTimeSubParts = weeklyTimesPart.Split('|');
-                    WeeklyDateTimeBlock week = new WeeklyDateTimeBlock();
-                    DayOfWeek dayOfWeek;
-                    Enum.TryParse<DayOfWeek>(weeklyTimesParts[0], out dayOfWeek);
-                    week.DayOfWeek = dayOfWeek;
-                    week.StartTime = DateTime.Parse(weeklyTimesParts[1]);
-                    week.EndTime = DateTime.Parse(weeklyTimesParts[2]);
+                    string[] weeklyTimesParts = parts[6].Split(';');
+                    foreach (string weeklyTimesPart in weeklyTimesParts)
+                    {
+                        string[] weeklyTimeSubParts = weeklyTimesPart.Split('|');
+                        WeeklyDateTimeBlock week = new WeeklyDateTimeBlock();
+                        DayOfWeek dayOfWeek;
+                        Enum.TryParse<DayOfWeek>(weeklyTimesParts[0], out dayOfWeek);
+                        week.DayOfWeek = dayOfWeek;
+                        week.StartTime = DateTime.Parse(weeklyTimesParts[1]);
+                        week.EndTime = DateTime.Parse(weeklyTimesParts[2]);
+                    }
                 }
                 schedules.Add(schedule);
             }
