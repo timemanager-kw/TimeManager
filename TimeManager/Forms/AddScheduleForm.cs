@@ -20,14 +20,14 @@ namespace TimeManager.Forms
 
         DayOfWeek dayOfWeek;
 
-        int lastID;
+        long lastID;
 
         List<WeeklyDateTimeBlock> weeklyDateTimeBlocks;
         WeeklyDateTimeBlock[] weeklyBlock = new WeeklyDateTimeBlock[7];
 
         bool[] daysBool = new bool[] { false, false, false, false, false, false, false };
 
-        public AddScheduleForm(MainForm mainForm, int lastID)
+        public AddScheduleForm(MainForm mainForm, long lastID)
         {
             InitializeComponent();
 

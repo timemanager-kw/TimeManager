@@ -56,8 +56,8 @@ namespace TimeManager.Forms
         AddTaskForm AddTaskForm;
         EditAvailableTimeForm EditAvailableTimeForm;
 
-        int lastTaskID;
-        int lastScheduleID;
+        long lastTaskID;
+        long lastScheduleID;
 
         void ResizeForm()
         {
@@ -724,6 +724,16 @@ namespace TimeManager.Forms
             taskList = _taskManager.GetAll().ToList();
 
             timeTable = _timeTableManager.Get();
+
+            if (scheduleList.Count > 0)
+            {
+                lastScheduleID = scheduleList.Last<Schedule>().Id;
+            }
+
+            if (taskList.Count > 0)
+            {
+                lastTaskID = taskList.Last<Task>().Id;
+            }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
