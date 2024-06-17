@@ -710,21 +710,8 @@ namespace TimeManager.Scheduler
             // W.T.D : 덩어리가 큰 것들을 찾아 등분하여 다른곳과 바꿈
             List<Day> daysRandomlyArranged = RandomArrange(days, least_interval);
 
-            // W.T.D : days의 task_arr를 채우기
-
-
             // W.T.D : TimeTable에 채우기
-
-
-
-            
-
-
-
-
-
-
-            //throw new NotImplementedException();
+            FillTimeTable(days, timeTable);
         }
     }
 }
