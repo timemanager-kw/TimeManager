@@ -72,7 +72,7 @@ namespace TimeManager.Data.Model
             return availableTimes.Any(t => t.StartDate <= timeBlock.StartDate && t.EndDate >= timeBlock.EndDate);
         }
 
-        private List<DateTimeBlock> GetDailyAvailableTimes(DateTime date)
+        public List<DateTimeBlock> GetDailyAvailableTimes(DateTime date)
         {
             IEnumerable<DateTimeBlock> scheduleTimes = GetDailyAssignedSchedules(date)
                 .SelectMany(s => s.AssignedBlocks);
