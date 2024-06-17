@@ -42,11 +42,11 @@ namespace TimeManager.Scheduler
 
         private class TempBlock
         {
-            public TempBlock(Data.Model.Task task, int time_interval){
+            public TempBlock(Data.Model.Task task, int time_interval) {
                 this.task = task; this.time_interval = time_interval;
 
             }
-            public int time_interval {  get; set; }
+            public int time_interval { get; set; }
             public Data.Model.Task task;
 
             public bool Exchangable = false;        // Exchange 과정에서 사용하기 위해 만듦.
@@ -63,7 +63,7 @@ namespace TimeManager.Scheduler
             // Day 객체가 무슨 날인지
             public DateTime dateTime { get; set; }
             // 가용시간이 몇시간인지(1당 30분)
-            public int availableTime {  get; set; }
+            public int availableTime { get; set; }
             // 
             public List<TempBlock> tempBlocks { get; set; }
             // 시간이 얼마나 채워졌는지
@@ -83,7 +83,7 @@ namespace TimeManager.Scheduler
 
 
         private class TimeBlockHandle
-            // 실가용시간에 task를 넣는 기능 구현을 위한 클래스(timeblock 처리)
+        // 실가용시간에 task를 넣는 기능 구현을 위한 클래스(timeblock 처리)
         {
             public TimeBlockHandle(int startTime, int blank)
             {
@@ -117,9 +117,9 @@ namespace TimeManager.Scheduler
             List<ReplicaOfTask> repl_tasks = new List<ReplicaOfTask>();
 
             // List<Task>에 있는 Task의 replica를 만들어 List<ReplicaOfTask>를 생성.
-            foreach(Data.Model.Task task in tasks)
+            foreach (Data.Model.Task task in tasks)
             {
-                if(task.Type == ETaskType.LongTerm) continue;
+                if (task.Type == ETaskType.LongTerm) continue;
 
                 ReplicaOfTask repl_task = new ReplicaOfTask();
                 repl_task.task = task;
@@ -165,11 +165,11 @@ namespace TimeManager.Scheduler
                 // task_iter 초기화
                 task_iter.Reset();
                 // dateTime을 넣을 수 있는 날까지 MoveNext()하며 이동.
-                while((task_iter.Current.focusDate > day_iter.Current.dateTime))
+                while ((task_iter.Current.focusDate > day_iter.Current.dateTime))
                 {
                     // 임의의 day에 대해 그 앞에 마감일이 지난 task가 존재한다는 것은, 이행이 불가능한 시간표라는 것이므로
                     // 작업을 끝내는 동작을 한다.
-                    if(day_iter.Current.dateTime > task_iter.Current.endDate)
+                    if (day_iter.Current.dateTime > task_iter.Current.endDate)
                     {
                         end = true; break;
                     }
@@ -180,7 +180,7 @@ namespace TimeManager.Scheduler
                 if (end) break; // (*)의 연장선 상의 작업
 
                 // 넣을 수 있는 시간공간이 넣으려고 하는 시간보다 더 크거나 같을 때
-                if ((day_iter.Current.availableTime - day_iter.Current.time_allocated) >=task_iter.Current.Duration)
+                if ((day_iter.Current.availableTime - day_iter.Current.time_allocated) >= task_iter.Current.Duration)
                 {
                     // 같다면, 작업이 모두 끝난 이후 day_iter.MoveNext();
                     bool MoveNext = false;   // 를 수행하기 위한 선행과정
@@ -202,9 +202,9 @@ namespace TimeManager.Scheduler
                     repl_tasks.Remove(task_iter.Current);
                     if (MoveNext)
                     {
-                       end = !day_iter.MoveNext();      // 끝남을 확인하기 위한 if문
+                        end = !day_iter.MoveNext();      // 끝남을 확인하기 위한 if문
                     }
-                    
+
                 }
                 // 넣을 수 있는 시간공간보다 넣으려고 하는 시간이 더 클때
                 else if ((day_iter.Current.availableTime - day_iter.Current.time_allocated) < task_iter.Current.Duration)
@@ -262,23 +262,23 @@ namespace TimeManager.Scheduler
             DateTime dateTime = day_cursor.Current.dateTime;
 
             // task의 EndDate까지의 날짜를 계속 훑어봄.
-            while(day_cursor.Current.dateTime <= task.EndDate && !end)
+            while (day_cursor.Current.dateTime <= task.EndDate && !end)
             {
                 // 해당 day의 tempBlock들을 확인하며 적합한 task를 찾음.
-                    // 해당 task의 FocusDays가 
+                // 해당 task의 FocusDays가 
                 foreach (TempBlock tempBlock in day_cursor.Current.tempBlocks)
                 {
                     // 적합한 조건을 만족한다면
                     if (dateTime >= tempBlock.task.EndDate?.AddDays(-(double)(task.FocusDays - 1))
-                        && tempBlock.time_interval >=interval)
+                        && tempBlock.time_interval >= interval)
                     {
-                        if(PercentRandom(60))   // 여기서도 일단은 확률값은 받음.
+                        if (PercentRandom(60))   // 여기서도 일단은 확률값은 받음.
                         {
                             return tempBlock;
                         }
                     }
                 }
-                day_cursor.MoveNext() ;
+                day_cursor.MoveNext();
             }
             return null;
         }
@@ -291,7 +291,7 @@ namespace TimeManager.Scheduler
 
             while (day_cursor.Current.dateTime <= task.EndDate && !end)
             {
-                if(day_cursor.Current.availableTime - day_cursor.Current.time_allocated >= interval)
+                if (day_cursor.Current.availableTime - day_cursor.Current.time_allocated >= interval)
                 {
                     if (PercentRandom(60))   // 여기서도 일단은 확률값은 받음.
                     {
@@ -319,7 +319,7 @@ namespace TimeManager.Scheduler
         {
             int time_allocated = 0;
 
-            foreach(TempBlock tempBlock in day.tempBlocks)
+            foreach (TempBlock tempBlock in day.tempBlocks)
             {
                 time_allocated += tempBlock.time_interval;
             }
@@ -344,7 +344,7 @@ namespace TimeManager.Scheduler
             foreach (TempBlock tempBlock in day_b.tempBlocks)
             {
                 // 있다면 찾은 tempBlock의 interval값을 늘리고
-                if (tempBlock.task ==  tempBlock_f.task)
+                if (tempBlock.task == tempBlock_f.task)
                 {
                     exist = true;
                     tempBlock.time_interval += interval;
@@ -365,15 +365,15 @@ namespace TimeManager.Scheduler
 
         private Day FindCorresponedDayOfDaysCopied(DateTime dateTime, List<Day> days_copied)
         {
-            foreach(Day day in days_copied)
+            foreach (Day day in days_copied)
             {
-                if(day.dateTime == dateTime)
+                if (day.dateTime == dateTime)
                     return day;
             }
             throw new Exception("day가 반환되지 않음");
         }
 
- 
+
 
 
         // W.T.D : n시간으로 등분되길 원한다면, n시간씩 쪼개어 다른곳(다른날)과 위치를 바꿈.
@@ -390,10 +390,10 @@ namespace TimeManager.Scheduler
             // 
 
             Random random = new Random((int)DateTime.Now.Ticks);
-            
+
             // Days의 복사본 생성
             List<Day> days_copied = new List<Day>();
-            foreach(Day day in days)
+            foreach (Day day in days)
             {
                 days_copied.Add(new Day(day.dateTime, day.availableTime));
             }
@@ -413,10 +413,10 @@ namespace TimeManager.Scheduler
             bool first = true;
 
             // day들을 순회하며 tempBlocks의 tempblock들을 바꾸기 위한 반복문
-            while(day_iter.MoveNext())
+            while (day_iter.MoveNext())
             {
                 // While문 처음 들어왔을 때 첫 인덱스(첫날)부터 접근하게 하기 위한 방법
-                if(first)
+                if (first)
                 {
                     first = false;
                     day_iter.Reset();
@@ -438,15 +438,15 @@ namespace TimeManager.Scheduler
                         if (PercentRandom(50))
                         {
                             // 위치를 바꿀 수 있는 Temp를 찾는다.(changableTemp)
-                            TempBlock changableTemp =  FindExchangableTempBlock(tempBlock.task, day_cursor, interval);
+                            TempBlock changableTemp = FindExchangableTempBlock(tempBlock.task, day_cursor, interval);
                             // 찾았다면, changableTemp는 day_f_copied로, tempBlock은 cursor 위치로 보낸다.
-                            if(changableTemp != null)
+                            if (changableTemp != null)
                             {
-                                Day day_f_copied = FindCorresponedDayOfDaysCopied(day_iter.Current.dateTime , days_copied);
+                                Day day_f_copied = FindCorresponedDayOfDaysCopied(day_iter.Current.dateTime, days_copied);
                                 ExchangeTask(interval, tempBlock, changableTemp, day_f_copied, day_cursor.Current);
 
                                 // time_interval이 0이 된 temp는 지움.
-                                if(changableTemp.time_interval == 0)
+                                if (changableTemp.time_interval == 0)
                                 {
                                     day_cursor.Current.tempBlocks.Remove(changableTemp);
                                 }
@@ -455,7 +455,7 @@ namespace TimeManager.Scheduler
                         else
                         {
                             Day changableDay = FindExchanableDay(tempBlock.task, day_cursor, interval);
-                            if(changableDay != null)
+                            if (changableDay != null)
                             {
                                 ExchangeTaskWithEmpty(interval, tempBlock, changableDay);
                             }
@@ -472,21 +472,14 @@ namespace TimeManager.Scheduler
         }
 
 
-        // 
-
-
-
-
-
-
         // startTime, endTime을 확인하여 배열에 넣어주는 메서드
         // 1) 2차원 List로 실가용시간 블럭들 표현하기
         // 2) days에 있는 Task도 크기 순으로 정렬하기
         // 3) allocate가 큰 부분부터 채우며 넣기
         private Data.Model.Task[] TimeBlockToArray(List<DateTimeBlock> dateTimeBlocks, Day day)
         {
-            // worktimes에 있는 일과가능시간을 배열로 생성하기 
-            Data.Model.Task[] task_arr = new Data.Model.Task[48];
+            // worktimes에 있는 일과가능시간을 배열로 생성하기 (49로 했을 때 편리. in FillTimeTable)
+            Data.Model.Task[] task_arr = new Data.Model.Task[48 + 1];
 
             // day에 대한 처리
             List<TimeBlockHandle> timeBlockHandles = new List<TimeBlockHandle>();
@@ -560,9 +553,9 @@ namespace TimeManager.Scheduler
                 }
             }
 
-            foreach(TimeBlockHandle timeBlockHandle in timeBlockHandles)
+            foreach (TimeBlockHandle timeBlockHandle in timeBlockHandles)
             {
-                for(int i = 0; i<timeBlockHandle.taskBlocks.Count(); i++)
+                for (int i = 0; i < timeBlockHandle.taskBlocks.Count(); i++)
                 {
                     task_arr[timeBlockHandle.startTime + i] = timeBlockHandle.taskBlocks[i];
                 }
@@ -570,6 +563,104 @@ namespace TimeManager.Scheduler
 
             return task_arr;
         }
+
+        private void AddToAssignedTask(TimeTable timetable, Data.Model.Task task, DateTimeBlock dateTimeBlock)
+        {
+            AssignedTask assignedTask_; bool find = false;
+            foreach (AssignedTask assignedTask in timetable.AssignedTasks)
+            {
+                if (assignedTask.TaskId == task.Id)
+                {
+                    assignedTask_ = assignedTask;
+                    assignedTask_.AssignedBlocks.Add(dateTimeBlock);
+                }
+
+                if (!find)
+                {
+                    assignedTask_ = new AssignedTask(new List<DateTimeBlock>(), task.Id, task.Name);
+                    timetable.AssignedTasks.Add(assignedTask_);
+                    assignedTask_.AssignedBlocks.Add(dateTimeBlock);
+                }
+            }
+        }
+
+        // List<DateTimeBlock> _workTimes를 고려하여 List<AssignedTask> _assignedTasks에 넣기.
+
+        private void FillTimeTable(List<Day> days, TimeTable timeTable)
+        {
+            foreach (Day day in days)
+            {
+                List<DateTimeBlock> worktimes = timeTable.GetDailyAvailableTimes(day.dateTime);
+                Data.Model.Task[] task_arr = TimeBlockToArray(worktimes, day);
+
+                Data.Model.Task task_iter = null;
+                int task_start = 0;
+                int task_interval = 0;
+                Data.Model.Task task = null;
+
+                for (int i = 0; i < task_arr.Length; i++)
+                {
+                    /*해당 위치에 내용을 확인함.*/
+                    // 앞이랑 같은 상태가 유지된다면 interval을 +1 해주고
+                    // 달라질 때 처리
+
+                    if (task_iter == null)
+                    {
+                        // null -> task 일 경우
+                        if (task_arr[i] != null)
+                        {
+                            task = task_arr[i];
+                            task_interval = 1;
+                            task_start = i;
+                        }
+                        // null -> null 일 경우
+                        else if (task_arr[i] == null)
+                        {
+                            task_iter = task_arr[i];
+                            continue;
+                        }
+
+                    }
+                    else if (task_iter != null)
+                    {
+                        // task1 -> task1 일 경우
+                        if (task_iter == task_arr[i])
+                        {
+                            task_interval++;
+                        }
+                        else
+                        {
+                            // task1 -> null or task2일 경우
+                            DateTime dateTime = day.dateTime.Date;
+                            DateTime startTime = dateTime + TimeSpan.FromMinutes(30 * task_start);
+                            DateTime endTime = dateTime + TimeSpan.FromMinutes(30 * (task_start + task_interval));
+
+                            DateTimeBlock dateTimeBlock = new DateTimeBlock(startTime, endTime);
+
+                            AddToAssignedTask(timeTable, task, dateTimeBlock);
+
+                            // task1 -> task2일 경우
+                            if (task_arr[i] != null)
+                            {
+                                task = task_arr[i];
+                                task_interval = 1;
+                                task_start = i;
+                            }
+                            else if (task_arr[i] == null)
+                            {
+                                task = null;
+                                task_interval = 0;
+                                task_start = 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+    
+
 
 
 
