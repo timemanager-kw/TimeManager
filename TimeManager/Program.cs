@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -11,9 +12,9 @@ namespace TimeManager
 {
     internal static class Program
     {
-        static string TimeTablePath = "TimeTablePath";
-        static string SchedulePath = "SchedulePath";
-        static string TaskPath = "TaskPath";
+        static string TimeTablePath = Path.Combine(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName), "TimeTablePath");
+        static string SchedulePath = Path.Combine(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName), "SchedulePath");
+        static string TaskPath = Path.Combine(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName), "TaskPath");
 
         static FileTimeTableRepository FileTimeTableRepository = new FileTimeTableRepository(TimeTablePath);
         static FileScheduleRepository FileScheduleRepository = new FileScheduleRepository(SchedulePath);

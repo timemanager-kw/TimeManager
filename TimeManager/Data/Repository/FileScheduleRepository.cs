@@ -24,10 +24,10 @@ namespace TimeManager.Data.Repository
         }
         public void Add(Schedule schedule)
         {
-            int nextId;
+            long nextId;
             using (StreamReader reader = new StreamReader(filePath))
             {
-                nextId = int.Parse(reader.ReadLine());
+                nextId = long.Parse(reader.ReadLine());
             }
             schedule.Id = nextId;
             using (StreamWriter writer = new StreamWriter(filePath))
