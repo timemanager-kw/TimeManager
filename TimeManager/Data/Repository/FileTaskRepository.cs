@@ -10,7 +10,7 @@ namespace TimeManager.Data.Repository
     internal class FileTaskRepository:  ITaskRepository
     {
         private readonly string filePath;
-        FileTaskRepository(string filePath)
+        public FileTaskRepository(string filePath)
         {
             this.filePath = filePath;
             if (!File.Exists(filePath))
