@@ -42,7 +42,7 @@ namespace TimeManager.Scheduler
                 foreach (DateTimeBlock del_dateTime in a_Schedule.AssignedBlocks)
                 {
                     // 지울것을 List에 넣어놓기.
-                    if (del_dateTime.StartDate.Day > DateTime.Today.Day)
+                    if (del_dateTime.StartDate.Date > DateTime.Today.Date)
                     {
                         delBlock_list.Add(del_dateTime);
                     }
@@ -84,7 +84,7 @@ namespace TimeManager.Scheduler
             foreach (Schedule schedule in schedules)
             {
                 // schedule이 오늘 이후의 것들이라면 가져옴.
-                if(schedule.TimeBlock.StartDate.Day > DateTime.Today.Day)
+                if(schedule.TimeBlock.StartDate.Date > DateTime.Today.Date)
                 {
                     AssignedSchedule assignedSchedule = new AssignedSchedule();
                     assignedSchedule.AssignedBlocks.Add(new DateTimeBlock(schedule.TimeBlock.StartDate, schedule.TimeBlock.EndDate));
@@ -135,7 +135,7 @@ namespace TimeManager.Scheduler
             {
                 if (repTask.Type == ETaskType.LongTerm)
                     continue;
-                if (repTask.EndDate?.Day <= DateTime.Today.Date.Day)
+                if (repTask.EndDate?.Date <= DateTime.Today.Date)
                     continue;
                 // Shortterm에 대해 할것임. (& 마감일이 내일 이후인 것들만 확인할 것임.)
 
@@ -161,7 +161,7 @@ namespace TimeManager.Scheduler
                     foreach(DateTimeBlock timeBlock in assignedTask.AssignedBlocks)
                     {
                         //timeBlock이 내일 전인 것들을 찾는다.
-                        if (timeBlock.EndDate.Day <= DateTime.Today.Day)
+                        if (timeBlock.EndDate.Date <= DateTime.Today.Date)
                         {
                             // 그 시간블럭 크기만큼 줄인다.
                             repTask.Duration -= timeBlock.Duration;
