@@ -99,7 +99,7 @@ namespace TimeManager.Data.Repository
                     Description = parts[2],
                     Type = (ETaskType)Enum.Parse(typeof(EScheduleType),parts[3]),
                     StartDate = DateTime.Parse(parts[4]),
-                    EndDate = DateTime.Parse(parts[5]),
+                    EndDate = (ETaskType)Enum.Parse(typeof(EScheduleType), parts[3]) == ETaskType.ShortTerm ? DateTime.Parse(parts[5]) : new DateTime(),
                     
                     Duration = (ETaskType)Enum.Parse(typeof(EScheduleType), parts[3]) == ETaskType.ShortTerm ? TimeSpan.Parse(parts[6]): new TimeSpan(),
                     FocusDays = (ETaskType)Enum.Parse(typeof(EScheduleType), parts[3]) == ETaskType.ShortTerm ? int.Parse(parts[7]): 0,
@@ -116,7 +116,8 @@ namespace TimeManager.Data.Repository
                         DayOfWeek dayOfWeek;
                         Enum.TryParse<DayOfWeek>(weeklyTimeSubParts[0], out dayOfWeek);
                         week.dayOfWeek = dayOfWeek;
-                        week.time = TimeSpan.Parse(weeklyTimesParts[1]);
+                        week.time = TimeSpan.Parse(weeklyTimeSubParts[1]);
+                        task.WeeklyTimesWanted.Add(week);
                     }
                 }
             tasks.Add(task);
