@@ -9,6 +9,7 @@ namespace TimeManager.Data.Repository
 {
     internal class FileTaskRepository:  ITaskRepository
     {
+        long nextId;
         private string filePath = Path.Combine(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName), "TaskPath");
         public FileTaskRepository(string filePath)
         {
@@ -22,24 +23,23 @@ namespace TimeManager.Data.Repository
         }
         public void Add(Task task)
         {
-            long nextId;
             using (StreamReader reader = new StreamReader(filePath))
             {
                 string line;
                 if ((line = reader.ReadLine()) == null)
                 {
-                    nextId = 1;
+                    nextId = 0;
                 }
                 else
                 {
                     nextId = long.Parse(line.Split(',')[0]);
                 }
             }
+            ++nextId;
             task.Id = nextId;
             using (StreamWriter writer = new StreamWriter(filePath))
             {
                 writer.WriteLine($"{task.Id}, {task.Name}, {task.Description}, {(int)task.Type}, {task.StartDate}, {task.EndDate},{task.Duration}, {task.FocusDays}, {SerializeWeeklyTimes(task.WeeklyTimesWanted)}");
-                writer.WriteLine(++nextId);
             }
         }
         private string SerializeWeeklyTimes(List<longTermProperties> weeklyTimes)
@@ -86,7 +86,7 @@ namespace TimeManager.Data.Repository
         public IEnumerable<Task> LoadAll() { 
             List<Task> tasks = new List<Task>();
             List<string> lines = File.ReadAllLines(filePath).ToList();
-            for(int i = 1; i < lines.Count; i++)
+            for(int i = 0; i < lines.Count; i++)
             {
                 string[] parts = lines[i].Split(',');
                 Task task = new Task
@@ -94,22 +94,27 @@ namespace TimeManager.Data.Repository
                     Id = long.Parse(parts[0]),
                     Name = parts[1],
                     Description = parts[2],
-                    Type = (ETaskType)int.Parse(parts[3]),
+                    Type = (ETaskType)Enum.Parse(typeof(EScheduleType),parts[3]),
                     StartDate = DateTime.Parse(parts[4]),
                     EndDate = DateTime.Parse(parts[5]),
-                    Duration = TimeSpan.Parse(parts[6]),
-                    FocusDays = int.Parse(parts[7]),
+                    
+                    Duration = (ETaskType)Enum.Parse(typeof(EScheduleType), parts[3]) == ETaskType.ShortTerm ? TimeSpan.Parse(parts[6]): new TimeSpan(),
+                    FocusDays = (ETaskType)Enum.Parse(typeof(EScheduleType), parts[3]) == ETaskType.ShortTerm ? int.Parse(parts[7]): 0,
+                    
                     WeeklyTimesWanted = new List<longTermProperties>(),
                 };
-                string[] weeklyTimesParts = parts[8].Split(';');
-                foreach(string weeklyTimesPart in weeklyTimesParts)
+                if (task.Type == ETaskType.LongTerm)
                 {
-                    string[] weeklyTimeSubParts = weeklyTimesPart.Split('|');
-                    longTermProperties week = new longTermProperties();
-                    DayOfWeek dayOfWeek;
-                    Enum.TryParse<DayOfWeek>(weeklyTimeSubParts[0], out dayOfWeek);
-                    week.dayOfWeek = dayOfWeek;
-                    week.time = TimeSpan.Parse(weeklyTimesParts[1]);
+                    string[] weeklyTimesParts = parts[8].Split(';');
+                    foreach (string weeklyTimesPart in weeklyTimesParts)
+                    {
+                        string[] weeklyTimeSubParts = weeklyTimesPart.Split('|');
+                        longTermProperties week = new longTermProperties();
+                        DayOfWeek dayOfWeek;
+                        Enum.TryParse<DayOfWeek>(weeklyTimeSubParts[0], out dayOfWeek);
+                        week.dayOfWeek = dayOfWeek;
+                        week.time = TimeSpan.Parse(weeklyTimesParts[1]);
+                    }
                 }
             tasks.Add(task);
             }
