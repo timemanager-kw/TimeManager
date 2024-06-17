@@ -9,7 +9,7 @@ namespace TimeManager.Data.Repository
 {
     internal class FileTaskRepository:  ITaskRepository
     {
-        private readonly string filePath;
+        private string filePath = Path.Combine(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName), "TaskPath");
         public FileTaskRepository(string filePath)
         {
             this.filePath = filePath;
