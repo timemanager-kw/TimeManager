@@ -14,9 +14,8 @@ namespace TimeManager.Data.Repository
     internal class FileTimeTableRepository: ITimeTableRepository
     {
         private string filePath = Path.Combine(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName), "TimeTablePath");
-        public FileTimeTableRepository(string filePath)
+        public FileTimeTableRepository()
         {
-            this.filePath = filePath;
             if (!File.Exists(filePath))
             {
                 using (StreamWriter writer = new StreamWriter(filePath))

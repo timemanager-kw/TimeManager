@@ -12,9 +12,8 @@ namespace TimeManager.Data.Repository
     {
         long nextId;
         private string filePath = Path.Combine(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName), "SchedulePath");
-        public FileScheduleRepository(string filePath)
+        public FileScheduleRepository()
         {
-            this.filePath = filePath;
             if (!File.Exists(filePath))
             {
                 using (StreamWriter writer = new StreamWriter(filePath))
