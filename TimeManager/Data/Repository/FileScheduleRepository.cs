@@ -10,7 +10,7 @@ namespace TimeManager.Data.Repository
 {
     public class FileScheduleRepository : IScheduleRepository
     {
-        private readonly string filePath;
+        private string filePath = Path.Combine(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName), "SchedulePath");
         public FileScheduleRepository(string filePath)
         {
             this.filePath = filePath;
@@ -27,7 +27,15 @@ namespace TimeManager.Data.Repository
             long nextId;
             using (StreamReader reader = new StreamReader(filePath))
             {
-                nextId = long.Parse(reader.ReadLine());
+                string line;
+                if ((line = reader.ReadLine()) == null)
+                {
+                    nextId = 1;
+                }
+                else
+                {
+                    nextId = long.Parse(line.Split(',')[0]);
+                }
             }
             schedule.Id = nextId;
             using (StreamWriter writer = new StreamWriter(filePath))
@@ -56,7 +64,7 @@ namespace TimeManager.Data.Repository
             for (int i = 1; i < lines.Count; i++)
             {
                 string[] parts = lines[i].Split(',');
-                if (int.Parse(parts[0]) == schedule.Id)
+                if (long.Parse(parts[0]) == schedule.Id)
                 {
                     lines[i] = $"{schedule.Id}, {schedule.Name}, {schedule.Description}, {schedule.Type}, {schedule.TimeBlock.StartDate}, {schedule.TimeBlock.EndDate}, {schedule.RegularTimeBlocks}";
                     break;
@@ -70,7 +78,7 @@ namespace TimeManager.Data.Repository
             for (int i = 1; i < lines.Count; i++)
             {
                 string[] parts = lines[i].Split(',');
-                if (int.Parse(parts[0]) == schedule.Id)
+                if (long.Parse(parts[0]) == schedule.Id)
                 {
                     lines.RemoveAt(i);
                     break;

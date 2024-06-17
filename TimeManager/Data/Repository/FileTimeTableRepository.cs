@@ -13,7 +13,7 @@ namespace TimeManager.Data.Repository
 {
     internal class FileTimeTableRepository: ITimeTableRepository
     {
-        private readonly string filePath;
+        private string filePath = Path.Combine(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName), "TimeTablePath");
         public FileTimeTableRepository(string filePath)
         {
             this.filePath = filePath;
@@ -52,7 +52,6 @@ namespace TimeManager.Data.Repository
         }
         public TimeTable Load()
         {
-            TimeTable timeTable = new TimeTable();
             List<DateTimeBlock> blocks = new List<DateTimeBlock>();
             List<AssignedSchedule> scheduleBlock = new List<AssignedSchedule>();
             List<AssignedTask> taskBlock = new List<AssignedTask>();
@@ -109,6 +108,7 @@ namespace TimeManager.Data.Repository
                     }
                 }
             }
+            TimeTable timeTable = new TimeTable(blocks, scheduleBlock, taskBlock);
             return timeTable;
         }
     }
