@@ -40,9 +40,6 @@ namespace TimeManager.Data.Repository
             using (StreamWriter writer = new StreamWriter(filePath))
             {
                 writer.WriteLine($"{schedule.Id}, {schedule.Name}, {schedule.Description}, {schedule.Type}, {schedule.TimeBlock.StartDate}, {schedule.TimeBlock.EndDate}, {SerializeWeeklyTimes(schedule.RegularTimeBlocks)}");
-            }
-            using (StreamWriter writer = new StreamWriter(filePath))
-            {
                 writer.WriteLine(++nextId);
             }
         }

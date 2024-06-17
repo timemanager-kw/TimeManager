@@ -39,9 +39,6 @@ namespace TimeManager.Data.Repository
             using (StreamWriter writer = new StreamWriter(filePath))
             {
                 writer.WriteLine($"{task.Id}, {task.Name}, {task.Description}, {(int)task.Type}, {task.StartDate}, {task.EndDate},{task.Duration}, {task.FocusDays}, {SerializeWeeklyTimes(task.WeeklyTimesWanted)}");
-            }
-            using (StreamWriter writer = new StreamWriter(filePath))
-            {
                 writer.WriteLine(++nextId);
             }
         }
