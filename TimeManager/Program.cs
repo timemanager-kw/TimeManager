@@ -12,13 +12,10 @@ namespace TimeManager
 {
     internal static class Program
     {
-        static string TimeTablePath = Path.Combine(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName), "TimeTablePath");
-        static string SchedulePath = Path.Combine(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName), "SchedulePath");
-        static string TaskPath = Path.Combine(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName), "TaskPath");
 
-        static FileTimeTableRepository FileTimeTableRepository = new FileTimeTableRepository(TimeTablePath);
-        static FileScheduleRepository FileScheduleRepository = new FileScheduleRepository(SchedulePath);
-        static FileTaskRepository FileTaskRepository = new FileTaskRepository(TaskPath);
+        static FileTimeTableRepository FileTimeTableRepository = new FileTimeTableRepository();
+        static FileScheduleRepository FileScheduleRepository = new FileScheduleRepository();
+        static FileTaskRepository FileTaskRepository = new FileTaskRepository();
 
         static TimeTableManager TimeTableManager = new TimeTableManager(FileTimeTableRepository);
         static ScheduleManager ScheduleManager = new ScheduleManager(FileScheduleRepository);
