@@ -104,9 +104,9 @@ namespace TimeManager.Scheduler
             throw new NotImplementedException();
         }
 
-        public int ChangeToFocusDays(DateTime endDate, DateTime focusDate)
+        public int ChangeToFocusDays(DateTime endDate, DateTime todayDate)
         {
-            throw new NotImplementedException();
+            return (endDate - todayDate).Days;
         }
 
 
