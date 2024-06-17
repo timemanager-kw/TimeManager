@@ -27,7 +27,6 @@ namespace TimeManager.Forms
             this.timeTable = timeTable;
 
             weeklyTimeTableBlocks = timeTable.GetWeeklyWorkTimes(week);
-            MessageBox.Show($"{weeklyTimeTableBlocks[0].StartTime}\r\n");
             weeklyTimeTableSelectableControl1.UpdateSelectedBlocks(weeklyTimeTableBlocks);
         }
 
