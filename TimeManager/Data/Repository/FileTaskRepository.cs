@@ -23,10 +23,18 @@ namespace TimeManager.Data.Repository
         }
         public void Add(Task task)
         {
-            int nextId;
+            long nextId;
             using (StreamReader reader = new StreamReader(filePath))
             {
-                nextId = int.Parse(reader.ReadLine());
+                string line;
+                if ((line = reader.ReadLine()) == null)
+                {
+                    nextId = 1;
+                }
+                else
+                {
+                    nextId = long.Parse(line.Split(',')[0]);
+                }
             }
             task.Id = nextId;
             using (StreamWriter writer = new StreamWriter(filePath))
@@ -41,10 +49,13 @@ namespace TimeManager.Data.Repository
         private string SerializeWeeklyTimes(List<longTermProperties> weeklyTimes)
         {
             List<string> serializedTimes = new List<string>();
-            foreach(var weeklyTime in weeklyTimes)
+            if (weeklyTimes != null)
             {
-                string serializedTime = $"{weeklyTime.dayOfWeek}|{weeklyTime.time}";
-                serializedTimes.Add(serializedTime);
+                foreach (var weeklyTime in weeklyTimes)
+                {
+                    string serializedTime = $"{weeklyTime.dayOfWeek}|{weeklyTime.time}";
+                    serializedTimes.Add(serializedTime);
+                }
             }
             return string.Join(";", serializedTimes);
         }

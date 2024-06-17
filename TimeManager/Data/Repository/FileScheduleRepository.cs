@@ -18,7 +18,6 @@ namespace TimeManager.Data.Repository
             {
                 using (StreamWriter writer = new StreamWriter(filePath))
                 {
-                    writer.WriteLine("파일을 찾을 수 없습니다.");
                 }
             }
         }
@@ -51,10 +50,13 @@ namespace TimeManager.Data.Repository
         private string SerializeWeeklyTimes(List<WeeklyDateTimeBlock> regularTimeBlocks)
         {
             List<string> serializedTimes = new List<string>();
-            foreach(var time in regularTimeBlocks)
+            if (regularTimeBlocks != null)
             {
-                string serializedTime = $"{time.DayOfWeek}|{time.StartTime}|{time.EndTime}";
-                serializedTimes.Add(serializedTime);
+                foreach (var time in regularTimeBlocks)
+                {
+                    string serializedTime = $"{time.DayOfWeek}|{time.StartTime}|{time.EndTime}";
+                    serializedTimes.Add(serializedTime);
+                }
             }
             return string.Join(";", serializedTimes);
         }
