@@ -31,6 +31,10 @@ namespace TimeManager.Data.Repository
                 }
                 else
                 {
+                    while (!reader.EndOfStream)
+                    {
+                        line = reader.ReadLine();
+                    }
                     nextId = long.Parse(line.Split(',')[0]);
                 }
             }

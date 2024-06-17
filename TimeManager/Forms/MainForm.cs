@@ -249,6 +249,7 @@ namespace TimeManager.Forms
 
         void UpdateScheduleView()
         {
+            TimeTableView();
             ScheduleBtn.BackColor = selectedColor;
             TaskBtn.BackColor = noneSelectedColor;
 
@@ -325,6 +326,7 @@ namespace TimeManager.Forms
 
         void UpdateTaskView()
         {
+            TimeTableView();
             ScheduleBtn.BackColor = noneSelectedColor;
             TaskBtn.BackColor = selectedColor;
 
@@ -984,6 +986,11 @@ namespace TimeManager.Forms
             }
             AddTaskForm = null;
             UpdateTaskView();
+        }
+
+        private void TitlePanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         public void CloseAvailableTime(TimeTable updateBlock)
