@@ -23,9 +23,9 @@ namespace TimeManager.Forms
 
         bool[] daysBool = new bool[] { false, false, false, false, false, false, false };
 
-        int lastID;
+        long lastID;
 
-        public AddTaskForm(MainForm mainForm, int lastID)
+        public AddTaskForm(MainForm mainForm, long lastID)
         {
             InitializeComponent();
 
