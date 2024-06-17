@@ -14,7 +14,7 @@ namespace TimeManager.Data.Repository
     internal class FileTimeTableRepository: ITimeTableRepository
     {
         private readonly string filePath;
-        public FileTimeTableRepository(string filePath)
+        FileTimeTableRepository(string filePath)
         {
             this.filePath = filePath;
             if (!File.Exists(filePath))
