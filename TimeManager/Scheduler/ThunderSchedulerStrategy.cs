@@ -658,27 +658,27 @@ namespace TimeManager.Scheduler
         }
 
     
+        private void FillLongTerm()
+        {
 
+        }
 
 
 
         public void Schedule(TimeTable timeTable, List<Data.Model.Task> tasks)
         {
             // Let We have AvailableTime of each day.
-            // 날짜별로 가용시간 총량을 받아옴.
-
-            List<AssignedTask> find_End = timeTable.AssignedTasks;
-            
+            // 날짜별로 가용시간 총량을 받아옴.        
 
             DateTime endDateTime = DateTime.MinValue;
                 //find_End[0].AssignedBlocks[0].EndDate.Date + TimeSpan.FromDays(1);
 
-            foreach (AssignedTask task in find_End)
+            foreach (Data.Model.Task task in tasks)
             {
-                foreach(DateTimeBlock dateTimeBlock in task.AssignedBlocks)
+                if (task.Type == ETaskType.ShortTerm)
                 {
-                    if(endDateTime <= dateTimeBlock.EndDate)
-                        endDateTime = dateTimeBlock.EndDate;
+                    if (endDateTime <= task.EndDate)
+                        endDateTime = task.EndDate.Value.Date;
                 }
             }
 
