@@ -138,23 +138,25 @@ namespace TimeManager.Scheduler
             IEnumerator<ReplicaOfTask> task_iter = repl_tasks.GetEnumerator();
             IEnumerator<Day> day_iter = days.GetEnumerator();
 
+            int i = 0; /// 디버깅용
+
+            day_iter.MoveNext();
+
             bool end = false;
 
-            // W.T.D 마감일이 빠른것을 잡아 day_iter 위치에 때려박는다.
             while (!end)
             {
-                // 마감일이 빠른게 앞으로 오게 배열되어있음
-                // <-> 시작일은 배열 순서와 무관함
-                task_iter.Reset();          // Reset을 한다 == 마감일이 빠른것을 보겠다
+                task_iter.Reset();
                 // 처음 MoveNext()를 했는데 비어있다 == 남아있는 Task가 없다.
                 // ∴ 반복문 빠져나감.
-                if (task_iter.MoveNext())
+                if (!task_iter.MoveNext())
                 {
                     break;
                 }
                 /* focusDate가 dateTime보다 작아지는 상황을 찾는중*/
                 while ((task_iter.Current.focusDate > day_iter.Current.dateTime))
                 {
+                    i++; // 디버깅용
                     // repl_tasks에 들어있는 마감일이 가장 빠른것부터 차례로 확인함
                     task_iter.MoveNext();
                 }
@@ -403,11 +405,6 @@ namespace TimeManager.Scheduler
             while (day_iter.MoveNext())
             {
                 // While문 처음 들어왔을 때 첫 인덱스(첫날)부터 접근하게 하기 위한 방법
-                /*if(first)
-                {
-                    first = false;
-                    day_iter.Reset();
-                }*/
 
                 foreach (TempBlock tempBlock in day_iter.Current.tempBlocks)
                 {
@@ -709,10 +706,31 @@ namespace TimeManager.Scheduler
                 }
             }
 
+            // days 정렬 : 1) 날짜가 빠른것이 먼저.
+
+            days.Sort((x, y) => x.dateTime.Date.CompareTo(y.dateTime.Date));
+
             // post : days에 각 day별로 date와 AvailableTime이 들어감
 
             // W.T.D : 마감 있는 Task의 replica를 List로 만들기(repl_tasks) 
             List<ReplicaOfTask> repl_tasks = duplicateTaskOnShort(tasks);
+
+            // repl_tasks 정렬 : 1) 마감일이 작은것이 먼저.
+            //                   2) 시작일이 작은것이 먼저.
+
+            repl_tasks.Sort((x, y) =>
+            {
+                if (x.endDate < y.endDate) return -1;
+                else if (x.endDate > y.endDate) return 1;
+                else
+                {
+                    if (x.focusDate < y.focusDate) return -1;
+                    else if (x.focusDate > y.focusDate) return 1;
+                    else return 0;
+                }
+            });
+
+
 
             // W.T.D : 이제 days의 day에 repl_tasks의 repl_task를 넣기
             FillDaysWithTasks(repl_tasks, days);
