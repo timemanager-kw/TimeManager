@@ -27,6 +27,14 @@ namespace TimeManager.Data.Model
             if (_workTimes == null || _workTimes.Count == 0)
                 return new List<WeeklyDateTimeBlock>();
 
+            return _GetWeeklyWorkTimes(week);
+        }
+
+        private List<WeeklyDateTimeBlock> _GetWeeklyWorkTimes(Week week, int maxWeek = 48)
+        {
+            if (maxWeek < 1)
+                return new List<WeeklyDateTimeBlock>();
+
             List<WeeklyDateTimeBlock> weeklyWorkTimes = _workTimes
                 .FindAll(b => week.IsInWeek(b.StartDate))
                 .Select(b => new WeeklyDateTimeBlock
@@ -38,7 +46,7 @@ namespace TimeManager.Data.Model
                 .ToList();
 
             if (weeklyWorkTimes.Count == 0)
-                return GetWeeklyWorkTimes(week.PreviousWeek);
+                return _GetWeeklyWorkTimes(week.PreviousWeek, maxWeek - 1);
 
             return weeklyWorkTimes;
         }
