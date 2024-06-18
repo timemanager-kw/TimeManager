@@ -98,6 +98,14 @@ namespace TimeManager.Data.Model
             if (_workTimes == null || _workTimes.Count == 0)
                 return new List<DateTimeBlock>();
 
+            return _GetDailyAvailableTimes(date);
+        }
+
+        private List<DateTimeBlock> _GetDailyAvailableTimes(DateTime date, int maxWeek = 48)
+        {
+            if (maxWeek < 1)
+                return new List<DateTimeBlock>();
+
             IEnumerable<DateTimeBlock> scheduleTimes = GetDailyAssignedSchedules(date)
                 .SelectMany(s => s.AssignedBlocks);
 
@@ -105,9 +113,9 @@ namespace TimeManager.Data.Model
                 .Where(b => b.StartDate.Date == date.Date);
 
             if (dailyWorkTimes.Count() == 0)
-                return GetDailyAvailableTimes(date.AddDays(-7));
+                return _GetDailyAvailableTimes(date.AddDays(-7), maxWeek - 1);
 
-            return (List<DateTimeBlock>) DateTimeBlock.Difference(dailyWorkTimes, scheduleTimes);
+            return (List<DateTimeBlock>)DateTimeBlock.Difference(dailyWorkTimes, scheduleTimes);
         }
 
         public List<DateTimeBlock> GetAvailableTimesInBlock(DateTimeBlock timeBlock)
