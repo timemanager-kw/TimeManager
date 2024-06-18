@@ -296,6 +296,7 @@ namespace TimeManager.Forms
             }
 
             List<Schedule> schedules = _scheduleManager.GetAll().ToList();
+            List<Schedule> removeSchedules = new List<Schedule>();
             if (schedules.Count > 0)
             {
                 LogTxt.Text = "";
@@ -304,7 +305,7 @@ namespace TimeManager.Forms
                 {
                     if (schedule.Type == EScheduleType.Singular && schedule.TimeBlock.EndDate.CompareTo(DateTime.Now) <= 0)
                     {
-                        schedules.Remove(schedule);
+                        removeSchedules.Add(schedule);
                         continue;
                     }
                     var lvItem = new ListViewItem(new string[TimeBlockView.Columns.Count]);
@@ -323,6 +324,11 @@ namespace TimeManager.Forms
                     }
 
                     TimeBlockView.Items.Add(lvItem);
+                }
+
+                foreach(Schedule remove in removeSchedules)
+                {
+                    scheduleList.Remove(remove);
                 }
             }
             else
@@ -380,23 +386,43 @@ namespace TimeManager.Forms
             }
 
             List<Task> tasks = _taskManager.GetAll().ToList();
+            List<Task> removeTasks = new List<Task>();
+
             if (tasks.Count > 0)
             {
                 LogTxt.Text = $"남은 업무: {tasks.Count}";
 
                 foreach (Task task in tasks)
                 {
-                    if (task.Type == ETaskType.ShortTerm && task.EndDate.Value.CompareTo(DateTime.Now) <= 0)
-                    {
-                        taskList.Remove(task);
-                        continue;
-                    }
                     var lvItem = new ListViewItem(new string[2]);
 
                     lvItem.SubItems[0].Text = task.Name;
-                    lvItem.SubItems[1].Text = string.Format(task.EndDate.ToString(), "yyyy-MM-dd");
+                    if (task.Type == ETaskType.ShortTerm)
+                    {
+                        if (task.EndDate.Value.CompareTo(DateTime.Now) <= 0)
+                        {
+                            taskList.Remove(task);
+                            continue;
+                        }
+                        lvItem.SubItems[1].Text = ((DateTime)task.EndDate).ToString("yyyy-MM-dd");
+                    }
+                    else
+                    {
+                        string days = string.Empty;
+                        foreach (var dayOfWeek in task.WeeklyTimesWanted)
+                        {
+                            days += $"{DayOfWeekToString(dayOfWeek.dayOfWeek)} | ";
+                        }
+                        days = days.Remove(days.Length - 3);
+                        lvItem.SubItems[1].Text = days;
+                    }
 
                     TimeBlockView.Items.Add(lvItem);
+                }
+
+                foreach (Task remove in removeTasks)
+                {
+                    taskList.Remove(remove);
                 }
             }
             else
