@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,7 +50,13 @@ namespace TimeManager.Data.Model
             IEnumerable<DateTimeBlock> scheduleTimes = GetWeeklyAssignedSchedules(week)
                 .SelectMany(s => s.AssignedBlocks);
 
-            return (List<DateTimeBlock>) DateTimeBlock.Difference(_workTimes, scheduleTimes);
+            List<WeeklyDateTimeBlock> weeklyWorkTimes = GetWeeklyWorkTimes(Week.From(DateTime.Now));
+            List<DateTimeBlock> workTimes = weeklyWorkTimes.Select(w => new DateTimeBlock(
+                DateTime.Today.StartOfWeek().AddDays(w.DayOfWeek.GetDayOfWeekIndex()) + w.StartTime.TimeOfDay,
+                DateTime.Today.StartOfWeek().AddDays(w.DayOfWeek.GetDayOfWeekIndex()) + w.EndTime.TimeOfDay
+            )).ToList();
+
+            return (List<DateTimeBlock>) DateTimeBlock.Difference(workTimes, scheduleTimes);
         }
 
         public List<DateTimeBlock> GetAvailableTimesInThisWeekAsOfNow()
@@ -57,7 +64,13 @@ namespace TimeManager.Data.Model
             IEnumerable<DateTimeBlock> scheduleTimesInThisWeek = GetAssignedSchedulesInThisWeekAsOfNow()
                 .SelectMany(s => s.AssignedBlocks);
 
-            return (List<DateTimeBlock>) DateTimeBlock.Difference(_workTimes, scheduleTimesInThisWeek);
+            List<WeeklyDateTimeBlock> weeklyWorkTimes = GetWeeklyWorkTimes(Week.From(DateTime.Now));
+            List<DateTimeBlock> workTimes = weeklyWorkTimes.Select(w => new DateTimeBlock(
+                DateTime.Today.StartOfWeek().AddDays(w.DayOfWeek.GetDayOfWeekIndex()) + w.StartTime.TimeOfDay, 
+                DateTime.Today.StartOfWeek().AddDays(w.DayOfWeek.GetDayOfWeekIndex()) + w.EndTime.TimeOfDay
+            )).ToList();
+
+            return (List<DateTimeBlock>) DateTimeBlock.Difference(workTimes, scheduleTimesInThisWeek);
         }
         
         public bool IsAvailable(DateTimeBlock timeBlock)
@@ -74,10 +87,37 @@ namespace TimeManager.Data.Model
 
         public List<DateTimeBlock> GetDailyAvailableTimes(DateTime date)
         {
+            if (_workTimes == null || _workTimes.Count == 0)
+                return new List<DateTimeBlock>();
+
             IEnumerable<DateTimeBlock> scheduleTimes = GetDailyAssignedSchedules(date)
                 .SelectMany(s => s.AssignedBlocks);
 
-            return (List<DateTimeBlock>) DateTimeBlock.Difference(_workTimes, scheduleTimes);
+            IEnumerable<DateTimeBlock> dailyWorkTimes = _workTimes
+                .Where(b => b.StartDate.Date == date.Date);
+
+            if (dailyWorkTimes.Count() == 0)
+                return GetDailyAvailableTimes(date.AddDays(-7));
+
+            return (List<DateTimeBlock>) DateTimeBlock.Difference(dailyWorkTimes, scheduleTimes);
+        }
+
+        public List<DateTimeBlock> GetAvailableTimesInBlock(DateTimeBlock timeBlock)
+        {
+            List<DateTimeBlock> availableTimes = new List<DateTimeBlock>();
+
+            for (DateTime date = timeBlock.StartDate.StartOfDay(); date < timeBlock.EndDate.EndOfDay(); date = date.AddDays(1))
+            {
+                availableTimes.AddRange(GetDailyAvailableTimes(date));
+            }
+
+            availableTimes = DateTimeBlock.Difference(availableTimes, 
+                new List<DateTimeBlock> { 
+                    new DateTimeBlock(timeBlock.StartDate.StartOfDay(), timeBlock.StartDate),
+                    new DateTimeBlock(timeBlock.EndDate, timeBlock.EndDate.AddDays(1).StartOfDay())
+                }).ToList();
+
+            return availableTimes;
         }
         
     }

@@ -17,6 +17,7 @@ namespace TimeManager.Data.Model
         /* AvailableTime Operations */
         List<DateTimeBlock> GetWeeklyAvailableTimes(Week week);
         List<DateTimeBlock> GetAvailableTimesInThisWeekAsOfNow();
+        List<DateTimeBlock> GetAvailableTimesInBlock(DateTimeBlock timeBlock);
         bool IsAvailable(DateTimeBlock timeBlock);
 
         /* AssignedSchedule Operations */
