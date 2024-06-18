@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TimeManager.Data.Manager;
 using TimeManager.Data.Model;
+using TimeManager.Extensions;
 
 namespace TimeManager.Forms
 {
@@ -47,12 +48,12 @@ namespace TimeManager.Forms
 
         private void doneBtn_Click(object sender, EventArgs e)
         {
-            List<WeeklyDateTimeBlock> tmp = weeklyTimeTableSelectableControl1.GetSelectedBlocks();
             List<DateTimeBlock> blocksTmp = new List<DateTimeBlock>();
 
             foreach(WeeklyDateTimeBlock block in weeklyTimeTableSelectableControl1.GetSelectedBlocks())
             {
-                blocksTmp.Add(new DateTimeBlock(block.StartTime, block.EndTime));
+                blocksTmp.Add(new DateTimeBlock(DateTime.Today.StartOfWeek().AddDays(block.DayOfWeek.GetDayOfWeekIndex()) + block.StartTime.TimeOfDay,
+                    DateTime.Today.StartOfWeek().AddDays(block.DayOfWeek.GetDayOfWeekIndex()) + block.EndTime.TimeOfDay));
             }
 
             timeTable.SetWorkTimes(blocksTmp);

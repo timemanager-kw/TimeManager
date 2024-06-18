@@ -243,7 +243,6 @@
             this.TitlePanel.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.TitlePanel.Size = new System.Drawing.Size(740, 40);
             this.TitlePanel.TabIndex = 0;
-            this.TitlePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.TitlePanel_Paint);
             // 
             // openEditAvailableBtn
             // 
