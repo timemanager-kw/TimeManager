@@ -470,27 +470,6 @@ namespace TimeManager.Scheduler
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // startTime, endTime을 확인하여 배열에 넣어주는 메서드
         // 1) 2차원 List로 실가용시간 블럭들 표현하기
         // 2) days에 있는 Task도 크기 순으로 정렬하기
