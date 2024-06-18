@@ -47,6 +47,7 @@ namespace TimeManager.Forms
 
         private void doneBtn_Click(object sender, EventArgs e)
         {
+            List<WeeklyDateTimeBlock> tmp = weeklyTimeTableSelectableControl1.GetSelectedBlocks();
             List<DateTimeBlock> blocksTmp = new List<DateTimeBlock>();
 
             foreach(WeeklyDateTimeBlock block in weeklyTimeTableSelectableControl1.GetSelectedBlocks())
