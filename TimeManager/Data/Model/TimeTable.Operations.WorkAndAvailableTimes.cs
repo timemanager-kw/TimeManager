@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -78,6 +79,24 @@ namespace TimeManager.Data.Model
                 .SelectMany(s => s.AssignedBlocks);
 
             return (List<DateTimeBlock>) DateTimeBlock.Difference(_workTimes, scheduleTimes);
+        }
+
+        public List<DateTimeBlock> GetAvailableTimesInBlock(DateTimeBlock timeBlock)
+        {
+            List<DateTimeBlock> availableTimes = new List<DateTimeBlock>();
+
+            for (DateTime date = timeBlock.StartDate.StartOfDay(); date < timeBlock.EndDate.EndOfDay(); date = date.AddDays(1))
+            {
+                availableTimes.AddRange(GetDailyAvailableTimes(date));
+            }
+
+            availableTimes = DateTimeBlock.Difference(availableTimes, 
+                new List<DateTimeBlock> { 
+                    new DateTimeBlock(timeBlock.StartDate.StartOfDay(), timeBlock.StartDate),
+                    new DateTimeBlock(timeBlock.EndDate, timeBlock.EndDate.AddDays(1).StartOfDay())
+                }).ToList();
+
+            return availableTimes;
         }
         
     }
