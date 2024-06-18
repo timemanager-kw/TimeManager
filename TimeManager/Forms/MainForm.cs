@@ -962,8 +962,6 @@ namespace TimeManager.Forms
 
                 focusedTask.Duration = new TimeSpan((int)(focusedTask.EndDate - focusedTask.StartDate).Value.TotalDays * 10000, 0, int.Parse(TaskDurationCmb.Text.Split(':')[0]) * 60 + int.Parse(TaskDurationCmb.Text.Split(':')[1]), 0);
                 focusedTask.FocusDays = WithEndDateCheck.Checked ? (int)focusedTask.Duration.Value.TotalDays / 10000 + 1 : (int)focusedTask.Duration.Value.TotalDays / 10000;
-
-                LogTxt.Text = $"{WithEndDateCheck.Checked} {(int)focusedTask.Duration.Value.TotalDays}";
             }
             else
             {
@@ -977,7 +975,7 @@ namespace TimeManager.Forms
 
                 foreach (longTermProperties items in focusedTask.WeeklyTimesWanted)
                 {
-                    if (items.dayOfWeek < dayOfWeek)
+                    if (!isInsert || items.dayOfWeek < dayOfWeek)
                     {
                         longTerms.Add(items);
                     }
@@ -1003,6 +1001,8 @@ namespace TimeManager.Forms
 
                     longTerms.Add(longTermTmp);
                 }
+
+                focusedTask.WeeklyTimesWanted = longTerms;
             }
 
             _taskManager.Update(focusedTask);
