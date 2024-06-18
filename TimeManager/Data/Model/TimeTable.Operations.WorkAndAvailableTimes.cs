@@ -87,7 +87,7 @@ namespace TimeManager.Data.Model
             if (dailyWorkTimes.Count() == 0)
                 return GetDailyAvailableTimes(date.AddDays(-7));
 
-            return (List<DateTimeBlock>) DateTimeBlock.Difference(_workTimes, scheduleTimes);
+            return (List<DateTimeBlock>) DateTimeBlock.Difference(dailyWorkTimes, scheduleTimes);
         }
 
         public List<DateTimeBlock> GetAvailableTimesInBlock(DateTimeBlock timeBlock)
