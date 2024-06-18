@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.ColumnMonday = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -185,9 +185,9 @@
             // 
             // ColumnSaturday
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.ColumnSaturday.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.SteelBlue;
+            this.ColumnSaturday.DefaultCellStyle = dataGridViewCellStyle5;
             this.ColumnSaturday.HeaderText = "토";
             this.ColumnSaturday.MinimumWidth = 6;
             this.ColumnSaturday.Name = "ColumnSaturday";
@@ -197,9 +197,9 @@
             // 
             // ColumnSunday
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Crimson;
-            this.ColumnSunday.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Crimson;
+            this.ColumnSunday.DefaultCellStyle = dataGridViewCellStyle6;
             this.ColumnSunday.HeaderText = "일";
             this.ColumnSunday.MinimumWidth = 6;
             this.ColumnSunday.Name = "ColumnSunday";
@@ -240,7 +240,7 @@
             this.TitlePanel.MaximumSize = new System.Drawing.Size(0, 50);
             this.TitlePanel.MinimumSize = new System.Drawing.Size(0, 30);
             this.TitlePanel.Name = "TitlePanel";
-            this.TitlePanel.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.TitlePanel.Padding = new System.Windows.Forms.Padding(5);
             this.TitlePanel.Size = new System.Drawing.Size(740, 40);
             this.TitlePanel.TabIndex = 0;
             // 
@@ -248,6 +248,8 @@
             // 
             this.openEditAvailableBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.openEditAvailableBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.openEditAvailableBtn.ImageIndex = 1;
+            this.openEditAvailableBtn.ImageList = this.images;
             this.openEditAvailableBtn.Location = new System.Drawing.Point(665, 5);
             this.openEditAvailableBtn.Name = "openEditAvailableBtn";
             this.openEditAvailableBtn.Size = new System.Drawing.Size(35, 30);
@@ -273,6 +275,7 @@
             this.images.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("images.ImageStream")));
             this.images.TransparentColor = System.Drawing.Color.Transparent;
             this.images.Images.SetKeyName(0, "search.png");
+            this.images.Images.SetKeyName(1, "option.png");
             // 
             // NextBtn
             // 
@@ -318,7 +321,7 @@
             this.TimeBlockTitlePanel.Location = new System.Drawing.Point(741, 0);
             this.TimeBlockTitlePanel.MaximumSize = new System.Drawing.Size(0, 50);
             this.TimeBlockTitlePanel.Name = "TimeBlockTitlePanel";
-            this.TimeBlockTitlePanel.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.TimeBlockTitlePanel.Padding = new System.Windows.Forms.Padding(5);
             this.TimeBlockTitlePanel.Size = new System.Drawing.Size(200, 40);
             this.TimeBlockTitlePanel.TabIndex = 3;
             // 
@@ -404,7 +407,7 @@
             // 
             // ScheduleEditOk
             // 
-            this.ScheduleEditOk.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ScheduleEditOk.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ScheduleEditOk.Location = new System.Drawing.Point(150, 195);
             this.ScheduleEditOk.Name = "ScheduleEditOk";
             this.ScheduleEditOk.Size = new System.Drawing.Size(45, 30);
@@ -415,7 +418,7 @@
             // 
             // ScheduleEditCancle
             // 
-            this.ScheduleEditCancle.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ScheduleEditCancle.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ScheduleEditCancle.Location = new System.Drawing.Point(105, 195);
             this.ScheduleEditCancle.Name = "ScheduleEditCancle";
             this.ScheduleEditCancle.Size = new System.Drawing.Size(45, 30);
@@ -578,7 +581,7 @@
             // 
             // ScheduleRCancle
             // 
-            this.ScheduleRCancle.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ScheduleRCancle.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ScheduleRCancle.Location = new System.Drawing.Point(105, 195);
             this.ScheduleRCancle.Name = "ScheduleRCancle";
             this.ScheduleRCancle.Size = new System.Drawing.Size(45, 30);
@@ -589,7 +592,7 @@
             // 
             // ScheduleREdit
             // 
-            this.ScheduleREdit.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ScheduleREdit.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ScheduleREdit.Location = new System.Drawing.Point(150, 195);
             this.ScheduleREdit.Name = "ScheduleREdit";
             this.ScheduleREdit.Size = new System.Drawing.Size(45, 30);
@@ -654,7 +657,7 @@
             // 
             // TaskEditCancleBtn
             // 
-            this.TaskEditCancleBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.TaskEditCancleBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.TaskEditCancleBtn.Location = new System.Drawing.Point(105, 195);
             this.TaskEditCancleBtn.Name = "TaskEditCancleBtn";
             this.TaskEditCancleBtn.Size = new System.Drawing.Size(45, 30);
@@ -665,7 +668,7 @@
             // 
             // TaskEditOkBtn
             // 
-            this.TaskEditOkBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.TaskEditOkBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.TaskEditOkBtn.Location = new System.Drawing.Point(150, 195);
             this.TaskEditOkBtn.Name = "TaskEditOkBtn";
             this.TaskEditOkBtn.Size = new System.Drawing.Size(45, 30);
@@ -829,7 +832,7 @@
             // 
             // TaskLongEditOkBtn
             // 
-            this.TaskLongEditOkBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.TaskLongEditOkBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.TaskLongEditOkBtn.Location = new System.Drawing.Point(150, 195);
             this.TaskLongEditOkBtn.Name = "TaskLongEditOkBtn";
             this.TaskLongEditOkBtn.Size = new System.Drawing.Size(45, 30);
@@ -840,7 +843,7 @@
             // 
             // TaskLongEditCancleBtn
             // 
-            this.TaskLongEditCancleBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.TaskLongEditCancleBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.TaskLongEditCancleBtn.Location = new System.Drawing.Point(105, 195);
             this.TaskLongEditCancleBtn.Name = "TaskLongEditCancleBtn";
             this.TaskLongEditCancleBtn.Size = new System.Drawing.Size(45, 30);
@@ -965,11 +968,11 @@
         private System.Windows.Forms.TextBox TaskLName;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button openEditAvailableBtn;
-        private System.Windows.Forms.ImageList images;
         private System.Windows.Forms.CheckBox TaskLDayCheck;
         private System.Windows.Forms.ComboBox TaskLTime;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox TaskLDay;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ImageList images;
     }
 }
