@@ -688,9 +688,6 @@ namespace TimeManager.Scheduler
             // Let We have AvailableTime of each day.
             // 날짜별로 가용시간 총량을 받아옴.
             
-
-
-
             List<DateTimeBlock> dateTimeBlocks =  timeTable.GetAvailableTimesInThisWeekAsOfNow();
 
 
