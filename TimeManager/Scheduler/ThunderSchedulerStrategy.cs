@@ -657,12 +657,6 @@ namespace TimeManager.Scheduler
 
         }
 
-    
-        private void FillLongTerm()
-        {
-
-        }
-
 
 
         public void Schedule(TimeTable timeTable, List<Data.Model.Task> tasks)
