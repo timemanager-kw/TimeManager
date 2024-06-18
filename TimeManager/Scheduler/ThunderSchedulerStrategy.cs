@@ -125,7 +125,7 @@ namespace TimeManager.Scheduler
                 repl_task.task = task;
                 repl_task.focusDate = task.EndDate?.AddDays(-(double)(task.FocusDays - 1));
                 repl_task.endDate = task.EndDate;
-                repl_task.Duration = task.Duration.Value.Minutes / 30;
+                repl_task.Duration = (int)task.Duration.Value.TotalMinutes / 30;
 
                 repl_tasks.Add(repl_task);
             }
