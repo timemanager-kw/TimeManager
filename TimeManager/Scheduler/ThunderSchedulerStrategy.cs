@@ -575,7 +575,7 @@ namespace TimeManager.Scheduler
 
                 if (!find)
                 {
-                    assignedTask_ = new AssignedTask(new List<DateTimeBlock>(), task.Id, task.Name);
+                    assignedTask_ = new AssignedTask(new List<DateTimeBlock>(), task.Id);
                     timetable.AssignedTasks.Add(assignedTask_);
                     assignedTask_.AssignedBlocks.Add(dateTimeBlock);
                 }
@@ -709,7 +709,7 @@ namespace TimeManager.Scheduler
             List<Day> daysRandomlyArranged = RandomArrange(days, least_interval);
 
             // W.T.D : TimeTable에 채우기
-            FillTimeTable(days, timeTable);
+            FillTimeTable(daysRandomlyArranged, timeTable);
         }
     }
 }
