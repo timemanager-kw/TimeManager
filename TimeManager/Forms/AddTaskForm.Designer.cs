@@ -36,11 +36,11 @@
             this.AddTask = new System.Windows.Forms.Button();
             this.AddShortTaskPanel = new System.Windows.Forms.Panel();
             this.AddShortTaskStartDatePanel = new System.Windows.Forms.Panel();
-            this.AddShortTaskEndDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.AddShortTaskStartDatePicker = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.AddShortTaskEndDatePanel = new System.Windows.Forms.Panel();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.AddShortTaskStartDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.AddShortTaskEndDatePicker = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.NamePanel = new System.Windows.Forms.Panel();
             this.AddTaskIsLong = new System.Windows.Forms.CheckBox();
@@ -152,7 +152,7 @@
             // 
             // AddShortTaskStartDatePanel
             // 
-            this.AddShortTaskStartDatePanel.Controls.Add(this.AddShortTaskEndDatePicker);
+            this.AddShortTaskStartDatePanel.Controls.Add(this.AddShortTaskStartDatePicker);
             this.AddShortTaskStartDatePanel.Controls.Add(this.label3);
             this.AddShortTaskStartDatePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.AddShortTaskStartDatePanel.Location = new System.Drawing.Point(0, 40);
@@ -162,16 +162,16 @@
             this.AddShortTaskStartDatePanel.Size = new System.Drawing.Size(800, 40);
             this.AddShortTaskStartDatePanel.TabIndex = 16;
             // 
-            // AddShortTaskEndDatePicker
+            // AddShortTaskStartDatePicker
             // 
-            this.AddShortTaskEndDatePicker.CustomFormat = "yyyy-MM-dd";
-            this.AddShortTaskEndDatePicker.Dock = System.Windows.Forms.DockStyle.Left;
-            this.AddShortTaskEndDatePicker.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.AddShortTaskEndDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.AddShortTaskEndDatePicker.Location = new System.Drawing.Point(64, 6);
-            this.AddShortTaskEndDatePicker.Name = "AddShortTaskEndDatePicker";
-            this.AddShortTaskEndDatePicker.Size = new System.Drawing.Size(200, 27);
-            this.AddShortTaskEndDatePicker.TabIndex = 17;
+            this.AddShortTaskStartDatePicker.CustomFormat = "yyyy-MM-dd";
+            this.AddShortTaskStartDatePicker.Dock = System.Windows.Forms.DockStyle.Left;
+            this.AddShortTaskStartDatePicker.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.AddShortTaskStartDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.AddShortTaskStartDatePicker.Location = new System.Drawing.Point(64, 6);
+            this.AddShortTaskStartDatePicker.Name = "AddShortTaskStartDatePicker";
+            this.AddShortTaskStartDatePicker.Size = new System.Drawing.Size(200, 27);
+            this.AddShortTaskStartDatePicker.TabIndex = 17;
             // 
             // label3
             // 
@@ -188,7 +188,7 @@
             // AddShortTaskEndDatePanel
             // 
             this.AddShortTaskEndDatePanel.Controls.Add(this.checkBox1);
-            this.AddShortTaskEndDatePanel.Controls.Add(this.AddShortTaskStartDatePicker);
+            this.AddShortTaskEndDatePanel.Controls.Add(this.AddShortTaskEndDatePicker);
             this.AddShortTaskEndDatePanel.Controls.Add(this.label2);
             this.AddShortTaskEndDatePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.AddShortTaskEndDatePanel.Location = new System.Drawing.Point(0, 0);
@@ -209,16 +209,16 @@
             this.checkBox1.Text = "마감일 포함";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // AddShortTaskStartDatePicker
+            // AddShortTaskEndDatePicker
             // 
-            this.AddShortTaskStartDatePicker.CustomFormat = "yyyy-MM-dd";
-            this.AddShortTaskStartDatePicker.Dock = System.Windows.Forms.DockStyle.Left;
-            this.AddShortTaskStartDatePicker.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.AddShortTaskStartDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.AddShortTaskStartDatePicker.Location = new System.Drawing.Point(64, 6);
-            this.AddShortTaskStartDatePicker.Name = "AddShortTaskStartDatePicker";
-            this.AddShortTaskStartDatePicker.Size = new System.Drawing.Size(200, 27);
-            this.AddShortTaskStartDatePicker.TabIndex = 17;
+            this.AddShortTaskEndDatePicker.CustomFormat = "yyyy-MM-dd";
+            this.AddShortTaskEndDatePicker.Dock = System.Windows.Forms.DockStyle.Left;
+            this.AddShortTaskEndDatePicker.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.AddShortTaskEndDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.AddShortTaskEndDatePicker.Location = new System.Drawing.Point(64, 6);
+            this.AddShortTaskEndDatePicker.Name = "AddShortTaskEndDatePicker";
+            this.AddShortTaskEndDatePicker.Size = new System.Drawing.Size(200, 27);
+            this.AddShortTaskEndDatePicker.TabIndex = 17;
             // 
             // label2
             // 
@@ -507,7 +507,7 @@
         private System.Windows.Forms.Panel AddLongTaskPanel;
         private System.Windows.Forms.Panel AddShortTaskEndDatePanel;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.DateTimePicker AddShortTaskStartDatePicker;
+        private System.Windows.Forms.DateTimePicker AddShortTaskEndDatePicker;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox AddLongTaskIsTrue;
         private System.Windows.Forms.GroupBox AddRegularScheduleDays;
@@ -519,7 +519,7 @@
         private System.Windows.Forms.RadioButton AddLongTaskTue;
         private System.Windows.Forms.RadioButton AddLongTaskMon;
         private System.Windows.Forms.Panel AddShortTaskStartDatePanel;
-        private System.Windows.Forms.DateTimePicker AddShortTaskEndDatePicker;
+        private System.Windows.Forms.DateTimePicker AddShortTaskStartDatePicker;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox TaskDurationCmb;

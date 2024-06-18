@@ -20,14 +20,12 @@ namespace TimeManager.Forms
 
         DayOfWeek dayOfWeek;
 
-        long lastID;
-
         List<WeeklyDateTimeBlock> weeklyDateTimeBlocks;
         WeeklyDateTimeBlock[] weeklyBlock = new WeeklyDateTimeBlock[7];
 
         bool[] daysBool = new bool[] { false, false, false, false, false, false, false };
 
-        public AddScheduleForm(MainForm mainForm, long lastID)
+        public AddScheduleForm(MainForm mainForm)
         {
             InitializeComponent();
 
@@ -48,14 +46,14 @@ namespace TimeManager.Forms
 
             for (int i = 0; i < 24; i++)
             {
-                AddScheduleStartTime.Items.Add($"{i}:00");
+                AddScheduleStartTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:00");
+                AddScheduleStartTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:30");
 
-                AddScheduleEndTime.Items.Add($"{i}:00");
+                AddScheduleEndTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:00");
+                AddScheduleEndTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:30");
             }
 
             AddScheduleTimePanel.Enabled = false;
-
-            this.lastID = lastID;
 
             UpdateAddScheduleView();
         }
@@ -141,7 +139,6 @@ namespace TimeManager.Forms
                 }
             };
             Schedule.Name = AddScheduleName.Text;
-            Schedule.Id = lastID + 1;
             Schedule.Type = AddScheduleIsRegular.Checked ? EScheduleType.Regular : EScheduleType.Singular;
             Schedule.Description = AddScheduleMemo.Text;
 

@@ -23,9 +23,7 @@ namespace TimeManager.Forms
 
         bool[] daysBool = new bool[] { false, false, false, false, false, false, false };
 
-        long lastID;
-
-        public AddTaskForm(MainForm mainForm, long lastID)
+        public AddTaskForm(MainForm mainForm)
         {
             InitializeComponent();
 
@@ -41,13 +39,11 @@ namespace TimeManager.Forms
 
             for (int i = 30; i < 6000; i += 30)
             {
-                TaskDurationCmb.Items.Add($"{i / 60}:{i % 60}");
+                TaskDurationCmb.Items.Add($"{(i / 60 < 10 ? $"0{i / 60}" : $"{i / 60}")}:{(i % 60 == 0 ? "00" : "30")}");
             }
 
             weeklyWanted = new List<longTermProperties>();
             dayOfWeek = DayOfWeek.Monday;
-
-            this.lastID = lastID;
 
             UpdateAddTaskView();
         }
@@ -93,8 +89,8 @@ namespace TimeManager.Forms
                         return;
                     }
 
-                    Task.Duration = (TimeSpan)(Task.StartDate - Task.EndDate);
-                    Task.FocusDays = AddLongTaskIsTrue.Checked ? (int)Task.Duration.Value.TotalDays + 1 : (int)Task.Duration.Value.TotalDays;
+                    Task.Duration = new TimeSpan((int)(Task.EndDate - Task.StartDate).Value.TotalDays * 10000, 0, int.Parse(TaskDurationCmb.Text.Split(':')[0]) * 60 + int.Parse(TaskDurationCmb.Text.Split(':')[1]), 0);
+                    Task.FocusDays = AddLongTaskIsTrue.Checked ? ((int)Task.Duration.Value.TotalDays / 10000) + 1 : ((int)Task.Duration.Value.TotalDays / 10000);
 
                     MainForm.CloseAddTask(true, Task);
                     Close();
@@ -120,7 +116,6 @@ namespace TimeManager.Forms
                 }
             };
             Task.Name = AddTaskName.Text;
-            Task.Id = lastID + 1;
             Task.Type = AddTaskIsLong.Checked ? ETaskType.LongTerm : ETaskType.ShortTerm;
             Task.Description = AddTaskMemo.Text;
 

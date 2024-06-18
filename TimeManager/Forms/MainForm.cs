@@ -56,9 +56,6 @@ namespace TimeManager.Forms
         AddTaskForm AddTaskForm;
         EditAvailableTimeForm EditAvailableTimeForm;
 
-        long lastTaskID;
-        long lastScheduleID;
-
         void ResizeForm()
         {
             MainPanel.Size = new Size(this.Size.Width * 37 / 48, this.Size.Height);
@@ -298,8 +295,15 @@ namespace TimeManager.Forms
             List<Schedule> schedules = _scheduleManager.GetAll().ToList();
             if (schedules.Count > 0)
             {
+                LogTxt.Text = "";
+
                 foreach (Schedule schedule in schedules)
                 {
+                    if (schedule.Type == EScheduleType.Singular && schedule.TimeBlock.EndDate.CompareTo(DateTime.Now) <= 0)
+                    {
+                        schedules.Remove(schedule);
+                        continue;
+                    }
                     var lvItem = new ListViewItem(new string[TimeBlockView.Columns.Count]);
 
                     lvItem.SubItems[0].Text = schedule.Name;
@@ -375,17 +379,21 @@ namespace TimeManager.Forms
             List<Task> tasks = _taskManager.GetAll().ToList();
             if (tasks.Count > 0)
             {
+                LogTxt.Text = $"남은 업무: {tasks.Count}";
+
                 foreach (Task task in tasks)
                 {
-                    if (task.EndDate > DateTime.Now)
+                    if (task.Type == ETaskType.ShortTerm && task.EndDate.Value.CompareTo(DateTime.Now) <= 0)
                     {
-                        var lvItem = new ListViewItem(new string[2]);
-
-                        lvItem.SubItems[0].Text = task.Name;
-                        lvItem.SubItems[1].Text = string.Format(task.EndDate.ToString(), "yyyy-MM-dd");
-
-                        TimeBlockView.Items.Add(lvItem);
+                        taskList.Remove(task);
+                        continue;
                     }
+                    var lvItem = new ListViewItem(new string[2]);
+
+                    lvItem.SubItems[0].Text = task.Name;
+                    lvItem.SubItems[1].Text = string.Format(task.EndDate.ToString(), "yyyy-MM-dd");
+
+                    TimeBlockView.Items.Add(lvItem);
                 }
             }
             else
@@ -443,13 +451,14 @@ namespace TimeManager.Forms
                 () => {
                     TaskNameTxt.Text = focusedTask.Name;
 
-                    TaskEndDatePicker.Text = ((DateTime)focusedTask.EndDate).ToString("yyyy-MM-dd");
+                    TaskEndDatePicker.Text = focusedTask.EndDate.Value.ToString("yyyy-MM-dd");
                     TaskStartDatePicker.Text = focusedTask.StartDate.ToString("yyyy-MM-dd");
 
-                    int totMin = (int)((TimeSpan)focusedTask.Duration).TotalMinutes;
+                    TimeSpan tmp = focusedTask.Duration.Value;
+                    int totMin = (int)tmp.Subtract(new TimeSpan((int)(tmp.TotalDays / 10000) * 10000, 0,0,0)).TotalMinutes;
                     TaskDurationCmb.Text = $"{totMin / 60}:{totMin % 60}";
 
-                    WithEndDateCheck.Checked = (int)((TimeSpan)(focusedTask.EndDate - focusedTask.StartDate)).TotalDays != focusedTask.FocusDays;
+                    WithEndDateCheck.Checked = (int)focusedTask.Duration.Value.TotalDays / 10000 != focusedTask.FocusDays;
                 },
                 () => {
                     TaskLName.Text = focusedTask.Name;
@@ -568,23 +577,23 @@ namespace TimeManager.Forms
 
             for (int i = 0; i < 24; i++)
             {
-                ScheduleStartTime.Items.Add($"{i}:00");
-                ScheduleStartTime.Items.Add($"{i}:30");
-                ScheduleRStartTime.Items.Add($"{i}:00");
-                ScheduleRStartTime.Items.Add($"{i}:30");
+                ScheduleStartTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:00");
+                ScheduleStartTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:30");
+                ScheduleRStartTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:00");
+                ScheduleRStartTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:30");
 
-                ScheduleEndTime.Items.Add($"{i}:00");
-                ScheduleEndTime.Items.Add($"{i}:30");
-                ScheduleREndTime.Items.Add($"{i}:00");
-                ScheduleREndTime.Items.Add($"{i}:30");
+                ScheduleEndTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:00");
+                ScheduleEndTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:30");
+                ScheduleREndTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:00");
+                ScheduleREndTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:30");
 
-                TaskLTime.Items.Add($"{i}:00");
-                TaskLTime.Items.Add($"{i}:30");
+                TaskLTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:00");
+                TaskLTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:30");
             }
 
             for (int i = 30; i < 6000; i += 30)
             {
-                TaskDurationCmb.Items.Add($"{i / 60}:{i % 60}");
+                TaskDurationCmb.Items.Add($"{(i / 60 < 10 ? $"0{i / 60}" : (i / 60).ToString())}:{(i % 60 == 0 ? $"00" : "30")}");
             }
 
             _scheduleManager = null;
@@ -702,23 +711,23 @@ namespace TimeManager.Forms
 
             for (int i = 0; i < 24; i++)
             {
-                ScheduleStartTime.Items.Add($"{i}:00");
-                ScheduleStartTime.Items.Add($"{i}:30");
-                ScheduleRStartTime.Items.Add($"{i}:00");
-                ScheduleRStartTime.Items.Add($"{i}:30");
+                ScheduleStartTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:00");
+                ScheduleStartTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:30");
+                ScheduleRStartTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:00");
+                ScheduleRStartTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:30");
 
-                ScheduleEndTime.Items.Add($"{i}:00");
-                ScheduleEndTime.Items.Add($"{i}:30");
-                ScheduleREndTime.Items.Add($"{i}:00");
-                ScheduleREndTime.Items.Add($"{i}:30");
+                ScheduleEndTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:00");
+                ScheduleEndTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:30");
+                ScheduleREndTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:00");
+                ScheduleREndTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:30");
 
-                TaskLTime.Items.Add($"{i}:00");
-                TaskLTime.Items.Add($"{i}:30");
+                TaskLTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:00");
+                TaskLTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:30");
             }
 
             for (int i = 30; i < 6000; i += 30)
             {
-                TaskDurationCmb.Items.Add($"{i / 60}:{i % 60}");
+                TaskDurationCmb.Items.Add($"{(i / 60 < 10 ? $"0{i / 60}" : (i / 60).ToString())}:{(i % 60 == 0 ? "00" : "30")}");
             }
 
             scheduleList = _scheduleManager.GetAll().ToList();
@@ -726,16 +735,6 @@ namespace TimeManager.Forms
             taskList = _taskManager.GetAll().ToList();
 
             timeTable = _timeTableManager.Get();
-
-            if (scheduleList.Count > 0)
-            {
-                lastScheduleID = scheduleList.Last<Schedule>().Id;
-            }
-
-            if (taskList.Count > 0)
-            {
-                lastTaskID = taskList.Last<Task>().Id;
-            }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -750,9 +749,6 @@ namespace TimeManager.Forms
             TimeBlockView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 
             viewType = TimeTableType.Schedule;
-
-            lastScheduleID = timeTable.GetAllAssignedSchedules().Count;
-            lastTaskID = timeTable.GetAllAssignedTasks().Count;
 
             UpdateView[0]();
 
@@ -794,12 +790,12 @@ namespace TimeManager.Forms
         {
             if (viewType == TimeTableType.Schedule)
             {
-                AddScheduleForm = new AddScheduleForm(this, lastScheduleID);
+                AddScheduleForm = new AddScheduleForm(this);
                 AddScheduleForm.Show();
             }
             else
             {
-                AddTaskForm = new AddTaskForm(this, lastTaskID);
+                AddTaskForm = new AddTaskForm(this);
                 AddTaskForm.Show();
             }
         }
@@ -861,6 +857,8 @@ namespace TimeManager.Forms
 
                 DayOfWeek dayOfWeek = StringToDayOfWeek(ScheduleRDay.Text);
 
+                bool isInsert = false;
+
                 foreach (var items in focusedSchedule.RegularTimeBlocks)
                 {
                     if (items.DayOfWeek < dayOfWeek)
@@ -877,7 +875,20 @@ namespace TimeManager.Forms
                         weeklyDateTimeBlockTmp.EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, int.Parse(hm[0]), int.Parse(hm[1]), 0);
 
                         weeklyDateTimeBlock.Add(weeklyDateTimeBlockTmp);
+                        isInsert = true;
                     }
+                }
+
+                if (!isInsert)
+                {
+                    WeeklyDateTimeBlock weeklyDateTimeBlockTmp = new WeeklyDateTimeBlock();
+                    weeklyDateTimeBlockTmp.DayOfWeek = dayOfWeek;
+                    string[] hm = ScheduleRStartTime.Text.Split(':');
+                    weeklyDateTimeBlockTmp.StartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, int.Parse(hm[0]), int.Parse(hm[1]), 0);
+                    hm = ScheduleREndTime.Text.Split(':');
+                    weeklyDateTimeBlockTmp.EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, int.Parse(hm[0]), int.Parse(hm[1]), 0);
+
+                    weeklyDateTimeBlock.Add(weeklyDateTimeBlockTmp);
                 }
 
                 focusedSchedule.RegularTimeBlocks = weeklyDateTimeBlock;
@@ -917,9 +928,10 @@ namespace TimeManager.Forms
                 focusedTask.StartDate = TaskStartDatePicker.Value;
                 focusedTask.EndDate = TaskEndDatePicker.Value;
 
-                focusedTask.FocusDays = (int)((TimeSpan)(focusedTask.EndDate - focusedTask.StartDate)).TotalDays + (WithEndDateCheck.Checked ? 1 : 0);
-                string[] hm = TaskDurationCmb.Text.Split(':');
-                focusedTask.Duration = new TimeSpan(int.Parse(hm[0]), int.Parse(hm[1]), 0);
+                focusedTask.Duration = new TimeSpan((int)(focusedTask.EndDate - focusedTask.StartDate).Value.TotalDays * 10000, 0, int.Parse(TaskDurationCmb.Text.Split(':')[0]) * 60 + int.Parse(TaskDurationCmb.Text.Split(':')[1]), 0);
+                focusedTask.FocusDays = WithEndDateCheck.Checked ? (int)focusedTask.Duration.Value.TotalDays / 10000 + 1 : (int)focusedTask.Duration.Value.TotalDays / 10000;
+
+                LogTxt.Text = $"{WithEndDateCheck.Checked} {(int)focusedTask.Duration.Value.TotalDays}";
             }
             else
             {
@@ -928,6 +940,8 @@ namespace TimeManager.Forms
                 List<longTermProperties> longTerms = new List<longTermProperties>();
 
                 DayOfWeek dayOfWeek = StringToDayOfWeek(TaskLName.Text);
+
+                bool isInsert = false;
 
                 foreach (longTermProperties items in focusedTask.WeeklyTimesWanted)
                 {
@@ -943,7 +957,19 @@ namespace TimeManager.Forms
                         longTermTmp.time = new TimeSpan(int.Parse(hm2[0]), int.Parse(hm2[1]), 0);
 
                         longTerms.Add(longTermTmp);
+
+                        isInsert = true;
                     }
+                }
+
+                if (!isInsert)
+                {
+                    longTermProperties longTermTmp = new longTermProperties();
+                    longTermTmp.dayOfWeek = dayOfWeek;
+                    string[] hm2 = TaskLTime.Text.Split(':');
+                    longTermTmp.time = new TimeSpan(int.Parse(hm2[0]), int.Parse(hm2[1]), 0);
+
+                    longTerms.Add(longTermTmp);
                 }
             }
 

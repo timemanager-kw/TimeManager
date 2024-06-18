@@ -64,12 +64,12 @@ namespace TimeManager.Data.Repository
         public void Update(Schedule schedule)
         {
             List<string> lines = File.ReadAllLines(filePath).ToList();
-            for (int i = 1; i < lines.Count; i++)
+            for (int i = 0; i < lines.Count; i++)
             {
                 string[] parts = lines[i].Split(',');
                 if (long.Parse(parts[0]) == schedule.Id)
                 {
-                    lines[i] = $"{schedule.Id}, {schedule.Name}, {schedule.Description}, {schedule.Type}, {schedule.TimeBlock.StartDate}, {schedule.TimeBlock.EndDate}, {schedule.RegularTimeBlocks}";
+                    lines[i] = $"{schedule.Id}, {schedule.Name}, {schedule.Description}, {schedule.Type}, {schedule.TimeBlock.StartDate}, {schedule.TimeBlock.EndDate}, {SerializeWeeklyTimes(schedule.RegularTimeBlocks)}";
                     break;
                 }
             }
@@ -117,10 +117,11 @@ namespace TimeManager.Data.Repository
                         string[] weeklyTimeSubParts = weeklyTimesPart.Split('|');
                         WeeklyDateTimeBlock week = new WeeklyDateTimeBlock();
                         DayOfWeek dayOfWeek;
-                        Enum.TryParse<DayOfWeek>(weeklyTimesParts[0], out dayOfWeek);
+                        Enum.TryParse<DayOfWeek>(weeklyTimeSubParts[0], out dayOfWeek);
                         week.DayOfWeek = dayOfWeek;
-                        week.StartTime = DateTime.Parse(weeklyTimesParts[1]);
-                        week.EndTime = DateTime.Parse(weeklyTimesParts[2]);
+                        week.StartTime = DateTime.Parse(weeklyTimeSubParts[1]);
+                        week.EndTime = DateTime.Parse(weeklyTimeSubParts[2]);
+                        schedule.RegularTimeBlocks.Add(week);
                     }
                 }
                 schedules.Add(schedule);

@@ -40,7 +40,7 @@ namespace TimeManager.Data.Repository
             }
             ++nextId;
             task.Id = nextId;
-            using (StreamWriter writer = new StreamWriter(filePath))
+            using (StreamWriter writer = new StreamWriter(filePath, true))
             {
                 writer.WriteLine($"{task.Id}, {task.Name}, {task.Description}, {(int)task.Type}, {task.StartDate}, {task.EndDate},{task.Duration}, {task.FocusDays}, {SerializeWeeklyTimes(task.WeeklyTimesWanted)}");
             }
@@ -61,7 +61,7 @@ namespace TimeManager.Data.Repository
         public void Update(Task task)
         {
             List<string> lines = File.ReadAllLines(filePath).ToList();
-            for (int i = 1; i < lines.Count; i++)
+            for (int i = 0; i < lines.Count; i++)
             {
                 string[] parts = lines[i].Split(',');
                 if (int.Parse(parts[0]) == task.Id)
