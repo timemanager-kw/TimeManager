@@ -666,9 +666,27 @@ namespace TimeManager.Scheduler
         {
             // Let We have AvailableTime of each day.
             // 날짜별로 가용시간 총량을 받아옴.
-            
-            List<DateTimeBlock> dateTimeBlocks =  timeTable.GetAvailableTimesInThisWeekAsOfNow();
 
+            List<AssignedTask> find_End = timeTable.AssignedTasks;
+            
+
+            DateTime endDateTime = DateTime.MinValue;
+                //find_End[0].AssignedBlocks[0].EndDate.Date + TimeSpan.FromDays(1);
+
+            foreach (AssignedTask task in find_End)
+            {
+                foreach(DateTimeBlock dateTimeBlock in task.AssignedBlocks)
+                {
+                    if(endDateTime <= dateTimeBlock.EndDate)
+                        endDateTime = dateTimeBlock.EndDate;
+                }
+            }
+
+            endDateTime = endDateTime.Date + TimeSpan.FromDays(1);
+
+            DateTimeBlock timeBlock = new DateTimeBlock(DateTime.Now.Date + TimeSpan.FromDays(1)
+                                    , endDateTime);
+            List<DateTimeBlock> dateTimeBlocks = timeTable.GetAvailableTimesInBlock(timeBlock);
 
             List<Day> days = new List<Day>();
             bool exist = false;
