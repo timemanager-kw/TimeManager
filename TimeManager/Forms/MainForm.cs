@@ -30,6 +30,9 @@ namespace TimeManager.Forms
         private ScheduleManager _scheduleManager;
         private TaskManager _taskManager;
         private TimeTable timeTable;
+        private ThunderScheduler _scheduler;
+
+        private ThunderSchedulerStrategy schedulerStrategy;
 
         private Schedule focusedSchedule;
         private Task focusedTask;
@@ -696,6 +699,9 @@ namespace TimeManager.Forms
             _scheduleManager = scheduleManager;
             _taskManager = taskManager;
 
+            schedulerStrategy = new ThunderSchedulerStrategy();
+            _scheduler = new ThunderScheduler(schedulerStrategy, _timeTableManager, _scheduleManager, _taskManager);
+
             selectedColor = ScheduleBtn.BackColor;
             noneSelectedColor = TaskBtn.BackColor;
 
@@ -783,7 +789,7 @@ namespace TimeManager.Forms
 
         private void AlgorithmStarter_Click(object sender, EventArgs e)
         {
-            //scheduler.Run();
+            _scheduler.Run();
         }
 
         private void AddBtn_Click(object sender, EventArgs e)
@@ -1022,11 +1028,6 @@ namespace TimeManager.Forms
             }
             AddTaskForm = null;
             UpdateTaskView();
-        }
-
-        private void TitlePanel_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         public void CloseAvailableTime(TimeTable updateBlock)
