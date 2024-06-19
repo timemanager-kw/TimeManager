@@ -56,6 +56,7 @@ namespace TimeManager.Scheduler
         {
             public Day(DateTime date, int available)
             {
+                tempBlocks = new List<TempBlock>();
                 dateTime = date;
                 availableTime = available;
             }
@@ -146,6 +147,7 @@ namespace TimeManager.Scheduler
 
             while (!end)
             {
+                task_iter = repl_tasks.GetEnumerator();
                 task_iter.Reset();
                 // 처음 MoveNext()를 했는데 비어있다 == 남아있는 Task가 없다.
                 // ∴ 반복문 빠져나감.
@@ -248,7 +250,10 @@ namespace TimeManager.Scheduler
 
         private TempBlock FindExchangableTempBlock(Data.Model.Task task, IEnumerator<Day> day_cursor, int interval)
         {
-            day_cursor.MoveNext();
+            Day day = day_cursor.Current;                        // 디버깅용
+
+            if (!day_cursor.MoveNext())
+                return null;
 
             bool end = false;
             DateTime dateTime = day_cursor.Current.dateTime;
@@ -273,7 +278,10 @@ namespace TimeManager.Scheduler
                         }
                     }
                 }
-                day_cursor.MoveNext();
+                if(!day_cursor.MoveNext())
+                {
+                    return null;
+                }
             }
             return null;
         }
@@ -281,7 +289,11 @@ namespace TimeManager.Scheduler
         // Empty 영역에서 바꿀 수 있는 곳이 있는지 찾는 메서드
         private Day FindExchanableDay(Data.Model.Task task, IEnumerator<Day> day_cursor, int interval)
         {
-            day_cursor.MoveNext();
+            Day day = day_cursor.Current;                        // 디버깅용
+            if(!day_cursor.MoveNext())
+            {
+                return null;
+            }
             bool end = false;   // end 사실상 쓰진 않았지만 일단 둠.
 
             while (day_cursor.Current.dateTime <= task.EndDate && !end)
@@ -293,8 +305,10 @@ namespace TimeManager.Scheduler
                         return day_cursor.Current;
                     }
                 }
-                day_cursor.MoveNext();
-
+                if (!day_cursor.MoveNext())
+                {
+                    return null;
+                }
             }
             return null;
         }
@@ -381,6 +395,8 @@ namespace TimeManager.Scheduler
             //      if) 바꿀 수 있다면, 바꾸는 함수인 Exchange() 적용.
             // 
 
+            least_interval = 4;
+
             // Days의 복사본 생성
             List<Day> days_copied = new List<Day>();
             foreach (Day day in days)
@@ -409,9 +425,16 @@ namespace TimeManager.Scheduler
                 foreach (TempBlock tempBlock in day_iter.Current.tempBlocks)
                 {
                     int interval;
+                    int debug_i = 0;
                     while (tempBlock.time_interval != 0)
                     {
-                        day_cursor = day_iter;
+                        debug_i++;
+
+                        while (day_cursor.MoveNext() && day_cursor.Current != day_iter.Current)
+                        {
+                            // MoveNext를 호출하여 day_cursor를 이동시킴
+                        }
+
                         // 현재 time_interval 값을 통해 interval값 결정.(interval : 잘라낼 timeblock의 interval)
                         if (tempBlock.time_interval >= 2 * least_interval)
                             interval = least_interval;
@@ -439,6 +462,22 @@ namespace TimeManager.Scheduler
                             {
                                 // 바꾸지 않은 interval 크기의 task를 copied_day에 넣음.
                                 // 만약 그곳에 task가 존재한다면 interval값을 올려줌.
+                                bool found = false;
+                                foreach (TempBlock temp in day_f_copied.tempBlocks)
+                                {
+                                    if(temp.task.Id == tempBlock.task.Id)
+                                    {
+                                        temp.time_interval += interval;
+                                        found = true;
+                                        break;
+                                    }
+                                }
+                                if(found == false)
+                                {
+                                    TempBlock temp_b = new TempBlock(tempBlock.task, interval);
+                                    day_f_copied.tempBlocks.Add(temp_b);
+                                }
+
                             }
                         }
                         else
@@ -453,6 +492,22 @@ namespace TimeManager.Scheduler
                             {
                                 // 바꾸지 않은 interval 크기의 task를 copied_day에 넣음.
                                 // 만약 그곳에 task가 존재한다면 interval값을 올려줌.
+                                Day day_f_copied = FindCorresponedDayOfDaysCopied(day_iter.Current.dateTime, days_copied);
+                                bool found = false;
+                                foreach (TempBlock temp in day_f_copied.tempBlocks)
+                                {
+                                    if (temp.task.Id == tempBlock.task.Id)
+                                    {
+                                        temp.time_interval += interval;
+                                        found = true;
+                                        break;
+                                    }
+                                }
+                                if (found == false)
+                                {
+                                    TempBlock temp_b = new TempBlock(tempBlock.task, interval);
+                                    day_f_copied.tempBlocks.Add(temp_b);
+                                }
                             }
                         }
                         // 이후 tempBlock에서 interval만큼 빼주기
@@ -461,7 +516,7 @@ namespace TimeManager.Scheduler
                     }
 
                 }
-                day_iter.MoveNext();
+                //day_iter.MoveNext();
             }
             return days_copied;
         }
