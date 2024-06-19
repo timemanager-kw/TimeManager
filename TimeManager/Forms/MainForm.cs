@@ -799,6 +799,7 @@ namespace TimeManager.Forms
                     }
                 }
             }
+            focusedSchedule.Description = LogTxt.Text;
 
             _scheduleManager.Update(focusedSchedule);
             UpdateView[(int)viewType]();
@@ -820,6 +821,7 @@ namespace TimeManager.Forms
             {
                 focusedTask.Name = TaskLName.Text;
             }
+            focusedTask.Description = LogTxt.Text;
 
             _taskManager.Update(focusedTask);
             UpdateView[(int)viewType]();
@@ -1067,6 +1069,7 @@ namespace TimeManager.Forms
         private void ScheduleSRemoveBtn_Click(object sender, EventArgs e)
         {
             _scheduleManager.Delete(focusedSchedule);
+            timeTable.UnassignSchedule(focusedSchedule.Id);
             focusedSchedule = null;
             UpdateView[(int)viewType]();
         }
@@ -1074,6 +1077,7 @@ namespace TimeManager.Forms
         private void ScheduleRRemoveBtn_Click(object sender, EventArgs e)
         {
             _scheduleManager.Delete(focusedSchedule);
+            timeTable.UnassignSchedule(focusedSchedule.Id);
             focusedSchedule = null;
             UpdateView[(int)viewType]();
         }
@@ -1081,7 +1085,7 @@ namespace TimeManager.Forms
         private void TaskSRemoveBtn_Click(object sender, EventArgs e)
         {
             _taskManager.Delete(focusedTask);
-            timeTable.UnassignTask(focusedTask.Id);
+            AlgorithmStarter_Click(null, null);
             focusedTask = null;
             UpdateView[(int)viewType]();
         }
@@ -1089,7 +1093,7 @@ namespace TimeManager.Forms
         private void TaskLRemoveBtn_Click(object sender, EventArgs e)
         {
             _taskManager.Delete(focusedTask);
-            timeTable.UnassignTask(focusedTask.Id);
+            AlgorithmStarter_Click(null, null);
             focusedTask = null;
             UpdateView[(int)viewType]();
         }
