@@ -1115,24 +1115,28 @@ namespace TimeManager.Forms
         private void ScheduleSRemoveBtn_Click(object sender, EventArgs e)
         {
             _scheduleManager.Delete(focusedSchedule);
+            focusedSchedule = null;
             UpdateView[(int)viewType]();
         }
 
         private void ScheduleRRemoveBtn_Click(object sender, EventArgs e)
         {
             _scheduleManager.Delete(focusedSchedule);
+            focusedSchedule = null;
             UpdateView[(int)viewType]();
         }
 
         private void TaskSRemoveBtn_Click(object sender, EventArgs e)
         {
             _taskManager.Delete(focusedTask);
+            focusedTask = null;
             UpdateView[(int)viewType]();
         }
 
         private void TaskLRemoveBtn_Click(object sender, EventArgs e)
         {
             _taskManager.Delete(focusedTask);
+            focusedTask = null;
             UpdateView[(int)viewType]();
         }
 
