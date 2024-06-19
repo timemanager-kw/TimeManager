@@ -40,9 +40,6 @@ namespace TimeManager.Forms
         private List<Schedule> scheduleList;
         private List<Task> taskList;
 
-        bool[] flagPerDays = new bool[7];
-        int[] timePerDays = new int[7];
-
         private DateTime StandardTime;
 
         private TimeTableType viewType = TimeTableType.Schedule;
@@ -306,7 +303,7 @@ namespace TimeManager.Forms
             List<Schedule> removeSchedules = new List<Schedule>();
             if (schedules.Count > 0)
             {
-                LogTxt.Text = "";
+                LogTxt.Text = "메모장\r\n";
 
                 foreach (Schedule schedule in schedules)
                 {
@@ -397,7 +394,7 @@ namespace TimeManager.Forms
 
             if (tasks.Count > 0)
             {
-                LogTxt.Text = $"남은 업무: {tasks.Count}";
+                LogTxt.Text = $"메모장\r\n남은 업무: {tasks.Count}";
 
                 foreach (Task task in tasks)
                 {
@@ -456,14 +453,9 @@ namespace TimeManager.Forms
 
                     bool checkTmp = false;
                     string timeTmp1 = "00:00", timeTmp2 = "00:00";
-                    flagPerDays = new bool[7];
-                    timePerDays = new int[7];
 
                     foreach (WeeklyDateTimeBlock timeBlock in focusedSchedule.RegularTimeBlocks)
                     {
-                        flagPerDays[(int)timeBlock.DayOfWeek] = true;
-                        //timePerDays[(int)timeBlock.DayOfWeek] = (int)timeBlock..TotalMinutes;
-
                         if (timeBlock.DayOfWeek == DayOfWeek.Monday)
                         {
                             checkTmp = true;
@@ -508,13 +500,9 @@ namespace TimeManager.Forms
 
                     bool checkTmp = false;
                     string timeTmp = "00:00";
-                    flagPerDays = new bool[7];
-                    timePerDays = new int[7];
 
                     foreach (longTermProperties longTerm in focusedTask.WeeklyTimesWanted)
                     {
-                        flagPerDays[(int)longTerm.dayOfWeek] = true;
-                        timePerDays[(int)longTerm.dayOfWeek] = (int)longTerm.time.TotalMinutes;
                         if (longTerm.dayOfWeek == DayOfWeek.Monday)
                         {
                             checkTmp = true;
@@ -603,136 +591,6 @@ namespace TimeManager.Forms
                 default:
                     return '월';
             }
-        }
-        
-        public MainForm()
-        {
-            InitializeComponent();
-
-            selectedColor = ScheduleBtn.BackColor;
-            noneSelectedColor = TaskBtn.BackColor;
-
-            StandardTime = DateTime.Now;
-            StandardTime.AddDays(-(int)StandardTime.DayOfWeek);
-
-            UpdateView = new Action[] { UpdateScheduleView, UpdateTaskView };
-
-            CurrentTimeBlockInfo = new Action[] { EditScheduleForm, EditTaskForm };
-
-            schedulePanels = new Panel[] { SingleSchedulePanel, RegularSchedulePanel };
-            taskPanels = new Panel[] { ShortTaskPanel, LongTaskPanel };
-
-            for (int i = 0; i < 24; i++)
-            {
-                ScheduleStartTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:00");
-                ScheduleStartTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:30");
-                ScheduleRStartTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:00");
-                ScheduleRStartTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:30");
-
-                ScheduleEndTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:00");
-                ScheduleEndTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:30");
-                ScheduleREndTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:00");
-                ScheduleREndTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:30");
-
-                TaskLTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:00");
-                TaskLTime.Items.Add($"{(i < 10 ? $"0{i}" : i.ToString())}:30");
-            }
-
-            for (int i = 30; i < 6000; i += 30)
-            {
-                TaskDurationCmb.Items.Add($"{(i / 60 < 10 ? $"0{i / 60}" : (i / 60).ToString())}:{(i % 60 == 0 ? $"00" : "30")}");
-            }
-
-            _scheduleManager = null;
-            _taskManager = null;
-            _timeTableManager = null;
-
-            scheduleList = new List<Schedule>
-            {
-                new Schedule(),
-                new Schedule(),
-                new Schedule()
-            };
-            scheduleList[0].Id = 1;
-            scheduleList[0].Name = "Test Schedule1";
-            scheduleList[0].Type = EScheduleType.Singular;
-            scheduleList[0].TimeBlock = new DateTimeBlock(DateTime.Now, new DateTime(2024, 5, 18, 18, 30, 0));
-
-            scheduleList[1].Id = 2;
-            scheduleList[1].Name = "Test Schedule2";
-            scheduleList[1].Type = EScheduleType.Singular;
-            scheduleList[1].TimeBlock = new DateTimeBlock(DateTime.Now, new DateTime(2024, 5, 18, 20, 30, 0));
-
-            scheduleList[2].Id = 3;
-            scheduleList[2].Name = "Test Schedule3";
-            scheduleList[2].Type = EScheduleType.Regular;
-            scheduleList[2].TimeBlock = new DateTimeBlock(DateTime.Now, new DateTime(2024, 5, 25));
-            WeeklyDateTimeBlock test1 = new WeeklyDateTimeBlock();
-            WeeklyDateTimeBlock test2 = new WeeklyDateTimeBlock();
-            WeeklyDateTimeBlock test3 = new WeeklyDateTimeBlock();
-            test1.DayOfWeek = DayOfWeek.Monday;
-            test2.DayOfWeek = DayOfWeek.Saturday;
-            test3.DayOfWeek = DayOfWeek.Sunday;
-            test1.StartTime = DateTime.Now.AddMinutes(30);
-            test1.EndTime = DateTime.Now.AddMinutes(90);
-            test2.StartTime = DateTime.Now.AddMinutes(60);
-            test2.EndTime = DateTime.Now.AddMinutes(120);
-            test3.StartTime = DateTime.Now.AddMinutes(90);
-            test3.EndTime = DateTime.Now.AddMinutes(180);
-            List<WeeklyDateTimeBlock> testSchedulTimeBlocks = new List<WeeklyDateTimeBlock>()
-            {
-                test1,
-                test2,
-                test3
-            };
-            scheduleList[2].RegularTimeBlocks = testSchedulTimeBlocks;
-
-            taskList = new List<Task>
-            {
-                new Task(),
-                new Task(),
-                new Task()
-            };
-            taskList[0].Id = 1;
-            taskList[0].Name = "Test Task1";
-            taskList[0].Type = ETaskType.ShortTerm;
-            taskList[0].StartDate = new DateTime(2024, 5, 17);
-            taskList[0].EndDate = new DateTime(2024, 5, 20);
-            taskList[0].Duration = new TimeSpan(10, 30, 0);
-            taskList[0].FocusDays = 3;
-
-            taskList[1].Id = 2;
-            taskList[1].Name = "Test Task2";
-            taskList[1].Type = ETaskType.ShortTerm;
-            taskList[1].StartDate = new DateTime(2024, 5, 19);
-            taskList[1].EndDate = new DateTime(2024, 5, 22);
-            taskList[1].Duration = new TimeSpan(10, 30, 0);
-            taskList[1].FocusDays = 4;
-
-            taskList[2].Id = 3;
-            taskList[2].Name = "Test Task3";
-            taskList[2].Type = ETaskType.LongTerm;
-            List<longTermProperties> longTermTmp = new List<longTermProperties>
-            {
-                new longTermProperties(DayOfWeek.Monday, new TimeSpan(5, 0, 0))
-            };
-            taskList[2].WeeklyTimesWanted = longTermTmp;
-
-            AssignedSchedule assignedSchedule1 = new AssignedSchedule();
-            assignedSchedule1.ScheduleId = 1;
-            assignedSchedule1.AssignedBlocks.Add(new DateTimeBlock(new DateTime(2024, 5, 6, 8, 0, 0), new DateTime(2024, 5, 6, 12, 0, 0)));
-
-            AssignedTask assignedTask1 = new AssignedTask();
-            assignedTask1.TaskId = 1;
-            assignedTask1.AssignedBlocks.Add(new DateTimeBlock(new DateTime(2024, 5, 6, 13, 0, 0), new DateTime(2024, 5, 6, 17, 0, 0)));
-
-            List<DateTimeBlock> workTimes = new List<DateTimeBlock>();
-            for (int i = 0; i < 7; i++)
-            {
-                workTimes.Add(new DateTimeBlock(new DateTime(2024, 6, 10 + i, 8, 0, 0), new DateTime(2024, 6, 10 + i, 22, 0, 0)));
-            }
-
-            timeTable = new TimeTable(workTimes, new List<AssignedSchedule> { assignedSchedule1 }, new List<AssignedTask> { assignedTask1 });
         }
 
         public MainForm(TimeTableManager timeTableManager, ScheduleManager scheduleManager, TaskManager taskManager)
