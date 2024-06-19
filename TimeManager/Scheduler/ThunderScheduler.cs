@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
 using TimeManager.Data.Manager;
 using TimeManager.Data.Model;
 
@@ -83,10 +84,12 @@ namespace TimeManager.Scheduler
             // 오늘로부터의 Schedule 모두 넣기
             foreach (Schedule schedule in schedules)
             {
-            // schedule이 오늘 이후의 것들이라면 가져옴.
-                if(schedule.TimeBlock.StartDate.Date > DateTime.Today.Date)
+                // schedule이 Singulsr이고 오늘 이후의 것들이라면 가져옴.
+                if (schedule.Type == EScheduleType.Regular) continue;
+
+                if (schedule.TimeBlock.StartDate.Date > DateTime.Today.Date)
                 {
-                    AssignedSchedule assignedSchedule = new AssignedSchedule();
+                    AssignedSchedule assignedSchedule = new AssignedSchedule(new List<DateTimeBlock>(), schedule.Id);
                     assignedSchedule.AssignedBlocks.Add(new DateTimeBlock(schedule.TimeBlock.StartDate, schedule.TimeBlock.EndDate));
                     assignedSchedule.ScheduleId = schedule.Id;
                     //assignedSchedule.ScheduleName = schedule.Name;
@@ -94,6 +97,59 @@ namespace TimeManager.Scheduler
                     newTimeTable.AssignedSchedules.Add(assignedSchedule);
                 }
             }
+
+
+            /////////////////////////////////////////////////////////
+            // 정기
+            DateTime endDateTime = DateTime.MinValue;
+            List<Task> tasks = (List<Task>)_taskManager.GetAll();
+
+            foreach (Data.Model.Task task in tasks)
+            {
+                if (task.Type == ETaskType.ShortTerm)
+                {
+                    if (endDateTime <= task.EndDate)
+                        endDateTime = task.EndDate.Value.Date;
+                }
+            }
+
+            endDateTime = endDateTime.Date + TimeSpan.FromDays(1);
+
+
+            foreach (Schedule schedule in schedules)
+            {
+                AssignedSchedule assignedSchedule = new AssignedSchedule(new List<DateTimeBlock>(), schedule.Id);
+
+                // schedule이 정기일정이라면
+                if (schedule.Type == EScheduleType.Singular) continue;
+
+                for(DateTime date = DateTime.Now.Date; date <= endDateTime; date +=TimeSpan.FromDays(1))
+                {
+                    foreach(WeeklyDateTimeBlock weeklyDate in schedule.RegularTimeBlocks)
+                    {
+                        if (date.DayOfWeek == weeklyDate.DayOfWeek)
+                        {
+                            assignedSchedule.AssignedBlocks.Add(new DateTimeBlock(
+                                date.Date + TimeSpan.FromHours((int)weeklyDate.StartTime.Hour) + TimeSpan.FromMinutes((int)weeklyDate.StartTime.Minute),
+                                date.Date + TimeSpan.FromHours((int)weeklyDate.EndTime.Hour) + TimeSpan.FromMinutes((int)weeklyDate.EndTime.Minute)));
+                            break;
+                        }
+                    }
+                }
+                newTimeTable.AssignedSchedules.Add(assignedSchedule);
+            }
+
+
+
+
+
+
+
+
+
+
+
+
 
             _timeTable = newTimeTable;
         }
