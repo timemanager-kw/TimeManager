@@ -43,7 +43,7 @@ namespace TimeManager.Data.Repository
             schedule.Id = nextId;
             using (StreamWriter writer = new StreamWriter(filePath,true))
             {
-                writer.WriteLine($"{schedule.Id}, {schedule.Name}, {schedule.Description}, {schedule.Type}, {schedule.TimeBlock.StartDate}, {schedule.TimeBlock.EndDate}, {SerializeWeeklyTimes(schedule.RegularTimeBlocks)}");
+                writer.WriteLine($"{schedule.Id},{schedule.Name},{schedule.Description},{schedule.Type},{schedule.TimeBlock.StartDate},{schedule.TimeBlock.EndDate},{SerializeWeeklyTimes(schedule.RegularTimeBlocks)}");
                 
             }
         }
@@ -69,7 +69,7 @@ namespace TimeManager.Data.Repository
                 string[] parts = lines[i].Split(',');
                 if (long.Parse(parts[0]) == schedule.Id)
                 {
-                    lines[i] = $"{schedule.Id}, {schedule.Name}, {schedule.Description}, {schedule.Type}, {schedule.TimeBlock.StartDate}, {schedule.TimeBlock.EndDate}, {SerializeWeeklyTimes(schedule.RegularTimeBlocks)}";
+                    lines[i] = $"{schedule.Id},{schedule.Name},{schedule.Description},{schedule.Type},{schedule.TimeBlock.StartDate},{schedule.TimeBlock.EndDate},{SerializeWeeklyTimes(schedule.RegularTimeBlocks)}";
                     break;
                 }
             }

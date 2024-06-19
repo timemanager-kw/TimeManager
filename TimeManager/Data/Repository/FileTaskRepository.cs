@@ -42,7 +42,7 @@ namespace TimeManager.Data.Repository
             task.Id = nextId;
             using (StreamWriter writer = new StreamWriter(filePath, true))
             {
-                writer.WriteLine($"{task.Id}, {task.Name}, {task.Description}, {(int)task.Type}, {task.StartDate}, {task.EndDate},{task.Duration}, {task.FocusDays}, {SerializeWeeklyTimes(task.WeeklyTimesWanted)}");
+                writer.WriteLine($"{task.Id},{task.Name},{task.Description},{(int)task.Type},{task.StartDate},{task.EndDate},{task.Duration},{task.FocusDays},{SerializeWeeklyTimes(task.WeeklyTimesWanted)}");
             }
         }
         private string SerializeWeeklyTimes(List<longTermProperties> weeklyTimes)
@@ -66,7 +66,7 @@ namespace TimeManager.Data.Repository
                 string[] parts = lines[i].Split(',');
                 if (int.Parse(parts[0]) == task.Id)
                 {
-                    lines[i] = $"{task.Id}, {task.Name}, {task.Description}, {(int)task.Type}, {task.StartDate}, {task.EndDate},{task.Duration}, {task.FocusDays}, {SerializeWeeklyTimes(task.WeeklyTimesWanted)}";
+                    lines[i] = $"{task.Id},{task.Name},{task.Description},{(int)task.Type},{task.StartDate},{task.EndDate},{task.Duration},{task.FocusDays},{SerializeWeeklyTimes(task.WeeklyTimesWanted)}";
                     break;
                 }
             }
