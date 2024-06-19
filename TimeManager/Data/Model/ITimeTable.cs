@@ -29,7 +29,7 @@ namespace TimeManager.Data.Model
         List<AssignedSchedule> GetAllAssignedSchedulesAsOfNow();
         List<AssignedSchedule> GetWeeklyAssignedSchedules(Week week);
         List<AssignedSchedule> GetAssignedSchedulesInThisWeekAsOfNow();
-        List<AssignedSchedule> GetAssignedSchedulesInBlock(DateTimeBlock timeBlock);
+        List<AssignedSchedule> GetAssignedSchedulesInDaysBlock(DateTimeBlock timeBlock);
 
         /* AssignedTask Operations */
         void AssignTask(long taskId, IEnumerable<DateTimeBlock> assignedTimeBlocks);
