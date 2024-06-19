@@ -52,11 +52,8 @@ namespace TimeManager.Forms
 
         Color noneSelectedColor, selectedColor;
 
-        List<Color> assignedScheduleColor = new List<Color>();
-        List<Color> assignedTaskColor = new List<Color>();
-
-        private Color _ScheduleBackColor = Color.LightBlue;
-        private Color _TaskBackColor = Color.LightGreen;
+        Dictionary<long, Color> assignedScheduleColor = new Dictionary<long, Color>();
+        Dictionary<long, Color> assignedTaskColor = new Dictionary<long, Color>();
 
         AddScheduleForm AddScheduleForm;
         AddTaskForm AddTaskForm;
@@ -174,14 +171,31 @@ namespace TimeManager.Forms
                     int r = random.Next(0, Math.Min(200, g));
                     int b = random.Next(0, Math.Min(200, g));
                     Color assignColor = Color.FromArgb(255, r, g, b);
-                    for (; assignedScheduleColor.Contains(assignColor);)
+
+                    if (!assignedScheduleColor.ContainsKey(schedule.ScheduleId))
                     {
-                        g = random.Next(100, 256);
-                        r = random.Next(0, Math.Min(200, g));
-                        b = random.Next(0, Math.Min(200, g));
-                        assignColor = Color.FromArgb(255, r, g, b);
+                        for (bool isColorIn = true, pass = false; isColorIn && !pass;)
+                        {
+                            pass = true;
+
+                            random = new Random();
+                            g = random.Next(100, 256);
+                            r = random.Next(0, Math.Min(200, g));
+                            b = random.Next(0, Math.Min(200, g));
+                            assignColor = Color.FromArgb(255, r, g, b);
+
+                            foreach (Color v in assignedScheduleColor.Values)
+                            {
+                                if (v == assignColor)
+                                {
+                                    pass = false;
+                                    isColorIn = true;
+                                    break;
+                                }
+                            }
+                        }
+                        assignedScheduleColor.Add(schedule.ScheduleId, assignColor);
                     }
-                    assignedScheduleColor.Add(assignColor);
 
                     for (int i = startRow; i < endRow + 1; i++)
                     {
@@ -210,14 +224,30 @@ namespace TimeManager.Forms
                     int g = random.Next(0, Math.Min(200, r));
                     int b = random.Next(0, Math.Min(200, r));
                     Color assignColor = Color.FromArgb(255, r, g, b);
-                    for (; assignedTaskColor.Contains(assignColor);)
+
+                    if (!assignedTaskColor.ContainsKey(task.TaskId))
                     {
-                        r = random.Next(100, 256);
-                        g = random.Next(0, Math.Min(200, r));
-                        b = random.Next(0, Math.Min(200, r));
-                        assignColor = Color.FromArgb(255, r, g, b);
+                        for (bool isColorIn = true, pass = false; isColorIn && !pass;)
+                        {
+                            pass = true;
+
+                            r = random.Next(100, 256);
+                            g = random.Next(0, Math.Min(200, r));
+                            b = random.Next(0, Math.Min(200, r));
+                            assignColor = Color.FromArgb(255, r, g, b);
+
+                            foreach (Color v in assignedTaskColor.Values)
+                            {
+                                if (v == assignColor)
+                                {
+                                    pass = false;
+                                    isColorIn = true;
+                                    break;
+                                }
+                            }
+                        }
+                        assignedTaskColor.Add(task.TaskId, assignColor);
                     }
-                    assignedTaskColor.Add(assignColor);
 
                     for (int i = startRow; i < endRow + 1; i++)
                     {
@@ -284,8 +314,6 @@ namespace TimeManager.Forms
 
         void UpdateScheduleView()
         {
-            LogTxt.BackColor = Color.FromArgb(255, 100, 210, 100);
-
             TimeTableView();
             ScheduleBtn.BackColor = selectedColor;
             TaskBtn.BackColor = noneSelectedColor;
