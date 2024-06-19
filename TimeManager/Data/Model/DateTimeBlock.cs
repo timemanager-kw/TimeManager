@@ -32,8 +32,10 @@ namespace TimeManager.Data.Model
             foreach(var minuendBlock in minuend)
             {
                 bool overlap = false;
+                int a = 0;
                 foreach(var subtrahendBlock in subtrahend)
                 {
+                    a = 0;
                     if(!(minuendBlock.EndDate <= subtrahendBlock.StartDate)|| minuendBlock.StartDate >= subtrahendBlock.EndDate){
                         overlap = true;
                         if ((minuendBlock.StartDate <= subtrahendBlock.StartDate) && minuendBlock.EndDate <= subtrahendBlock.EndDate) {
@@ -49,7 +51,7 @@ namespace TimeManager.Data.Model
                             canTIme.EndDate = subtrahendBlock.EndDate;
                             difference.Add(canTIme);
                         }
-                        else if ((minuendBlock.StartDate >= subtrahendBlock.StartDate) && (subtrahendBlock.EndDate <= minuendBlock.EndDate))
+                        else if ((minuendBlock.StartDate <= subtrahendBlock.StartDate) && (subtrahendBlock.EndDate <= minuendBlock.EndDate))
                         {
                             DateTimeBlock canTime = new DateTimeBlock();
                             canTime.StartDate = minuendBlock.StartDate;
