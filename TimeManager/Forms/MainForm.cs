@@ -787,8 +787,8 @@ namespace TimeManager.Forms
                 focusedTask.StartDate = TaskStartDatePicker.Value;
                 focusedTask.EndDate = TaskEndDatePicker.Value;
 
-                focusedTask.Duration = new TimeSpan((int)(focusedTask.EndDate - focusedTask.StartDate).Value.TotalDays * 10000, 0, int.Parse(TaskDurationCmb.Text.Split(':')[0]) * 60 + int.Parse(TaskDurationCmb.Text.Split(':')[1]), 0);
-                focusedTask.FocusDays = WithEndDateCheck.Checked ? (int)focusedTask.Duration.Value.TotalDays / 10000 + 1 : (int)focusedTask.Duration.Value.TotalDays / 10000;
+                focusedTask.Duration = new TimeSpan(0, int.Parse(TaskDurationCmb.Text.Split(':')[0]) * 60 + int.Parse(TaskDurationCmb.Text.Split(':')[1]), 0);
+                focusedTask.FocusDays = WithEndDateCheck.Checked ? (int)(TaskEndDatePicker.Value - TaskStartDatePicker.Value).TotalDays + 1 : (int)(TaskEndDatePicker.Value - TaskStartDatePicker.Value).TotalDays;
             }
             else
             {
