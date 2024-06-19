@@ -67,7 +67,7 @@ namespace TimeManager.Data.Repository
                         blocks.Add(new DateTimeBlock(startDate, endDate));
                         
                     }
-                    else if (line.Contains("AssignedSchedule:"))
+                    else if (line.Contains("AssignedSchedules:"))
                     {
                         string[] parts = line.Split(',');
                         long scheduleId = long.Parse(parts[1]);
