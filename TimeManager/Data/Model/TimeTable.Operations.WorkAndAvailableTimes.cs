@@ -119,7 +119,7 @@ namespace TimeManager.Data.Model
             return (List<DateTimeBlock>)DateTimeBlock.Difference(dailyWorkTimes, scheduleTimes);
         }
 
-        public List<DateTimeBlock> GetAvailableTimesInBlock(DateTimeBlock timeBlock)
+        public List<DateTimeBlock> GetAvailableTimesInDaysBlock(DateTimeBlock timeBlock)
         {
             List<DateTimeBlock> availableTimes = new List<DateTimeBlock>();
 
@@ -127,16 +127,6 @@ namespace TimeManager.Data.Model
             {
                 availableTimes.AddRange(GetDailyAvailableTimes(date));
             }
-
-            DateTime end = timeBlock.EndDate.AddDays(1).StartOfDay();
-            if (timeBlock.EndDate.TimeOfDay == new TimeSpan(0))
-                end = timeBlock.EndDate;
-
-            availableTimes = DateTimeBlock.Difference(availableTimes, 
-                new List<DateTimeBlock> { 
-                    new DateTimeBlock(timeBlock.StartDate.StartOfDay(), timeBlock.StartDate),
-                    new DateTimeBlock(timeBlock.EndDate, end)
-                }).ToList();
 
             return availableTimes;
         }
