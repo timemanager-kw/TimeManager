@@ -677,7 +677,7 @@ namespace TimeManager.Scheduler
 
             DateTimeBlock timeBlock = new DateTimeBlock(DateTime.Now.Date + TimeSpan.FromDays(1)
                                     , endDateTime);
-            List<DateTimeBlock> dateTimeBlocks = timeTable.GetAvailableTimesInBlock(timeBlock);
+            List<DateTimeBlock> dateTimeBlocks = timeTable.GetAvailableTimesInDaysBlock(timeBlock);
 
             List<Day> days = new List<Day>();
             bool exist = false;
