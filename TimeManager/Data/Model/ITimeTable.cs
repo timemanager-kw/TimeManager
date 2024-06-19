@@ -17,7 +17,7 @@ namespace TimeManager.Data.Model
         /* AvailableTime Operations */
         List<DateTimeBlock> GetWeeklyAvailableTimes(Week week);
         List<DateTimeBlock> GetAvailableTimesInThisWeekAsOfNow();
-        List<DateTimeBlock> GetAvailableTimesInBlock(DateTimeBlock timeBlock);
+        List<DateTimeBlock> GetAvailableTimesInDaysBlock(DateTimeBlock timeBlock);
         bool IsAvailable(DateTimeBlock timeBlock);
 
         /* AssignedSchedule Operations */
@@ -29,7 +29,7 @@ namespace TimeManager.Data.Model
         List<AssignedSchedule> GetAllAssignedSchedulesAsOfNow();
         List<AssignedSchedule> GetWeeklyAssignedSchedules(Week week);
         List<AssignedSchedule> GetAssignedSchedulesInThisWeekAsOfNow();
-        List<AssignedSchedule> GetAssignedSchedulesInDaysBlock(DateTimeBlock timeBlock);
+        List<AssignedSchedule> GetAssignedSchedulesInBlock(DateTimeBlock timeBlock);
 
         /* AssignedTask Operations */
         void AssignTask(long taskId, IEnumerable<DateTimeBlock> assignedTimeBlocks);
