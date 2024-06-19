@@ -203,7 +203,7 @@ namespace TimeManager.Forms
                         assignedScheduleColor.TryGetValue(schedule.ScheduleId, out assignColor);
                     }
 
-                    for (int i = startRow; i < endRow + 1; i++)
+                    for (int i = startRow; i < endRow; i++)
                     {
                         dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(S" + schedule.ScheduleId + ") " + _scheduleManager.GetById(schedule.ScheduleId).Name + "\n" + _scheduleManager.GetById(schedule.ScheduleId).Description;
                         dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = assignColor;
@@ -261,7 +261,7 @@ namespace TimeManager.Forms
                         assignedTaskColor.TryGetValue(task.TaskId, out assignColor);
                     }
 
-                    for (int i = startRow; i < endRow + 1; i++)
+                    for (int i = startRow; i < endRow; i++)
                     {
                         dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(T" + task.TaskId + ") " + _taskManager.GetById(task.TaskId).Name + "\n" + _taskManager.GetById(task.TaskId).Description;
                         dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = assignColor;
@@ -1069,6 +1069,7 @@ namespace TimeManager.Forms
         private void ScheduleSRemoveBtn_Click(object sender, EventArgs e)
         {
             _scheduleManager.Delete(focusedSchedule);
+            assignedScheduleColor.Remove(focusedSchedule.Id);
             timeTable.UnassignSchedule(focusedSchedule.Id);
             focusedSchedule = null;
             UpdateView[(int)viewType]();
@@ -1077,6 +1078,7 @@ namespace TimeManager.Forms
         private void ScheduleRRemoveBtn_Click(object sender, EventArgs e)
         {
             _scheduleManager.Delete(focusedSchedule);
+            assignedScheduleColor.Remove(focusedSchedule.Id);
             timeTable.UnassignSchedule(focusedSchedule.Id);
             focusedSchedule = null;
             UpdateView[(int)viewType]();
@@ -1085,6 +1087,8 @@ namespace TimeManager.Forms
         private void TaskSRemoveBtn_Click(object sender, EventArgs e)
         {
             _taskManager.Delete(focusedTask);
+            assignedTaskColor.Remove(focusedTask.Id);
+            timeTable.UnassignTask(focusedTask.Id);
             AlgorithmStarter_Click(null, null);
             focusedTask = null;
             UpdateView[(int)viewType]();
@@ -1093,6 +1097,8 @@ namespace TimeManager.Forms
         private void TaskLRemoveBtn_Click(object sender, EventArgs e)
         {
             _taskManager.Delete(focusedTask);
+            assignedTaskColor.Remove(focusedTask.Id);
+            timeTable.UnassignTask(focusedTask.Id);
             AlgorithmStarter_Click(null, null);
             focusedTask = null;
             UpdateView[(int)viewType]();
