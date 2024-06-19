@@ -164,7 +164,7 @@ namespace TimeManager.Forms
                     if (!week.IsInWeek(block.StartDate)) continue;
 
                     int startRow = block.StartDate.Hour * 2 + block.StartDate.Minute / 30;
-                    int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute + 30 / 30;
+                    int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute / 30;
 
                     for (int i = startRow; i < endRow + 1; i++)
                     {
