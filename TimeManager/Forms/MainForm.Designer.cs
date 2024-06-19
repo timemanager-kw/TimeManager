@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.ColumnMonday = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,8 +44,8 @@
             this.LogTxt = new System.Windows.Forms.TextBox();
             this.TitlePanel = new System.Windows.Forms.Panel();
             this.openEditAvailableBtn = new System.Windows.Forms.Button();
-            this.AlgorithmStarter = new System.Windows.Forms.Button();
             this.images = new System.Windows.Forms.ImageList(this.components);
+            this.AlgorithmStarter = new System.Windows.Forms.Button();
             this.NextBtn = new System.Windows.Forms.Button();
             this.WeekLabel = new System.Windows.Forms.Label();
             this.PrevBtn = new System.Windows.Forms.Button();
@@ -185,9 +185,9 @@
             // 
             // ColumnSaturday
             // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.SteelBlue;
-            this.ColumnSaturday.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.SteelBlue;
+            this.ColumnSaturday.DefaultCellStyle = dataGridViewCellStyle15;
             this.ColumnSaturday.HeaderText = "토";
             this.ColumnSaturday.MinimumWidth = 6;
             this.ColumnSaturday.Name = "ColumnSaturday";
@@ -197,9 +197,9 @@
             // 
             // ColumnSunday
             // 
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Crimson;
-            this.ColumnSunday.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.Crimson;
+            this.ColumnSunday.DefaultCellStyle = dataGridViewCellStyle16;
             this.ColumnSunday.HeaderText = "일";
             this.ColumnSunday.MinimumWidth = 6;
             this.ColumnSunday.Name = "ColumnSunday";
@@ -257,6 +257,13 @@
             this.openEditAvailableBtn.UseVisualStyleBackColor = false;
             this.openEditAvailableBtn.Click += new System.EventHandler(this.openEditAvailableBtn_Click);
             // 
+            // images
+            // 
+            this.images.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("images.ImageStream")));
+            this.images.TransparentColor = System.Drawing.Color.Transparent;
+            this.images.Images.SetKeyName(0, "search.png");
+            this.images.Images.SetKeyName(1, "option.png");
+            // 
             // AlgorithmStarter
             // 
             this.AlgorithmStarter.BackColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -269,13 +276,6 @@
             this.AlgorithmStarter.TabIndex = 3;
             this.AlgorithmStarter.UseVisualStyleBackColor = false;
             this.AlgorithmStarter.Click += new System.EventHandler(this.AlgorithmStarter_Click);
-            // 
-            // images
-            // 
-            this.images.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("images.ImageStream")));
-            this.images.TransparentColor = System.Drawing.Color.Transparent;
-            this.images.Images.SetKeyName(0, "search.png");
-            this.images.Images.SetKeyName(1, "option.png");
             // 
             // NextBtn
             // 
@@ -559,6 +559,7 @@
             this.ScheduleRStartTime.Name = "ScheduleRStartTime";
             this.ScheduleRStartTime.Size = new System.Drawing.Size(100, 23);
             this.ScheduleRStartTime.TabIndex = 5;
+            this.ScheduleRStartTime.SelectedValueChanged += new System.EventHandler(this.ScheduleRStartTime_SelectedValueChanged);
             // 
             // label1
             // 
@@ -578,6 +579,7 @@
             this.ScheduleREndTime.Name = "ScheduleREndTime";
             this.ScheduleREndTime.Size = new System.Drawing.Size(100, 23);
             this.ScheduleREndTime.TabIndex = 9;
+            this.ScheduleREndTime.SelectedValueChanged += new System.EventHandler(this.ScheduleREndTime_SelectedValueChanged);
             // 
             // ScheduleRCancle
             // 
@@ -608,6 +610,7 @@
             this.DayCheck.Size = new System.Drawing.Size(18, 17);
             this.DayCheck.TabIndex = 14;
             this.DayCheck.UseVisualStyleBackColor = true;
+            this.DayCheck.CheckedChanged += new System.EventHandler(this.DayCheck_CheckedChanged);
             // 
             // RegularSchedulePanel
             // 
@@ -780,6 +783,7 @@
             this.TaskLDayCheck.Size = new System.Drawing.Size(18, 17);
             this.TaskLDayCheck.TabIndex = 21;
             this.TaskLDayCheck.UseVisualStyleBackColor = true;
+            this.TaskLDayCheck.CheckedChanged += new System.EventHandler(this.TaskLDayCheck_CheckedChanged);
             // 
             // TaskLTime
             // 
@@ -790,6 +794,7 @@
             this.TaskLTime.Name = "TaskLTime";
             this.TaskLTime.Size = new System.Drawing.Size(100, 23);
             this.TaskLTime.TabIndex = 18;
+            this.TaskLTime.SelectedValueChanged += new System.EventHandler(this.TaskLTime_SelectedValueChanged);
             // 
             // label10
             // 
@@ -875,9 +880,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(942, 493);
-            this.Controls.Add(this.ShortTaskPanel);
-            this.Controls.Add(this.LongTaskPanel);
             this.Controls.Add(this.RegularSchedulePanel);
+            this.Controls.Add(this.LongTaskPanel);
+            this.Controls.Add(this.ShortTaskPanel);
             this.Controls.Add(this.SingleSchedulePanel);
             this.Controls.Add(this.TimeBlockView);
             this.Controls.Add(this.TimeBlockTitlePanel);

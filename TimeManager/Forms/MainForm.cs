@@ -40,6 +40,9 @@ namespace TimeManager.Forms
         private List<Schedule> scheduleList;
         private List<Task> taskList;
 
+        bool[] flagPerDays = new bool[7];
+        int[] timePerDays = new int[7];
+
         private DateTime StandardTime;
 
         private TimeTableType viewType = TimeTableType.Schedule;
@@ -449,8 +452,14 @@ namespace TimeManager.Forms
 
                     bool checkTmp = false;
                     string timeTmp1 = "00:00", timeTmp2 = "00:00";
+                    flagPerDays = new bool[7];
+                    timePerDays = new int[7];
+
                     foreach (WeeklyDateTimeBlock timeBlock in focusedSchedule.RegularTimeBlocks)
                     {
+                        flagPerDays[(int)timeBlock.DayOfWeek] = true;
+                        //timePerDays[(int)timeBlock.DayOfWeek] = (int)timeBlock..TotalMinutes;
+
                         if (timeBlock.DayOfWeek == DayOfWeek.Monday)
                         {
                             checkTmp = true;
@@ -495,8 +504,13 @@ namespace TimeManager.Forms
 
                     bool checkTmp = false;
                     string timeTmp = "00:00";
+                    flagPerDays = new bool[7];
+                    timePerDays = new int[7];
+
                     foreach (longTermProperties longTerm in focusedTask.WeeklyTimesWanted)
                     {
+                        flagPerDays[(int)longTerm.dayOfWeek] = true;
+                        timePerDays[(int)longTerm.dayOfWeek] = (int)longTerm.time.TotalMinutes;
                         if (longTerm.dayOfWeek == DayOfWeek.Monday)
                         {
                             checkTmp = true;
@@ -885,45 +899,14 @@ namespace TimeManager.Forms
             {
                 focusedSchedule.Name = ScheduleRNameTxt.Text;
 
-                List<WeeklyDateTimeBlock> weeklyDateTimeBlock = new List<WeeklyDateTimeBlock>();
-
-                DayOfWeek dayOfWeek = StringToDayOfWeek(ScheduleRDay.Text);
-
-                bool isInsert = false;
-
                 foreach (var items in focusedSchedule.RegularTimeBlocks)
                 {
-                    if (items.DayOfWeek < dayOfWeek)
+                    if (items.StartTime >= items.EndTime)
                     {
-                        weeklyDateTimeBlock.Add(items);
-                    }
-                    else
-                    {
-                        WeeklyDateTimeBlock weeklyDateTimeBlockTmp = new WeeklyDateTimeBlock();
-                        weeklyDateTimeBlockTmp.DayOfWeek = dayOfWeek;
-                        string[] hm = ScheduleRStartTime.Text.Split(':');
-                        weeklyDateTimeBlockTmp.StartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, int.Parse(hm[0]), int.Parse(hm[1]), 0);
-                        hm = ScheduleREndTime.Text.Split(':');
-                        weeklyDateTimeBlockTmp.EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, int.Parse(hm[0]), int.Parse(hm[1]), 0);
-
-                        weeklyDateTimeBlock.Add(weeklyDateTimeBlockTmp);
-                        isInsert = true;
+                        MessageBox.Show("시작 시간이 종료 시간 뒤에 올 수 없습니다.");
+                        return;
                     }
                 }
-
-                if (!isInsert)
-                {
-                    WeeklyDateTimeBlock weeklyDateTimeBlockTmp = new WeeklyDateTimeBlock();
-                    weeklyDateTimeBlockTmp.DayOfWeek = dayOfWeek;
-                    string[] hm = ScheduleRStartTime.Text.Split(':');
-                    weeklyDateTimeBlockTmp.StartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, int.Parse(hm[0]), int.Parse(hm[1]), 0);
-                    hm = ScheduleREndTime.Text.Split(':');
-                    weeklyDateTimeBlockTmp.EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, int.Parse(hm[0]), int.Parse(hm[1]), 0);
-
-                    weeklyDateTimeBlock.Add(weeklyDateTimeBlockTmp);
-                }
-
-                focusedSchedule.RegularTimeBlocks = weeklyDateTimeBlock;
             }
 
             _scheduleManager.Update(focusedSchedule);
@@ -937,6 +920,8 @@ namespace TimeManager.Forms
             DayCheck.Checked = false;
             ScheduleRStartTime.Text = "";
             ScheduleREndTime.Text = "";
+            ScheduleRStartTime.Enabled = false;
+            ScheduleREndTime.Enabled = false;
 
             foreach (var dayList in focusedSchedule.RegularTimeBlocks)
             {
@@ -945,6 +930,8 @@ namespace TimeManager.Forms
                     DayCheck.Checked = true;
                     ScheduleRStartTime.Text = dayList.StartTime.ToString("HH:mm");
                     ScheduleREndTime.Text = dayList.EndTime.ToString("HH:mm");
+                    ScheduleRStartTime.Enabled = true;
+                    ScheduleREndTime.Enabled = true;
 
                     break;
                 }
@@ -966,43 +953,6 @@ namespace TimeManager.Forms
             else
             {
                 focusedTask.Name = TaskLName.Text;
-
-                List<longTermProperties> longTerms = new List<longTermProperties>();
-
-                DayOfWeek dayOfWeek = StringToDayOfWeek(TaskLName.Text);
-
-                bool isInsert = false;
-
-                foreach (longTermProperties items in focusedTask.WeeklyTimesWanted)
-                {
-                    if (!isInsert || items.dayOfWeek < dayOfWeek)
-                    {
-                        longTerms.Add(items);
-                    }
-                    else
-                    {
-                        longTermProperties longTermTmp = new longTermProperties();
-                        longTermTmp.dayOfWeek = dayOfWeek;
-                        string[] hm2 = TaskLTime.Text.Split(':');
-                        longTermTmp.time = new TimeSpan(int.Parse(hm2[0]), int.Parse(hm2[1]), 0);
-
-                        longTerms.Add(longTermTmp);
-
-                        isInsert = true;
-                    }
-                }
-
-                if (!isInsert)
-                {
-                    longTermProperties longTermTmp = new longTermProperties();
-                    longTermTmp.dayOfWeek = dayOfWeek;
-                    string[] hm2 = TaskLTime.Text.Split(':');
-                    longTermTmp.time = new TimeSpan(int.Parse(hm2[0]), int.Parse(hm2[1]), 0);
-
-                    longTerms.Add(longTermTmp);
-                }
-
-                focusedTask.WeeklyTimesWanted = longTerms;
             }
 
             _taskManager.Update(focusedTask);
@@ -1032,6 +982,7 @@ namespace TimeManager.Forms
 
             TaskLDayCheck.Checked = false;
             TaskLTime.Text = "00:00";
+            TaskLTime.Enabled = false;
 
             foreach (longTermProperties longTerm in focusedTask.WeeklyTimesWanted)
             {
@@ -1039,6 +990,7 @@ namespace TimeManager.Forms
                 {
                     TaskLDayCheck.Checked = true;
                     TaskLTime.Text = $"{(int)(longTerm.time.TotalMinutes / 60)}:{(int)(longTerm.time.TotalMinutes % 60)}";
+                    TaskLTime.Enabled = true;
 
                     break;
                 }
@@ -1054,6 +1006,117 @@ namespace TimeManager.Forms
             }
             AddTaskForm = null;
             UpdateTaskView();
+        }
+
+        private void TaskLDayCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            bool modified = false;
+            List<longTermProperties> taskTmp = new List<longTermProperties>();
+
+            DayOfWeek dayTmp = StringToDayOfWeek(TaskLDay.Text);
+
+            for (int i = 0; i < focusedTask.WeeklyTimesWanted.Count; i++)
+            {
+                if (TaskLDayCheck.Checked)
+                {
+                    if (focusedTask.WeeklyTimesWanted[i].dayOfWeek < dayTmp)
+                    {
+                        taskTmp.Add(focusedTask.WeeklyTimesWanted[i]);
+                    }
+                    else if (focusedTask.WeeklyTimesWanted[i].dayOfWeek > dayTmp)
+                    {
+                        taskTmp.Add(new longTermProperties(dayTmp, new TimeSpan()));
+                        modified = true;
+                    }
+                }
+                else
+                {
+                    if (focusedTask.WeeklyTimesWanted[i].dayOfWeek != dayTmp)
+                    {
+                        taskTmp.Add(focusedTask.WeeklyTimesWanted[i]);
+                    }
+                }
+            }
+            if (!modified && TaskLDayCheck.Checked)
+            {
+                taskTmp.Add(new longTermProperties(dayTmp, new TimeSpan()));
+            }
+        }
+
+        private void TaskLTime_SelectedValueChanged(object sender, EventArgs e)
+        {
+            for(int i = 0;i < focusedTask.WeeklyTimesWanted.Count; i++)
+            {
+                if (focusedTask.WeeklyTimesWanted[i].dayOfWeek == StringToDayOfWeek(TaskLDay.Text))
+                {
+                    focusedTask.WeeklyTimesWanted[i] = new longTermProperties(focusedTask.WeeklyTimesWanted[i].dayOfWeek, new TimeSpan(0, int.Parse(TaskLTime.Text.Split(':')[0]) * 60 + int.Parse(TaskLTime.Text.Split(':')[1]), 0));
+                }
+            }
+        }
+
+        private void ScheduleRStartTime_SelectedValueChanged(object sender, EventArgs e)
+        {
+            DayOfWeek dayTmp = StringToDayOfWeek(ScheduleRDay.Text);
+            for (int i = 0; i < focusedSchedule.RegularTimeBlocks.Count; i++)
+            {
+                if (focusedSchedule.RegularTimeBlocks[i].DayOfWeek == dayTmp)
+                {
+                    string[] hm = ScheduleRStartTime.Text.Split(':');
+                    DateTime dateStartTimeTmp = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, int.Parse(hm[0]), int.Parse(hm[1]), 0);
+
+                    focusedSchedule.RegularTimeBlocks[i] = new WeeklyDateTimeBlock(dayTmp, dateStartTimeTmp, focusedSchedule.RegularTimeBlocks[i].EndTime);
+                }
+            }
+        }
+
+        private void ScheduleREndTime_SelectedValueChanged(object sender, EventArgs e)
+        {
+            DayOfWeek dayTmp = StringToDayOfWeek(ScheduleRDay.Text);
+            for (int i = 0; i < focusedSchedule.RegularTimeBlocks.Count; i++)
+            {
+                if (focusedSchedule.RegularTimeBlocks[i].DayOfWeek == dayTmp)
+                {
+                    string[] hm = ScheduleREndTime.Text.Split(':');
+                    DateTime dateEndTimeTmp = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, int.Parse(hm[0]), int.Parse(hm[1]), 0);
+
+                    focusedSchedule.RegularTimeBlocks[i] = new WeeklyDateTimeBlock(dayTmp, focusedSchedule.RegularTimeBlocks[i].StartTime, dateEndTimeTmp);
+                }
+            }
+        }
+
+        private void DayCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            bool modified = false;
+            List<WeeklyDateTimeBlock> weeklyTmp = new List<WeeklyDateTimeBlock>();
+
+            DayOfWeek dayTmp = StringToDayOfWeek(ScheduleRDay.Text);
+
+            for (int i = 0; i < focusedSchedule.RegularTimeBlocks.Count; i++)
+            {
+                if (DayCheck.Checked)
+                {
+                    if (focusedSchedule.RegularTimeBlocks[i].DayOfWeek < dayTmp)
+                    {
+                        weeklyTmp.Add(focusedSchedule.RegularTimeBlocks[i]);
+                    }
+                    else if (focusedSchedule.RegularTimeBlocks[i].DayOfWeek > dayTmp)
+                    {
+                        weeklyTmp.Add(new WeeklyDateTimeBlock(dayTmp, new DateTime(), new DateTime()));
+                        modified = true;
+                    }
+                }
+                else
+                {
+                    if (focusedSchedule.RegularTimeBlocks[i].DayOfWeek != dayTmp)
+                    {
+                        weeklyTmp.Add(focusedSchedule.RegularTimeBlocks[i]);
+                    }
+                }
+            }
+            if (!modified && DayCheck.Checked)
+            {
+                weeklyTmp.Add(new WeeklyDateTimeBlock(dayTmp, new DateTime(), new DateTime()));
+            }
         }
 
         public void CloseAvailableTime(TimeTable updateBlock)
