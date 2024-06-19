@@ -43,9 +43,7 @@
             this.MainPanel = new System.Windows.Forms.Panel();
             this.LogTxt = new System.Windows.Forms.TextBox();
             this.TitlePanel = new System.Windows.Forms.Panel();
-            this.openEditAvailableBtn = new System.Windows.Forms.Button();
             this.images = new System.Windows.Forms.ImageList(this.components);
-            this.AlgorithmStarter = new System.Windows.Forms.Button();
             this.NextBtn = new System.Windows.Forms.Button();
             this.WeekLabel = new System.Windows.Forms.Label();
             this.PrevBtn = new System.Windows.Forms.Button();
@@ -55,6 +53,7 @@
             this.ScheduleBtn = new System.Windows.Forms.Button();
             this.TimeBlockView = new System.Windows.Forms.ListView();
             this.SingleSchedulePanel = new System.Windows.Forms.Panel();
+            this.ScheduleSRemoveBtn = new System.Windows.Forms.Button();
             this.ScheduleDatePicker = new System.Windows.Forms.DateTimePicker();
             this.ScheduleEditOk = new System.Windows.Forms.Button();
             this.ScheduleEditCancle = new System.Windows.Forms.Button();
@@ -102,7 +101,8 @@
             this.TaskLongEditCancleBtn = new System.Windows.Forms.Button();
             this.TaskLName = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.ScheduleSRemoveBtn = new System.Windows.Forms.Button();
+            this.openEditAvailableBtn = new System.Windows.Forms.Button();
+            this.AlgorithmStarter = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.MainPanel.SuspendLayout();
             this.TitlePanel.SuspendLayout();
@@ -248,38 +248,14 @@
             this.TitlePanel.Size = new System.Drawing.Size(740, 40);
             this.TitlePanel.TabIndex = 0;
             // 
-            // openEditAvailableBtn
-            // 
-            this.openEditAvailableBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.openEditAvailableBtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.openEditAvailableBtn.ImageIndex = 1;
-            this.openEditAvailableBtn.ImageList = this.images;
-            this.openEditAvailableBtn.Location = new System.Drawing.Point(665, 5);
-            this.openEditAvailableBtn.Name = "openEditAvailableBtn";
-            this.openEditAvailableBtn.Size = new System.Drawing.Size(35, 30);
-            this.openEditAvailableBtn.TabIndex = 4;
-            this.openEditAvailableBtn.UseVisualStyleBackColor = false;
-            this.openEditAvailableBtn.Click += new System.EventHandler(this.openEditAvailableBtn_Click);
-            // 
             // images
             // 
             this.images.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("images.ImageStream")));
             this.images.TransparentColor = System.Drawing.Color.Transparent;
-            this.images.Images.SetKeyName(0, "search.png");
-            this.images.Images.SetKeyName(1, "option.png");
-            // 
-            // AlgorithmStarter
-            // 
-            this.AlgorithmStarter.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.AlgorithmStarter.Dock = System.Windows.Forms.DockStyle.Right;
-            this.AlgorithmStarter.ImageIndex = 0;
-            this.AlgorithmStarter.ImageList = this.images;
-            this.AlgorithmStarter.Location = new System.Drawing.Point(700, 5);
-            this.AlgorithmStarter.Name = "AlgorithmStarter";
-            this.AlgorithmStarter.Size = new System.Drawing.Size(35, 30);
-            this.AlgorithmStarter.TabIndex = 3;
-            this.AlgorithmStarter.UseVisualStyleBackColor = false;
-            this.AlgorithmStarter.Click += new System.EventHandler(this.AlgorithmStarter_Click);
+            this.images.Images.SetKeyName(0, "reload (3).png");
+            this.images.Images.SetKeyName(1, "KakaoTalk_20240619_230623859 (1).png");
+            this.images.Images.SetKeyName(2, "reload.png");
+            this.images.Images.SetKeyName(3, "option.png");
             // 
             // NextBtn
             // 
@@ -399,6 +375,17 @@
             this.SingleSchedulePanel.Name = "SingleSchedulePanel";
             this.SingleSchedulePanel.Size = new System.Drawing.Size(200, 233);
             this.SingleSchedulePanel.TabIndex = 8;
+            // 
+            // ScheduleSRemoveBtn
+            // 
+            this.ScheduleSRemoveBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ScheduleSRemoveBtn.Location = new System.Drawing.Point(60, 195);
+            this.ScheduleSRemoveBtn.Name = "ScheduleSRemoveBtn";
+            this.ScheduleSRemoveBtn.Size = new System.Drawing.Size(45, 30);
+            this.ScheduleSRemoveBtn.TabIndex = 15;
+            this.ScheduleSRemoveBtn.Text = "제거";
+            this.ScheduleSRemoveBtn.UseVisualStyleBackColor = true;
+            this.ScheduleSRemoveBtn.Click += new System.EventHandler(this.ScheduleSRemoveBtn_Click);
             // 
             // ScheduleDatePicker
             // 
@@ -915,16 +902,31 @@
             this.label12.Text = "업무명";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // ScheduleSRemoveBtn
+            // openEditAvailableBtn
             // 
-            this.ScheduleSRemoveBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ScheduleSRemoveBtn.Location = new System.Drawing.Point(60, 195);
-            this.ScheduleSRemoveBtn.Name = "ScheduleSRemoveBtn";
-            this.ScheduleSRemoveBtn.Size = new System.Drawing.Size(45, 30);
-            this.ScheduleSRemoveBtn.TabIndex = 15;
-            this.ScheduleSRemoveBtn.Text = "제거";
-            this.ScheduleSRemoveBtn.UseVisualStyleBackColor = true;
-            this.ScheduleSRemoveBtn.Click += new System.EventHandler(this.ScheduleSRemoveBtn_Click);
+            this.openEditAvailableBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.openEditAvailableBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.openEditAvailableBtn.ImageIndex = 1;
+            this.openEditAvailableBtn.ImageList = this.images;
+            this.openEditAvailableBtn.Location = new System.Drawing.Point(665, 5);
+            this.openEditAvailableBtn.Name = "openEditAvailableBtn";
+            this.openEditAvailableBtn.Size = new System.Drawing.Size(35, 30);
+            this.openEditAvailableBtn.TabIndex = 4;
+            this.openEditAvailableBtn.UseVisualStyleBackColor = false;
+            this.openEditAvailableBtn.Click += new System.EventHandler(this.openEditAvailableBtn_Click);
+            // 
+            // AlgorithmStarter
+            // 
+            this.AlgorithmStarter.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.AlgorithmStarter.Dock = System.Windows.Forms.DockStyle.Right;
+            this.AlgorithmStarter.ImageIndex = 0;
+            this.AlgorithmStarter.ImageList = this.images;
+            this.AlgorithmStarter.Location = new System.Drawing.Point(700, 5);
+            this.AlgorithmStarter.Name = "AlgorithmStarter";
+            this.AlgorithmStarter.Size = new System.Drawing.Size(35, 30);
+            this.AlgorithmStarter.TabIndex = 3;
+            this.AlgorithmStarter.UseVisualStyleBackColor = false;
+            this.AlgorithmStarter.Click += new System.EventHandler(this.AlgorithmStarter_Click);
             // 
             // MainForm
             // 

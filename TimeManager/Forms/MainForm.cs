@@ -109,7 +109,7 @@ namespace TimeManager.Forms
 
         private void InitializeRows()
         {
-            for (int i = 0; i < 49; i++)
+            for (int i = 0; i < 48; i++)
             {
                 DateTime dateTime = new DateTime(2000, 1, 1, 0, 0, 0);
                 dateTime = dateTime.AddMinutes(i * 30);
@@ -121,7 +121,7 @@ namespace TimeManager.Forms
 
         public void CleanCells()
         {
-            for (int i = 0; i < 49; i++)
+            for (int i = 0; i < 48; i++)
             {
                 for (int j = 0; j < 7; j++)
                 {
