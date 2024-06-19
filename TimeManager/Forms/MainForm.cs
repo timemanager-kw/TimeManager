@@ -166,14 +166,16 @@ namespace TimeManager.Forms
                     int startRow = block.StartDate.Hour * 2 + block.StartDate.Minute / 30;
                     int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute / 30;
 
-                    Random random = new Random();
-                    int g = random.Next(100, 256);
-                    int r = random.Next(0, Math.Min(200, g));
-                    int b = random.Next(0, Math.Min(200, g));
-                    Color assignColor = Color.FromArgb(255, r, g, b);
+                    Color assignColor = new Color();
 
                     if (!assignedScheduleColor.ContainsKey(schedule.ScheduleId))
                     {
+                        Random random = new Random();
+                        int g = random.Next(100, 256);
+                        int r = random.Next(0, Math.Min(200, g));
+                        int b = random.Next(0, Math.Min(200, g));
+                        assignColor = Color.FromArgb(255, r, g, b);
+
                         for (bool isColorIn = true, pass = false; isColorIn && !pass;)
                         {
                             pass = true;
@@ -195,6 +197,10 @@ namespace TimeManager.Forms
                             }
                         }
                         assignedScheduleColor.Add(schedule.ScheduleId, assignColor);
+                    }
+                    else
+                    {
+                        assignedScheduleColor.TryGetValue(schedule.ScheduleId, out assignColor);
                     }
 
                     for (int i = startRow; i < endRow + 1; i++)
@@ -219,14 +225,16 @@ namespace TimeManager.Forms
                     int startRow = block.StartDate.Hour * 2 + block.StartDate.Minute / 30;
                     int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute / 30;
 
-                    Random random = new Random();
-                    int r = random.Next(100, 256);
-                    int g = random.Next(0, Math.Min(200, r));
-                    int b = random.Next(0, Math.Min(200, r));
-                    Color assignColor = Color.FromArgb(255, r, g, b);
+                    Color assignColor = new Color();
 
                     if (!assignedTaskColor.ContainsKey(task.TaskId))
                     {
+                        Random random = new Random();
+                        int r = random.Next(100, 256);
+                        int g = random.Next(0, Math.Min(200, r));
+                        int b = random.Next(0, Math.Min(200, r));
+                        assignColor = Color.FromArgb(255, r, g, b);
+
                         for (bool isColorIn = true, pass = false; isColorIn && !pass;)
                         {
                             pass = true;
@@ -247,6 +255,10 @@ namespace TimeManager.Forms
                             }
                         }
                         assignedTaskColor.Add(task.TaskId, assignColor);
+                    }
+                    else
+                    {
+                        assignedTaskColor.TryGetValue(task.TaskId, out assignColor);
                     }
 
                     for (int i = startRow; i < endRow + 1; i++)
