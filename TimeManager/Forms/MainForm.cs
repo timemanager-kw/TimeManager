@@ -347,31 +347,6 @@ namespace TimeManager.Forms
 
             TimeBlockView.Columns[0].TextAlign = HorizontalAlignment.Left;
 
-            if (_scheduleManager == null)
-            {
-                foreach (Schedule schedule in scheduleList)
-                {
-                    var lvItem = new ListViewItem(new string[TimeBlockView.Columns.Count]);
-
-                    lvItem.SubItems[0].Text = schedule.Name;
-                    if (schedule.Type == EScheduleType.Singular) lvItem.SubItems[1].Text = schedule.TimeBlock.EndDate.ToString("yyyy-MM-dd");
-                    else
-                    {
-                        string days = string.Empty;
-                        foreach (var dayOfWeek in schedule.RegularTimeBlocks)
-                        {
-                            days += $"{DayOfWeekToString(dayOfWeek.DayOfWeek)} | ";
-                        }
-                        days = days.Remove(days.Length - 3);
-                        lvItem.SubItems[1].Text = days;
-                    }
-
-                    TimeBlockView.Items.Add(lvItem);
-                }
-
-                return;
-            }
-
             List<Schedule> schedules = _scheduleManager.GetAll().ToList();
             List<Schedule> removeSchedules = new List<Schedule>();
             if (schedules.Count > 0)
@@ -437,30 +412,6 @@ namespace TimeManager.Forms
 
             TimeBlockView.Columns[0].TextAlign = HorizontalAlignment.Left;
             TimeBlockView.Columns[1].TextAlign = HorizontalAlignment.Left;
-
-            if (_taskManager == null)
-            {
-                foreach (Task task in taskList)
-                {
-                    var lvItem = new ListViewItem(new string[2]);
-
-                    lvItem.SubItems[0].Text = task.Name;
-                    if (task.Type == ETaskType.ShortTerm) lvItem.SubItems[1].Text = ((DateTime)task.EndDate).ToString("yyyy-MM-dd");
-                    else
-                    {
-                        string days = string.Empty;
-                        foreach (var dayOfWeek in task.WeeklyTimesWanted)
-                        {
-                            days += $"{DayOfWeekToString(dayOfWeek.dayOfWeek)} | ";
-                        }
-                        days = days.Remove(days.Length - 3);
-                        lvItem.SubItems[1].Text = days;
-                    }
-
-                    TimeBlockView.Items.Add(lvItem);
-                }
-                return;
-            }
 
             List<Task> tasks = _taskManager.GetAll().ToList();
             List<Task> removeTasks = new List<Task>();
