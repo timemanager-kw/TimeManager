@@ -38,16 +38,12 @@
             this.AddShortTaskStartDatePanel = new System.Windows.Forms.Panel();
             this.AddShortTaskStartDatePicker = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.AddShortTaskEndDatePanel = new System.Windows.Forms.Panel();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.AddShortTaskEndDatePicker = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
             this.NamePanel = new System.Windows.Forms.Panel();
             this.AddTaskIsLong = new System.Windows.Forms.CheckBox();
             this.AddTaskName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.AddLongTaskPanel = new System.Windows.Forms.Panel();
-            this.AddLongTaskIsTrue = new System.Windows.Forms.CheckBox();
+            this.LongTaskIsTrue = new System.Windows.Forms.CheckBox();
             this.AddRegularScheduleDays = new System.Windows.Forms.GroupBox();
             this.AddLongTaskSun = new System.Windows.Forms.RadioButton();
             this.AddLongTaskSat = new System.Windows.Forms.RadioButton();
@@ -59,15 +55,19 @@
             this.label8 = new System.Windows.Forms.Label();
             this.TaskDurationCmb = new System.Windows.Forms.ComboBox();
             this.AddTaskTimePanel = new System.Windows.Forms.Panel();
+            this.AddShortTaskEndDatePanel = new System.Windows.Forms.Panel();
+            this.AddLongTaskIsTrue = new System.Windows.Forms.CheckBox();
+            this.AddShortTaskEndDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
             this.AddTaskMemoPanel.SuspendLayout();
             this.AddCanclePanel.SuspendLayout();
             this.AddShortTaskPanel.SuspendLayout();
             this.AddShortTaskStartDatePanel.SuspendLayout();
-            this.AddShortTaskEndDatePanel.SuspendLayout();
             this.NamePanel.SuspendLayout();
             this.AddLongTaskPanel.SuspendLayout();
             this.AddRegularScheduleDays.SuspendLayout();
             this.AddTaskTimePanel.SuspendLayout();
+            this.AddShortTaskEndDatePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // AddTaskMemoPanel
@@ -142,8 +142,8 @@
             // 
             // AddShortTaskPanel
             // 
-            this.AddShortTaskPanel.Controls.Add(this.AddShortTaskStartDatePanel);
             this.AddShortTaskPanel.Controls.Add(this.AddShortTaskEndDatePanel);
+            this.AddShortTaskPanel.Controls.Add(this.AddShortTaskStartDatePanel);
             this.AddShortTaskPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.AddShortTaskPanel.Location = new System.Drawing.Point(0, 47);
             this.AddShortTaskPanel.Name = "AddShortTaskPanel";
@@ -155,7 +155,7 @@
             this.AddShortTaskStartDatePanel.Controls.Add(this.AddShortTaskStartDatePicker);
             this.AddShortTaskStartDatePanel.Controls.Add(this.label3);
             this.AddShortTaskStartDatePanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.AddShortTaskStartDatePanel.Location = new System.Drawing.Point(0, 40);
+            this.AddShortTaskStartDatePanel.Location = new System.Drawing.Point(0, 0);
             this.AddShortTaskStartDatePanel.Margin = new System.Windows.Forms.Padding(10);
             this.AddShortTaskStartDatePanel.Name = "AddShortTaskStartDatePanel";
             this.AddShortTaskStartDatePanel.Padding = new System.Windows.Forms.Padding(6);
@@ -184,53 +184,6 @@
             this.label3.TabIndex = 16;
             this.label3.Text = "시작일";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // AddShortTaskEndDatePanel
-            // 
-            this.AddShortTaskEndDatePanel.Controls.Add(this.checkBox1);
-            this.AddShortTaskEndDatePanel.Controls.Add(this.AddShortTaskEndDatePicker);
-            this.AddShortTaskEndDatePanel.Controls.Add(this.label2);
-            this.AddShortTaskEndDatePanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.AddShortTaskEndDatePanel.Location = new System.Drawing.Point(0, 0);
-            this.AddShortTaskEndDatePanel.Margin = new System.Windows.Forms.Padding(10);
-            this.AddShortTaskEndDatePanel.Name = "AddShortTaskEndDatePanel";
-            this.AddShortTaskEndDatePanel.Padding = new System.Windows.Forms.Padding(6);
-            this.AddShortTaskEndDatePanel.Size = new System.Drawing.Size(800, 40);
-            this.AddShortTaskEndDatePanel.TabIndex = 15;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(277, 14);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(10);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(109, 19);
-            this.checkBox1.TabIndex = 18;
-            this.checkBox1.Text = "마감일 포함";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // AddShortTaskEndDatePicker
-            // 
-            this.AddShortTaskEndDatePicker.CustomFormat = "yyyy-MM-dd";
-            this.AddShortTaskEndDatePicker.Dock = System.Windows.Forms.DockStyle.Left;
-            this.AddShortTaskEndDatePicker.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.AddShortTaskEndDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.AddShortTaskEndDatePicker.Location = new System.Drawing.Point(64, 6);
-            this.AddShortTaskEndDatePicker.Name = "AddShortTaskEndDatePicker";
-            this.AddShortTaskEndDatePicker.Size = new System.Drawing.Size(200, 27);
-            this.AddShortTaskEndDatePicker.TabIndex = 17;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label2.Font = new System.Drawing.Font("함초롬바탕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(6, 6);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 22);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "마감일";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // NamePanel
             // 
@@ -280,7 +233,7 @@
             // 
             // AddLongTaskPanel
             // 
-            this.AddLongTaskPanel.Controls.Add(this.AddLongTaskIsTrue);
+            this.AddLongTaskPanel.Controls.Add(this.LongTaskIsTrue);
             this.AddLongTaskPanel.Controls.Add(this.AddRegularScheduleDays);
             this.AddLongTaskPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.AddLongTaskPanel.Location = new System.Drawing.Point(0, 128);
@@ -290,17 +243,17 @@
             this.AddLongTaskPanel.Size = new System.Drawing.Size(800, 82);
             this.AddLongTaskPanel.TabIndex = 29;
             // 
-            // AddLongTaskIsTrue
+            // LongTaskIsTrue
             // 
-            this.AddLongTaskIsTrue.AutoSize = true;
-            this.AddLongTaskIsTrue.Location = new System.Drawing.Point(371, 35);
-            this.AddLongTaskIsTrue.Margin = new System.Windows.Forms.Padding(10);
-            this.AddLongTaskIsTrue.Name = "AddLongTaskIsTrue";
-            this.AddLongTaskIsTrue.Size = new System.Drawing.Size(59, 19);
-            this.AddLongTaskIsTrue.TabIndex = 17;
-            this.AddLongTaskIsTrue.Text = "포함";
-            this.AddLongTaskIsTrue.UseVisualStyleBackColor = true;
-            this.AddLongTaskIsTrue.CheckedChanged += new System.EventHandler(this.AddLongTaskIsTrue_CheckedChanged);
+            this.LongTaskIsTrue.AutoSize = true;
+            this.LongTaskIsTrue.Location = new System.Drawing.Point(371, 35);
+            this.LongTaskIsTrue.Margin = new System.Windows.Forms.Padding(10);
+            this.LongTaskIsTrue.Name = "LongTaskIsTrue";
+            this.LongTaskIsTrue.Size = new System.Drawing.Size(59, 19);
+            this.LongTaskIsTrue.TabIndex = 17;
+            this.LongTaskIsTrue.Text = "포함";
+            this.LongTaskIsTrue.UseVisualStyleBackColor = true;
+            this.LongTaskIsTrue.CheckedChanged += new System.EventHandler(this.AddLongTaskIsTrue_CheckedChanged);
             // 
             // AddRegularScheduleDays
             // 
@@ -456,6 +409,53 @@
             this.AddTaskTimePanel.Size = new System.Drawing.Size(800, 47);
             this.AddTaskTimePanel.TabIndex = 30;
             // 
+            // AddShortTaskEndDatePanel
+            // 
+            this.AddShortTaskEndDatePanel.Controls.Add(this.AddLongTaskIsTrue);
+            this.AddShortTaskEndDatePanel.Controls.Add(this.AddShortTaskEndDatePicker);
+            this.AddShortTaskEndDatePanel.Controls.Add(this.label2);
+            this.AddShortTaskEndDatePanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.AddShortTaskEndDatePanel.Location = new System.Drawing.Point(0, 40);
+            this.AddShortTaskEndDatePanel.Margin = new System.Windows.Forms.Padding(10);
+            this.AddShortTaskEndDatePanel.Name = "AddShortTaskEndDatePanel";
+            this.AddShortTaskEndDatePanel.Padding = new System.Windows.Forms.Padding(6);
+            this.AddShortTaskEndDatePanel.Size = new System.Drawing.Size(800, 40);
+            this.AddShortTaskEndDatePanel.TabIndex = 17;
+            // 
+            // AddLongTaskIsTrue
+            // 
+            this.AddLongTaskIsTrue.AutoSize = true;
+            this.AddLongTaskIsTrue.Location = new System.Drawing.Point(277, 14);
+            this.AddLongTaskIsTrue.Margin = new System.Windows.Forms.Padding(10);
+            this.AddLongTaskIsTrue.Name = "AddLongTaskIsTrue";
+            this.AddLongTaskIsTrue.Size = new System.Drawing.Size(109, 19);
+            this.AddLongTaskIsTrue.TabIndex = 18;
+            this.AddLongTaskIsTrue.Text = "마감일 포함";
+            this.AddLongTaskIsTrue.UseVisualStyleBackColor = true;
+            // 
+            // AddShortTaskEndDatePicker
+            // 
+            this.AddShortTaskEndDatePicker.CustomFormat = "yyyy-MM-dd";
+            this.AddShortTaskEndDatePicker.Dock = System.Windows.Forms.DockStyle.Left;
+            this.AddShortTaskEndDatePicker.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.AddShortTaskEndDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.AddShortTaskEndDatePicker.Location = new System.Drawing.Point(64, 6);
+            this.AddShortTaskEndDatePicker.Name = "AddShortTaskEndDatePicker";
+            this.AddShortTaskEndDatePicker.Size = new System.Drawing.Size(200, 27);
+            this.AddShortTaskEndDatePicker.TabIndex = 17;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label2.Font = new System.Drawing.Font("함초롬바탕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.Location = new System.Drawing.Point(6, 6);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(58, 22);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "마감일";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // AddTaskForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -477,8 +477,6 @@
             this.AddShortTaskPanel.ResumeLayout(false);
             this.AddShortTaskStartDatePanel.ResumeLayout(false);
             this.AddShortTaskStartDatePanel.PerformLayout();
-            this.AddShortTaskEndDatePanel.ResumeLayout(false);
-            this.AddShortTaskEndDatePanel.PerformLayout();
             this.NamePanel.ResumeLayout(false);
             this.NamePanel.PerformLayout();
             this.AddLongTaskPanel.ResumeLayout(false);
@@ -487,6 +485,8 @@
             this.AddRegularScheduleDays.PerformLayout();
             this.AddTaskTimePanel.ResumeLayout(false);
             this.AddTaskTimePanel.PerformLayout();
+            this.AddShortTaskEndDatePanel.ResumeLayout(false);
+            this.AddShortTaskEndDatePanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -505,11 +505,7 @@
         private System.Windows.Forms.TextBox AddTaskName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel AddLongTaskPanel;
-        private System.Windows.Forms.Panel AddShortTaskEndDatePanel;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.DateTimePicker AddShortTaskEndDatePicker;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox AddLongTaskIsTrue;
+        private System.Windows.Forms.CheckBox LongTaskIsTrue;
         private System.Windows.Forms.GroupBox AddRegularScheduleDays;
         private System.Windows.Forms.RadioButton AddLongTaskSun;
         private System.Windows.Forms.RadioButton AddLongTaskSat;
@@ -524,5 +520,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox TaskDurationCmb;
         private System.Windows.Forms.Panel AddTaskTimePanel;
+        private System.Windows.Forms.Panel AddShortTaskEndDatePanel;
+        private System.Windows.Forms.CheckBox AddLongTaskIsTrue;
+        private System.Windows.Forms.DateTimePicker AddShortTaskEndDatePicker;
+        private System.Windows.Forms.Label label2;
     }
 }

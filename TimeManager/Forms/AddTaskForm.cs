@@ -57,7 +57,7 @@ namespace TimeManager.Forms
 
         void UpdateLongTaskView()
         {
-            AddLongTaskIsTrue.Checked = daysBool[(int)dayOfWeek];
+            LongTaskIsTrue.Checked = daysBool[(int)dayOfWeek];
             if (!daysBool[(int)dayOfWeek])
             {
                 TaskDurationCmb.Text = "00:00";
@@ -70,7 +70,7 @@ namespace TimeManager.Forms
 
         void UpdateTimeBlock()
         {
-            if (!AddLongTaskIsTrue.Checked) return;
+            if (!LongTaskIsTrue.Checked) return;
             string[] hm = TaskDurationCmb.Text.Split(':');
             weeklyBlock[(int)dayOfWeek].time = new TimeSpan(int.Parse(hm[0]), int.Parse(hm[1]), 0);
         }
@@ -206,7 +206,7 @@ namespace TimeManager.Forms
 
         private void AddLongTaskIsTrue_CheckedChanged(object sender, EventArgs e)
         {
-            daysBool[(int)dayOfWeek] = AddLongTaskIsTrue.Checked;
+            daysBool[(int)dayOfWeek] = LongTaskIsTrue.Checked;
             TaskDurationCmb.Enabled = daysBool[(int)dayOfWeek];
         }
 
