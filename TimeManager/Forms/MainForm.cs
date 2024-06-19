@@ -721,7 +721,6 @@ namespace TimeManager.Forms
         private void AlgorithmStarter_Click(object sender, EventArgs e)
         {
             _scheduler.Run();
-            _timeTableManager.Save(timeTable);
             TimeTableView();
         }
 
@@ -787,6 +786,7 @@ namespace TimeManager.Forms
                 DateTime endTmp = new DateTime(ScheduleDatePicker.Value.Year, ScheduleDatePicker.Value.Month, ScheduleDatePicker.Value.Day, int.Parse(endHM[0]), int.Parse(endHM[1]), 0);
 
                 focusedSchedule.TimeBlock = new DateTimeBlock(startTmp, endTmp);
+                timeTable.ReassignSchedule(focusedSchedule.Id, new List<DateTimeBlock>() { new DateTimeBlock(focusedSchedule.TimeBlock.StartDate, focusedSchedule.TimeBlock.EndDate) });
             }
             else
             {
@@ -800,6 +800,12 @@ namespace TimeManager.Forms
                         return;
                     }
                 }
+                List<DateTimeBlock> dateTimeBlocksTmp = new List<DateTimeBlock>();
+                foreach(WeeklyDateTimeBlock d in focusedSchedule.RegularTimeBlocks)
+                {
+                    dateTimeBlocksTmp.Add(new DateTimeBlock(d.StartTime, d.EndTime));
+                }
+                timeTable.ReassignSchedule(focusedSchedule.Id, dateTimeBlocksTmp);
             }
             focusedSchedule.Description = LogTxt.Text;
 
