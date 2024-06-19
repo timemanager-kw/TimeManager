@@ -75,7 +75,7 @@ namespace TimeManager.Data.Repository
         public void Delete(Task task)
         {
             List<string> lines = File.ReadAllLines(filePath).ToList();
-            for (int i = 1; i < lines.Count; i++)
+            for (int i = 0; i < lines.Count; i++)
             {
                 string[] parts = lines[i].Split(',');
                 if (int.Parse(parts[0]) == task.Id)
