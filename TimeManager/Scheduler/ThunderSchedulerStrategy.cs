@@ -155,15 +155,15 @@ namespace TimeManager.Scheduler
                 {
                     break;
                 }
-
+                if (task_iter.Current == null) break;
                 bool day_iter_move = false;
                 /* focusDate가 dateTime보다 작아지는 상황을 찾는중*/
-                while ((task_iter.Current.focusDate > day_iter.Current.dateTime))
+                while ((task_iter.Current.focusDate.Value.Date > day_iter.Current.dateTime))
                 {
                     i++; // 디버깅용
                     // repl_tasks에 들어있는 마감일이 가장 빠른것부터 차례로 확인함
 
-                    if(task_iter.MoveNext())        /*당장의 day_iter 위치의 day에 task를 넣을 수 없게 되면*/
+                    if(!task_iter.MoveNext())        /*당장의 day_iter 위치의 day에 task를 넣을 수 없게 되면*/
                     {                               /*task_iter.MoveNext()만 반복하게 되어 nullExceptin이 일어날 수 있음.*/
                         day_iter_move = true;       /*∴ task_iter가 마지막에 도달했다면, day_iter.MoveNext를 하고*/
                         break;                      /*while문 밖에서 continue를 하여, 다음 day에 대해서 동작을 실행한다.*/
@@ -305,7 +305,6 @@ namespace TimeManager.Scheduler
         // Empty 영역에서 바꿀 수 있는 곳이 있는지 찾는 메서드
         private Day FindExchanableDay(Data.Model.Task task, IEnumerator<Day> day_cursor, int interval)
         {
-            Day day = day_cursor.Current;                        // 디버깅용
             if(!day_cursor.MoveNext())
             {
                 return null;
@@ -411,7 +410,7 @@ namespace TimeManager.Scheduler
             //      if) 바꿀 수 있다면, 바꾸는 함수인 Exchange() 적용.
             // 
 
-            least_interval = 4;
+            least_interval = 3;
 
             // Days의 복사본 생성
             List<Day> days_copied = new List<Day>();
