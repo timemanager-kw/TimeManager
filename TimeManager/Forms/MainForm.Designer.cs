@@ -77,6 +77,7 @@
             this.ScheduleREdit = new System.Windows.Forms.Button();
             this.DayCheck = new System.Windows.Forms.CheckBox();
             this.RegularSchedulePanel = new System.Windows.Forms.Panel();
+            this.ScheduleRRemoveBtn = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.TaskNameTxt = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -89,7 +90,9 @@
             this.TaskDurationCmb = new System.Windows.Forms.ComboBox();
             this.WithEndDateCheck = new System.Windows.Forms.CheckBox();
             this.ShortTaskPanel = new System.Windows.Forms.Panel();
+            this.TaskSRemoveBtn = new System.Windows.Forms.Button();
             this.LongTaskPanel = new System.Windows.Forms.Panel();
+            this.TaskLRemoveBtn = new System.Windows.Forms.Button();
             this.TaskLDayCheck = new System.Windows.Forms.CheckBox();
             this.TaskLTime = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -99,6 +102,7 @@
             this.TaskLongEditCancleBtn = new System.Windows.Forms.Button();
             this.TaskLName = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.ScheduleSRemoveBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.MainPanel.SuspendLayout();
             this.TitlePanel.SuspendLayout();
@@ -379,6 +383,7 @@
             // 
             // SingleSchedulePanel
             // 
+            this.SingleSchedulePanel.Controls.Add(this.ScheduleSRemoveBtn);
             this.SingleSchedulePanel.Controls.Add(this.ScheduleDatePicker);
             this.SingleSchedulePanel.Controls.Add(this.ScheduleEditOk);
             this.SingleSchedulePanel.Controls.Add(this.ScheduleEditCancle);
@@ -614,6 +619,7 @@
             // 
             // RegularSchedulePanel
             // 
+            this.RegularSchedulePanel.Controls.Add(this.ScheduleRRemoveBtn);
             this.RegularSchedulePanel.Controls.Add(this.DayCheck);
             this.RegularSchedulePanel.Controls.Add(this.ScheduleREdit);
             this.RegularSchedulePanel.Controls.Add(this.ScheduleRCancle);
@@ -630,6 +636,17 @@
             this.RegularSchedulePanel.Name = "RegularSchedulePanel";
             this.RegularSchedulePanel.Size = new System.Drawing.Size(200, 233);
             this.RegularSchedulePanel.TabIndex = 19;
+            // 
+            // ScheduleRRemoveBtn
+            // 
+            this.ScheduleRRemoveBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ScheduleRRemoveBtn.Location = new System.Drawing.Point(60, 195);
+            this.ScheduleRRemoveBtn.Name = "ScheduleRRemoveBtn";
+            this.ScheduleRRemoveBtn.Size = new System.Drawing.Size(45, 30);
+            this.ScheduleRRemoveBtn.TabIndex = 15;
+            this.ScheduleRRemoveBtn.Text = "제거";
+            this.ScheduleRRemoveBtn.UseVisualStyleBackColor = true;
+            this.ScheduleRRemoveBtn.Click += new System.EventHandler(this.TaskLRemoveBtn_Click);
             // 
             // label8
             // 
@@ -741,6 +758,7 @@
             // ShortTaskPanel
             // 
             this.ShortTaskPanel.BackColor = System.Drawing.Color.AliceBlue;
+            this.ShortTaskPanel.Controls.Add(this.TaskSRemoveBtn);
             this.ShortTaskPanel.Controls.Add(this.WithEndDateCheck);
             this.ShortTaskPanel.Controls.Add(this.TaskDurationCmb);
             this.ShortTaskPanel.Controls.Add(this.label6);
@@ -758,9 +776,21 @@
             this.ShortTaskPanel.Size = new System.Drawing.Size(200, 233);
             this.ShortTaskPanel.TabIndex = 21;
             // 
+            // TaskSRemoveBtn
+            // 
+            this.TaskSRemoveBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.TaskSRemoveBtn.Location = new System.Drawing.Point(60, 195);
+            this.TaskSRemoveBtn.Name = "TaskSRemoveBtn";
+            this.TaskSRemoveBtn.Size = new System.Drawing.Size(45, 30);
+            this.TaskSRemoveBtn.TabIndex = 20;
+            this.TaskSRemoveBtn.Text = "제거";
+            this.TaskSRemoveBtn.UseVisualStyleBackColor = true;
+            this.TaskSRemoveBtn.Click += new System.EventHandler(this.TaskSRemoveBtn_Click);
+            // 
             // LongTaskPanel
             // 
             this.LongTaskPanel.BackColor = System.Drawing.Color.AliceBlue;
+            this.LongTaskPanel.Controls.Add(this.TaskLRemoveBtn);
             this.LongTaskPanel.Controls.Add(this.TaskLDayCheck);
             this.LongTaskPanel.Controls.Add(this.TaskLTime);
             this.LongTaskPanel.Controls.Add(this.label10);
@@ -775,6 +805,17 @@
             this.LongTaskPanel.Name = "LongTaskPanel";
             this.LongTaskPanel.Size = new System.Drawing.Size(200, 233);
             this.LongTaskPanel.TabIndex = 22;
+            // 
+            // TaskLRemoveBtn
+            // 
+            this.TaskLRemoveBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.TaskLRemoveBtn.Location = new System.Drawing.Point(60, 195);
+            this.TaskLRemoveBtn.Name = "TaskLRemoveBtn";
+            this.TaskLRemoveBtn.Size = new System.Drawing.Size(45, 30);
+            this.TaskLRemoveBtn.TabIndex = 22;
+            this.TaskLRemoveBtn.Text = "제거";
+            this.TaskLRemoveBtn.UseVisualStyleBackColor = true;
+            this.TaskLRemoveBtn.Click += new System.EventHandler(this.ScheduleRRemoveBtn_Click);
             // 
             // TaskLDayCheck
             // 
@@ -874,16 +915,27 @@
             this.label12.Text = "업무명";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // ScheduleSRemoveBtn
+            // 
+            this.ScheduleSRemoveBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ScheduleSRemoveBtn.Location = new System.Drawing.Point(60, 195);
+            this.ScheduleSRemoveBtn.Name = "ScheduleSRemoveBtn";
+            this.ScheduleSRemoveBtn.Size = new System.Drawing.Size(45, 30);
+            this.ScheduleSRemoveBtn.TabIndex = 15;
+            this.ScheduleSRemoveBtn.Text = "제거";
+            this.ScheduleSRemoveBtn.UseVisualStyleBackColor = true;
+            this.ScheduleSRemoveBtn.Click += new System.EventHandler(this.ScheduleSRemoveBtn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(942, 493);
-            this.Controls.Add(this.RegularSchedulePanel);
-            this.Controls.Add(this.LongTaskPanel);
-            this.Controls.Add(this.ShortTaskPanel);
             this.Controls.Add(this.SingleSchedulePanel);
+            this.Controls.Add(this.ShortTaskPanel);
+            this.Controls.Add(this.LongTaskPanel);
+            this.Controls.Add(this.RegularSchedulePanel);
             this.Controls.Add(this.TimeBlockView);
             this.Controls.Add(this.TimeBlockTitlePanel);
             this.Controls.Add(this.MainPanel);
@@ -979,5 +1031,9 @@
         private System.Windows.Forms.ComboBox TaskLDay;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ImageList images;
+        private System.Windows.Forms.Button ScheduleRRemoveBtn;
+        private System.Windows.Forms.Button TaskLRemoveBtn;
+        private System.Windows.Forms.Button TaskSRemoveBtn;
+        private System.Windows.Forms.Button ScheduleSRemoveBtn;
     }
 }

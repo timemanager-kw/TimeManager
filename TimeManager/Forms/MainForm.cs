@@ -1037,6 +1037,30 @@ namespace TimeManager.Forms
             catch (Exception E) { string x = E.Message; }
         }
 
+        private void ScheduleSRemoveBtn_Click(object sender, EventArgs e)
+        {
+            _scheduleManager.Delete(focusedSchedule);
+            UpdateView[(int)viewType]();
+        }
+
+        private void ScheduleRRemoveBtn_Click(object sender, EventArgs e)
+        {
+            _scheduleManager.Delete(focusedSchedule);
+            UpdateView[(int)viewType]();
+        }
+
+        private void TaskSRemoveBtn_Click(object sender, EventArgs e)
+        {
+            _taskManager.Delete(focusedTask);
+            UpdateView[(int)viewType]();
+        }
+
+        private void TaskLRemoveBtn_Click(object sender, EventArgs e)
+        {
+            _taskManager.Delete(focusedTask);
+            UpdateView[(int)viewType]();
+        }
+
         public void CloseAvailableTime(TimeTable updateBlock)
         {
             timeTable = updateBlock;
