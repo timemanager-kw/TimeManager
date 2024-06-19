@@ -164,9 +164,9 @@ namespace TimeManager.Forms
                     if (!week.IsInWeek(block.StartDate)) continue;
 
                     int startRow = block.StartDate.Hour * 2 + block.StartDate.Minute / 30;
-                    int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute / 30;
+                    int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute + 30 / 30;
 
-                    for (int i = startRow; i < endRow; i++)
+                    for (int i = startRow; i < endRow + 1; i++)
                     {
                         dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(S" + schedule.ScheduleId + ") " + _scheduleManager.GetById(schedule.ScheduleId).Name;
                         dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = _ScheduleBackColor;
@@ -188,7 +188,7 @@ namespace TimeManager.Forms
                     int startRow = block.StartDate.Hour * 2 + block.StartDate.Minute / 30;
                     int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute / 30;
 
-                    for (int i = startRow; i < endRow; i++)
+                    for (int i = startRow; i < endRow + 1; i++)
                     {
                         dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(T" + task.TaskId + ") " + _taskManager.GetById(task.TaskId).Name;
                         dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = _TaskBackColor;
