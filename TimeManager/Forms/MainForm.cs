@@ -166,7 +166,7 @@ namespace TimeManager.Forms
                     int startRow = block.StartDate.Hour * 2 + block.StartDate.Minute / 30;
                     int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute / 30;
 
-                    Color assignColor = new Color();
+                    Color assignColor;
 
                     if (!assignedScheduleColor.ContainsKey(schedule.ScheduleId))
                     {
@@ -205,7 +205,7 @@ namespace TimeManager.Forms
 
                     for (int i = startRow; i < endRow + 1; i++)
                     {
-                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(S" + schedule.ScheduleId + ") " + _scheduleManager.GetById(schedule.ScheduleId).Name + "\r\n" + _scheduleManager.GetById(schedule.ScheduleId).Description;
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(S" + schedule.ScheduleId + ") " + _scheduleManager.GetById(schedule.ScheduleId).Name + "\n" + _scheduleManager.GetById(schedule.ScheduleId).Description;
                         dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = assignColor;
                     }
                 }
@@ -225,7 +225,7 @@ namespace TimeManager.Forms
                     int startRow = block.StartDate.Hour * 2 + block.StartDate.Minute / 30;
                     int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute / 30;
 
-                    Color assignColor = new Color();
+                    Color assignColor;
 
                     if (!assignedTaskColor.ContainsKey(task.TaskId))
                     {
@@ -263,7 +263,7 @@ namespace TimeManager.Forms
 
                     for (int i = startRow; i < endRow + 1; i++)
                     {
-                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(T" + task.TaskId + ") " + _taskManager.GetById(task.TaskId).Name + "\r\n" + _taskManager.GetById(task.TaskId).Description;
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(T" + task.TaskId + ") " + _taskManager.GetById(task.TaskId).Name + "\n" + _taskManager.GetById(task.TaskId).Description;
                         dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = assignColor;
                     }
                 }
