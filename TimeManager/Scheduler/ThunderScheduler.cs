@@ -126,6 +126,7 @@ namespace TimeManager.Scheduler
                 task_.EndDate = task.EndDate;
                 task_.Duration = task.Duration;
                 task_.Type = task.Type;
+                task_.WeeklyTimesWanted = task.WeeklyTimesWanted;
 
                 repTasks.Add(task_);
             }
