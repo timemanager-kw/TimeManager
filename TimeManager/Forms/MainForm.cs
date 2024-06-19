@@ -52,6 +52,9 @@ namespace TimeManager.Forms
 
         Color noneSelectedColor, selectedColor;
 
+        List<Color> assignedScheduleColor = new List<Color>();
+        List<Color> assignedTaskColor = new List<Color>();
+
         private Color _ScheduleBackColor = Color.LightBlue;
         private Color _TaskBackColor = Color.LightGreen;
 
@@ -109,7 +112,7 @@ namespace TimeManager.Forms
 
         private void InitializeRows()
         {
-            for (int i = 0; i < 49; i++)
+            for (int i = 0; i < 48; i++)
             {
                 DateTime dateTime = new DateTime(2000, 1, 1, 0, 0, 0);
                 dateTime = dateTime.AddMinutes(i * 30);
@@ -121,7 +124,7 @@ namespace TimeManager.Forms
 
         public void CleanCells()
         {
-            for (int i = 0; i < 49; i++)
+            for (int i = 0; i < 48; i++)
             {
                 for (int j = 0; j < 7; j++)
                 {
@@ -166,10 +169,24 @@ namespace TimeManager.Forms
                     int startRow = block.StartDate.Hour * 2 + block.StartDate.Minute / 30;
                     int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute / 30;
 
+                    Random random = new Random();
+                    int g = random.Next(100, 256);
+                    int r = random.Next(0, Math.Min(200, g));
+                    int b = random.Next(0, Math.Min(200, g));
+                    Color assignColor = Color.FromArgb(255, r, g, b);
+                    for (; assignedScheduleColor.Contains(assignColor);)
+                    {
+                        g = random.Next(100, 256);
+                        r = random.Next(0, Math.Min(200, g));
+                        b = random.Next(0, Math.Min(200, g));
+                        assignColor = Color.FromArgb(255, r, g, b);
+                    }
+                    assignedScheduleColor.Add(assignColor);
+
                     for (int i = startRow; i < endRow + 1; i++)
                     {
                         dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(S" + schedule.ScheduleId + ") " + _scheduleManager.GetById(schedule.ScheduleId).Name;
-                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = _ScheduleBackColor;
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = assignColor;
                     }
                 }
             }
@@ -188,10 +205,24 @@ namespace TimeManager.Forms
                     int startRow = block.StartDate.Hour * 2 + block.StartDate.Minute / 30;
                     int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute / 30;
 
+                    Random random = new Random();
+                    int r = random.Next(100, 256);
+                    int g = random.Next(0, Math.Min(200, r));
+                    int b = random.Next(0, Math.Min(200, r));
+                    Color assignColor = Color.FromArgb(255, r, g, b);
+                    for (; assignedTaskColor.Contains(assignColor);)
+                    {
+                        r = random.Next(100, 256);
+                        g = random.Next(0, Math.Min(200, r));
+                        b = random.Next(0, Math.Min(200, r));
+                        assignColor = Color.FromArgb(255, r, g, b);
+                    }
+                    assignedTaskColor.Add(assignColor);
+
                     for (int i = startRow; i < endRow + 1; i++)
                     {
                         dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(T" + task.TaskId + ") " + _taskManager.GetById(task.TaskId).Name;
-                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = _TaskBackColor;
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = assignColor;
                     }
                 }
             }
@@ -253,6 +284,8 @@ namespace TimeManager.Forms
 
         void UpdateScheduleView()
         {
+            LogTxt.BackColor = Color.FromArgb(255, 100, 210, 100);
+
             TimeTableView();
             ScheduleBtn.BackColor = selectedColor;
             TaskBtn.BackColor = noneSelectedColor;

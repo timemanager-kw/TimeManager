@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.ColumnMonday = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +55,7 @@
             this.ScheduleBtn = new System.Windows.Forms.Button();
             this.TimeBlockView = new System.Windows.Forms.ListView();
             this.SingleSchedulePanel = new System.Windows.Forms.Panel();
+            this.ScheduleSRemoveBtn = new System.Windows.Forms.Button();
             this.ScheduleDatePicker = new System.Windows.Forms.DateTimePicker();
             this.ScheduleEditOk = new System.Windows.Forms.Button();
             this.ScheduleEditCancle = new System.Windows.Forms.Button();
@@ -102,7 +103,6 @@
             this.TaskLongEditCancleBtn = new System.Windows.Forms.Button();
             this.TaskLName = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.ScheduleSRemoveBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.MainPanel.SuspendLayout();
             this.TitlePanel.SuspendLayout();
@@ -189,9 +189,9 @@
             // 
             // ColumnSaturday
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.ColumnSaturday.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.SteelBlue;
+            this.ColumnSaturday.DefaultCellStyle = dataGridViewCellStyle3;
             this.ColumnSaturday.HeaderText = "토";
             this.ColumnSaturday.MinimumWidth = 6;
             this.ColumnSaturday.Name = "ColumnSaturday";
@@ -201,9 +201,9 @@
             // 
             // ColumnSunday
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Crimson;
-            this.ColumnSunday.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Crimson;
+            this.ColumnSunday.DefaultCellStyle = dataGridViewCellStyle4;
             this.ColumnSunday.HeaderText = "일";
             this.ColumnSunday.MinimumWidth = 6;
             this.ColumnSunday.Name = "ColumnSunday";
@@ -231,6 +231,7 @@
             this.LogTxt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.LogTxt.Size = new System.Drawing.Size(740, 60);
             this.LogTxt.TabIndex = 1;
+            this.LogTxt.Text = "0";
             // 
             // TitlePanel
             // 
@@ -265,8 +266,10 @@
             // 
             this.images.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("images.ImageStream")));
             this.images.TransparentColor = System.Drawing.Color.Transparent;
-            this.images.Images.SetKeyName(0, "search.png");
-            this.images.Images.SetKeyName(1, "option.png");
+            this.images.Images.SetKeyName(0, "reload (3).png");
+            this.images.Images.SetKeyName(1, "KakaoTalk_20240619_230623859 (1).png");
+            this.images.Images.SetKeyName(2, "reload.png");
+            this.images.Images.SetKeyName(3, "option.png");
             // 
             // AlgorithmStarter
             // 
@@ -399,6 +402,17 @@
             this.SingleSchedulePanel.Name = "SingleSchedulePanel";
             this.SingleSchedulePanel.Size = new System.Drawing.Size(200, 233);
             this.SingleSchedulePanel.TabIndex = 8;
+            // 
+            // ScheduleSRemoveBtn
+            // 
+            this.ScheduleSRemoveBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ScheduleSRemoveBtn.Location = new System.Drawing.Point(60, 195);
+            this.ScheduleSRemoveBtn.Name = "ScheduleSRemoveBtn";
+            this.ScheduleSRemoveBtn.Size = new System.Drawing.Size(45, 30);
+            this.ScheduleSRemoveBtn.TabIndex = 15;
+            this.ScheduleSRemoveBtn.Text = "제거";
+            this.ScheduleSRemoveBtn.UseVisualStyleBackColor = true;
+            this.ScheduleSRemoveBtn.Click += new System.EventHandler(this.ScheduleSRemoveBtn_Click);
             // 
             // ScheduleDatePicker
             // 
@@ -914,17 +928,6 @@
             this.label12.TabIndex = 0;
             this.label12.Text = "업무명";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // ScheduleSRemoveBtn
-            // 
-            this.ScheduleSRemoveBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ScheduleSRemoveBtn.Location = new System.Drawing.Point(60, 195);
-            this.ScheduleSRemoveBtn.Name = "ScheduleSRemoveBtn";
-            this.ScheduleSRemoveBtn.Size = new System.Drawing.Size(45, 30);
-            this.ScheduleSRemoveBtn.TabIndex = 15;
-            this.ScheduleSRemoveBtn.Text = "제거";
-            this.ScheduleSRemoveBtn.UseVisualStyleBackColor = true;
-            this.ScheduleSRemoveBtn.Click += new System.EventHandler(this.ScheduleSRemoveBtn_Click);
             // 
             // MainForm
             // 
