@@ -35,12 +35,12 @@ namespace TimeManager.Data.Repository
                 }
                 foreach(var schedule in timeTable.AssignedSchedules)
                 {
-                    string assignedBlocks = string.Join(",", schedule.AssignedBlocks.Select(block => $"{block.StartDate},{block.EndDate},{block.Duration}"));
+                    string assignedBlocks = string.Join(";", schedule.AssignedBlocks.Select(block => $"{block.StartDate}|{block.EndDate}|{block.Duration}"));
                     writer.WriteLine($"{"AssignedSchedules:"},{schedule.ScheduleId},{assignedBlocks}");
                 }
                 foreach(var task in timeTable.AssignedTasks)
                 {
-                    string assignedBlocks = string.Join(",",task.AssignedBlocks.Select(block =>$"{block.StartDate},{block.EndDate},{block.Duration}"));
+                    string assignedBlocks = string.Join(";",task.AssignedBlocks.Select(block =>$"{block.StartDate}|{block.EndDate}|{block.Duration}"));
                     writer.WriteLine($"{"AssignedTasks"},{task.TaskId},{assignedBlocks}");
                 }
             }
@@ -71,11 +71,10 @@ namespace TimeManager.Data.Repository
                     {
                         string[] parts = line.Split(',');
                         long scheduleId = long.Parse(parts[1]);
-                        string scheduleName = parts[2];
-                        string[] scheduleBlocks = parts[3].Split(','); 
+                        string[] scheduleBlocks = parts[2].Split(';'); 
                         List<DateTimeBlock> assignedBlocks = scheduleBlocks.Select(block =>
                         {
-                            string[] blockParts = block.Split(',');
+                            string[] blockParts = block.Split('|');
                             DateTime startDate = DateTime.Parse(blockParts[0]);
                             DateTime endDate = DateTime.Parse(blockParts[1]);
                             return new DateTimeBlock(startDate, endDate);
@@ -88,11 +87,10 @@ namespace TimeManager.Data.Repository
                         
                         string[] parts = line.Split(',');
                         long taskId = long.Parse(parts[1]);
-                        string taskName = parts[2];
-                        string[] taskBlocks = parts[3].Split(',');
+                        string[] taskBlocks = parts[2].Split(';');
                         List<DateTimeBlock> assignedBlocks = taskBlocks.Select(block =>
                         {
-                            string[] blockParts = block.Split(',');
+                            string[] blockParts = block.Split('|');
                             DateTime startDate = DateTime.Parse(blockParts[0]);
                             DateTime endDate = DateTime.Parse(blockParts[1]);
                             return new DateTimeBlock(startDate, endDate);
