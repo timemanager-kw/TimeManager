@@ -155,13 +155,29 @@ namespace TimeManager.Scheduler
                 {
                     break;
                 }
+
+                bool day_iter_move = false;
                 /* focusDate가 dateTime보다 작아지는 상황을 찾는중*/
                 while ((task_iter.Current.focusDate > day_iter.Current.dateTime))
                 {
                     i++; // 디버깅용
                     // repl_tasks에 들어있는 마감일이 가장 빠른것부터 차례로 확인함
-                    task_iter.MoveNext();
+
+                    if(task_iter.MoveNext())        /*당장의 day_iter 위치의 day에 task를 넣을 수 없게 되면*/
+                    {                               /*task_iter.MoveNext()만 반복하게 되어 nullExceptin이 일어날 수 있음.*/
+                        day_iter_move = true;       /*∴ task_iter가 마지막에 도달했다면, day_iter.MoveNext를 하고*/
+                        break;                      /*while문 밖에서 continue를 하여, 다음 day에 대해서 동작을 실행한다.*/
+                    }                               /* (밑의 if(day_iter_move)에서. )*/
                 }
+                if(day_iter_move)
+                {
+                    if(!day_iter.MoveNext())
+                    {
+                        break;
+                    }
+                    continue;
+                }
+
                 // while문을 빠져나와서 여기에 왔다
                 // <-> 마감일(endDate)이 빠른 것 중에서 focusDate가 dateTime보다
                 //     앞에 있는 것이 task_iter에 들어있다
@@ -540,12 +556,12 @@ namespace TimeManager.Scheduler
             {
                 int start = dateTimeBlock.StartDate.Hour * 2
                            + dateTimeBlock.StartDate.Minute / 30;
-                int blank = (int)(dateTimeBlock.EndDate - dateTimeBlock.StartDate).TotalMinutes;
+                int blank = (int)(dateTimeBlock.EndDate - dateTimeBlock.StartDate).TotalMinutes / 30;
 
                 timeBlockHandles.Add(new TimeBlockHandle(start, blank));
             }
 
-            // Task를 task, duration, filled 3개로 관리하는 자료형 생성
+            // Task를 task, duration, available 3개로 관리하는 자료형 생성
             foreach (TempBlock tempBlock in day.tempBlocks)
             {
                 int duration = tempBlock.time_interval;
@@ -591,7 +607,7 @@ namespace TimeManager.Scheduler
                 // 3) allocate가 큰 부분부터 채우며 넣기
                 for (int i = 0; i < max_available; i++)
                 {
-                    //blank가 1보다 크다면
+                    //blank가 1보다 크거나 같다면.(i.e. blank에 넣을 수 있다면)
                     if (max_timeBlockHandle.blank >= 1)
                     {
                         // max_timeBlockHandle에 task넣고 available, blank 1씩 감소
@@ -616,7 +632,8 @@ namespace TimeManager.Scheduler
 
         private void AddToAssignedTask(TimeTable timetable, Data.Model.Task task, DateTimeBlock dateTimeBlock)
         {
-            AssignedTask assignedTask_; bool find = false;
+            AssignedTask assignedTask_;
+            bool find = false;
             foreach (AssignedTask assignedTask in timetable.AssignedTasks)
             {
                 if (assignedTask.TaskId == task.Id)
@@ -624,14 +641,14 @@ namespace TimeManager.Scheduler
                     assignedTask_ = assignedTask;
                     assignedTask_.AssignedBlocks.Add(dateTimeBlock);
                 }
-
-                if (!find)
-                {
-                    assignedTask_ = new AssignedTask(new List<DateTimeBlock>(), task.Id);
-                    timetable.AssignedTasks.Add(assignedTask_);
-                    assignedTask_.AssignedBlocks.Add(dateTimeBlock);
-                }
             }
+            if (!find)
+            {
+                assignedTask_ = new AssignedTask(new List<DateTimeBlock>(), task.Id);
+                timetable.AssignedTasks.Add(assignedTask_);
+                assignedTask_.AssignedBlocks.Add(dateTimeBlock);
+            }
+
         }
 
         // List<DateTimeBlock> _workTimes를 고려하여 List<AssignedTask> _assignedTasks에 넣기.
@@ -642,13 +659,14 @@ namespace TimeManager.Scheduler
             {
                 List<DateTimeBlock> worktimes = timeTable.GetDailyAvailableTimes(day.dateTime);
                 Data.Model.Task[] task_arr = TimeBlockToArray(worktimes, day);
+                int Length_48 = 48;
 
                 Data.Model.Task task_iter = null;
                 int task_start = 0;
                 int task_interval = 0;
                 Data.Model.Task task = null;
 
-                for (int i = 0; i < task_arr.Length; i++)
+                for (int i = 0; i < Length_48; i++)
                 {
                     /*해당 위치에 내용을 확인함.*/
                     // 앞이랑 같은 상태가 유지된다면 interval을 +1 해주고
@@ -704,6 +722,7 @@ namespace TimeManager.Scheduler
                             }
                         }
                     }
+                    task_iter = task_arr[i];
                 }
             }
 
@@ -795,6 +814,8 @@ namespace TimeManager.Scheduler
 
             // W.T.D : TimeTable에 채우기
             FillTimeTable(daysRandomlyArranged, timeTable);
+
+            return;
         }
     }
 }
