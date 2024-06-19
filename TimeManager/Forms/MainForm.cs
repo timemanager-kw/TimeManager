@@ -694,6 +694,7 @@ namespace TimeManager.Forms
         private void AlgorithmStarter_Click(object sender, EventArgs e)
         {
             _scheduler.Run();
+            _timeTableManager.Save(timeTable);
         }
 
         private void AddBtn_Click(object sender, EventArgs e)
