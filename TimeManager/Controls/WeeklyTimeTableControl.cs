@@ -35,6 +35,7 @@ namespace TimeManager.Controls
         private void WeeklyTimeTableControl_Load(object sender, EventArgs e)
         {
             InitializeRows();
+            MoveScrollToNow();
             dataGridView.ClearSelection();
         }
 
@@ -48,6 +49,12 @@ namespace TimeManager.Controls
                 dataGridView.Rows.Add();
                 dataGridView.Rows[i].HeaderCell.Value = dateTime.ToString("HH:mm");
             }
+        }
+
+        private void MoveScrollToNow()
+        {
+            int nowRow = DateTime.Now.Hour * 2 + DateTime.Now.Minute / 30;
+            dataGridView.FirstDisplayedScrollingRowIndex = nowRow - 5;
         }
 
         public void CleanCells()
@@ -151,7 +158,7 @@ namespace TimeManager.Controls
                 ItemSelected?.Invoke(this, new WeeklyTimeTableControlItemEventArgs { AssignedItemType = assignedItemType, AssignedItemId = assignedItemId });
             }
 
-            // restrict selection
+            // clear selection
             dataGridView.ClearSelection();
         }
 
