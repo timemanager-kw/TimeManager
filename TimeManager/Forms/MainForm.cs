@@ -468,8 +468,8 @@ namespace TimeManager.Forms
                 () => {
                     ScheduleNameTxt.Text = focusedSchedule.Name;
                     ScheduleDatePicker.Text = focusedSchedule.TimeBlock.StartDate.ToString("yyyy-MM-dd");
-                    ScheduleStartTime.Text = focusedSchedule.TimeBlock.StartDate.ToString("HH:mm");
-                    ScheduleEndTime.Text = focusedSchedule.TimeBlock.EndDate.ToString("HH:mm");
+                    ScheduleStartTime.Text = $"{(focusedSchedule.TimeBlock.StartDate.Hour < 10 ? $"0{focusedSchedule.TimeBlock.StartDate.Hour}" : $"{focusedSchedule.TimeBlock.StartDate.Hour}")}:{(focusedSchedule.TimeBlock.StartDate.Minute == 0 ? "00" : "30")}";
+                    ScheduleEndTime.Text = $"{(focusedSchedule.TimeBlock.EndDate.Hour < 10 ? $"0{focusedSchedule.TimeBlock.EndDate.Hour}" : $"{focusedSchedule.TimeBlock.EndDate.Hour}")}:{(focusedSchedule.TimeBlock.EndDate.Minute == 0 ? "00" : "30")}";
                 },
                 () => {
                     ScheduleRNameTxt.Text = focusedSchedule.Name;
@@ -483,8 +483,9 @@ namespace TimeManager.Forms
                         if (timeBlock.DayOfWeek == DayOfWeek.Monday)
                         {
                             checkTmp = true;
-                            timeTmp1 = timeBlock.StartTime.ToString("HH:mm");
-                            timeTmp2 = timeBlock.EndTime.ToString("HH:mm");
+
+                            timeTmp1 = $"{(timeBlock.StartTime.Hour < 10 ? $"0{timeBlock.StartTime.Hour}" : $"{timeBlock.StartTime.Hour}")}:{(timeBlock.StartTime.Minute == 0 ? "00" : "30")}";
+                            timeTmp2 = $"{(timeBlock.EndTime.Hour < 10 ? $"0{timeBlock.EndTime.Hour}" : $"{timeBlock.EndTime.Hour}")}:{(timeBlock.EndTime.Minute == 0 ? "00" : "30")}";
                             break;
                         }
                     }
@@ -513,7 +514,7 @@ namespace TimeManager.Forms
                     TaskStartDatePicker.Text = focusedTask.StartDate.ToString("yyyy-MM-dd");
 
                     int totMin = (int)focusedTask.Duration.Value.TotalMinutes;
-                    TaskDurationCmb.Text = $"{totMin / 60}:{totMin % 60}";
+                    TaskDurationCmb.Text = $"{(totMin / 60 < 10 ? $"0{totMin / 60}" : $"{totMin / 60}")}:{(totMin % 60 == 0 ? "00" : "30")}";
 
                     WithEndDateCheck.Checked = (int)(focusedTask.EndDate.Value - focusedTask.StartDate).TotalDays != focusedTask.FocusDays;
                 },
@@ -529,7 +530,7 @@ namespace TimeManager.Forms
                         if (longTerm.dayOfWeek == DayOfWeek.Monday)
                         {
                             checkTmp = true;
-                            timeTmp = $"{(int)(longTerm.time.TotalMinutes / 60)}:{(int)(longTerm.time.TotalMinutes % 60)}";
+                            timeTmp = $"{((int)(longTerm.time.TotalMinutes / 60) < 10 ? $"0{(int)(longTerm.time.TotalMinutes / 60)}" : $"{(int)(longTerm.time.TotalMinutes / 60)}")}:{((int)(longTerm.time.TotalMinutes % 60) == 0 ? "00" : "30")}";
                             break;
                         }
                     }
