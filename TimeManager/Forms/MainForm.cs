@@ -1081,6 +1081,7 @@ namespace TimeManager.Forms
         private void TaskSRemoveBtn_Click(object sender, EventArgs e)
         {
             _taskManager.Delete(focusedTask);
+            timeTable.UnassignTask(focusedTask.Id);
             focusedTask = null;
             UpdateView[(int)viewType]();
         }
@@ -1088,6 +1089,7 @@ namespace TimeManager.Forms
         private void TaskLRemoveBtn_Click(object sender, EventArgs e)
         {
             _taskManager.Delete(focusedTask);
+            timeTable.UnassignTask(focusedTask.Id);
             focusedTask = null;
             UpdateView[(int)viewType]();
         }
