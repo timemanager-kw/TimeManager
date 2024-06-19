@@ -347,38 +347,13 @@ namespace TimeManager.Forms
 
             TimeBlockView.Columns[0].TextAlign = HorizontalAlignment.Left;
 
-            if (_scheduleManager == null)
-            {
-                foreach (Schedule schedule in scheduleList)
-                {
-                    var lvItem = new ListViewItem(new string[TimeBlockView.Columns.Count]);
-
-                    lvItem.SubItems[0].Text = schedule.Name;
-                    if (schedule.Type == EScheduleType.Singular) lvItem.SubItems[1].Text = schedule.TimeBlock.EndDate.ToString("yyyy-MM-dd");
-                    else
-                    {
-                        string days = string.Empty;
-                        foreach (var dayOfWeek in schedule.RegularTimeBlocks)
-                        {
-                            days += $"{DayOfWeekToString(dayOfWeek.DayOfWeek)} | ";
-                        }
-                        days = days.Remove(days.Length - 3);
-                        lvItem.SubItems[1].Text = days;
-                    }
-
-                    TimeBlockView.Items.Add(lvItem);
-                }
-
-                return;
-            }
-
-            List<Schedule> schedules = _scheduleManager.GetAll().ToList();
+            scheduleList = _scheduleManager.GetAll().ToList();
             List<Schedule> removeSchedules = new List<Schedule>();
-            if (schedules.Count > 0)
+            if (scheduleList.Count > 0)
             {
                 LogTxt.Text = "메모장\r\n";
 
-                foreach (Schedule schedule in schedules)
+                foreach (Schedule schedule in scheduleList)
                 {
                     if (schedule.Type == EScheduleType.Singular && schedule.TimeBlock.EndDate.CompareTo(DateTime.Now) <= 0)
                     {
@@ -438,38 +413,14 @@ namespace TimeManager.Forms
             TimeBlockView.Columns[0].TextAlign = HorizontalAlignment.Left;
             TimeBlockView.Columns[1].TextAlign = HorizontalAlignment.Left;
 
-            if (_taskManager == null)
-            {
-                foreach (Task task in taskList)
-                {
-                    var lvItem = new ListViewItem(new string[2]);
-
-                    lvItem.SubItems[0].Text = task.Name;
-                    if (task.Type == ETaskType.ShortTerm) lvItem.SubItems[1].Text = ((DateTime)task.EndDate).ToString("yyyy-MM-dd");
-                    else
-                    {
-                        string days = string.Empty;
-                        foreach (var dayOfWeek in task.WeeklyTimesWanted)
-                        {
-                            days += $"{DayOfWeekToString(dayOfWeek.dayOfWeek)} | ";
-                        }
-                        days = days.Remove(days.Length - 3);
-                        lvItem.SubItems[1].Text = days;
-                    }
-
-                    TimeBlockView.Items.Add(lvItem);
-                }
-                return;
-            }
-
-            List<Task> tasks = _taskManager.GetAll().ToList();
+            taskList = _taskManager.GetAll().ToList();
             List<Task> removeTasks = new List<Task>();
 
-            if (tasks.Count > 0)
+            if (taskList.Count > 0)
             {
-                LogTxt.Text = $"메모장\r\n남은 업무: {tasks.Count}";
+                LogTxt.Text = $"메모장\r\n남은 업무: {taskList.Count}";
 
-                foreach (Task task in tasks)
+                foreach (Task task in taskList)
                 {
                     var lvItem = new ListViewItem(new string[2]);
 
