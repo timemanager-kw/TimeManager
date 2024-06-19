@@ -78,7 +78,7 @@ namespace TimeManager.Data.Repository
         public void Delete(Schedule schedule)
         {
             List<string> lines = File.ReadAllLines(filePath).ToList();
-            for (int i = 1; i < lines.Count; i++)
+            for (int i = 0; i < lines.Count; i++)
             {
                 string[] parts = lines[i].Split(',');
                 if (long.Parse(parts[0]) == schedule.Id)
