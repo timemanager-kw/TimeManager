@@ -488,11 +488,10 @@ namespace TimeManager.Forms
                     TaskEndDatePicker.Text = focusedTask.EndDate.Value.ToString("yyyy-MM-dd");
                     TaskStartDatePicker.Text = focusedTask.StartDate.ToString("yyyy-MM-dd");
 
-                    TimeSpan tmp = focusedTask.Duration.Value;
-                    int totMin = (int)tmp.Subtract(new TimeSpan((int)(tmp.TotalDays / 10000) * 10000, 0,0,0)).TotalMinutes;
+                    int totMin = (int)focusedTask.Duration.Value.TotalMinutes;
                     TaskDurationCmb.Text = $"{totMin / 60}:{totMin % 60}";
 
-                    WithEndDateCheck.Checked = (int)focusedTask.Duration.Value.TotalDays / 10000 != focusedTask.FocusDays;
+                    WithEndDateCheck.Checked = (int)(focusedTask.EndDate.Value - focusedTask.StartDate).TotalDays != focusedTask.FocusDays;
                 },
                 () => {
                     TaskLName.Text = focusedTask.Name;
