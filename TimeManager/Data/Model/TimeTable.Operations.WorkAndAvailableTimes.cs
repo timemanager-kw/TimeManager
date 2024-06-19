@@ -98,15 +98,15 @@ namespace TimeManager.Data.Model
             if (_workTimes == null || _workTimes.Count == 0)
                 return new List<DateTimeBlock>();
 
-            return _GetDailyAvailableTimes(date);
+            return _GetDailyAvailableTimes(date, date);
         }
 
-        private List<DateTimeBlock> _GetDailyAvailableTimes(DateTime date, int currWeek = 0)
+        private List<DateTimeBlock> _GetDailyAvailableTimes(DateTime date, DateTime originalDate, int currWeek = 0)
         {
             if (currWeek < -48)
                 return new List<DateTimeBlock>();
 
-            IEnumerable<DateTimeBlock> scheduleTimes = GetDailyAssignedSchedules(date)
+            IEnumerable<DateTimeBlock> scheduleTimes = GetDailyAssignedSchedules(originalDate)
                 .SelectMany(s => s.AssignedBlocks);
 
             IEnumerable<DateTimeBlock> dailyWorkTimes = _workTimes
@@ -114,7 +114,7 @@ namespace TimeManager.Data.Model
                 .Select(b => new DateTimeBlock(b.StartDate.AddDays(-(currWeek * 7)), b.EndDate.AddDays(-(currWeek * 7))));
 
             if (dailyWorkTimes.Count() == 0)
-                return _GetDailyAvailableTimes(date.AddDays(-7), currWeek - 1);
+                return _GetDailyAvailableTimes(date.AddDays(-7), originalDate, currWeek - 1);
 
             return (List<DateTimeBlock>)DateTimeBlock.Difference(dailyWorkTimes, scheduleTimes);
         }
