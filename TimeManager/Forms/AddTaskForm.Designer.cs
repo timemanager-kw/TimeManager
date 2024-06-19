@@ -75,31 +75,32 @@
             this.AddTaskMemoPanel.Controls.Add(this.AddTaskMemo);
             this.AddTaskMemoPanel.Controls.Add(this.label5);
             this.AddTaskMemoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AddTaskMemoPanel.Location = new System.Drawing.Point(0, 257);
-            this.AddTaskMemoPanel.Margin = new System.Windows.Forms.Padding(10);
+            this.AddTaskMemoPanel.Location = new System.Drawing.Point(0, 307);
+            this.AddTaskMemoPanel.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.AddTaskMemoPanel.Name = "AddTaskMemoPanel";
-            this.AddTaskMemoPanel.Padding = new System.Windows.Forms.Padding(10);
-            this.AddTaskMemoPanel.Size = new System.Drawing.Size(800, 148);
+            this.AddTaskMemoPanel.Padding = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.AddTaskMemoPanel.Size = new System.Drawing.Size(1000, 179);
             this.AddTaskMemoPanel.TabIndex = 31;
             // 
             // AddTaskMemo
             // 
             this.AddTaskMemo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AddTaskMemo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.AddTaskMemo.Location = new System.Drawing.Point(10, 50);
-            this.AddTaskMemo.Margin = new System.Windows.Forms.Padding(10);
+            this.AddTaskMemo.Location = new System.Drawing.Point(12, 60);
+            this.AddTaskMemo.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.AddTaskMemo.Multiline = true;
             this.AddTaskMemo.Name = "AddTaskMemo";
-            this.AddTaskMemo.Size = new System.Drawing.Size(780, 88);
+            this.AddTaskMemo.Size = new System.Drawing.Size(976, 107);
             this.AddTaskMemo.TabIndex = 3;
             // 
             // label5
             // 
             this.label5.Dock = System.Windows.Forms.DockStyle.Top;
             this.label5.Font = new System.Drawing.Font("함초롬바탕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label5.Location = new System.Drawing.Point(10, 10);
+            this.label5.Location = new System.Drawing.Point(12, 12);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(780, 40);
+            this.label5.Size = new System.Drawing.Size(976, 48);
             this.label5.TabIndex = 1;
             this.label5.Text = "메모";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -109,20 +110,21 @@
             this.AddCanclePanel.Controls.Add(this.AddTaskCancle);
             this.AddCanclePanel.Controls.Add(this.AddTask);
             this.AddCanclePanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.AddCanclePanel.Location = new System.Drawing.Point(0, 405);
-            this.AddCanclePanel.Margin = new System.Windows.Forms.Padding(5);
+            this.AddCanclePanel.Location = new System.Drawing.Point(0, 486);
+            this.AddCanclePanel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.AddCanclePanel.Name = "AddCanclePanel";
-            this.AddCanclePanel.Padding = new System.Windows.Forms.Padding(4);
-            this.AddCanclePanel.Size = new System.Drawing.Size(800, 45);
+            this.AddCanclePanel.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.AddCanclePanel.Size = new System.Drawing.Size(1000, 54);
             this.AddCanclePanel.TabIndex = 28;
             // 
             // AddTaskCancle
             // 
             this.AddTaskCancle.Dock = System.Windows.Forms.DockStyle.Right;
             this.AddTaskCancle.Font = new System.Drawing.Font("함초롬바탕 확장", 11F);
-            this.AddTaskCancle.Location = new System.Drawing.Point(646, 4);
+            this.AddTaskCancle.Location = new System.Drawing.Point(807, 5);
+            this.AddTaskCancle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AddTaskCancle.Name = "AddTaskCancle";
-            this.AddTaskCancle.Size = new System.Drawing.Size(75, 37);
+            this.AddTaskCancle.Size = new System.Drawing.Size(94, 44);
             this.AddTaskCancle.TabIndex = 21;
             this.AddTaskCancle.Text = "취소";
             this.AddTaskCancle.UseVisualStyleBackColor = true;
@@ -132,9 +134,10 @@
             // 
             this.AddTask.Dock = System.Windows.Forms.DockStyle.Right;
             this.AddTask.Font = new System.Drawing.Font("함초롬바탕 확장", 11F);
-            this.AddTask.Location = new System.Drawing.Point(721, 4);
+            this.AddTask.Location = new System.Drawing.Point(901, 5);
+            this.AddTask.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AddTask.Name = "AddTask";
-            this.AddTask.Size = new System.Drawing.Size(75, 37);
+            this.AddTask.Size = new System.Drawing.Size(94, 44);
             this.AddTask.TabIndex = 20;
             this.AddTask.Text = "추가";
             this.AddTask.UseVisualStyleBackColor = true;
@@ -145,9 +148,10 @@
             this.AddShortTaskPanel.Controls.Add(this.AddShortTaskStartDatePanel);
             this.AddShortTaskPanel.Controls.Add(this.AddShortTaskEndDatePanel);
             this.AddShortTaskPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.AddShortTaskPanel.Location = new System.Drawing.Point(0, 47);
+            this.AddShortTaskPanel.Location = new System.Drawing.Point(0, 56);
+            this.AddShortTaskPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AddShortTaskPanel.Name = "AddShortTaskPanel";
-            this.AddShortTaskPanel.Size = new System.Drawing.Size(800, 81);
+            this.AddShortTaskPanel.Size = new System.Drawing.Size(1000, 97);
             this.AddShortTaskPanel.TabIndex = 27;
             // 
             // AddShortTaskStartDatePanel
@@ -155,11 +159,11 @@
             this.AddShortTaskStartDatePanel.Controls.Add(this.AddShortTaskStartDatePicker);
             this.AddShortTaskStartDatePanel.Controls.Add(this.label3);
             this.AddShortTaskStartDatePanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.AddShortTaskStartDatePanel.Location = new System.Drawing.Point(0, 40);
-            this.AddShortTaskStartDatePanel.Margin = new System.Windows.Forms.Padding(10);
+            this.AddShortTaskStartDatePanel.Location = new System.Drawing.Point(0, 48);
+            this.AddShortTaskStartDatePanel.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.AddShortTaskStartDatePanel.Name = "AddShortTaskStartDatePanel";
-            this.AddShortTaskStartDatePanel.Padding = new System.Windows.Forms.Padding(6);
-            this.AddShortTaskStartDatePanel.Size = new System.Drawing.Size(800, 40);
+            this.AddShortTaskStartDatePanel.Padding = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.AddShortTaskStartDatePanel.Size = new System.Drawing.Size(1000, 48);
             this.AddShortTaskStartDatePanel.TabIndex = 16;
             // 
             // AddShortTaskStartDatePicker
@@ -168,9 +172,10 @@
             this.AddShortTaskStartDatePicker.Dock = System.Windows.Forms.DockStyle.Left;
             this.AddShortTaskStartDatePicker.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.AddShortTaskStartDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.AddShortTaskStartDatePicker.Location = new System.Drawing.Point(64, 6);
+            this.AddShortTaskStartDatePicker.Location = new System.Drawing.Point(77, 7);
+            this.AddShortTaskStartDatePicker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AddShortTaskStartDatePicker.Name = "AddShortTaskStartDatePicker";
-            this.AddShortTaskStartDatePicker.Size = new System.Drawing.Size(200, 27);
+            this.AddShortTaskStartDatePicker.Size = new System.Drawing.Size(249, 30);
             this.AddShortTaskStartDatePicker.TabIndex = 17;
             // 
             // label3
@@ -178,9 +183,10 @@
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Left;
             this.label3.Font = new System.Drawing.Font("함초롬바탕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(6, 6);
+            this.label3.Location = new System.Drawing.Point(8, 7);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 22);
+            this.label3.Size = new System.Drawing.Size(69, 26);
             this.label3.TabIndex = 16;
             this.label3.Text = "시작일";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -192,19 +198,19 @@
             this.AddShortTaskEndDatePanel.Controls.Add(this.label2);
             this.AddShortTaskEndDatePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.AddShortTaskEndDatePanel.Location = new System.Drawing.Point(0, 0);
-            this.AddShortTaskEndDatePanel.Margin = new System.Windows.Forms.Padding(10);
+            this.AddShortTaskEndDatePanel.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.AddShortTaskEndDatePanel.Name = "AddShortTaskEndDatePanel";
-            this.AddShortTaskEndDatePanel.Padding = new System.Windows.Forms.Padding(6);
-            this.AddShortTaskEndDatePanel.Size = new System.Drawing.Size(800, 40);
+            this.AddShortTaskEndDatePanel.Padding = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.AddShortTaskEndDatePanel.Size = new System.Drawing.Size(1000, 48);
             this.AddShortTaskEndDatePanel.TabIndex = 15;
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(277, 14);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(10);
+            this.checkBox1.Location = new System.Drawing.Point(346, 17);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(109, 19);
+            this.checkBox1.Size = new System.Drawing.Size(130, 22);
             this.checkBox1.TabIndex = 18;
             this.checkBox1.Text = "마감일 포함";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -215,9 +221,10 @@
             this.AddShortTaskEndDatePicker.Dock = System.Windows.Forms.DockStyle.Left;
             this.AddShortTaskEndDatePicker.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.AddShortTaskEndDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.AddShortTaskEndDatePicker.Location = new System.Drawing.Point(64, 6);
+            this.AddShortTaskEndDatePicker.Location = new System.Drawing.Point(77, 7);
+            this.AddShortTaskEndDatePicker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AddShortTaskEndDatePicker.Name = "AddShortTaskEndDatePicker";
-            this.AddShortTaskEndDatePicker.Size = new System.Drawing.Size(200, 27);
+            this.AddShortTaskEndDatePicker.Size = new System.Drawing.Size(249, 30);
             this.AddShortTaskEndDatePicker.TabIndex = 17;
             // 
             // label2
@@ -225,9 +232,10 @@
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Left;
             this.label2.Font = new System.Drawing.Font("함초롬바탕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(6, 6);
+            this.label2.Location = new System.Drawing.Point(8, 7);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 22);
+            this.label2.Size = new System.Drawing.Size(69, 26);
             this.label2.TabIndex = 16;
             this.label2.Text = "마감일";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -239,19 +247,19 @@
             this.NamePanel.Controls.Add(this.label1);
             this.NamePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.NamePanel.Location = new System.Drawing.Point(0, 0);
-            this.NamePanel.Margin = new System.Windows.Forms.Padding(10);
+            this.NamePanel.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.NamePanel.Name = "NamePanel";
-            this.NamePanel.Padding = new System.Windows.Forms.Padding(10);
-            this.NamePanel.Size = new System.Drawing.Size(800, 47);
+            this.NamePanel.Padding = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.NamePanel.Size = new System.Drawing.Size(1000, 56);
             this.NamePanel.TabIndex = 26;
             // 
             // AddTaskIsLong
             // 
             this.AddTaskIsLong.AutoSize = true;
-            this.AddTaskIsLong.Location = new System.Drawing.Point(260, 12);
-            this.AddTaskIsLong.Margin = new System.Windows.Forms.Padding(10);
+            this.AddTaskIsLong.Location = new System.Drawing.Point(325, 14);
+            this.AddTaskIsLong.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.AddTaskIsLong.Name = "AddTaskIsLong";
-            this.AddTaskIsLong.Size = new System.Drawing.Size(94, 19);
+            this.AddTaskIsLong.Size = new System.Drawing.Size(112, 22);
             this.AddTaskIsLong.TabIndex = 3;
             this.AddTaskIsLong.Text = "정기 업무";
             this.AddTaskIsLong.UseVisualStyleBackColor = true;
@@ -260,10 +268,10 @@
             // AddTaskName
             // 
             this.AddTaskName.Dock = System.Windows.Forms.DockStyle.Left;
-            this.AddTaskName.Location = new System.Drawing.Point(52, 10);
-            this.AddTaskName.Margin = new System.Windows.Forms.Padding(10);
+            this.AddTaskName.Location = new System.Drawing.Point(62, 12);
+            this.AddTaskName.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.AddTaskName.Name = "AddTaskName";
-            this.AddTaskName.Size = new System.Drawing.Size(200, 25);
+            this.AddTaskName.Size = new System.Drawing.Size(249, 28);
             this.AddTaskName.TabIndex = 2;
             // 
             // label1
@@ -271,9 +279,10 @@
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Left;
             this.label1.Font = new System.Drawing.Font("함초롬바탕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(10, 10);
+            this.label1.Location = new System.Drawing.Point(12, 12);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 22);
+            this.label1.Size = new System.Drawing.Size(50, 26);
             this.label1.TabIndex = 1;
             this.label1.Text = "업무";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -283,20 +292,20 @@
             this.AddLongTaskPanel.Controls.Add(this.AddLongTaskIsTrue);
             this.AddLongTaskPanel.Controls.Add(this.AddRegularScheduleDays);
             this.AddLongTaskPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.AddLongTaskPanel.Location = new System.Drawing.Point(0, 128);
-            this.AddLongTaskPanel.Margin = new System.Windows.Forms.Padding(10);
+            this.AddLongTaskPanel.Location = new System.Drawing.Point(0, 153);
+            this.AddLongTaskPanel.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.AddLongTaskPanel.Name = "AddLongTaskPanel";
-            this.AddLongTaskPanel.Padding = new System.Windows.Forms.Padding(10);
-            this.AddLongTaskPanel.Size = new System.Drawing.Size(800, 82);
+            this.AddLongTaskPanel.Padding = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.AddLongTaskPanel.Size = new System.Drawing.Size(1000, 98);
             this.AddLongTaskPanel.TabIndex = 29;
             // 
             // AddLongTaskIsTrue
             // 
             this.AddLongTaskIsTrue.AutoSize = true;
-            this.AddLongTaskIsTrue.Location = new System.Drawing.Point(371, 35);
-            this.AddLongTaskIsTrue.Margin = new System.Windows.Forms.Padding(10);
+            this.AddLongTaskIsTrue.Location = new System.Drawing.Point(464, 42);
+            this.AddLongTaskIsTrue.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.AddLongTaskIsTrue.Name = "AddLongTaskIsTrue";
-            this.AddLongTaskIsTrue.Size = new System.Drawing.Size(59, 19);
+            this.AddLongTaskIsTrue.Size = new System.Drawing.Size(70, 22);
             this.AddLongTaskIsTrue.TabIndex = 17;
             this.AddLongTaskIsTrue.Text = "포함";
             this.AddLongTaskIsTrue.UseVisualStyleBackColor = true;
@@ -313,9 +322,11 @@
             this.AddRegularScheduleDays.Controls.Add(this.AddLongTaskMon);
             this.AddRegularScheduleDays.Dock = System.Windows.Forms.DockStyle.Left;
             this.AddRegularScheduleDays.Font = new System.Drawing.Font("함초롬바탕 확장", 10F);
-            this.AddRegularScheduleDays.Location = new System.Drawing.Point(10, 10);
+            this.AddRegularScheduleDays.Location = new System.Drawing.Point(12, 12);
+            this.AddRegularScheduleDays.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AddRegularScheduleDays.Name = "AddRegularScheduleDays";
-            this.AddRegularScheduleDays.Size = new System.Drawing.Size(348, 62);
+            this.AddRegularScheduleDays.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AddRegularScheduleDays.Size = new System.Drawing.Size(435, 74);
             this.AddRegularScheduleDays.TabIndex = 16;
             this.AddRegularScheduleDays.TabStop = false;
             this.AddRegularScheduleDays.Text = "요일";
@@ -326,9 +337,10 @@
             this.AddLongTaskSun.Dock = System.Windows.Forms.DockStyle.Left;
             this.AddLongTaskSun.Font = new System.Drawing.Font("함초롬바탕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.AddLongTaskSun.ForeColor = System.Drawing.Color.Crimson;
-            this.AddLongTaskSun.Location = new System.Drawing.Point(285, 25);
+            this.AddLongTaskSun.Location = new System.Drawing.Point(340, 31);
+            this.AddLongTaskSun.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AddLongTaskSun.Name = "AddLongTaskSun";
-            this.AddLongTaskSun.Size = new System.Drawing.Size(47, 34);
+            this.AddLongTaskSun.Size = new System.Drawing.Size(56, 39);
             this.AddLongTaskSun.TabIndex = 6;
             this.AddLongTaskSun.TabStop = true;
             this.AddLongTaskSun.Text = "일";
@@ -341,9 +353,10 @@
             this.AddLongTaskSat.Dock = System.Windows.Forms.DockStyle.Left;
             this.AddLongTaskSat.Font = new System.Drawing.Font("함초롬바탕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.AddLongTaskSat.ForeColor = System.Drawing.Color.SteelBlue;
-            this.AddLongTaskSat.Location = new System.Drawing.Point(238, 25);
+            this.AddLongTaskSat.Location = new System.Drawing.Point(284, 31);
+            this.AddLongTaskSat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AddLongTaskSat.Name = "AddLongTaskSat";
-            this.AddLongTaskSat.Size = new System.Drawing.Size(47, 34);
+            this.AddLongTaskSat.Size = new System.Drawing.Size(56, 39);
             this.AddLongTaskSat.TabIndex = 5;
             this.AddLongTaskSat.TabStop = true;
             this.AddLongTaskSat.Text = "토";
@@ -355,9 +368,10 @@
             this.AddLongTaskFri.AutoSize = true;
             this.AddLongTaskFri.Dock = System.Windows.Forms.DockStyle.Left;
             this.AddLongTaskFri.Font = new System.Drawing.Font("함초롬바탕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.AddLongTaskFri.Location = new System.Drawing.Point(191, 25);
+            this.AddLongTaskFri.Location = new System.Drawing.Point(228, 31);
+            this.AddLongTaskFri.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AddLongTaskFri.Name = "AddLongTaskFri";
-            this.AddLongTaskFri.Size = new System.Drawing.Size(47, 34);
+            this.AddLongTaskFri.Size = new System.Drawing.Size(56, 39);
             this.AddLongTaskFri.TabIndex = 4;
             this.AddLongTaskFri.TabStop = true;
             this.AddLongTaskFri.Text = "금";
@@ -369,9 +383,10 @@
             this.AddLongTaskThu.AutoSize = true;
             this.AddLongTaskThu.Dock = System.Windows.Forms.DockStyle.Left;
             this.AddLongTaskThu.Font = new System.Drawing.Font("함초롬바탕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.AddLongTaskThu.Location = new System.Drawing.Point(144, 25);
+            this.AddLongTaskThu.Location = new System.Drawing.Point(172, 31);
+            this.AddLongTaskThu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AddLongTaskThu.Name = "AddLongTaskThu";
-            this.AddLongTaskThu.Size = new System.Drawing.Size(47, 34);
+            this.AddLongTaskThu.Size = new System.Drawing.Size(56, 39);
             this.AddLongTaskThu.TabIndex = 3;
             this.AddLongTaskThu.TabStop = true;
             this.AddLongTaskThu.Text = "목";
@@ -383,9 +398,10 @@
             this.AddLongTaskWed.AutoSize = true;
             this.AddLongTaskWed.Dock = System.Windows.Forms.DockStyle.Left;
             this.AddLongTaskWed.Font = new System.Drawing.Font("함초롬바탕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.AddLongTaskWed.Location = new System.Drawing.Point(97, 25);
+            this.AddLongTaskWed.Location = new System.Drawing.Point(116, 31);
+            this.AddLongTaskWed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AddLongTaskWed.Name = "AddLongTaskWed";
-            this.AddLongTaskWed.Size = new System.Drawing.Size(47, 34);
+            this.AddLongTaskWed.Size = new System.Drawing.Size(56, 39);
             this.AddLongTaskWed.TabIndex = 2;
             this.AddLongTaskWed.TabStop = true;
             this.AddLongTaskWed.Text = "수";
@@ -397,9 +413,10 @@
             this.AddLongTaskTue.AutoSize = true;
             this.AddLongTaskTue.Dock = System.Windows.Forms.DockStyle.Left;
             this.AddLongTaskTue.Font = new System.Drawing.Font("함초롬바탕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.AddLongTaskTue.Location = new System.Drawing.Point(50, 25);
+            this.AddLongTaskTue.Location = new System.Drawing.Point(60, 31);
+            this.AddLongTaskTue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AddLongTaskTue.Name = "AddLongTaskTue";
-            this.AddLongTaskTue.Size = new System.Drawing.Size(47, 34);
+            this.AddLongTaskTue.Size = new System.Drawing.Size(56, 39);
             this.AddLongTaskTue.TabIndex = 1;
             this.AddLongTaskTue.TabStop = true;
             this.AddLongTaskTue.Text = "화";
@@ -412,9 +429,10 @@
             this.AddLongTaskMon.Checked = true;
             this.AddLongTaskMon.Dock = System.Windows.Forms.DockStyle.Left;
             this.AddLongTaskMon.Font = new System.Drawing.Font("함초롬바탕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.AddLongTaskMon.Location = new System.Drawing.Point(3, 25);
+            this.AddLongTaskMon.Location = new System.Drawing.Point(4, 31);
+            this.AddLongTaskMon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AddLongTaskMon.Name = "AddLongTaskMon";
-            this.AddLongTaskMon.Size = new System.Drawing.Size(47, 34);
+            this.AddLongTaskMon.Size = new System.Drawing.Size(56, 39);
             this.AddLongTaskMon.TabIndex = 0;
             this.AddLongTaskMon.TabStop = true;
             this.AddLongTaskMon.Text = "월";
@@ -426,9 +444,10 @@
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Left;
             this.label8.Font = new System.Drawing.Font("함초롬바탕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label8.Location = new System.Drawing.Point(10, 10);
+            this.label8.Location = new System.Drawing.Point(12, 12);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(74, 22);
+            this.label8.Size = new System.Drawing.Size(88, 26);
             this.label8.TabIndex = 1;
             this.label8.Text = "수행시간";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -438,9 +457,10 @@
             this.TaskDurationCmb.Dock = System.Windows.Forms.DockStyle.Left;
             this.TaskDurationCmb.Font = new System.Drawing.Font("굴림", 10F);
             this.TaskDurationCmb.FormattingEnabled = true;
-            this.TaskDurationCmb.Location = new System.Drawing.Point(84, 10);
+            this.TaskDurationCmb.Location = new System.Drawing.Point(100, 12);
+            this.TaskDurationCmb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TaskDurationCmb.Name = "TaskDurationCmb";
-            this.TaskDurationCmb.Size = new System.Drawing.Size(143, 25);
+            this.TaskDurationCmb.Size = new System.Drawing.Size(178, 28);
             this.TaskDurationCmb.TabIndex = 6;
             this.TaskDurationCmb.Text = "00:00";
             // 
@@ -449,18 +469,18 @@
             this.AddTaskTimePanel.Controls.Add(this.TaskDurationCmb);
             this.AddTaskTimePanel.Controls.Add(this.label8);
             this.AddTaskTimePanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.AddTaskTimePanel.Location = new System.Drawing.Point(0, 210);
-            this.AddTaskTimePanel.Margin = new System.Windows.Forms.Padding(10);
+            this.AddTaskTimePanel.Location = new System.Drawing.Point(0, 251);
+            this.AddTaskTimePanel.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.AddTaskTimePanel.Name = "AddTaskTimePanel";
-            this.AddTaskTimePanel.Padding = new System.Windows.Forms.Padding(10);
-            this.AddTaskTimePanel.Size = new System.Drawing.Size(800, 47);
+            this.AddTaskTimePanel.Padding = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.AddTaskTimePanel.Size = new System.Drawing.Size(1000, 56);
             this.AddTaskTimePanel.TabIndex = 30;
             // 
             // AddTaskForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1000, 540);
             this.ControlBox = false;
             this.Controls.Add(this.AddTaskMemoPanel);
             this.Controls.Add(this.AddTaskTimePanel);
@@ -468,6 +488,7 @@
             this.Controls.Add(this.AddCanclePanel);
             this.Controls.Add(this.AddShortTaskPanel);
             this.Controls.Add(this.NamePanel);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "AddTaskForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

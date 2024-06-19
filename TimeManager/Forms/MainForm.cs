@@ -1136,6 +1136,11 @@ namespace TimeManager.Forms
             UpdateView[(int)viewType]();
         }
 
+        private void TitlePanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         public void CloseAvailableTime(TimeTable updateBlock)
         {
             timeTable = updateBlock;

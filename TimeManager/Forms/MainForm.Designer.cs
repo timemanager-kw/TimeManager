@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.ColumnMonday = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -130,13 +130,13 @@
             this.ColumnSaturday,
             this.ColumnSunday});
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView.Location = new System.Drawing.Point(0, 40);
-            this.dataGridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dataGridView.Location = new System.Drawing.Point(0, 48);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 65;
             this.dataGridView.RowTemplate.Height = 23;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView.Size = new System.Drawing.Size(740, 393);
+            this.dataGridView.Size = new System.Drawing.Size(925, 473);
             this.dataGridView.TabIndex = 2;
             this.dataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_CellFormatting);
             this.dataGridView.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGridView_CellPainting);
@@ -189,9 +189,9 @@
             // 
             // ColumnSaturday
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.SteelBlue;
-            this.ColumnSaturday.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.SteelBlue;
+            this.ColumnSaturday.DefaultCellStyle = dataGridViewCellStyle1;
             this.ColumnSaturday.HeaderText = "토";
             this.ColumnSaturday.MinimumWidth = 6;
             this.ColumnSaturday.Name = "ColumnSaturday";
@@ -201,9 +201,9 @@
             // 
             // ColumnSunday
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Crimson;
-            this.ColumnSunday.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Crimson;
+            this.ColumnSunday.DefaultCellStyle = dataGridViewCellStyle2;
             this.ColumnSunday.HeaderText = "일";
             this.ColumnSunday.MinimumWidth = 6;
             this.ColumnSunday.Name = "ColumnSunday";
@@ -218,18 +218,20 @@
             this.MainPanel.Controls.Add(this.TitlePanel);
             this.MainPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.MainPanel.Location = new System.Drawing.Point(1, 0);
+            this.MainPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(740, 493);
+            this.MainPanel.Size = new System.Drawing.Size(925, 592);
             this.MainPanel.TabIndex = 1;
             // 
             // LogTxt
             // 
             this.LogTxt.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.LogTxt.Location = new System.Drawing.Point(0, 433);
+            this.LogTxt.Location = new System.Drawing.Point(0, 521);
+            this.LogTxt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LogTxt.Multiline = true;
             this.LogTxt.Name = "LogTxt";
             this.LogTxt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.LogTxt.Size = new System.Drawing.Size(740, 60);
+            this.LogTxt.Size = new System.Drawing.Size(925, 71);
             this.LogTxt.TabIndex = 1;
             this.LogTxt.Text = "0";
             // 
@@ -242,12 +244,14 @@
             this.TitlePanel.Controls.Add(this.PrevBtn);
             this.TitlePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TitlePanel.Location = new System.Drawing.Point(0, 0);
-            this.TitlePanel.MaximumSize = new System.Drawing.Size(0, 50);
-            this.TitlePanel.MinimumSize = new System.Drawing.Size(0, 30);
+            this.TitlePanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TitlePanel.MaximumSize = new System.Drawing.Size(0, 60);
+            this.TitlePanel.MinimumSize = new System.Drawing.Size(0, 36);
             this.TitlePanel.Name = "TitlePanel";
-            this.TitlePanel.Padding = new System.Windows.Forms.Padding(5);
-            this.TitlePanel.Size = new System.Drawing.Size(740, 40);
+            this.TitlePanel.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.TitlePanel.Size = new System.Drawing.Size(925, 48);
             this.TitlePanel.TabIndex = 0;
+            this.TitlePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.TitlePanel_Paint);
             // 
             // openEditAvailableBtn
             // 
@@ -255,9 +259,10 @@
             this.openEditAvailableBtn.Dock = System.Windows.Forms.DockStyle.Right;
             this.openEditAvailableBtn.ImageIndex = 1;
             this.openEditAvailableBtn.ImageList = this.images;
-            this.openEditAvailableBtn.Location = new System.Drawing.Point(665, 5);
+            this.openEditAvailableBtn.Location = new System.Drawing.Point(831, 6);
+            this.openEditAvailableBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.openEditAvailableBtn.Name = "openEditAvailableBtn";
-            this.openEditAvailableBtn.Size = new System.Drawing.Size(35, 30);
+            this.openEditAvailableBtn.Size = new System.Drawing.Size(44, 36);
             this.openEditAvailableBtn.TabIndex = 4;
             this.openEditAvailableBtn.UseVisualStyleBackColor = false;
             this.openEditAvailableBtn.Click += new System.EventHandler(this.openEditAvailableBtn_Click);
@@ -277,9 +282,10 @@
             this.AlgorithmStarter.Dock = System.Windows.Forms.DockStyle.Right;
             this.AlgorithmStarter.ImageIndex = 0;
             this.AlgorithmStarter.ImageList = this.images;
-            this.AlgorithmStarter.Location = new System.Drawing.Point(700, 5);
+            this.AlgorithmStarter.Location = new System.Drawing.Point(875, 6);
+            this.AlgorithmStarter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AlgorithmStarter.Name = "AlgorithmStarter";
-            this.AlgorithmStarter.Size = new System.Drawing.Size(35, 30);
+            this.AlgorithmStarter.Size = new System.Drawing.Size(44, 36);
             this.AlgorithmStarter.TabIndex = 3;
             this.AlgorithmStarter.UseVisualStyleBackColor = false;
             this.AlgorithmStarter.Click += new System.EventHandler(this.AlgorithmStarter_Click);
@@ -288,9 +294,10 @@
             // 
             this.NextBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.NextBtn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.NextBtn.Location = new System.Drawing.Point(160, 5);
+            this.NextBtn.Location = new System.Drawing.Point(200, 6);
+            this.NextBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.NextBtn.Name = "NextBtn";
-            this.NextBtn.Size = new System.Drawing.Size(35, 30);
+            this.NextBtn.Size = new System.Drawing.Size(44, 36);
             this.NextBtn.TabIndex = 2;
             this.NextBtn.Text = ">";
             this.NextBtn.UseVisualStyleBackColor = false;
@@ -300,9 +307,10 @@
             // 
             this.WeekLabel.Dock = System.Windows.Forms.DockStyle.Left;
             this.WeekLabel.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.WeekLabel.Location = new System.Drawing.Point(40, 5);
+            this.WeekLabel.Location = new System.Drawing.Point(50, 6);
+            this.WeekLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.WeekLabel.Name = "WeekLabel";
-            this.WeekLabel.Size = new System.Drawing.Size(120, 30);
+            this.WeekLabel.Size = new System.Drawing.Size(150, 36);
             this.WeekLabel.TabIndex = 1;
             this.WeekLabel.Text = "2024.05 2주차";
             this.WeekLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -311,9 +319,10 @@
             // 
             this.PrevBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.PrevBtn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.PrevBtn.Location = new System.Drawing.Point(5, 5);
+            this.PrevBtn.Location = new System.Drawing.Point(6, 6);
+            this.PrevBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PrevBtn.Name = "PrevBtn";
-            this.PrevBtn.Size = new System.Drawing.Size(35, 30);
+            this.PrevBtn.Size = new System.Drawing.Size(44, 36);
             this.PrevBtn.TabIndex = 0;
             this.PrevBtn.Text = "<";
             this.PrevBtn.UseVisualStyleBackColor = false;
@@ -325,20 +334,22 @@
             this.TimeBlockTitlePanel.Controls.Add(this.TaskBtn);
             this.TimeBlockTitlePanel.Controls.Add(this.ScheduleBtn);
             this.TimeBlockTitlePanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TimeBlockTitlePanel.Location = new System.Drawing.Point(741, 0);
-            this.TimeBlockTitlePanel.MaximumSize = new System.Drawing.Size(0, 50);
+            this.TimeBlockTitlePanel.Location = new System.Drawing.Point(926, 0);
+            this.TimeBlockTitlePanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TimeBlockTitlePanel.MaximumSize = new System.Drawing.Size(0, 60);
             this.TimeBlockTitlePanel.Name = "TimeBlockTitlePanel";
-            this.TimeBlockTitlePanel.Padding = new System.Windows.Forms.Padding(5);
-            this.TimeBlockTitlePanel.Size = new System.Drawing.Size(200, 40);
+            this.TimeBlockTitlePanel.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.TimeBlockTitlePanel.Size = new System.Drawing.Size(251, 48);
             this.TimeBlockTitlePanel.TabIndex = 3;
             // 
             // AddBtn
             // 
             this.AddBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.AddBtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.AddBtn.Location = new System.Drawing.Point(162, 5);
+            this.AddBtn.Location = new System.Drawing.Point(204, 6);
+            this.AddBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AddBtn.Name = "AddBtn";
-            this.AddBtn.Size = new System.Drawing.Size(33, 30);
+            this.AddBtn.Size = new System.Drawing.Size(41, 36);
             this.AddBtn.TabIndex = 3;
             this.AddBtn.Text = "+";
             this.AddBtn.UseVisualStyleBackColor = false;
@@ -349,9 +360,10 @@
             this.TaskBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.TaskBtn.Dock = System.Windows.Forms.DockStyle.Left;
             this.TaskBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.TaskBtn.Location = new System.Drawing.Point(50, 5);
+            this.TaskBtn.Location = new System.Drawing.Point(62, 6);
+            this.TaskBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TaskBtn.Name = "TaskBtn";
-            this.TaskBtn.Size = new System.Drawing.Size(45, 30);
+            this.TaskBtn.Size = new System.Drawing.Size(56, 36);
             this.TaskBtn.TabIndex = 2;
             this.TaskBtn.Text = "업무";
             this.TaskBtn.UseVisualStyleBackColor = false;
@@ -362,9 +374,10 @@
             this.ScheduleBtn.BackColor = System.Drawing.SystemColors.Control;
             this.ScheduleBtn.Dock = System.Windows.Forms.DockStyle.Left;
             this.ScheduleBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ScheduleBtn.Location = new System.Drawing.Point(5, 5);
+            this.ScheduleBtn.Location = new System.Drawing.Point(6, 6);
+            this.ScheduleBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ScheduleBtn.Name = "ScheduleBtn";
-            this.ScheduleBtn.Size = new System.Drawing.Size(45, 30);
+            this.ScheduleBtn.Size = new System.Drawing.Size(56, 36);
             this.ScheduleBtn.TabIndex = 1;
             this.ScheduleBtn.Text = "일정";
             this.ScheduleBtn.UseVisualStyleBackColor = false;
@@ -376,10 +389,11 @@
             this.TimeBlockView.Dock = System.Windows.Forms.DockStyle.Top;
             this.TimeBlockView.FullRowSelect = true;
             this.TimeBlockView.HideSelection = false;
-            this.TimeBlockView.Location = new System.Drawing.Point(741, 40);
+            this.TimeBlockView.Location = new System.Drawing.Point(926, 48);
+            this.TimeBlockView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TimeBlockView.MultiSelect = false;
             this.TimeBlockView.Name = "TimeBlockView";
-            this.TimeBlockView.Size = new System.Drawing.Size(200, 220);
+            this.TimeBlockView.Size = new System.Drawing.Size(251, 263);
             this.TimeBlockView.TabIndex = 7;
             this.TimeBlockView.UseCompatibleStateImageBehavior = false;
             this.TimeBlockView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.TimeBlockView_ItemSelectionChanged);
@@ -398,17 +412,19 @@
             this.SingleSchedulePanel.Controls.Add(this.ScheduleNameTxt);
             this.SingleSchedulePanel.Controls.Add(this.ScheduleNameLabel);
             this.SingleSchedulePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SingleSchedulePanel.Location = new System.Drawing.Point(741, 260);
+            this.SingleSchedulePanel.Location = new System.Drawing.Point(926, 311);
+            this.SingleSchedulePanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SingleSchedulePanel.Name = "SingleSchedulePanel";
-            this.SingleSchedulePanel.Size = new System.Drawing.Size(200, 233);
+            this.SingleSchedulePanel.Size = new System.Drawing.Size(251, 281);
             this.SingleSchedulePanel.TabIndex = 8;
             // 
             // ScheduleSRemoveBtn
             // 
             this.ScheduleSRemoveBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ScheduleSRemoveBtn.Location = new System.Drawing.Point(60, 195);
+            this.ScheduleSRemoveBtn.Location = new System.Drawing.Point(75, 234);
+            this.ScheduleSRemoveBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ScheduleSRemoveBtn.Name = "ScheduleSRemoveBtn";
-            this.ScheduleSRemoveBtn.Size = new System.Drawing.Size(45, 30);
+            this.ScheduleSRemoveBtn.Size = new System.Drawing.Size(56, 36);
             this.ScheduleSRemoveBtn.TabIndex = 15;
             this.ScheduleSRemoveBtn.Text = "제거";
             this.ScheduleSRemoveBtn.UseVisualStyleBackColor = true;
@@ -419,17 +435,19 @@
             this.ScheduleDatePicker.CustomFormat = "yyyy-MM-dd";
             this.ScheduleDatePicker.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ScheduleDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.ScheduleDatePicker.Location = new System.Drawing.Point(80, 45);
+            this.ScheduleDatePicker.Location = new System.Drawing.Point(100, 54);
+            this.ScheduleDatePicker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ScheduleDatePicker.Name = "ScheduleDatePicker";
-            this.ScheduleDatePicker.Size = new System.Drawing.Size(110, 25);
+            this.ScheduleDatePicker.Size = new System.Drawing.Size(136, 28);
             this.ScheduleDatePicker.TabIndex = 14;
             // 
             // ScheduleEditOk
             // 
             this.ScheduleEditOk.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ScheduleEditOk.Location = new System.Drawing.Point(150, 195);
+            this.ScheduleEditOk.Location = new System.Drawing.Point(188, 234);
+            this.ScheduleEditOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ScheduleEditOk.Name = "ScheduleEditOk";
-            this.ScheduleEditOk.Size = new System.Drawing.Size(45, 30);
+            this.ScheduleEditOk.Size = new System.Drawing.Size(56, 36);
             this.ScheduleEditOk.TabIndex = 13;
             this.ScheduleEditOk.Text = "수정";
             this.ScheduleEditOk.UseVisualStyleBackColor = true;
@@ -438,9 +456,10 @@
             // ScheduleEditCancle
             // 
             this.ScheduleEditCancle.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ScheduleEditCancle.Location = new System.Drawing.Point(105, 195);
+            this.ScheduleEditCancle.Location = new System.Drawing.Point(131, 234);
+            this.ScheduleEditCancle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ScheduleEditCancle.Name = "ScheduleEditCancle";
-            this.ScheduleEditCancle.Size = new System.Drawing.Size(45, 30);
+            this.ScheduleEditCancle.Size = new System.Drawing.Size(56, 36);
             this.ScheduleEditCancle.TabIndex = 12;
             this.ScheduleEditCancle.Text = "취소";
             this.ScheduleEditCancle.UseVisualStyleBackColor = true;
@@ -451,17 +470,19 @@
             this.ScheduleEndTime.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.ScheduleEndTime.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ScheduleEndTime.FormattingEnabled = true;
-            this.ScheduleEndTime.Location = new System.Drawing.Point(80, 125);
+            this.ScheduleEndTime.Location = new System.Drawing.Point(100, 150);
+            this.ScheduleEndTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ScheduleEndTime.Name = "ScheduleEndTime";
-            this.ScheduleEndTime.Size = new System.Drawing.Size(100, 23);
+            this.ScheduleEndTime.Size = new System.Drawing.Size(124, 26);
             this.ScheduleEndTime.TabIndex = 9;
             // 
             // ScheduleLabel물결
             // 
             this.ScheduleLabel물결.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ScheduleLabel물결.Location = new System.Drawing.Point(15, 125);
+            this.ScheduleLabel물결.Location = new System.Drawing.Point(19, 150);
+            this.ScheduleLabel물결.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ScheduleLabel물결.Name = "ScheduleLabel물결";
-            this.ScheduleLabel물결.Size = new System.Drawing.Size(60, 25);
+            this.ScheduleLabel물결.Size = new System.Drawing.Size(75, 30);
             this.ScheduleLabel물결.TabIndex = 8;
             this.ScheduleLabel물결.Text = "~";
             this.ScheduleLabel물결.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -471,17 +492,19 @@
             this.ScheduleStartTime.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.ScheduleStartTime.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ScheduleStartTime.FormattingEnabled = true;
-            this.ScheduleStartTime.Location = new System.Drawing.Point(80, 85);
+            this.ScheduleStartTime.Location = new System.Drawing.Point(100, 102);
+            this.ScheduleStartTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ScheduleStartTime.Name = "ScheduleStartTime";
-            this.ScheduleStartTime.Size = new System.Drawing.Size(100, 23);
+            this.ScheduleStartTime.Size = new System.Drawing.Size(124, 26);
             this.ScheduleStartTime.TabIndex = 5;
             // 
             // ScheduleTimeLabel
             // 
             this.ScheduleTimeLabel.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ScheduleTimeLabel.Location = new System.Drawing.Point(15, 85);
+            this.ScheduleTimeLabel.Location = new System.Drawing.Point(19, 102);
+            this.ScheduleTimeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ScheduleTimeLabel.Name = "ScheduleTimeLabel";
-            this.ScheduleTimeLabel.Size = new System.Drawing.Size(60, 25);
+            this.ScheduleTimeLabel.Size = new System.Drawing.Size(75, 30);
             this.ScheduleTimeLabel.TabIndex = 4;
             this.ScheduleTimeLabel.Text = "시간";
             this.ScheduleTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -489,26 +512,29 @@
             // ScheduleDayLabel
             // 
             this.ScheduleDayLabel.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ScheduleDayLabel.Location = new System.Drawing.Point(15, 45);
+            this.ScheduleDayLabel.Location = new System.Drawing.Point(19, 54);
+            this.ScheduleDayLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ScheduleDayLabel.Name = "ScheduleDayLabel";
-            this.ScheduleDayLabel.Size = new System.Drawing.Size(60, 25);
+            this.ScheduleDayLabel.Size = new System.Drawing.Size(75, 30);
             this.ScheduleDayLabel.TabIndex = 2;
             this.ScheduleDayLabel.Text = "날짜";
             this.ScheduleDayLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // ScheduleNameTxt
             // 
-            this.ScheduleNameTxt.Location = new System.Drawing.Point(80, 5);
+            this.ScheduleNameTxt.Location = new System.Drawing.Point(100, 6);
+            this.ScheduleNameTxt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ScheduleNameTxt.Name = "ScheduleNameTxt";
-            this.ScheduleNameTxt.Size = new System.Drawing.Size(110, 25);
+            this.ScheduleNameTxt.Size = new System.Drawing.Size(136, 28);
             this.ScheduleNameTxt.TabIndex = 1;
             // 
             // ScheduleNameLabel
             // 
             this.ScheduleNameLabel.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ScheduleNameLabel.Location = new System.Drawing.Point(15, 5);
+            this.ScheduleNameLabel.Location = new System.Drawing.Point(19, 6);
+            this.ScheduleNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ScheduleNameLabel.Name = "ScheduleNameLabel";
-            this.ScheduleNameLabel.Size = new System.Drawing.Size(60, 25);
+            this.ScheduleNameLabel.Size = new System.Drawing.Size(75, 30);
             this.ScheduleNameLabel.TabIndex = 0;
             this.ScheduleNameLabel.Text = "일정 명";
             this.ScheduleNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -516,26 +542,29 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label4.Location = new System.Drawing.Point(15, 5);
+            this.label4.Location = new System.Drawing.Point(19, 6);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 25);
+            this.label4.Size = new System.Drawing.Size(75, 30);
             this.label4.TabIndex = 0;
             this.label4.Text = "일정 명";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // ScheduleRNameTxt
             // 
-            this.ScheduleRNameTxt.Location = new System.Drawing.Point(80, 5);
+            this.ScheduleRNameTxt.Location = new System.Drawing.Point(100, 6);
+            this.ScheduleRNameTxt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ScheduleRNameTxt.Name = "ScheduleRNameTxt";
-            this.ScheduleRNameTxt.Size = new System.Drawing.Size(110, 25);
+            this.ScheduleRNameTxt.Size = new System.Drawing.Size(136, 28);
             this.ScheduleRNameTxt.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(15, 45);
+            this.label3.Location = new System.Drawing.Point(19, 54);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 25);
+            this.label3.Size = new System.Drawing.Size(75, 30);
             this.label3.TabIndex = 2;
             this.label3.Text = "요일";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -553,18 +582,20 @@
             "금",
             "토",
             "일"});
-            this.ScheduleRDay.Location = new System.Drawing.Point(80, 45);
+            this.ScheduleRDay.Location = new System.Drawing.Point(100, 54);
+            this.ScheduleRDay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ScheduleRDay.Name = "ScheduleRDay";
-            this.ScheduleRDay.Size = new System.Drawing.Size(50, 23);
+            this.ScheduleRDay.Size = new System.Drawing.Size(62, 26);
             this.ScheduleRDay.TabIndex = 3;
             this.ScheduleRDay.SelectedValueChanged += new System.EventHandler(this.ScheduleRDay_SelectedValueChanged);
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(15, 85);
+            this.label2.Location = new System.Drawing.Point(19, 102);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 25);
+            this.label2.Size = new System.Drawing.Size(75, 30);
             this.label2.TabIndex = 4;
             this.label2.Text = "시간";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -574,17 +605,19 @@
             this.ScheduleRStartTime.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.ScheduleRStartTime.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ScheduleRStartTime.FormattingEnabled = true;
-            this.ScheduleRStartTime.Location = new System.Drawing.Point(80, 85);
+            this.ScheduleRStartTime.Location = new System.Drawing.Point(100, 102);
+            this.ScheduleRStartTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ScheduleRStartTime.Name = "ScheduleRStartTime";
-            this.ScheduleRStartTime.Size = new System.Drawing.Size(100, 23);
+            this.ScheduleRStartTime.Size = new System.Drawing.Size(124, 26);
             this.ScheduleRStartTime.TabIndex = 5;
             this.ScheduleRStartTime.SelectedValueChanged += new System.EventHandler(this.ScheduleRStartTime_SelectedValueChanged);
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(15, 125);
+            this.label1.Location = new System.Drawing.Point(19, 150);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 25);
+            this.label1.Size = new System.Drawing.Size(75, 30);
             this.label1.TabIndex = 8;
             this.label1.Text = "~";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -594,18 +627,20 @@
             this.ScheduleREndTime.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.ScheduleREndTime.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ScheduleREndTime.FormattingEnabled = true;
-            this.ScheduleREndTime.Location = new System.Drawing.Point(80, 125);
+            this.ScheduleREndTime.Location = new System.Drawing.Point(100, 150);
+            this.ScheduleREndTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ScheduleREndTime.Name = "ScheduleREndTime";
-            this.ScheduleREndTime.Size = new System.Drawing.Size(100, 23);
+            this.ScheduleREndTime.Size = new System.Drawing.Size(124, 26);
             this.ScheduleREndTime.TabIndex = 9;
             this.ScheduleREndTime.SelectedIndexChanged += new System.EventHandler(this.ScheduleREndTime_SelectedIndexChanged);
             // 
             // ScheduleRCancle
             // 
             this.ScheduleRCancle.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ScheduleRCancle.Location = new System.Drawing.Point(105, 195);
+            this.ScheduleRCancle.Location = new System.Drawing.Point(131, 234);
+            this.ScheduleRCancle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ScheduleRCancle.Name = "ScheduleRCancle";
-            this.ScheduleRCancle.Size = new System.Drawing.Size(45, 30);
+            this.ScheduleRCancle.Size = new System.Drawing.Size(56, 36);
             this.ScheduleRCancle.TabIndex = 12;
             this.ScheduleRCancle.Text = "취소";
             this.ScheduleRCancle.UseVisualStyleBackColor = true;
@@ -614,9 +649,10 @@
             // ScheduleREdit
             // 
             this.ScheduleREdit.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ScheduleREdit.Location = new System.Drawing.Point(150, 195);
+            this.ScheduleREdit.Location = new System.Drawing.Point(188, 234);
+            this.ScheduleREdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ScheduleREdit.Name = "ScheduleREdit";
-            this.ScheduleREdit.Size = new System.Drawing.Size(45, 30);
+            this.ScheduleREdit.Size = new System.Drawing.Size(56, 36);
             this.ScheduleREdit.TabIndex = 13;
             this.ScheduleREdit.Text = "수정";
             this.ScheduleREdit.UseVisualStyleBackColor = true;
@@ -624,9 +660,10 @@
             // 
             // DayCheck
             // 
-            this.DayCheck.Location = new System.Drawing.Point(140, 48);
+            this.DayCheck.Location = new System.Drawing.Point(175, 58);
+            this.DayCheck.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DayCheck.Name = "DayCheck";
-            this.DayCheck.Size = new System.Drawing.Size(18, 17);
+            this.DayCheck.Size = new System.Drawing.Size(22, 20);
             this.DayCheck.TabIndex = 14;
             this.DayCheck.UseVisualStyleBackColor = true;
             this.DayCheck.CheckedChanged += new System.EventHandler(this.DayCheck_CheckedChanged);
@@ -646,17 +683,19 @@
             this.RegularSchedulePanel.Controls.Add(this.ScheduleRNameTxt);
             this.RegularSchedulePanel.Controls.Add(this.label4);
             this.RegularSchedulePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RegularSchedulePanel.Location = new System.Drawing.Point(741, 260);
+            this.RegularSchedulePanel.Location = new System.Drawing.Point(926, 311);
+            this.RegularSchedulePanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.RegularSchedulePanel.Name = "RegularSchedulePanel";
-            this.RegularSchedulePanel.Size = new System.Drawing.Size(200, 233);
+            this.RegularSchedulePanel.Size = new System.Drawing.Size(251, 281);
             this.RegularSchedulePanel.TabIndex = 19;
             // 
             // ScheduleRRemoveBtn
             // 
             this.ScheduleRRemoveBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ScheduleRRemoveBtn.Location = new System.Drawing.Point(60, 195);
+            this.ScheduleRRemoveBtn.Location = new System.Drawing.Point(75, 234);
+            this.ScheduleRRemoveBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ScheduleRRemoveBtn.Name = "ScheduleRRemoveBtn";
-            this.ScheduleRRemoveBtn.Size = new System.Drawing.Size(45, 30);
+            this.ScheduleRRemoveBtn.Size = new System.Drawing.Size(56, 36);
             this.ScheduleRRemoveBtn.TabIndex = 15;
             this.ScheduleRRemoveBtn.Text = "제거";
             this.ScheduleRRemoveBtn.UseVisualStyleBackColor = true;
@@ -665,26 +704,29 @@
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label8.Location = new System.Drawing.Point(5, 5);
+            this.label8.Location = new System.Drawing.Point(6, 6);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(75, 25);
+            this.label8.Size = new System.Drawing.Size(94, 30);
             this.label8.TabIndex = 0;
             this.label8.Text = "업무명";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // TaskNameTxt
             // 
-            this.TaskNameTxt.Location = new System.Drawing.Point(80, 5);
+            this.TaskNameTxt.Location = new System.Drawing.Point(100, 6);
+            this.TaskNameTxt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TaskNameTxt.Name = "TaskNameTxt";
-            this.TaskNameTxt.Size = new System.Drawing.Size(110, 25);
+            this.TaskNameTxt.Size = new System.Drawing.Size(136, 28);
             this.TaskNameTxt.TabIndex = 1;
             // 
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label7.Location = new System.Drawing.Point(5, 45);
+            this.label7.Location = new System.Drawing.Point(6, 54);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(75, 25);
+            this.label7.Size = new System.Drawing.Size(94, 30);
             this.label7.TabIndex = 2;
             this.label7.Text = "마감일";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -692,9 +734,10 @@
             // TaskEditCancleBtn
             // 
             this.TaskEditCancleBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.TaskEditCancleBtn.Location = new System.Drawing.Point(105, 195);
+            this.TaskEditCancleBtn.Location = new System.Drawing.Point(131, 234);
+            this.TaskEditCancleBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TaskEditCancleBtn.Name = "TaskEditCancleBtn";
-            this.TaskEditCancleBtn.Size = new System.Drawing.Size(45, 30);
+            this.TaskEditCancleBtn.Size = new System.Drawing.Size(56, 36);
             this.TaskEditCancleBtn.TabIndex = 12;
             this.TaskEditCancleBtn.Text = "취소";
             this.TaskEditCancleBtn.UseVisualStyleBackColor = true;
@@ -703,9 +746,10 @@
             // TaskEditOkBtn
             // 
             this.TaskEditOkBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.TaskEditOkBtn.Location = new System.Drawing.Point(150, 195);
+            this.TaskEditOkBtn.Location = new System.Drawing.Point(188, 234);
+            this.TaskEditOkBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TaskEditOkBtn.Name = "TaskEditOkBtn";
-            this.TaskEditOkBtn.Size = new System.Drawing.Size(45, 30);
+            this.TaskEditOkBtn.Size = new System.Drawing.Size(56, 36);
             this.TaskEditOkBtn.TabIndex = 13;
             this.TaskEditOkBtn.Text = "수정";
             this.TaskEditOkBtn.UseVisualStyleBackColor = true;
@@ -715,17 +759,19 @@
             // 
             this.TaskEndDatePicker.CustomFormat = "yyyy-MM-dd";
             this.TaskEndDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.TaskEndDatePicker.Location = new System.Drawing.Point(80, 45);
+            this.TaskEndDatePicker.Location = new System.Drawing.Point(100, 54);
+            this.TaskEndDatePicker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TaskEndDatePicker.Name = "TaskEndDatePicker";
-            this.TaskEndDatePicker.Size = new System.Drawing.Size(110, 25);
+            this.TaskEndDatePicker.Size = new System.Drawing.Size(136, 28);
             this.TaskEndDatePicker.TabIndex = 14;
             // 
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label5.Location = new System.Drawing.Point(5, 100);
+            this.label5.Location = new System.Drawing.Point(6, 120);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(75, 25);
+            this.label5.Size = new System.Drawing.Size(94, 30);
             this.label5.TabIndex = 15;
             this.label5.Text = "시작일";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -734,17 +780,19 @@
             // 
             this.TaskStartDatePicker.CustomFormat = "yyyy-MM-dd";
             this.TaskStartDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.TaskStartDatePicker.Location = new System.Drawing.Point(80, 100);
+            this.TaskStartDatePicker.Location = new System.Drawing.Point(100, 120);
+            this.TaskStartDatePicker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TaskStartDatePicker.Name = "TaskStartDatePicker";
-            this.TaskStartDatePicker.Size = new System.Drawing.Size(110, 25);
+            this.TaskStartDatePicker.Size = new System.Drawing.Size(136, 28);
             this.TaskStartDatePicker.TabIndex = 16;
             // 
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label6.Location = new System.Drawing.Point(5, 130);
+            this.label6.Location = new System.Drawing.Point(6, 156);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 25);
+            this.label6.Size = new System.Drawing.Size(94, 30);
             this.label6.TabIndex = 17;
             this.label6.Text = "수행 시간";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -752,18 +800,20 @@
             // TaskDurationCmb
             // 
             this.TaskDurationCmb.FormattingEnabled = true;
-            this.TaskDurationCmb.Location = new System.Drawing.Point(80, 130);
+            this.TaskDurationCmb.Location = new System.Drawing.Point(100, 156);
+            this.TaskDurationCmb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TaskDurationCmb.Name = "TaskDurationCmb";
-            this.TaskDurationCmb.Size = new System.Drawing.Size(110, 23);
+            this.TaskDurationCmb.Size = new System.Drawing.Size(136, 26);
             this.TaskDurationCmb.TabIndex = 18;
             // 
             // WithEndDateCheck
             // 
             this.WithEndDateCheck.AutoSize = true;
             this.WithEndDateCheck.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.WithEndDateCheck.Location = new System.Drawing.Point(80, 75);
+            this.WithEndDateCheck.Location = new System.Drawing.Point(100, 90);
+            this.WithEndDateCheck.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.WithEndDateCheck.Name = "WithEndDateCheck";
-            this.WithEndDateCheck.Size = new System.Drawing.Size(111, 23);
+            this.WithEndDateCheck.Size = new System.Drawing.Size(126, 27);
             this.WithEndDateCheck.TabIndex = 19;
             this.WithEndDateCheck.Text = "마감일 포함";
             this.WithEndDateCheck.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -785,17 +835,19 @@
             this.ShortTaskPanel.Controls.Add(this.TaskNameTxt);
             this.ShortTaskPanel.Controls.Add(this.label8);
             this.ShortTaskPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ShortTaskPanel.Location = new System.Drawing.Point(741, 260);
+            this.ShortTaskPanel.Location = new System.Drawing.Point(926, 311);
+            this.ShortTaskPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ShortTaskPanel.Name = "ShortTaskPanel";
-            this.ShortTaskPanel.Size = new System.Drawing.Size(200, 233);
+            this.ShortTaskPanel.Size = new System.Drawing.Size(251, 281);
             this.ShortTaskPanel.TabIndex = 21;
             // 
             // TaskSRemoveBtn
             // 
             this.TaskSRemoveBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.TaskSRemoveBtn.Location = new System.Drawing.Point(60, 195);
+            this.TaskSRemoveBtn.Location = new System.Drawing.Point(75, 234);
+            this.TaskSRemoveBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TaskSRemoveBtn.Name = "TaskSRemoveBtn";
-            this.TaskSRemoveBtn.Size = new System.Drawing.Size(45, 30);
+            this.TaskSRemoveBtn.Size = new System.Drawing.Size(56, 36);
             this.TaskSRemoveBtn.TabIndex = 20;
             this.TaskSRemoveBtn.Text = "제거";
             this.TaskSRemoveBtn.UseVisualStyleBackColor = true;
@@ -815,17 +867,19 @@
             this.LongTaskPanel.Controls.Add(this.TaskLName);
             this.LongTaskPanel.Controls.Add(this.label12);
             this.LongTaskPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LongTaskPanel.Location = new System.Drawing.Point(741, 260);
+            this.LongTaskPanel.Location = new System.Drawing.Point(926, 311);
+            this.LongTaskPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LongTaskPanel.Name = "LongTaskPanel";
-            this.LongTaskPanel.Size = new System.Drawing.Size(200, 233);
+            this.LongTaskPanel.Size = new System.Drawing.Size(251, 281);
             this.LongTaskPanel.TabIndex = 22;
             // 
             // TaskLRemoveBtn
             // 
             this.TaskLRemoveBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.TaskLRemoveBtn.Location = new System.Drawing.Point(60, 195);
+            this.TaskLRemoveBtn.Location = new System.Drawing.Point(75, 234);
+            this.TaskLRemoveBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TaskLRemoveBtn.Name = "TaskLRemoveBtn";
-            this.TaskLRemoveBtn.Size = new System.Drawing.Size(45, 30);
+            this.TaskLRemoveBtn.Size = new System.Drawing.Size(56, 36);
             this.TaskLRemoveBtn.TabIndex = 22;
             this.TaskLRemoveBtn.Text = "제거";
             this.TaskLRemoveBtn.UseVisualStyleBackColor = true;
@@ -833,9 +887,10 @@
             // 
             // TaskLDayCheck
             // 
-            this.TaskLDayCheck.Location = new System.Drawing.Point(145, 51);
+            this.TaskLDayCheck.Location = new System.Drawing.Point(181, 61);
+            this.TaskLDayCheck.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TaskLDayCheck.Name = "TaskLDayCheck";
-            this.TaskLDayCheck.Size = new System.Drawing.Size(18, 17);
+            this.TaskLDayCheck.Size = new System.Drawing.Size(22, 20);
             this.TaskLDayCheck.TabIndex = 21;
             this.TaskLDayCheck.UseVisualStyleBackColor = true;
             this.TaskLDayCheck.CheckedChanged += new System.EventHandler(this.TaskLDayCheck_CheckedChanged);
@@ -845,18 +900,20 @@
             this.TaskLTime.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.TaskLTime.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.TaskLTime.FormattingEnabled = true;
-            this.TaskLTime.Location = new System.Drawing.Point(85, 88);
+            this.TaskLTime.Location = new System.Drawing.Point(106, 106);
+            this.TaskLTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TaskLTime.Name = "TaskLTime";
-            this.TaskLTime.Size = new System.Drawing.Size(100, 23);
+            this.TaskLTime.Size = new System.Drawing.Size(124, 26);
             this.TaskLTime.TabIndex = 18;
             this.TaskLTime.SelectedValueChanged += new System.EventHandler(this.TaskLTime_SelectedValueChanged);
             // 
             // label10
             // 
             this.label10.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label10.Location = new System.Drawing.Point(20, 88);
+            this.label10.Location = new System.Drawing.Point(25, 106);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(60, 25);
+            this.label10.Size = new System.Drawing.Size(75, 30);
             this.label10.TabIndex = 17;
             this.label10.Text = "시간";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -874,18 +931,20 @@
             "금",
             "토",
             "일"});
-            this.TaskLDay.Location = new System.Drawing.Point(85, 48);
+            this.TaskLDay.Location = new System.Drawing.Point(106, 58);
+            this.TaskLDay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TaskLDay.Name = "TaskLDay";
-            this.TaskLDay.Size = new System.Drawing.Size(50, 23);
+            this.TaskLDay.Size = new System.Drawing.Size(62, 26);
             this.TaskLDay.TabIndex = 16;
             this.TaskLDay.SelectedValueChanged += new System.EventHandler(this.TaskLDay_SelectedValueChanged);
             // 
             // label11
             // 
             this.label11.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label11.Location = new System.Drawing.Point(20, 48);
+            this.label11.Location = new System.Drawing.Point(25, 58);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(60, 25);
+            this.label11.Size = new System.Drawing.Size(75, 30);
             this.label11.TabIndex = 15;
             this.label11.Text = "요일";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -893,9 +952,10 @@
             // TaskLongEditOkBtn
             // 
             this.TaskLongEditOkBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.TaskLongEditOkBtn.Location = new System.Drawing.Point(150, 195);
+            this.TaskLongEditOkBtn.Location = new System.Drawing.Point(188, 234);
+            this.TaskLongEditOkBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TaskLongEditOkBtn.Name = "TaskLongEditOkBtn";
-            this.TaskLongEditOkBtn.Size = new System.Drawing.Size(45, 30);
+            this.TaskLongEditOkBtn.Size = new System.Drawing.Size(56, 36);
             this.TaskLongEditOkBtn.TabIndex = 13;
             this.TaskLongEditOkBtn.Text = "수정";
             this.TaskLongEditOkBtn.UseVisualStyleBackColor = true;
@@ -904,9 +964,10 @@
             // TaskLongEditCancleBtn
             // 
             this.TaskLongEditCancleBtn.Font = new System.Drawing.Font("함초롬바탕 확장", 7.799999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.TaskLongEditCancleBtn.Location = new System.Drawing.Point(105, 195);
+            this.TaskLongEditCancleBtn.Location = new System.Drawing.Point(131, 234);
+            this.TaskLongEditCancleBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TaskLongEditCancleBtn.Name = "TaskLongEditCancleBtn";
-            this.TaskLongEditCancleBtn.Size = new System.Drawing.Size(45, 30);
+            this.TaskLongEditCancleBtn.Size = new System.Drawing.Size(56, 36);
             this.TaskLongEditCancleBtn.TabIndex = 12;
             this.TaskLongEditCancleBtn.Text = "취소";
             this.TaskLongEditCancleBtn.UseVisualStyleBackColor = true;
@@ -914,27 +975,29 @@
             // 
             // TaskLName
             // 
-            this.TaskLName.Location = new System.Drawing.Point(80, 5);
+            this.TaskLName.Location = new System.Drawing.Point(100, 6);
+            this.TaskLName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TaskLName.Name = "TaskLName";
-            this.TaskLName.Size = new System.Drawing.Size(110, 25);
+            this.TaskLName.Size = new System.Drawing.Size(136, 28);
             this.TaskLName.TabIndex = 1;
             // 
             // label12
             // 
             this.label12.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label12.Location = new System.Drawing.Point(5, 5);
+            this.label12.Location = new System.Drawing.Point(6, 6);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(75, 25);
+            this.label12.Size = new System.Drawing.Size(94, 30);
             this.label12.TabIndex = 0;
             this.label12.Text = "업무명";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
-            this.ClientSize = new System.Drawing.Size(942, 493);
+            this.ClientSize = new System.Drawing.Size(1178, 592);
             this.Controls.Add(this.SingleSchedulePanel);
             this.Controls.Add(this.ShortTaskPanel);
             this.Controls.Add(this.LongTaskPanel);
@@ -943,6 +1006,7 @@
             this.Controls.Add(this.TimeBlockTitlePanel);
             this.Controls.Add(this.MainPanel);
             this.IsMdiContainer = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
             this.Padding = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.ShowIcon = false;
