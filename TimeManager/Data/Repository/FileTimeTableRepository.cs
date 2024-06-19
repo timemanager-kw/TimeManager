@@ -31,17 +31,17 @@ namespace TimeManager.Data.Repository
             {
                 foreach(var workTime in timeTable.WorkTimes)
                 {
-                    writer.WriteLine($"{"WorkTimes:"}, {workTime.StartDate}, {workTime.EndDate}, {workTime.Duration}");
+                    writer.WriteLine($"{"WorkTimes:"},{workTime.StartDate},{workTime.EndDate},{workTime.Duration}");
                 }
                 foreach(var schedule in timeTable.AssignedSchedules)
                 {
-                    string assignedBlocks = string.Join(",", schedule.AssignedBlocks.Select(block => $"{block.StartDate}, {block.EndDate}, {block.Duration}"));
-                    writer.WriteLine($"{"AssignedSchedules:"}, {schedule.ScheduleId}, {assignedBlocks}");
+                    string assignedBlocks = string.Join(",", schedule.AssignedBlocks.Select(block => $"{block.StartDate},{block.EndDate},{block.Duration}"));
+                    writer.WriteLine($"{"AssignedSchedules:"},{schedule.ScheduleId},{assignedBlocks}");
                 }
                 foreach(var task in timeTable.AssignedTasks)
                 {
-                    string assignedBlocks = string.Join(",",task.AssignedBlocks.Select(block =>$"{block.StartDate}, {block.EndDate}, {block.Duration}"));
-                    writer.WriteLine($"{"AssignedTasks"}, {task.TaskId}, {assignedBlocks}");
+                    string assignedBlocks = string.Join(",",task.AssignedBlocks.Select(block =>$"{block.StartDate},{block.EndDate},{block.Duration}"));
+                    writer.WriteLine($"{"AssignedTasks"},{task.TaskId},{assignedBlocks}");
                 }
             }
         }
@@ -72,7 +72,7 @@ namespace TimeManager.Data.Repository
                         string[] parts = line.Split(',');
                         long scheduleId = long.Parse(parts[1]);
                         string scheduleName = parts[2];
-                        string[] scheduleBlocks = parts[3].Split(',');
+                        string[] scheduleBlocks = parts[3].Split(','); 
                         List<DateTimeBlock> assignedBlocks = scheduleBlocks.Select(block =>
                         {
                             string[] blockParts = block.Split(',');
