@@ -128,10 +128,14 @@ namespace TimeManager.Data.Model
                 availableTimes.AddRange(GetDailyAvailableTimes(date));
             }
 
+            DateTime end = timeBlock.EndDate.AddDays(1).StartOfDay();
+            if (timeBlock.EndDate.TimeOfDay == new TimeSpan(0))
+                end = timeBlock.EndDate;
+
             availableTimes = DateTimeBlock.Difference(availableTimes, 
                 new List<DateTimeBlock> { 
                     new DateTimeBlock(timeBlock.StartDate.StartOfDay(), timeBlock.StartDate),
-                    new DateTimeBlock(timeBlock.EndDate, timeBlock.EndDate.AddDays(1).StartOfDay())
+                    new DateTimeBlock(timeBlock.EndDate, end)
                 }).ToList();
 
             return availableTimes;
