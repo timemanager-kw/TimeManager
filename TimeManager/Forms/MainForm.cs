@@ -756,6 +756,7 @@ namespace TimeManager.Forms
         {
             _scheduler.Run();
             _timeTableManager.Save(timeTable);
+            TimeTableView();
         }
 
         private void AddBtn_Click(object sender, EventArgs e)
