@@ -83,7 +83,7 @@ namespace TimeManager.Scheduler
             // 오늘로부터의 Schedule 모두 넣기
             foreach (Schedule schedule in schedules)
             {
-                // schedule이 오늘 이후의 것들이라면 가져옴.
+            // schedule이 오늘 이후의 것들이라면 가져옴.
                 if(schedule.TimeBlock.StartDate.Date > DateTime.Today.Date)
                 {
                     AssignedSchedule assignedSchedule = new AssignedSchedule();
@@ -106,6 +106,7 @@ namespace TimeManager.Scheduler
 
         public int ChangeToFocusDays(DateTime endDate, DateTime todayDate)
         {
+            
             return (endDate - todayDate).Days;
         }
 
@@ -122,6 +123,7 @@ namespace TimeManager.Scheduler
                 Task task_ = new Task();
                 task_.Id = task.Id;
                 task_.Name = task.Name;
+                task_.StartDate = task.StartDate;
                 task_.FocusDays = task.FocusDays;
                 task_.EndDate = task.EndDate;
                 task_.Duration = task.Duration;
@@ -154,7 +156,8 @@ namespace TimeManager.Scheduler
                     }
                 }
                 // FocusDays 변경
-                repTask.FocusDays = ChangeToFocusDays(repTask.EndDate.GetValueOrDefault(), DateTime.Now.Date);
+                if (repTask.EndDate?.AddDays(-(double)(repTask.FocusDays - 1)) <= DateTime.Now.Date)
+                    repTask.FocusDays = ChangeToFocusDays(repTask.EndDate.GetValueOrDefault(), DateTime.Now.Date);
 
                 // Duration 변경(앞에 사용된 시간만큼 줄이기)
                 foreach (AssignedTask assignedTask in _timeTable.AssignedTasks)
