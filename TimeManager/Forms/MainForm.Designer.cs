@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.ColumnMonday = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,7 +43,9 @@
             this.MainPanel = new System.Windows.Forms.Panel();
             this.LogTxt = new System.Windows.Forms.TextBox();
             this.TitlePanel = new System.Windows.Forms.Panel();
+            this.openEditAvailableBtn = new System.Windows.Forms.Button();
             this.images = new System.Windows.Forms.ImageList(this.components);
+            this.AlgorithmStarter = new System.Windows.Forms.Button();
             this.NextBtn = new System.Windows.Forms.Button();
             this.WeekLabel = new System.Windows.Forms.Label();
             this.PrevBtn = new System.Windows.Forms.Button();
@@ -101,8 +103,6 @@
             this.TaskLongEditCancleBtn = new System.Windows.Forms.Button();
             this.TaskLName = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.openEditAvailableBtn = new System.Windows.Forms.Button();
-            this.AlgorithmStarter = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.MainPanel.SuspendLayout();
             this.TitlePanel.SuspendLayout();
@@ -189,9 +189,9 @@
             // 
             // ColumnSaturday
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.ColumnSaturday.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.SteelBlue;
+            this.ColumnSaturday.DefaultCellStyle = dataGridViewCellStyle3;
             this.ColumnSaturday.HeaderText = "토";
             this.ColumnSaturday.MinimumWidth = 6;
             this.ColumnSaturday.Name = "ColumnSaturday";
@@ -201,9 +201,9 @@
             // 
             // ColumnSunday
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Crimson;
-            this.ColumnSunday.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Crimson;
+            this.ColumnSunday.DefaultCellStyle = dataGridViewCellStyle4;
             this.ColumnSunday.HeaderText = "일";
             this.ColumnSunday.MinimumWidth = 6;
             this.ColumnSunday.Name = "ColumnSunday";
@@ -231,6 +231,7 @@
             this.LogTxt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.LogTxt.Size = new System.Drawing.Size(740, 60);
             this.LogTxt.TabIndex = 1;
+            this.LogTxt.Text = "0";
             // 
             // TitlePanel
             // 
@@ -248,6 +249,19 @@
             this.TitlePanel.Size = new System.Drawing.Size(740, 40);
             this.TitlePanel.TabIndex = 0;
             // 
+            // openEditAvailableBtn
+            // 
+            this.openEditAvailableBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.openEditAvailableBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.openEditAvailableBtn.ImageIndex = 1;
+            this.openEditAvailableBtn.ImageList = this.images;
+            this.openEditAvailableBtn.Location = new System.Drawing.Point(665, 5);
+            this.openEditAvailableBtn.Name = "openEditAvailableBtn";
+            this.openEditAvailableBtn.Size = new System.Drawing.Size(35, 30);
+            this.openEditAvailableBtn.TabIndex = 4;
+            this.openEditAvailableBtn.UseVisualStyleBackColor = false;
+            this.openEditAvailableBtn.Click += new System.EventHandler(this.openEditAvailableBtn_Click);
+            // 
             // images
             // 
             this.images.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("images.ImageStream")));
@@ -256,6 +270,19 @@
             this.images.Images.SetKeyName(1, "KakaoTalk_20240619_230623859 (1).png");
             this.images.Images.SetKeyName(2, "reload.png");
             this.images.Images.SetKeyName(3, "option.png");
+            // 
+            // AlgorithmStarter
+            // 
+            this.AlgorithmStarter.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.AlgorithmStarter.Dock = System.Windows.Forms.DockStyle.Right;
+            this.AlgorithmStarter.ImageIndex = 0;
+            this.AlgorithmStarter.ImageList = this.images;
+            this.AlgorithmStarter.Location = new System.Drawing.Point(700, 5);
+            this.AlgorithmStarter.Name = "AlgorithmStarter";
+            this.AlgorithmStarter.Size = new System.Drawing.Size(35, 30);
+            this.AlgorithmStarter.TabIndex = 3;
+            this.AlgorithmStarter.UseVisualStyleBackColor = false;
+            this.AlgorithmStarter.Click += new System.EventHandler(this.AlgorithmStarter_Click);
             // 
             // NextBtn
             // 
@@ -901,32 +928,6 @@
             this.label12.TabIndex = 0;
             this.label12.Text = "업무명";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // openEditAvailableBtn
-            // 
-            this.openEditAvailableBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.openEditAvailableBtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.openEditAvailableBtn.ImageIndex = 1;
-            this.openEditAvailableBtn.ImageList = this.images;
-            this.openEditAvailableBtn.Location = new System.Drawing.Point(665, 5);
-            this.openEditAvailableBtn.Name = "openEditAvailableBtn";
-            this.openEditAvailableBtn.Size = new System.Drawing.Size(35, 30);
-            this.openEditAvailableBtn.TabIndex = 4;
-            this.openEditAvailableBtn.UseVisualStyleBackColor = false;
-            this.openEditAvailableBtn.Click += new System.EventHandler(this.openEditAvailableBtn_Click);
-            // 
-            // AlgorithmStarter
-            // 
-            this.AlgorithmStarter.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.AlgorithmStarter.Dock = System.Windows.Forms.DockStyle.Right;
-            this.AlgorithmStarter.ImageIndex = 0;
-            this.AlgorithmStarter.ImageList = this.images;
-            this.AlgorithmStarter.Location = new System.Drawing.Point(700, 5);
-            this.AlgorithmStarter.Name = "AlgorithmStarter";
-            this.AlgorithmStarter.Size = new System.Drawing.Size(35, 30);
-            this.AlgorithmStarter.TabIndex = 3;
-            this.AlgorithmStarter.UseVisualStyleBackColor = false;
-            this.AlgorithmStarter.Click += new System.EventHandler(this.AlgorithmStarter_Click);
             // 
             // MainForm
             // 

@@ -192,5 +192,8 @@
   <ItemGroup>
     <None Include="Resources\reload %282%29.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KakaoTalk_20240619_231730081.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

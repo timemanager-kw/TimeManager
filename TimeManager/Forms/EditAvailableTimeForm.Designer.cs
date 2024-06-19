@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.selectedTimesBtn = new System.Windows.Forms.Button();
-            this.weeklyTimeTableSelectableControl1 = new TimeManager.Controls.WeeklyTimeTableSelectableControl();
             this.doneBtn = new System.Windows.Forms.Button();
+            this.weeklyTimeTableSelectableControl1 = new TimeManager.Controls.WeeklyTimeTableSelectableControl();
             this.SuspendLayout();
             // 
             // selectedTimesBtn
@@ -43,15 +43,6 @@
             this.selectedTimesBtn.UseVisualStyleBackColor = true;
             this.selectedTimesBtn.Click += new System.EventHandler(this.selectedTimes_Click);
             // 
-            // weeklyTimeTableSelectableControl1
-            // 
-            this.weeklyTimeTableSelectableControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.weeklyTimeTableSelectableControl1.Location = new System.Drawing.Point(0, 0);
-            this.weeklyTimeTableSelectableControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.weeklyTimeTableSelectableControl1.Name = "weeklyTimeTableSelectableControl1";
-            this.weeklyTimeTableSelectableControl1.Size = new System.Drawing.Size(800, 401);
-            this.weeklyTimeTableSelectableControl1.TabIndex = 1;
-            // 
             // doneBtn
             // 
             this.doneBtn.Location = new System.Drawing.Point(645, 408);
@@ -61,6 +52,15 @@
             this.doneBtn.Text = "완료";
             this.doneBtn.UseVisualStyleBackColor = true;
             this.doneBtn.Click += new System.EventHandler(this.doneBtn_Click);
+            // 
+            // weeklyTimeTableSelectableControl1
+            // 
+            this.weeklyTimeTableSelectableControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.weeklyTimeTableSelectableControl1.Location = new System.Drawing.Point(0, 0);
+            this.weeklyTimeTableSelectableControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.weeklyTimeTableSelectableControl1.Name = "weeklyTimeTableSelectableControl1";
+            this.weeklyTimeTableSelectableControl1.Size = new System.Drawing.Size(800, 401);
+            this.weeklyTimeTableSelectableControl1.TabIndex = 1;
             // 
             // EditAvailableTimeForm
             // 

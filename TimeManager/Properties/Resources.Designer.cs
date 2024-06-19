@@ -63,39 +63,9 @@ namespace TimeManager.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap reload {
+        internal static System.Drawing.Bitmap KakaoTalk_20240619_231730081 {
             get {
-                object obj = ResourceManager.GetObject("reload", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
-        /// </summary>
-        internal static System.Drawing.Bitmap reload__1_ {
-            get {
-                object obj = ResourceManager.GetObject("reload (1)", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
-        /// </summary>
-        internal static System.Drawing.Bitmap reload__2_ {
-            get {
-                object obj = ResourceManager.GetObject("reload (2)", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
-        /// </summary>
-        internal static System.Drawing.Bitmap reload1 {
-            get {
-                object obj = ResourceManager.GetObject("reload1", resourceCulture);
+                object obj = ResourceManager.GetObject("KakaoTalk_20240619_231730081", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
