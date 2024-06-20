@@ -23,7 +23,7 @@ namespace TimeManager.Data.Model
             var schedule = _assignedSchedules.FirstOrDefault(s=>s.ScheduleId == scheduleId);
             if (schedule != null)
             {
-                schedule.AssignedBlocks.Clear();
+                _assignedSchedules.Remove(schedule);
                 var newSchedule = new AssignedSchedule(assignedTimeBlocks.ToList(), scheduleId);
                 _assignedSchedules.Add(newSchedule);
             }
