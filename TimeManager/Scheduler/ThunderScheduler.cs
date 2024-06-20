@@ -123,7 +123,7 @@ namespace TimeManager.Scheduler
                 // schedule이 정기일정이라면
                 if (schedule.Type == EScheduleType.Singular) continue;
 
-                for(DateTime date = DateTime.Now.Date; date <= endDateTime; date +=TimeSpan.FromDays(1))
+                for(DateTime date = DateTime.Now.Date+TimeSpan.FromDays(1); date <= endDateTime; date +=TimeSpan.FromDays(1))
                 {
                     foreach(WeeklyDateTimeBlock weeklyDate in schedule.RegularTimeBlocks)
                     {
