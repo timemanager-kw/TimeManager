@@ -127,9 +127,13 @@ namespace TimeManager.Scheduler
                         dateTimeBlocks.Add(new DateTimeBlock(weeklyDateTimeBlock.StartTime, weeklyDateTimeBlock.EndTime));
                     }
 
-                    _scheduleManager.Update(schedule);
-                    _timeTable.ReassignSchedule(schedule.Id, dateTimeBlocks);
-                    _timeTableManager.Save(_timeTable);
+                    try
+                    {
+                        _scheduleManager.Update(schedule);
+                        _timeTable.ReassignSchedule(schedule.Id, dateTimeBlocks);
+                        _timeTableManager.Save(_timeTable);
+                    }
+                    catch (ArgumentException ex) { }
                 }
             }
         }

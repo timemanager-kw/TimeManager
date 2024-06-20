@@ -894,7 +894,11 @@ namespace TimeManager.Forms
             }
             focusedSchedule.Description = LogTxt.Text;
 
-            _scheduleManager.Update(focusedSchedule);
+            try
+            {
+                _scheduleManager.Update(focusedSchedule);
+            }
+            catch (ArgumentException ex) { }
             UpdateView[(int)viewType]();
         }
 
@@ -916,7 +920,11 @@ namespace TimeManager.Forms
             }
             focusedTask.Description = LogTxt.Text;
 
-            _taskManager.Update(focusedTask);
+            try
+            {
+                _taskManager.Update(focusedTask);
+            }
+            catch (ArgumentException ae) { }
             UpdateView[(int)viewType]();
         }
 
