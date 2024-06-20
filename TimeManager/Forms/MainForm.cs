@@ -303,6 +303,19 @@ namespace TimeManager.Forms
             }
         }
 
+        private void AddDescriptOnCells(int row, int col, int maxRox, TimeTableType type, long id)
+        {
+            string[] descripts;
+            if (type == TimeTableType.Schedule)
+            {
+                descripts = _scheduleManager.GetById(id).Description.Split(' ');
+            }
+            else
+            {
+                descripts = _taskManager.GetById(id).Description.Split(' ');
+            }
+        }
+
         private bool IsSameCellValue(int column, int row)
         {
             DataGridViewCell cell1 = dataGridView[column, row];
