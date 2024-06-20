@@ -813,7 +813,7 @@ namespace TimeManager.Scheduler
             // Let We have AvailableTime of each day.
             // 날짜별로 가용시간 총량을 받아옴.        
 
-            DateTime endDateTime = DateTime.Now.Date + TimeSpan.FromDays(1);
+            DateTime endDateTime = DateTime.Today;
                 //find_End[0].AssignedBlocks[0].EndDate.Date + TimeSpan.FromDays(1);
 
             foreach (Data.Model.Task task in tasks)
