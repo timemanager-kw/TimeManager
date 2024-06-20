@@ -131,26 +131,12 @@ namespace TimeManager.Scheduler
                             assignedSchedule.AssignedBlocks.Add(new DateTimeBlock(
                                 date.Date + TimeSpan.FromHours((int)weeklyDate.StartTime.Hour) + TimeSpan.FromMinutes((int)weeklyDate.StartTime.Minute),
                                 date.Date + TimeSpan.FromHours((int)weeklyDate.EndTime.Hour) + TimeSpan.FromMinutes((int)weeklyDate.EndTime.Minute)));
-                            break;
+                            assignedSchedule.ScheduleId = schedule.Id;
                         }
                     }
                 }
-                newTimeTable.AssignedSchedules.Add(assignedSchedule);
+                newTimeTable.AssignSchedule(assignedSchedule.ScheduleId, assignedSchedule.AssignedBlocks);
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-            _timeTable = newTimeTable;
         }
 
 
