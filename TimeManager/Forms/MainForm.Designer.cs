@@ -681,7 +681,7 @@
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label7.Location = new System.Drawing.Point(5, 45);
+            this.label7.Location = new System.Drawing.Point(5, 76);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(75, 25);
             this.label7.TabIndex = 2;
@@ -714,7 +714,7 @@
             // 
             this.TaskEndDatePicker.CustomFormat = "yyyy-MM-dd";
             this.TaskEndDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.TaskEndDatePicker.Location = new System.Drawing.Point(80, 45);
+            this.TaskEndDatePicker.Location = new System.Drawing.Point(80, 76);
             this.TaskEndDatePicker.Name = "TaskEndDatePicker";
             this.TaskEndDatePicker.Size = new System.Drawing.Size(110, 25);
             this.TaskEndDatePicker.TabIndex = 14;
@@ -722,7 +722,7 @@
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label5.Location = new System.Drawing.Point(5, 84);
+            this.label5.Location = new System.Drawing.Point(5, 36);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(75, 25);
             this.label5.TabIndex = 15;
@@ -733,7 +733,7 @@
             // 
             this.TaskStartDatePicker.CustomFormat = "yyyy-MM-dd";
             this.TaskStartDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.TaskStartDatePicker.Location = new System.Drawing.Point(80, 84);
+            this.TaskStartDatePicker.Location = new System.Drawing.Point(80, 36);
             this.TaskStartDatePicker.Name = "TaskStartDatePicker";
             this.TaskStartDatePicker.Size = new System.Drawing.Size(110, 25);
             this.TaskStartDatePicker.TabIndex = 16;
