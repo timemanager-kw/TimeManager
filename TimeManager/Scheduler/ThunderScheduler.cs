@@ -68,7 +68,7 @@ namespace TimeManager.Scheduler
             }
         }
 
-        public override void AssignSchdules()
+        public override void AssignSchdules(DateTime limitDate)
         {
 
             _timeTable = _timeTableManager.Get();
