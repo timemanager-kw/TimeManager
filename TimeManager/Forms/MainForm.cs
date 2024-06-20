@@ -299,8 +299,6 @@ namespace TimeManager.Forms
                 e.AdvancedBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.None;
             else
                 e.AdvancedBorderStyle.Top = dataGridView.AdvancedCellBorderStyle.Top;
-
-            AddDescriptOnCells(Week.From(StandardTime));
         }
 
         private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -318,90 +316,6 @@ namespace TimeManager.Forms
         {
             int nowRow = DateTime.Now.Hour * 2 + DateTime.Now.Minute / 30;
             dataGridView.FirstDisplayedScrollingRowIndex = nowRow - 5;
-        }
-
-        private void AddDescriptOnCells(Week week)
-        {
-            string[] descripts;
-
-            List<AssignedSchedule> schedules = timeTable.GetWeeklyAssignedSchedules(week);
-
-            foreach (AssignedSchedule schedule in schedules)
-            {
-                descripts = _scheduleManager.GetById(schedule.ScheduleId).Description.Split(' ');
-
-                foreach (DateTimeBlock block in schedule.AssignedBlocks)
-                {
-                    if (!week.IsInWeek(block.StartDate)) continue;
-
-                    int startRow = block.StartDate.Hour * 2 + block.StartDate.Minute / 30 + 1;
-                    int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute / 30;
-
-                    int lastStr = 0;
-                    bool isLastStr = false, isLastRow = false;
-                    for (; !isLastStr && !isLastRow;)
-                    {
-                        dataGridView.Rows[startRow].Cells[block.StartDate.GetDayOfWeekIndex()].Value = descripts[lastStr];
-                        string strTmp = string.Empty;
-                        bool isCellOver = false;
-                        for (; !isCellOver && !isLastStr;)
-                        {
-                            strTmp = dataGridView.Rows[startRow].Cells[block.StartDate.GetDayOfWeekIndex()].Value.ToString();
-                            dataGridView.Rows[startRow].Cells[block.StartDate.GetDayOfWeekIndex()].Value += $" {descripts[lastStr]}";
-
-                            lastStr++;
-                            isCellOver = TextRenderer.MeasureText(dataGridView.Rows[startRow].Cells[block.StartDate.GetDayOfWeekIndex()].Value.ToString(), dataGridView.Font).Width > dataGridView.Columns[1].Width;
-                            isLastStr = lastStr >= descripts.Length;
-                        }
-                        if (isLastStr) break;
-                        if (isCellOver) dataGridView.Rows[startRow].Cells[block.StartDate.GetDayOfWeekIndex()].Value = strTmp;
-
-                        startRow++;
-                        isLastRow = startRow >= endRow;
-                    }
-                    if (!isLastStr) dataGridView.Rows[startRow].Cells[block.StartDate.GetDayOfWeekIndex()].Value += descripts[lastStr];
-                }
-            }
-
-            List<AssignedTask> tasks = timeTable.GetWeeklyAssignedTasks(week);
-
-            foreach (AssignedTask task in tasks)
-            {
-                descripts = _taskManager.GetById(task.TaskId).Description.Split(' ');
-
-                foreach (DateTimeBlock block in task.AssignedBlocks)
-                {
-                    if (!week.IsInWeek(block.StartDate)) continue;
-
-                    int startRow = block.StartDate.Hour * 2 + block.StartDate.Minute / 30 + 1;
-                    int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute / 30;
-
-                    int lastStr = 0;
-                    bool isLastStr = false, isLastRow = false;
-                    for (; !isLastStr && !isLastRow;)
-                    {
-                        dataGridView.Rows[startRow].Cells[block.StartDate.GetDayOfWeekIndex()].Value = descripts[lastStr];
-                        string strTmp = string.Empty;
-                        bool isCellOver = false;
-                        for (; !isCellOver && !isLastStr;)
-                        {
-                            strTmp = dataGridView.Rows[startRow].Cells[block.StartDate.GetDayOfWeekIndex()].Value.ToString();
-                            dataGridView.Rows[startRow].Cells[block.StartDate.GetDayOfWeekIndex()].Value += $" {descripts[lastStr]}";
-
-                            lastStr++;
-                            isCellOver = TextRenderer.MeasureText(dataGridView.Rows[startRow].Cells[block.StartDate.GetDayOfWeekIndex()].Value.ToString(), dataGridView.Font).Width > dataGridView.Columns[1].Width;
-                            isLastStr = lastStr >= descripts.Length;
-                        }
-                        if (isLastStr) break;
-                        if (isCellOver) dataGridView.Rows[startRow].Cells[block.StartDate.GetDayOfWeekIndex()].Value = strTmp;
-
-                        startRow++;
-                        isLastRow = startRow >= endRow;
-                    }
-                    if (isLastRow) dataGridView.Rows[startRow - 1].Cells[block.StartDate.GetDayOfWeekIndex()].Value += $" {descripts[lastStr]}";
-                    else if (!isLastStr) dataGridView.Rows[startRow].Cells[block.StartDate.GetDayOfWeekIndex()].Value += $" {descripts[lastStr]}";
-                }
-            }
         }
 
         private bool IsSameCellValue(int column, int row)
@@ -948,6 +862,7 @@ namespace TimeManager.Forms
                 if (schedule.Type == EScheduleType.Singular)
                 {
                     timeTable.AssignSchedule(schedule.Id, new List<DateTimeBlock>() { schedule.TimeBlock });
+                    _timeTableManager.Save(timeTable);
                 }
                 else
                 {
@@ -957,6 +872,7 @@ namespace TimeManager.Forms
                         dateTimeBlocksTmp.Add(new DateTimeBlock(d.StartTime, d.EndTime));
                     }
                     timeTable.AssignSchedule(schedule.Id, dateTimeBlocksTmp);
+                    _timeTableManager.Save(timeTable);
                 }
             }
 
