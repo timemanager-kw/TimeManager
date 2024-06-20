@@ -52,7 +52,7 @@ namespace TimeManager.Controls
         {
             for (int i = 0; i < 7; i++)
             {
-                dataGridView.Columns[i].HeaderText = _currentWeek.GetDay(i).ToString("ddd (MM/dd)");
+                dataGridView.Columns[i].HeaderText = _currentWeek.GetDay(i).ToString("ddd (MM\"/\"dd)");
             }
         }
 
