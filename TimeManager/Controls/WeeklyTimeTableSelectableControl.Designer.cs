@@ -57,13 +57,12 @@
             this.ColumnSunday});
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.RowHeadersWidth = 65;
             this.dataGridView.RowTemplate.Height = 23;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView.Size = new System.Drawing.Size(1096, 482);
+            this.dataGridView.Size = new System.Drawing.Size(663, 321);
             this.dataGridView.TabIndex = 0;
             this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             this.dataGridView.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_CellMouseDown);
@@ -78,7 +77,7 @@
             this.ColumnMonday.Name = "ColumnMonday";
             this.ColumnMonday.ReadOnly = true;
             this.ColumnMonday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnMonday.Width = 150;
+            this.ColumnMonday.Width = 85;
             // 
             // ColumnTuesday
             // 
@@ -87,7 +86,7 @@
             this.ColumnTuesday.Name = "ColumnTuesday";
             this.ColumnTuesday.ReadOnly = true;
             this.ColumnTuesday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnTuesday.Width = 150;
+            this.ColumnTuesday.Width = 85;
             // 
             // ColumnWednesday
             // 
@@ -96,7 +95,7 @@
             this.ColumnWednesday.Name = "ColumnWednesday";
             this.ColumnWednesday.ReadOnly = true;
             this.ColumnWednesday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnWednesday.Width = 150;
+            this.ColumnWednesday.Width = 85;
             // 
             // ColumnThursday
             // 
@@ -105,7 +104,7 @@
             this.ColumnThursday.Name = "ColumnThursday";
             this.ColumnThursday.ReadOnly = true;
             this.ColumnThursday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnThursday.Width = 150;
+            this.ColumnThursday.Width = 85;
             // 
             // ColumnFriday
             // 
@@ -114,7 +113,7 @@
             this.ColumnFriday.Name = "ColumnFriday";
             this.ColumnFriday.ReadOnly = true;
             this.ColumnFriday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnFriday.Width = 150;
+            this.ColumnFriday.Width = 85;
             // 
             // ColumnSaturday
             // 
@@ -123,7 +122,7 @@
             this.ColumnSaturday.Name = "ColumnSaturday";
             this.ColumnSaturday.ReadOnly = true;
             this.ColumnSaturday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnSaturday.Width = 150;
+            this.ColumnSaturday.Width = 85;
             // 
             // ColumnSunday
             // 
@@ -132,16 +131,15 @@
             this.ColumnSunday.Name = "ColumnSunday";
             this.ColumnSunday.ReadOnly = true;
             this.ColumnSunday.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnSunday.Width = 150;
+            this.ColumnSunday.Width = 85;
             // 
             // WeeklyTimeTableSelectableControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGridView);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "WeeklyTimeTableSelectableControl";
-            this.Size = new System.Drawing.Size(1096, 482);
+            this.Size = new System.Drawing.Size(663, 321);
             this.Load += new System.EventHandler(this.WeeklyTimeTableControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
