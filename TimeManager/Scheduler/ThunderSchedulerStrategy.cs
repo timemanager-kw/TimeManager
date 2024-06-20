@@ -783,7 +783,7 @@ namespace TimeManager.Scheduler
                         int allocatable_time = Math.Min(allocate_available, weeklyDateTimeInterval);
 
                         day.tempBlocks.Add(new TempBlock(longTermTask, allocatable_time));
-                        day.availableTime += allocatable_time;
+                        day.time_allocated += allocatable_time; // MARK: 배치한 만큼 시간이 채워졌다고 표시
                     }
 
                 }
@@ -891,9 +891,9 @@ namespace TimeManager.Scheduler
 
                 // W.T.D : 덩어리가 큰 것들을 찾아 등분하여 다른곳과 바꿈
                 List<Day> daysRandomlyArranged = RandomArrange(days, least_interval);
-/*
+
                 List<Day> longTermTaskAdded = AddLongTermTasks(daysRandomlyArranged, tasks);
-*/
+
                 // W.T.D : TimeTable에 채우기
                 FillTimeTable(daysRandomlyArranged, timeTable);
             }
