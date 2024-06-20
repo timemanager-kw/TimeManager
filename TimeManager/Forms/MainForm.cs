@@ -497,7 +497,7 @@ namespace TimeManager.Forms
                     {
                         if (task.EndDate.Value.CompareTo(DateTime.Now) <= 0)
                         {
-                            taskList.Remove(task);
+                            removeTasks.Add(task);
                             continue;
                         }
                         lvItem.SubItems[1].Text = ((DateTime)task.EndDate).ToString("yyyy-MM-dd");
@@ -1160,12 +1160,16 @@ namespace TimeManager.Forms
             assignedScheduleColor.Remove(focusedSchedule.Id);
             List<AssignedSchedule> assignedSchedules = timeTable.GetAllAssignedSchedules();
 
-            if (assignedSchedules.FindIndex(s => s.ScheduleId == focusedSchedule.Id) != -1)
+            if (assignedSchedules.Count > 0)
             {
-                timeTable.UnassignSchedule(focusedSchedule.Id);
-                _timeTableManager.Save(timeTable);
+                if (assignedSchedules.FindIndex(s => s.ScheduleId == focusedSchedule.Id) != -1)
+                {
+                    timeTable.UnassignSchedule(focusedSchedule.Id);
+                    _timeTableManager.Save(timeTable);
+                }
+                _scheduleManager.Delete(focusedSchedule);
             }
-            _scheduleManager.Delete(focusedSchedule);
+
             focusedSchedule = null;
             UpdateView[(int)viewType]();
         }
@@ -1175,12 +1179,16 @@ namespace TimeManager.Forms
             assignedScheduleColor.Remove(focusedSchedule.Id);
             List<AssignedSchedule> assignedSchedules = timeTable.GetAllAssignedSchedules();
 
-            if (assignedSchedules.FindIndex(s => s.ScheduleId == focusedSchedule.Id) != -1)
+            if (assignedSchedules.Count > 0)
             {
-                timeTable.UnassignSchedule(focusedSchedule.Id);
-                _timeTableManager.Save(timeTable);
+                if (assignedSchedules.FindIndex(s => s.ScheduleId == focusedSchedule.Id) != -1)
+                {
+                    timeTable.UnassignSchedule(focusedSchedule.Id);
+                    _timeTableManager.Save(timeTable);
+                }
+                _scheduleManager.Delete(focusedSchedule);
             }
-            _scheduleManager.Delete(focusedSchedule);
+
             focusedSchedule = null;
             UpdateView[(int)viewType]();
         }
@@ -1190,12 +1198,15 @@ namespace TimeManager.Forms
             assignedTaskColor.Remove(focusedTask.Id);
             List<AssignedTask> assignedTasks = timeTable.GetAllAssignedTasks();
 
-            if (assignedTasks.FindIndex(t => t.TaskId == focusedTask.Id) != -1)
+            if (assignedTasks.Count > 0)
             {
-                timeTable.UnassignTask(focusedTask.Id);
-                _timeTableManager.Save(timeTable);
+                if (assignedTasks.FindIndex(t => t.TaskId == focusedTask.Id) != -1)
+                {
+                    timeTable.UnassignTask(focusedTask.Id);
+                    _timeTableManager.Save(timeTable);
+                }
+                _taskManager.Delete(focusedTask);
             }
-            _taskManager.Delete(focusedTask);
 
             focusedTask = null;
             UpdateView[(int)viewType]();
@@ -1206,12 +1217,15 @@ namespace TimeManager.Forms
             assignedTaskColor.Remove(focusedTask.Id);
             List<AssignedTask> assignedTasks = timeTable.GetAllAssignedTasks();
 
-            if (assignedTasks.FindIndex(t => t.TaskId == focusedTask.Id) != -1)
+            if (assignedTasks.Count > 0)
             {
-                timeTable.UnassignTask(focusedTask.Id);
-                _timeTableManager.Save(timeTable);
+                if (assignedTasks.FindIndex(t => t.TaskId == focusedTask.Id) != -1)
+                {
+                    timeTable.UnassignTask(focusedTask.Id);
+                    _timeTableManager.Save(timeTable);
+                }
+                _taskManager.Delete(focusedTask);
             }
-            _taskManager.Delete(focusedTask);
 
             focusedTask = null;
             UpdateView[(int)viewType]();
