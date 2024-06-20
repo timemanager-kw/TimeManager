@@ -105,79 +105,33 @@ namespace TimeManager.Scheduler
             }
         }
 
-        public override void AssignSchdules(DateTime limitDate)
+        public override void AssignSchdules(Week week)
         {
-
             _timeTable = _timeTableManager.Get();
-
-            // _timeTable의 복사본  - new TimeTable
-            TimeTable newTimeTable = new TimeTable(_timeTable.WorkTimes, _timeTable.AssignedSchedules, _timeTable.AssignedTasks);
-
-            IEnumerable<Schedule> schedules = _scheduleManager.GetAll();
-            List<AssignedSchedule> IdList = new List<AssignedSchedule>();
-            // newtimeTable에서 오늘 이후의 일정 다 지우기.
-            DeleteAllScheduleFromTommorow(newTimeTable);
-
-
-
-            // 오늘로부터의 Schedule 모두 넣기
+            List<Schedule> schedules = _scheduleManager.GetAll().ToList();
             foreach (Schedule schedule in schedules)
             {
-                // schedule이 Singulsr이고 오늘 이후의 것들이라면 가져옴.
-                if (schedule.Type == EScheduleType.Regular) continue;
-
-                if (schedule.TimeBlock.StartDate.Date > DateTime.Today.Date)
+                if (schedule.Type == EScheduleType.Regular)
                 {
-                    List<DateTimeBlock> newBlock = new List<DateTimeBlock>();
-                    newBlock.Add(new DateTimeBlock(schedule.TimeBlock.StartDate, schedule.TimeBlock.EndDate));
-                    newTimeTable.ReassignSchedule(schedule.Id,newBlock);
-
-                    //assignedSchedule.ScheduleName = schedule.Name;
-                }
-            }
-
-
-            /////////////////////////////////////////////////////////
-            // 정기
-            DateTime endDateTime = limitDate;
-            List<Task> tasks = (List<Task>)_taskManager.GetAll();
-
-            foreach (Data.Model.Task task in tasks)
-            {
-                if (task.Type == ETaskType.ShortTerm)
-                {
-                    if (endDateTime <= task.EndDate)
-                        endDateTime = task.EndDate.Value.Date;
-                }
-            }
-
-            endDateTime = endDateTime.Date + TimeSpan.FromDays(1);
-
-
-            foreach (Schedule schedule in schedules)
-            {
-                AssignedSchedule assignedSchedule = new AssignedSchedule(new List<DateTimeBlock>(), schedule.Id);
-
-                // schedule이 정기일정이라면
-                if (schedule.Type == EScheduleType.Singular) continue;
-
-                for(DateTime date = Week.From(DateTime.Now).GetDay(0); date <= endDateTime; date +=TimeSpan.FromDays(1))
-                {
-                    foreach(WeeklyDateTimeBlock weeklyDate in schedule.RegularTimeBlocks)
+                    List<DateTimeBlock> dateTimeBlocks = new List<DateTimeBlock>();
+                    for (int i = 0; i < schedule.RegularTimeBlocks.Count; i++)
                     {
-                        if (date.DayOfWeek == weeklyDate.DayOfWeek)
-                        {
-                            assignedSchedule.AssignedBlocks.Add(new DateTimeBlock(
-                                date.Date + TimeSpan.FromHours((int)weeklyDate.StartTime.Hour) + TimeSpan.FromMinutes((int)weeklyDate.StartTime.Minute),
-                                date.Date + TimeSpan.FromHours((int)weeklyDate.EndTime.Hour) + TimeSpan.FromMinutes((int)weeklyDate.EndTime.Minute)));
-                            assignedSchedule.ScheduleId = schedule.Id;
-                        }
-                    }
-                }
-                newTimeTable.ReassignSchedule(assignedSchedule.ScheduleId, assignedSchedule.AssignedBlocks);
-            }
+                        WeeklyDateTimeBlock weeklyDateTimeBlock = schedule.RegularTimeBlocks[i];
 
-            _timeTableManager.Save(_timeTable);
+                        DateTime dateTime = week.GetDay(weeklyDateTimeBlock.DayOfWeek == DayOfWeek.Sunday ? 6 : (int)weeklyDateTimeBlock.DayOfWeek - 1);
+
+                        weeklyDateTimeBlock.StartTime = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, weeklyDateTimeBlock.StartTime.Hour, weeklyDateTimeBlock.StartTime.Minute, weeklyDateTimeBlock.StartTime.Second);
+                        weeklyDateTimeBlock.EndTime = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, weeklyDateTimeBlock.EndTime.Hour, weeklyDateTimeBlock.EndTime.Minute, weeklyDateTimeBlock.EndTime.Second);
+                        schedule.RegularTimeBlocks[i] = weeklyDateTimeBlock;
+
+                        dateTimeBlocks.Add(new DateTimeBlock(weeklyDateTimeBlock.StartTime, weeklyDateTimeBlock.EndTime));
+                    }
+
+                    _scheduleManager.Update(schedule);
+                    _timeTable.ReassignSchedule(schedule.Id, dateTimeBlocks);
+                    _timeTableManager.Save(_timeTable);
+                }
+            }
         }
 
 

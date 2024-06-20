@@ -9,13 +9,13 @@ namespace TimeManager.Scheduler
 {
     public abstract class Scheduler
     {
-        public void Run(DateTime limitDate)
+        public void Run(Week week)
         {
-            AssignSchdules(limitDate);
+            AssignSchdules(week);
             ScheduleTasks();
         }
 
-        abstract public void AssignSchdules(DateTime limitDate);
+        abstract public void AssignSchdules(Week week);
         abstract public void ScheduleTasks();
     }
 }
