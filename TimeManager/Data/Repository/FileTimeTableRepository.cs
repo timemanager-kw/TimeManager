@@ -20,7 +20,6 @@ namespace TimeManager.Data.Repository
             {
                 using (StreamWriter writer = new StreamWriter(filePath))
                 {
-                    writer.WriteLine("파일을 찾을 수 없습니다.");
                 }
             }
         }
