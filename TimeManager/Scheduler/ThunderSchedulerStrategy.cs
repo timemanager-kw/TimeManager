@@ -379,7 +379,7 @@ namespace TimeManager.Scheduler
             //                    2) TempBlock_b의 interval을 줄인다.
             TempBlock temp_b = new TempBlock(tempBlock_b.task, interval);
             day_f_copied.tempBlocks.Add(temp_b);
-
+            
             tempBlock_b.time_interval -= interval;
 
             // TempBlock_f에 대해
@@ -430,7 +430,7 @@ namespace TimeManager.Scheduler
             //      , 바꿀만한 Task B(Or 빈 시간)가 있는지 확인하기.(조건 : Task B의 마감기한 또한 Task A의 마감기한에 포함되어야 함.)
             //      if) 바꿀 수 있다면, 바꾸는 함수인 Exchange() 적용.
             // 
-
+            
             least_interval = 3;
 
             // Days의 복사본 생성
@@ -486,11 +486,15 @@ namespace TimeManager.Scheduler
                             {
                                 ExchangeTask(interval, tempBlock, changableTemp, day_f_copied, day_cursor.Current);
 
+                                AutoAllocatedTimeHandle(day_f_copied);              /////////////////////////
+
                                 // time_interval이 0이 된 temp(= changableTemp)는 지움.
                                 if (changableTemp.time_interval == 0)
                                 {
                                     day_cursor.Current.tempBlocks.Remove(changableTemp);
                                 }
+
+
                             }
                             // 찾지 못했다면, day_f_copied로 interval 크기의 task를 넣는다.
                             else if (changableTemp == null)
@@ -511,6 +515,9 @@ namespace TimeManager.Scheduler
                                 {
                                     TempBlock temp_b = new TempBlock(tempBlock.task, interval);
                                     day_f_copied.tempBlocks.Add(temp_b);
+
+                                    AutoAllocatedTimeHandle(day_f_copied);                  ///////////////////////
+
                                 }
 
                             }
@@ -521,6 +528,7 @@ namespace TimeManager.Scheduler
                             if (changableDay != null)
                             {
                                 ExchangeTaskWithEmpty(interval, tempBlock, changableDay);
+                                AutoAllocatedTimeHandle(changableDay);
                             }
                             // 찾지 못했다면, day_f_copied로 interval 크기의 task를 넣는다.
                             else if (changableDay == null)
@@ -542,6 +550,9 @@ namespace TimeManager.Scheduler
                                 {
                                     TempBlock temp_b = new TempBlock(tempBlock.task, interval);
                                     day_f_copied.tempBlocks.Add(temp_b);
+
+                                    AutoAllocatedTimeHandle(day_f_copied);                  ////////////////////////
+
                                 }
                             }
                         }
@@ -613,6 +624,8 @@ namespace TimeManager.Scheduler
                     break;
                 }
 
+                int z = 0;      // 디버깅용
+
                 // 2) timeBlockHandles에서 blank가 제일 큰 것 찾기
                 foreach (TimeBlockHandle timeBlockHandle in timeBlockHandles)
                 {
@@ -622,6 +635,8 @@ namespace TimeManager.Scheduler
                         max_timeBlockHandle = timeBlockHandle;
                     }
                 }
+
+                int x = 0;      // 디버깅용
 
                 // 3) allocate가 큰 부분부터 채우며 넣기
                 for (int i = 0; i < max_available; i++)
@@ -637,6 +652,8 @@ namespace TimeManager.Scheduler
                     else break;
                 }
             }
+
+            int y = 0;      // 디버깅용
 
             foreach (TimeBlockHandle timeBlockHandle in timeBlockHandles)
             {
@@ -744,6 +761,18 @@ namespace TimeManager.Scheduler
                 }
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
 
         List<Day> AddLongTermTasks(List<Day> days, List<Data.Model.Task> tasks)
         {
@@ -895,7 +924,7 @@ namespace TimeManager.Scheduler
                 List<Day> longTermTaskAdded = AddLongTermTasks(daysRandomlyArranged, tasks);
 
                 // W.T.D : TimeTable에 채우기
-                FillTimeTable(daysRandomlyArranged, timeTable);
+                FillTimeTable(longTermTaskAdded, timeTable);
             }
             catch (TimeOverflowException e)
             {
