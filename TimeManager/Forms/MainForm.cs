@@ -1171,8 +1171,8 @@ namespace TimeManager.Forms
                     timeTable.UnassignSchedule(focusedSchedule.Id);
                     _timeTableManager.Save(timeTable);
                 }
-                _scheduleManager.Delete(focusedSchedule);
             }
+            _scheduleManager.Delete(focusedSchedule);
 
             focusedSchedule = null;
             UpdateView[(int)viewType]();
@@ -1190,8 +1190,8 @@ namespace TimeManager.Forms
                     timeTable.UnassignSchedule(focusedSchedule.Id);
                     _timeTableManager.Save(timeTable);
                 }
-                _scheduleManager.Delete(focusedSchedule);
             }
+            _scheduleManager.Delete(focusedSchedule);
 
             focusedSchedule = null;
             UpdateView[(int)viewType]();
@@ -1209,8 +1209,8 @@ namespace TimeManager.Forms
                     timeTable.UnassignTask(focusedTask.Id);
                     _timeTableManager.Save(timeTable);
                 }
-                _taskManager.Delete(focusedTask);
             }
+            _taskManager.Delete(focusedTask);
 
             focusedTask = null;
             UpdateView[(int)viewType]();
@@ -1228,8 +1228,8 @@ namespace TimeManager.Forms
                     timeTable.UnassignTask(focusedTask.Id);
                     _timeTableManager.Save(timeTable);
                 }
-                _taskManager.Delete(focusedTask);
             }
+            _taskManager.Delete(focusedTask);
 
             focusedTask = null;
             UpdateView[(int)viewType]();
