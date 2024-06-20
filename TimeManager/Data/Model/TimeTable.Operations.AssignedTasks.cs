@@ -25,7 +25,7 @@ namespace TimeManager.Data.Model
             var task = _assignedTasks.FirstOrDefault(t=>t.TaskId == taskId);
             if(task != null)
             {
-                task.AssignedBlocks.Clear();
+                _assignedTasks.Remove(task);    
                 var newTask = new AssignedTask(assignedTimeBlocks.ToList(), taskId);
                 _assignedTasks.Add(newTask);
             }
