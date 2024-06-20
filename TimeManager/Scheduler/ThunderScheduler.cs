@@ -91,7 +91,7 @@ namespace TimeManager.Scheduler
                 {
                     List<DateTimeBlock> newBlock = new List<DateTimeBlock>();
                     newBlock.Add(new DateTimeBlock(schedule.TimeBlock.StartDate, schedule.TimeBlock.EndDate));
-                    newTimeTable.ReassignSchedule(schedule.Id,newBlock);
+                    newTimeTable.AssignSchedule(schedule.Id,newBlock);
 
                     //assignedSchedule.ScheduleName = schedule.Name;
                 }
@@ -135,7 +135,7 @@ namespace TimeManager.Scheduler
                         }
                     }
                 }
-                newTimeTable.ReassignSchedule(assignedSchedule.ScheduleId, assignedSchedule.AssignedBlocks);
+                newTimeTable.AssignSchedule(assignedSchedule.ScheduleId, assignedSchedule.AssignedBlocks);
             }
         }
 
