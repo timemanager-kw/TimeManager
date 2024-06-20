@@ -24,6 +24,8 @@ namespace TimeManager.Controls
         private Color _ScheduleBackColor = Color.LightBlue;
         private Color _TaskBackColor = Color.LightGreen;
 
+        private Week _currentWeek;
+
         public WeeklyTimeTableControl(IScheduleManager scheduleManager, ITaskManager taskManager)
         {
             InitializeComponent();
@@ -37,6 +39,11 @@ namespace TimeManager.Controls
             InitializeRows();
             MoveScrollToNow();
             dataGridView.ClearSelection();
+        }
+
+        public void SetCurrentWeek(Week week)
+        {
+            _currentWeek = week;
         }
 
         private void InitializeRows()
