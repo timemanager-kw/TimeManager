@@ -49,8 +49,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Model\TimeTableWorkAndAvailableTimesUnitTests.cs" />
-    <Compile Include="Scheduler\ThunderSchedulerStrategyUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
