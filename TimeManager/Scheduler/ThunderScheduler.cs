@@ -101,7 +101,7 @@ namespace TimeManager.Scheduler
             // 0개 List를 갖고 있는 AssignedSchedule 지우기
             foreach (AssignedSchedule del_element in delSchedule_list)
             {
-                newTimeTable.AssignedSchedules.Remove(del_element);
+                newTimeTable.UnassignSchedule(del_element.ScheduleId);
             }
         }
 
@@ -176,6 +176,8 @@ namespace TimeManager.Scheduler
                 }
                 newTimeTable.ReassignSchedule(assignedSchedule.ScheduleId, assignedSchedule.AssignedBlocks);
             }
+
+            _timeTableManager.Save(_timeTable);
         }
 
 
