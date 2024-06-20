@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.ColumnMonday = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -89,7 +89,6 @@
             this.TaskStartDatePicker = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.TaskDurationCmb = new System.Windows.Forms.ComboBox();
-            this.WithEndDateCheck = new System.Windows.Forms.CheckBox();
             this.ShortTaskPanel = new System.Windows.Forms.Panel();
             this.TaskSRemoveBtn = new System.Windows.Forms.Button();
             this.LongTaskPanel = new System.Windows.Forms.Panel();
@@ -189,9 +188,9 @@
             // 
             // ColumnSaturday
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.SteelBlue;
-            this.ColumnSaturday.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.SteelBlue;
+            this.ColumnSaturday.DefaultCellStyle = dataGridViewCellStyle1;
             this.ColumnSaturday.HeaderText = "토";
             this.ColumnSaturday.MinimumWidth = 6;
             this.ColumnSaturday.Name = "ColumnSaturday";
@@ -201,9 +200,9 @@
             // 
             // ColumnSunday
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Crimson;
-            this.ColumnSunday.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Crimson;
+            this.ColumnSunday.DefaultCellStyle = dataGridViewCellStyle2;
             this.ColumnSunday.HeaderText = "일";
             this.ColumnSunday.MinimumWidth = 6;
             this.ColumnSunday.Name = "ColumnSunday";
@@ -723,7 +722,7 @@
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label5.Location = new System.Drawing.Point(5, 100);
+            this.label5.Location = new System.Drawing.Point(5, 84);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(75, 25);
             this.label5.TabIndex = 15;
@@ -734,7 +733,7 @@
             // 
             this.TaskStartDatePicker.CustomFormat = "yyyy-MM-dd";
             this.TaskStartDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.TaskStartDatePicker.Location = new System.Drawing.Point(80, 100);
+            this.TaskStartDatePicker.Location = new System.Drawing.Point(80, 84);
             this.TaskStartDatePicker.Name = "TaskStartDatePicker";
             this.TaskStartDatePicker.Size = new System.Drawing.Size(110, 25);
             this.TaskStartDatePicker.TabIndex = 16;
@@ -742,7 +741,7 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label6.Location = new System.Drawing.Point(5, 130);
+            this.label6.Location = new System.Drawing.Point(5, 114);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(75, 25);
             this.label6.TabIndex = 17;
@@ -752,28 +751,15 @@
             // TaskDurationCmb
             // 
             this.TaskDurationCmb.FormattingEnabled = true;
-            this.TaskDurationCmb.Location = new System.Drawing.Point(80, 130);
+            this.TaskDurationCmb.Location = new System.Drawing.Point(80, 114);
             this.TaskDurationCmb.Name = "TaskDurationCmb";
             this.TaskDurationCmb.Size = new System.Drawing.Size(110, 23);
             this.TaskDurationCmb.TabIndex = 18;
-            // 
-            // WithEndDateCheck
-            // 
-            this.WithEndDateCheck.AutoSize = true;
-            this.WithEndDateCheck.Font = new System.Drawing.Font("함초롬바탕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.WithEndDateCheck.Location = new System.Drawing.Point(80, 75);
-            this.WithEndDateCheck.Name = "WithEndDateCheck";
-            this.WithEndDateCheck.Size = new System.Drawing.Size(111, 23);
-            this.WithEndDateCheck.TabIndex = 19;
-            this.WithEndDateCheck.Text = "마감일 포함";
-            this.WithEndDateCheck.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.WithEndDateCheck.UseVisualStyleBackColor = true;
             // 
             // ShortTaskPanel
             // 
             this.ShortTaskPanel.BackColor = System.Drawing.Color.AliceBlue;
             this.ShortTaskPanel.Controls.Add(this.TaskSRemoveBtn);
-            this.ShortTaskPanel.Controls.Add(this.WithEndDateCheck);
             this.ShortTaskPanel.Controls.Add(this.TaskDurationCmb);
             this.ShortTaskPanel.Controls.Add(this.label6);
             this.ShortTaskPanel.Controls.Add(this.TaskStartDatePicker);
@@ -935,8 +921,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(942, 493);
-            this.Controls.Add(this.LongTaskPanel);
             this.Controls.Add(this.ShortTaskPanel);
+            this.Controls.Add(this.LongTaskPanel);
             this.Controls.Add(this.SingleSchedulePanel);
             this.Controls.Add(this.RegularSchedulePanel);
             this.Controls.Add(this.TimeBlockView);
@@ -1013,7 +999,6 @@
         private System.Windows.Forms.DateTimePicker TaskStartDatePicker;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox TaskDurationCmb;
-        private System.Windows.Forms.CheckBox WithEndDateCheck;
         private System.Windows.Forms.Panel ShortTaskPanel;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMonday;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTuesday;
