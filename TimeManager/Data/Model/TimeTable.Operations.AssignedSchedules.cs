@@ -27,6 +27,10 @@ namespace TimeManager.Data.Model
                 var newSchedule = new AssignedSchedule(assignedTimeBlocks.ToList(), scheduleId);
                 _assignedSchedules.Add(newSchedule);
             }
+            else
+            {
+                AssignSchedule(scheduleId, assignedTimeBlocks);
+            }
         }
 
         public void UnassignSchedule(long scheduleId)
