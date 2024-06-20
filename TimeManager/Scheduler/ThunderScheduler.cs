@@ -77,7 +77,7 @@ namespace TimeManager.Scheduler
             TimeTable newTimeTable = new TimeTable(_timeTable.WorkTimes, _timeTable.AssignedSchedules, _timeTable.AssignedTasks);
 
             IEnumerable<Schedule> schedules = _scheduleManager.GetAll();
-
+            List<AssignedSchedule> IdList = new List<AssignedSchedule>();
             // newtimeTable에서 오늘 이후의 일정 다 지우기.
             DeleteAllScheduleFromTommorow(newTimeTable);
 
@@ -89,12 +89,11 @@ namespace TimeManager.Scheduler
 
                 if (schedule.TimeBlock.StartDate.Date > DateTime.Today.Date)
                 {
-                    AssignedSchedule assignedSchedule = new AssignedSchedule(new List<DateTimeBlock>(), schedule.Id);
-                    assignedSchedule.AssignedBlocks.Add(new DateTimeBlock(schedule.TimeBlock.StartDate, schedule.TimeBlock.EndDate));
-                    assignedSchedule.ScheduleId = schedule.Id;
-                    //assignedSchedule.ScheduleName = schedule.Name;
+                    List<DateTimeBlock> newBlock = new List<DateTimeBlock>();
+                    newBlock.Add(new DateTimeBlock(schedule.TimeBlock.StartDate, schedule.TimeBlock.EndDate));
+                    newTimeTable.AssignSchedule(schedule.Id,newBlock);
 
-                    newTimeTable.AssignedSchedules.Add(assignedSchedule);
+                    //assignedSchedule.ScheduleName = schedule.Name;
                 }
             }
 
@@ -132,26 +131,12 @@ namespace TimeManager.Scheduler
                             assignedSchedule.AssignedBlocks.Add(new DateTimeBlock(
                                 date.Date + TimeSpan.FromHours((int)weeklyDate.StartTime.Hour) + TimeSpan.FromMinutes((int)weeklyDate.StartTime.Minute),
                                 date.Date + TimeSpan.FromHours((int)weeklyDate.EndTime.Hour) + TimeSpan.FromMinutes((int)weeklyDate.EndTime.Minute)));
-                            break;
+                            assignedSchedule.ScheduleId = schedule.Id;
                         }
                     }
                 }
-                newTimeTable.AssignedSchedules.Add(assignedSchedule);
+                newTimeTable.AssignSchedule(assignedSchedule.ScheduleId, assignedSchedule.AssignedBlocks);
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-            _timeTable = newTimeTable;
         }
 
 
