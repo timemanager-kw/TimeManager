@@ -179,35 +179,34 @@ namespace TimeManager.Scheduler
             foreach (Task repTask in repTasks)
             {
                 if (repTask.Type == ETaskType.LongTerm)
-                    continue;
-                if (repTask.EndDate?.Date <= DateTime.Today.Date)
-                    continue;
-                
-                // FocusDays 변경
-                if (repTask.EndDate?.AddDays(-(double)(repTask.FocusDays - 1)) <= DateTime.Now.Date)
-                    repTask.FocusDays = ChangeToFocusDays(repTask.EndDate.GetValueOrDefault(), DateTime.Now.Date);
-
-                // Duration 변경(앞에 사용된 시간만큼 줄이기)
-                foreach (AssignedTask assignedTask in assignedTasks)
                 {
-                    foreach(DateTimeBlock timeBlock in assignedTask.AssignedBlocks)
+                    if (repTask.EndDate?.Date <= DateTime.Today.Date)
+                        continue;
+
+                    // FocusDays 변경
+                    if (repTask.EndDate?.AddDays(-(double)(repTask.FocusDays - 1)) <= DateTime.Now.Date)
+                        repTask.FocusDays = ChangeToFocusDays(repTask.EndDate.GetValueOrDefault(), DateTime.Now.Date);
+
+                    // Duration 변경(앞에 사용된 시간만큼 줄이기)
+                    foreach (AssignedTask assignedTask in assignedTasks)
                     {
-                        //timeBlock이 내일 전인 것들을 찾는다.
-                        if (timeBlock.EndDate.Date <= DateTime.Today.Date)
+                        foreach (DateTimeBlock timeBlock in assignedTask.AssignedBlocks)
                         {
-                            // 그 시간블럭 크기만큼 줄인다.
-                            repTask.Duration -= timeBlock.Duration;
+                            //timeBlock이 내일 전인 것들을 찾는다.
+                            if (timeBlock.EndDate.Date <= DateTime.Today.Date)
+                            {
+                                // 그 시간블럭 크기만큼 줄인다.
+                                repTask.Duration -= timeBlock.Duration;
+                            }
                         }
                     }
                 }
+                else
+                {
+                    continue;
+                }
             }
-
             _schedulerStrategy.Schedule(_timeTable, repTasks);
-            
-
-
-            /*여기서부터 longTerm에 대해서 만들기*/
-            // 요일별로만 따지는것이므로 아마 앞의 것들을 볼 필요 없이 그대로 가면 될듯
 
 
             _timeTableManager.Save(_timeTable);
