@@ -203,6 +203,7 @@ namespace TimeManager.Scheduler
             }
 
             _schedulerStrategy.Schedule(_timeTable, repTasks);
+            
 
 
             /*여기서부터 longTerm에 대해서 만들기*/
