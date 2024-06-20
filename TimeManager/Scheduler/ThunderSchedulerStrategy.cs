@@ -142,9 +142,12 @@ namespace TimeManager.Scheduler
 
             int i = 0; /// 디버깅용
 
-            day_iter.MoveNext();
-
             bool end = false;
+
+            if (!day_iter.MoveNext())
+            {
+                end = true;
+            }
 
             while (!end)
             {
@@ -265,15 +268,32 @@ namespace TimeManager.Scheduler
             }
         }
 
+        private void RandomRange(List<Data.Model.Task> tasks)
+        {
+            Random random = new Random((int)DateTime.Now.Ticks);
+            int n = tasks.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = random.Next(n + 1);
+                Data.Model.Task task = tasks[k];
+                tasks[k] = tasks[n];
+                tasks[n] = task;
+            }
+        }
+
+
         private TempBlock FindExchangableTempBlock(Data.Model.Task task, IEnumerator<Day> day_cursor, int interval)
         {
             Day day = day_cursor.Current;                        // 디버깅용
 
-            if (!day_cursor.MoveNext())
-                return null;
-
             bool end = false;
             DateTime dateTime = day_cursor.Current.dateTime;
+
+
+            if (!day_cursor.MoveNext())             /////////////////////////////////////
+                return null;
+
 
             // task의 EndDate까지의 날짜를 계속 훑어봄.
             while (day_cursor.Current.dateTime <= task.EndDate && !end)
@@ -441,14 +461,13 @@ namespace TimeManager.Scheduler
                 foreach (TempBlock tempBlock in day_iter.Current.tempBlocks)
                 {
                     int interval;
-                    int debug_i = 0;
+
                     while (tempBlock.time_interval != 0)
                     {
-                        debug_i++;
-
+                        day_cursor.Reset();
                         while (day_cursor.MoveNext() && day_cursor.Current != day_iter.Current)
                         {
-                            // MoveNext를 호출하여 day_cursor를 이동시킴
+                            // MoveNext를 호출하여 day_cursor를 "day_iter까지" 이동시킴
                         }
 
                         // 현재 time_interval 값을 통해 interval값 결정.(interval : 잘라낼 timeblock의 interval)
@@ -626,7 +645,6 @@ namespace TimeManager.Scheduler
                     task_arr[timeBlockHandle.startTime + i] = timeBlockHandle.taskBlocks[i];
                 }
             }
-
             return task_arr;
         }
 
@@ -659,7 +677,7 @@ namespace TimeManager.Scheduler
             {
                 List<DateTimeBlock> worktimes = timeTable.GetDailyAvailableTimes(day.dateTime);
                 Data.Model.Task[] task_arr = TimeBlockToArray(worktimes, day);
-                int Length_48 = 48;
+                int Length_48 = 49;
 
                 Data.Model.Task task_iter = null;
                 int task_start = 0;
@@ -727,15 +745,49 @@ namespace TimeManager.Scheduler
             }
         }
 
-        List<Day> longTermTaskAdded(List<Day> days, TimeTable timeTable)
+        List<Day> AddLongTermTasks(List<Day> days, List<Data.Model.Task> tasks)
         {
-            
+            List<Data.Model.Task> longTermTasks = new List<Data.Model.Task>();
 
+            foreach (Data.Model.Task task in tasks)
+            {
+                if(task.Type == ETaskType.LongTerm)
+                {
+                    longTermTasks.Add(task);
+                }
+            }
 
+            RandomRange(longTermTasks);
 
+            foreach(Day day in days)
+            {
+                foreach(Data.Model.Task longTermTask in longTermTasks)
+                {
+                    bool exist = false;
+                    int weeklyDateTimeInterval = 0;
+                    // WeeklyTimesWanted 값 받아오기.
+                    foreach(longTermProperties longTermProperties in  longTermTask.WeeklyTimesWanted)
+                    {
+                        if(longTermProperties.dayOfWeek == day.dateTime.DayOfWeek)
+                        {
+                            weeklyDateTimeInterval = (int)longTermProperties.time.TotalMinutes / 30;
+                            exist = true;
+                            break;
+                        }
+                    }
+                    if (exist == false) continue;
 
+                    if (day.availableTime - day.time_allocated >= 1)
+                    {
+                        int allocate_available = day.availableTime - day.time_allocated;
+                        int allocatable_time = Math.Min(allocate_available, weeklyDateTimeInterval);
 
+                        day.tempBlocks.Add(new TempBlock(longTermTask, allocatable_time));
+                        day.availableTime += allocatable_time;
+                    }
 
+                }
+            }
 
             return days;
         }
@@ -837,16 +889,9 @@ namespace TimeManager.Scheduler
 
             // W.T.D : 덩어리가 큰 것들을 찾아 등분하여 다른곳과 바꿈
             List<Day> daysRandomlyArranged = RandomArrange(days, least_interval);
-
-            List<Day> longTermTaskAdded = longTermTaskAdded(days, timeTable);
-
-
-
-
-
-
-
-
+/*
+            List<Day> longTermTaskAdded = AddLongTermTasks(daysRandomlyArranged, tasks);
+*/
             // W.T.D : TimeTable에 채우기
             FillTimeTable(daysRandomlyArranged, timeTable);
 
