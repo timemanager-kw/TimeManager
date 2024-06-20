@@ -841,9 +841,23 @@ namespace TimeManager.Forms
         {
             if (isAdd)
             {
-                if (_scheduleManager != null) _scheduleManager.Add(schedule);
-                scheduleList.Add(schedule);
+                _scheduleManager.Add(schedule);
+
+                if (schedule.Type == EScheduleType.Singular)
+                {
+                    timeTable.AssignSchedule(schedule.Id, new List<DateTimeBlock>() { schedule.TimeBlock });
+                }
+                else
+                {
+                    List<DateTimeBlock> dateTimeBlocksTmp = new List<DateTimeBlock>();
+                    foreach (WeeklyDateTimeBlock d in schedule.RegularTimeBlocks)
+                    {
+                        dateTimeBlocksTmp.Add(new DateTimeBlock(d.StartTime, d.EndTime));
+                    }
+                    timeTable.AssignSchedule(schedule.Id, dateTimeBlocksTmp);
+                }
             }
+
             AddScheduleForm = null;
             UpdateScheduleView();
         }
@@ -858,8 +872,7 @@ namespace TimeManager.Forms
         {
             if (isAdd)
             {
-                if (_taskManager != null) _taskManager.Add(task);
-                taskList.Add(task);
+                _taskManager.Add(task);
             }
             AddTaskForm = null;
             UpdateTaskView();
