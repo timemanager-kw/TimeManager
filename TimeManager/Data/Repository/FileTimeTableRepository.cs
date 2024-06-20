@@ -26,21 +26,31 @@ namespace TimeManager.Data.Repository
 
         public void Update(TimeTable timeTable)
         {
-            using(StreamWriter writer = new StreamWriter(filePath))
+            using (StreamWriter writer = new StreamWriter(filePath))
             {
-                foreach(var workTime in timeTable.WorkTimes)
+                foreach (var workTime in timeTable.WorkTimes)
                 {
                     writer.WriteLine($"{"WorkTimes:"},{workTime.StartDate},{workTime.EndDate},{workTime.Duration}");
                 }
-                foreach(var schedule in timeTable.AssignedSchedules)
+
+                var schedulesGroupedById = timeTable.AssignedSchedules
+                                                    .GroupBy(schedule => schedule.ScheduleId)
+                                                    .Select(g => g.First());
+
+                foreach (var schedule in schedulesGroupedById)
                 {
-                    string assignedBlocks = string.Join(";", schedule.AssignedBlocks.Select(block => $"{block.StartDate}|{block.EndDate}|{block.Duration}"));
-                    writer.WriteLine($"{"AssignedSchedules:"},{schedule.ScheduleId},{assignedBlocks}");
+                    string assignedScheduleBlock = string.Join(";", schedule.AssignedBlocks.Select(block => $"{block.StartDate}|{block.EndDate}|{block.Duration}"));
+                    writer.WriteLine($"{"AssignedSchedules:"},{schedule.ScheduleId},{assignedScheduleBlock}");
                 }
-                foreach(var task in timeTable.AssignedTasks)
+
+                var tasksGroupedById = timeTable.AssignedTasks
+                                                .GroupBy(task => task.TaskId)
+                                                .Select(g => g.First());
+
+                foreach (var task in tasksGroupedById)
                 {
-                    string assignedBlocks = string.Join(";",task.AssignedBlocks.Select(block =>$"{block.StartDate}|{block.EndDate}|{block.Duration}"));
-                    writer.WriteLine($"{"AssignedTasks"},{task.TaskId},{assignedBlocks}");
+                    string assignedTaskBlock = string.Join(";", task.AssignedBlocks.Select(block => $"{block.StartDate}|{block.EndDate}|{block.Duration}"));
+                    writer.WriteLine($"{"AssignedTasks:"},{task.TaskId},{assignedTaskBlock}");
                 }
             }
         }
