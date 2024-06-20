@@ -205,7 +205,7 @@ namespace TimeManager.Forms
 
                     for (int i = startRow; i < endRow; i++)
                     {
-                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(S" + schedule.ScheduleId + ") " + _scheduleManager.GetById(schedule.ScheduleId).Name + "\n" + _scheduleManager.GetById(schedule.ScheduleId).Description;
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(S" + schedule.ScheduleId + ") " + _scheduleManager.GetById(schedule.ScheduleId).Name;
                         dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = assignColor;
                     }
                 }
@@ -263,7 +263,7 @@ namespace TimeManager.Forms
 
                     for (int i = startRow; i < endRow; i++)
                     {
-                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(T" + task.TaskId + ") " + _taskManager.GetById(task.TaskId).Name + "\n" + _taskManager.GetById(task.TaskId).Description;
+                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(T" + task.TaskId + ") " + _taskManager.GetById(task.TaskId).Name;
                         dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = assignColor;
                     }
                 }
@@ -303,16 +303,96 @@ namespace TimeManager.Forms
             }
         }
 
-        private void AddDescriptOnCells(int row, int col, int maxRox, TimeTableType type, long id)
+        private void MoveScrollToNow()
+        {
+            int nowRow = DateTime.Now.Hour * 2 + DateTime.Now.Minute / 30;
+            dataGridView.FirstDisplayedScrollingRowIndex = nowRow - 5;
+        }
+
+        private void AddDescriptOnCells(Week week)
         {
             string[] descripts;
-            if (type == TimeTableType.Schedule)
+
+            List<AssignedSchedule> schedules = timeTable.GetWeeklyAssignedSchedules(week);
+
+            foreach (AssignedSchedule schedule in schedules)
             {
-                descripts = _scheduleManager.GetById(id).Description.Split(' ');
+                descripts = _scheduleManager.GetById(schedule.ScheduleId).Description.Split(' ');
+
+                foreach (DateTimeBlock block in schedule.AssignedBlocks)
+                {
+                    if (!week.IsInWeek(block.StartDate)) continue;
+
+                    int startRow = block.StartDate.Hour * 2 + block.StartDate.Minute / 30;
+                    int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute / 30;
+
+                    int j = 0;
+                    int x = startRow + 1;
+                    for (; x < endRow; x++)
+                    {
+                        int i = 1;
+                        string rowStr = descripts[0];
+                        dataGridView.Rows[x].Cells[block.StartDate.GetDayOfWeekIndex()].Value = rowStr;
+                        if (descripts.Length < 2)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            for (; i < descripts.Length; )
+                            {
+                                dataGridView.Rows[x].Cells[block.StartDate.GetDayOfWeekIndex()].Value = rowStr;
+                                int colWidth = TextRenderer.MeasureText(dataGridView.Rows[x].Cells[block.StartDate.GetDayOfWeekIndex()].Value.ToString(), dataGridView.Font).Width + 10;
+                                if (colWidth < dataGridView.Columns[1].Width)
+                                {
+                                    //rowStr += $" {descripts[j + i]}";
+                                    i++;
+                                }
+                                else
+                                {
+                                    i--;
+                                    break;
+                                }
+                            }
+
+                            rowStr = string.Empty;
+
+                            for (; j < i; j++)
+                            {
+                                rowStr += $"{descripts[j]} ";
+                            }
+                            dataGridView.Rows[x].Cells[block.StartDate.GetDayOfWeekIndex()].Value = rowStr;
+
+                            if (j >= descripts.Length) break;
+                        }
+                    }
+
+                    for (; j < descripts.Length; j++)
+                    {
+                        dataGridView.Rows[x - 1].Cells[block.StartDate.GetDayOfWeekIndex()].Value += descripts[j];
+                    }
+                }
             }
-            else
+
+            List<AssignedTask> tasks = timeTable.GetWeeklyAssignedTasks(week);
+
+            foreach (AssignedTask task in tasks)
             {
-                descripts = _taskManager.GetById(id).Description.Split(' ');
+                descripts = _taskManager.GetById(task.TaskId).Description.Split(' ');
+
+                foreach (DateTimeBlock block in task.AssignedBlocks)
+                {
+                    if (!week.IsInWeek(block.StartDate)) continue;
+
+                    int startRow = block.StartDate.Hour * 2 + block.StartDate.Minute / 30;
+                    int endRow = block.EndDate.Hour * 2 + block.EndDate.Minute / 30;
+
+                    dataGridView.Rows[startRow].Cells[block.StartDate.GetDayOfWeekIndex()].Value = descripts[0];
+                    for (; TextRenderer.MeasureText(dataGridView.Rows[startRow].Cells[block.StartDate.GetDayOfWeekIndex()].Value.ToString(), dataGridView.Font).Width + 10 < dataGridView.Columns[1].Width;)
+                    {
+
+                    }
+                }
             }
         }
 
@@ -401,6 +481,8 @@ namespace TimeManager.Forms
             {
                 LogTxt.Text = "일정이 없습니다";
             }
+
+            AddDescriptOnCells(Week.From(StandardTime));
         }
 
         void UpdateTaskView()
@@ -472,6 +554,8 @@ namespace TimeManager.Forms
             {
                 LogTxt.Text = "업무가 없습니다";
             }
+
+            AddDescriptOnCells(Week.From(StandardTime));
         }
 
         void EditScheduleForm()
@@ -690,6 +774,7 @@ namespace TimeManager.Forms
             ResizeForm();
 
             InitializeRows();
+            MoveScrollToNow();
             dataGridView.ClearSelection();
 
             TimeBlockView.View = View.Details;
@@ -1100,6 +1185,7 @@ namespace TimeManager.Forms
         private void ScheduleSRemoveBtn_Click(object sender, EventArgs e)
         {
             timeTable.UnassignSchedule(focusedSchedule.Id);
+            _timeTableManager.Save(timeTable);
             _scheduleManager.Delete(focusedSchedule);
             assignedScheduleColor.Remove(focusedSchedule.Id);
             focusedSchedule = null;
@@ -1109,6 +1195,7 @@ namespace TimeManager.Forms
         private void ScheduleRRemoveBtn_Click(object sender, EventArgs e)
         {
             timeTable.UnassignSchedule(focusedSchedule.Id);
+            _timeTableManager.Save(timeTable);
             _scheduleManager.Delete(focusedSchedule);
             assignedScheduleColor.Remove(focusedSchedule.Id);
             focusedSchedule = null;
@@ -1118,6 +1205,7 @@ namespace TimeManager.Forms
         private void TaskSRemoveBtn_Click(object sender, EventArgs e)
         {
             timeTable.UnassignTask(focusedTask.Id);
+            _timeTableManager.Save(timeTable);
             _taskManager.Delete(focusedTask);
             assignedTaskColor.Remove(focusedTask.Id);
             focusedTask = null;
@@ -1127,6 +1215,7 @@ namespace TimeManager.Forms
         private void TaskLRemoveBtn_Click(object sender, EventArgs e)
         {
             timeTable.UnassignTask(focusedTask.Id);
+            _timeTableManager.Save(timeTable);
             _taskManager.Delete(focusedTask);
             assignedTaskColor.Remove(focusedTask.Id);
             focusedTask = null;
