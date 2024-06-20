@@ -28,6 +28,43 @@ namespace TimeManager.Scheduler
             _taskManager = taskManager;
         }
 
+        public void DeleteAllTaskFromTomorrow(TimeTable newTimeTable)
+        {
+            List<AssignedTask> delTask_list = new List<AssignedTask>();
+
+            foreach (AssignedTask a_Task in newTimeTable.AssignedTasks)
+            {
+                List<DateTimeBlock> delBlock_list = new List<DateTimeBlock>();
+
+                foreach (DateTimeBlock del_dateTime in a_Task.AssignedBlocks)
+                {
+                    if (del_dateTime.StartDate.Date > DateTime.Today.Date)
+                    {
+                        delBlock_list.Add(del_dateTime);
+                    }
+                }
+
+                foreach (DateTimeBlock del_element in delBlock_list)
+                {
+                    a_Task.AssignedBlocks.Remove(del_element);
+                }
+                if (a_Task.AssignedBlocks.Count == 0)
+                {
+                    // List에 추가
+                    delTask_list.Add(a_Task);
+                }
+            }
+            foreach (AssignedTask del_element in delTask_list)
+            {
+                newTimeTable.AssignedTasks.Remove(del_element);
+            }
+        }
+
+
+
+
+
+
 
         public void DeleteAllScheduleFromTommorow(TimeTable newTimeTable)
         {
@@ -80,6 +117,8 @@ namespace TimeManager.Scheduler
             List<AssignedSchedule> IdList = new List<AssignedSchedule>();
             // newtimeTable에서 오늘 이후의 일정 다 지우기.
             DeleteAllScheduleFromTommorow(newTimeTable);
+
+
 
             // 오늘로부터의 Schedule 모두 넣기
             foreach (Schedule schedule in schedules)
@@ -154,6 +193,9 @@ namespace TimeManager.Scheduler
 
         public override void ScheduleTasks()
         {
+            TimeTable newTimeTable = new TimeTable(_timeTable.WorkTimes, _timeTable.AssignedSchedules, _timeTable.AssignedTasks);
+            DeleteAllTaskFromTomorrow(newTimeTable);
+
             List<Task> tasks______________ = (List<Task>)_taskManager.GetAll();
             List<AssignedTask> assignedTasks = _timeTable.GetAllAssignedTasks();
             // tasks의 복사본 필요. -> repTasks
