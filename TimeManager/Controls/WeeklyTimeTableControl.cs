@@ -24,7 +24,7 @@ namespace TimeManager.Controls
         private Color _ScheduleBackColor = Color.LightBlue;
         private Color _TaskBackColor = Color.LightGreen;
 
-        private Week _currentWeek;
+        private Week _currentWeek = Week.From(DateTime.Today);
 
         public WeeklyTimeTableControl(IScheduleManager scheduleManager, ITaskManager taskManager)
         {
@@ -37,6 +37,7 @@ namespace TimeManager.Controls
         private void WeeklyTimeTableControl_Load(object sender, EventArgs e)
         {
             InitializeRows();
+            UpdateHeaderDate();
             MoveScrollToNow();
             dataGridView.ClearSelection();
         }
@@ -44,6 +45,15 @@ namespace TimeManager.Controls
         public void SetCurrentWeek(Week week)
         {
             _currentWeek = week;
+            UpdateHeaderDate();
+        }
+
+        private void UpdateHeaderDate()
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                dataGridView.Columns[i].HeaderText = _currentWeek.GetDay(i).ToString("ddd (MM/dd)");
+            }
         }
 
         private void InitializeRows()
