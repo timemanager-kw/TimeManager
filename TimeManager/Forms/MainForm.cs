@@ -778,18 +778,20 @@ namespace TimeManager.Forms
         private void PreBtn_Click(object sender, EventArgs e)
         {
             StandardTime = StandardTime.AddDays(-7);
+            _scheduler.AssignSchdules(Week.From(StandardTime));
             TimeTableView();
         }
 
         private void NextBtn_Click(object sender, EventArgs e)
         {
             StandardTime = StandardTime.AddDays(7);
+            _scheduler.AssignSchdules(Week.From(StandardTime));
             TimeTableView();
         }
 
         private void AlgorithmStarter_Click(object sender, EventArgs e)
         {
-            _scheduler.Run(Week.From(StandardTime).GetDay(6));
+            _scheduler.Run(Week.From(StandardTime));
             TimeTableView();
         }
 
@@ -857,7 +859,7 @@ namespace TimeManager.Forms
                 focusedSchedule.TimeBlock = new DateTimeBlock(startTmp, endTmp);
                 timeTable.ReassignSchedule(focusedSchedule.Id, new List<DateTimeBlock>() { new DateTimeBlock(focusedSchedule.TimeBlock.StartDate, focusedSchedule.TimeBlock.EndDate) });
                 _timeTableManager.Save(timeTable);
-                _scheduler.AssignSchdules(Week.From(StandardTime).GetDay(6));
+                _scheduler.AssignSchdules(Week.From(StandardTime));
             }
             else
             {
@@ -878,7 +880,7 @@ namespace TimeManager.Forms
                 }
                 timeTable.ReassignSchedule(focusedSchedule.Id, dateTimeBlocksTmp);
                 _timeTableManager.Save(timeTable);
-                _scheduler.AssignSchdules(Week.From(StandardTime).GetDay(6));
+                _scheduler.AssignSchdules(Week.From(StandardTime));
             }
             focusedSchedule.Description = LogTxt.Text;
 
@@ -918,7 +920,7 @@ namespace TimeManager.Forms
                 {
                     timeTable.AssignSchedule(schedule.Id, new List<DateTimeBlock>() { schedule.TimeBlock });
                     _timeTableManager.Save(timeTable);
-                    _scheduler.AssignSchdules(Week.From(StandardTime).GetDay(6));
+                    _scheduler.AssignSchdules(Week.From(StandardTime));
                 }
                 else
                 {
@@ -929,7 +931,7 @@ namespace TimeManager.Forms
                     }
                     timeTable.AssignSchedule(schedule.Id, dateTimeBlocksTmp);
                     _timeTableManager.Save(timeTable);
-                    _scheduler.AssignSchdules(Week.From(StandardTime).GetDay(6));
+                    _scheduler.AssignSchdules(Week.From(StandardTime));
                 }
             }
 
