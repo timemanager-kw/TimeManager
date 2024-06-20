@@ -217,8 +217,12 @@ namespace TimeManager.Forms
 
                     for (int i = startRow; i < endRow; i++)
                     {
-                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(S" + schedule.ScheduleId + ") " + _scheduleManager.GetById(schedule.ScheduleId).Name;
-                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = assignColor;
+                        try
+                        {
+                            dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(S" + schedule.ScheduleId + ") " + _scheduleManager.GetById(schedule.ScheduleId).Name;
+                            dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = assignColor;
+                        }
+                        catch (ArgumentException e) { }
                     }
                 }
             }
@@ -275,8 +279,12 @@ namespace TimeManager.Forms
 
                     for (int i = startRow; i < endRow; i++)
                     {
-                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(T" + task.TaskId + ") " + _taskManager.GetById(task.TaskId).Name;
-                        dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = assignColor;
+                        try
+                        {
+                            dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Value = "(T" + task.TaskId + ") " + _taskManager.GetById(task.TaskId).Name;
+                            dataGridView.Rows[i].Cells[block.StartDate.GetDayOfWeekIndex()].Style.BackColor = assignColor;
+                        }
+                        catch (ArgumentException e) { }
                     }
                 }
             }
@@ -886,7 +894,11 @@ namespace TimeManager.Forms
             }
             focusedSchedule.Description = LogTxt.Text;
 
-            _scheduleManager.Update(focusedSchedule);
+            try
+            {
+                _scheduleManager.Update(focusedSchedule);
+            }
+            catch (ArgumentException ex) { }
             UpdateView[(int)viewType]();
         }
 
@@ -908,7 +920,11 @@ namespace TimeManager.Forms
             }
             focusedTask.Description = LogTxt.Text;
 
-            _taskManager.Update(focusedTask);
+            try
+            {
+                _taskManager.Update(focusedTask);
+            }
+            catch (ArgumentException ae) { }
             UpdateView[(int)viewType]();
         }
 
