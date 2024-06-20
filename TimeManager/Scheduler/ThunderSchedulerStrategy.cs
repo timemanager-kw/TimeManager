@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Collections;
 using System.Diagnostics;
 using System.Xml.Serialization;
+using System.Xml;
 
 
 namespace TimeManager.Scheduler
@@ -724,8 +725,34 @@ namespace TimeManager.Scheduler
                     task_iter = task_arr[i];
                 }
             }
-
         }
+
+        List<Day> longTermTaskAdded(List<Day> days, TimeTable timeTable)
+        {
+            
+
+
+
+
+
+
+
+            return days;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -810,6 +837,15 @@ namespace TimeManager.Scheduler
 
             // W.T.D : 덩어리가 큰 것들을 찾아 등분하여 다른곳과 바꿈
             List<Day> daysRandomlyArranged = RandomArrange(days, least_interval);
+
+            List<Day> longTermTaskAdded = longTermTaskAdded(days, timeTable);
+
+
+
+
+
+
+
 
             // W.T.D : TimeTable에 채우기
             FillTimeTable(daysRandomlyArranged, timeTable);
