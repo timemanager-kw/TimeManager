@@ -784,7 +784,9 @@ namespace TimeManager.Forms
                 DateTime endTmp = new DateTime(ScheduleDatePicker.Value.Year, ScheduleDatePicker.Value.Month, ScheduleDatePicker.Value.Day, int.Parse(endHM[0]), int.Parse(endHM[1]), 0);
 
                 focusedSchedule.TimeBlock = new DateTimeBlock(startTmp, endTmp);
-                timeTable.ReassignSchedule(focusedSchedule.Id, new List<DateTimeBlock>() { new DateTimeBlock(focusedSchedule.TimeBlock.StartDate, focusedSchedule.TimeBlock.EndDate) });
+                timeTable.UnassignSchedule(focusedSchedule.Id);
+                timeTable.AssignSchedule(focusedSchedule.Id, new List<DateTimeBlock>() { new DateTimeBlock(focusedSchedule.TimeBlock.StartDate, focusedSchedule.TimeBlock.EndDate) });
+                //timeTable.ReassignSchedule(focusedSchedule.Id, new List<DateTimeBlock>() { new DateTimeBlock(focusedSchedule.TimeBlock.StartDate, focusedSchedule.TimeBlock.EndDate) });
             }
             else
             {
@@ -803,7 +805,9 @@ namespace TimeManager.Forms
                 {
                     dateTimeBlocksTmp.Add(new DateTimeBlock(d.StartTime, d.EndTime));
                 }
-                timeTable.ReassignSchedule(focusedSchedule.Id, dateTimeBlocksTmp);
+                timeTable.UnassignSchedule(focusedSchedule.Id);
+                timeTable.AssignSchedule(focusedSchedule.Id, dateTimeBlocksTmp);
+                //timeTable.ReassignSchedule(focusedSchedule.Id, dateTimeBlocksTmp);
             }
             focusedSchedule.Description = LogTxt.Text;
 
@@ -1069,38 +1073,36 @@ namespace TimeManager.Forms
 
         private void ScheduleSRemoveBtn_Click(object sender, EventArgs e)
         {
+            timeTable.UnassignSchedule(focusedSchedule.Id);
             _scheduleManager.Delete(focusedSchedule);
             assignedScheduleColor.Remove(focusedSchedule.Id);
-            timeTable.UnassignSchedule(focusedSchedule.Id);
             focusedSchedule = null;
             UpdateView[(int)viewType]();
         }
 
         private void ScheduleRRemoveBtn_Click(object sender, EventArgs e)
         {
+            timeTable.UnassignSchedule(focusedSchedule.Id);
             _scheduleManager.Delete(focusedSchedule);
             assignedScheduleColor.Remove(focusedSchedule.Id);
-            timeTable.UnassignSchedule(focusedSchedule.Id);
             focusedSchedule = null;
             UpdateView[(int)viewType]();
         }
 
         private void TaskSRemoveBtn_Click(object sender, EventArgs e)
         {
+            timeTable.UnassignTask(focusedTask.Id);
             _taskManager.Delete(focusedTask);
             assignedTaskColor.Remove(focusedTask.Id);
-            timeTable.UnassignTask(focusedTask.Id);
-            AlgorithmStarter_Click(null, null);
             focusedTask = null;
             UpdateView[(int)viewType]();
         }
 
         private void TaskLRemoveBtn_Click(object sender, EventArgs e)
         {
+            timeTable.UnassignTask(focusedTask.Id);
             _taskManager.Delete(focusedTask);
             assignedTaskColor.Remove(focusedTask.Id);
-            timeTable.UnassignTask(focusedTask.Id);
-            AlgorithmStarter_Click(null, null);
             focusedTask = null;
             UpdateView[(int)viewType]();
         }
