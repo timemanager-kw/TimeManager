@@ -90,7 +90,7 @@ namespace TimeManager.Forms
                     }
 
                     Task.Duration = new TimeSpan(0, int.Parse(TaskDurationCmb.Text.Split(':')[0]) * 60 + int.Parse(TaskDurationCmb.Text.Split(':')[1]), 0);
-                    Task.FocusDays = AddLongTaskIsTrue.Checked ? (int)(AddShortTaskEndDatePicker.Value - AddShortTaskStartDatePicker.Value).TotalDays + 1 : (int)(AddShortTaskEndDatePicker.Value - AddShortTaskStartDatePicker.Value).TotalDays;
+                    Task.FocusDays = (int)(AddShortTaskEndDatePicker.Value - AddShortTaskStartDatePicker.Value).TotalDays + 1;
 
                     MainForm.CloseAddTask(true, Task);
                     Close();
