@@ -53,6 +53,8 @@ namespace TimeManager.Forms
         public Action[] UpdateView;
         public Action[] CurrentTimeBlockInfo;
 
+        Week week;
+
         Color noneSelectedColor, selectedColor;
 
         Dictionary<long, Color> assignedScheduleColor = new Dictionary<long, Color>();
@@ -102,7 +104,7 @@ namespace TimeManager.Forms
 
         public void TimeTableView()
         {
-            Week week = Week.From(StandardTime);
+            week = Week.From(StandardTime);
             WeekLabel.Text = $"{week.Year}.{week.Month} {week.WeekOfMonth}주차";
 
             timeTable = _timeTableManager.Get();
@@ -783,7 +785,7 @@ namespace TimeManager.Forms
 
         private void AlgorithmStarter_Click(object sender, EventArgs e)
         {
-            _scheduler.Run();
+            _scheduler.Run(week.GetDay(6));
             TimeTableView();
         }
 
@@ -851,6 +853,7 @@ namespace TimeManager.Forms
                 focusedSchedule.TimeBlock = new DateTimeBlock(startTmp, endTmp);
                 timeTable.ReassignSchedule(focusedSchedule.Id, new List<DateTimeBlock>() { new DateTimeBlock(focusedSchedule.TimeBlock.StartDate, focusedSchedule.TimeBlock.EndDate) });
                 _timeTableManager.Save(timeTable);
+                _scheduler.AssignSchdules(week.GetDay(6));
             }
             else
             {
@@ -871,6 +874,7 @@ namespace TimeManager.Forms
                 }
                 timeTable.ReassignSchedule(focusedSchedule.Id, dateTimeBlocksTmp);
                 _timeTableManager.Save(timeTable);
+                _scheduler.AssignSchdules(week.GetDay(6));
             }
             focusedSchedule.Description = LogTxt.Text;
 
@@ -910,6 +914,7 @@ namespace TimeManager.Forms
                 {
                     timeTable.AssignSchedule(schedule.Id, new List<DateTimeBlock>() { schedule.TimeBlock });
                     _timeTableManager.Save(timeTable);
+                    _scheduler.AssignSchdules(week.GetDay(6));
                 }
                 else
                 {
@@ -920,6 +925,7 @@ namespace TimeManager.Forms
                     }
                     timeTable.AssignSchedule(schedule.Id, dateTimeBlocksTmp);
                     _timeTableManager.Save(timeTable);
+                    _scheduler.AssignSchdules(week.GetDay(6));
                 }
             }
 
