@@ -53,8 +53,6 @@ namespace TimeManager.Forms
         public Action[] UpdateView;
         public Action[] CurrentTimeBlockInfo;
 
-        Week week;
-
         Color noneSelectedColor, selectedColor;
 
         Dictionary<long, Color> assignedScheduleColor = new Dictionary<long, Color>();
@@ -104,7 +102,7 @@ namespace TimeManager.Forms
 
         public void TimeTableView()
         {
-            week = Week.From(StandardTime);
+            Week week = Week.From(StandardTime);
             WeekLabel.Text = $"{week.Year}.{week.Month} {week.WeekOfMonth}주차";
 
             timeTable = _timeTableManager.Get();
@@ -308,12 +306,15 @@ namespace TimeManager.Forms
 
                     UpdateView[(int)viewType]();
 
-                    TimeBlockView.Items[i].Selected = true;
-                    TimeBlockView.FocusedItem = TimeBlockView.Items[i];
+                    if (i != -1)
+                    {
+                        TimeBlockView.Items[i].Selected = true;
+                        TimeBlockView.FocusedItem = TimeBlockView.Items[i];
 
-                    focusedSchedule = scheduleList[i];
+                        focusedSchedule = scheduleList[i];
 
-                    CurrentTimeBlockInfo[(int)viewType]();
+                        CurrentTimeBlockInfo[(int)viewType]();
+                    }
                 }
                 else
                 {
@@ -323,12 +324,15 @@ namespace TimeManager.Forms
 
                     UpdateView[(int)viewType]();
 
-                    TimeBlockView.Items[i].Selected = true;
-                    TimeBlockView.FocusedItem = TimeBlockView.Items[i];
+                    if (i != -1)
+                    {
+                        TimeBlockView.Items[i].Selected = true;
+                        TimeBlockView.FocusedItem = TimeBlockView.Items[i];
 
-                    focusedTask = taskList[i];
+                        focusedTask = taskList[i];
 
-                    CurrentTimeBlockInfo[(int)viewType]();
+                        CurrentTimeBlockInfo[(int)viewType]();
+                    }
                 }
             }
 
@@ -785,7 +789,7 @@ namespace TimeManager.Forms
 
         private void AlgorithmStarter_Click(object sender, EventArgs e)
         {
-            _scheduler.Run(week.GetDay(6));
+            _scheduler.Run(Week.From(StandardTime).GetDay(6));
             TimeTableView();
         }
 
@@ -853,7 +857,7 @@ namespace TimeManager.Forms
                 focusedSchedule.TimeBlock = new DateTimeBlock(startTmp, endTmp);
                 timeTable.ReassignSchedule(focusedSchedule.Id, new List<DateTimeBlock>() { new DateTimeBlock(focusedSchedule.TimeBlock.StartDate, focusedSchedule.TimeBlock.EndDate) });
                 _timeTableManager.Save(timeTable);
-                _scheduler.AssignSchdules(week.GetDay(6));
+                _scheduler.AssignSchdules(Week.From(StandardTime).GetDay(6));
             }
             else
             {
@@ -874,7 +878,7 @@ namespace TimeManager.Forms
                 }
                 timeTable.ReassignSchedule(focusedSchedule.Id, dateTimeBlocksTmp);
                 _timeTableManager.Save(timeTable);
-                _scheduler.AssignSchdules(week.GetDay(6));
+                _scheduler.AssignSchdules(Week.From(StandardTime).GetDay(6));
             }
             focusedSchedule.Description = LogTxt.Text;
 
@@ -914,7 +918,7 @@ namespace TimeManager.Forms
                 {
                     timeTable.AssignSchedule(schedule.Id, new List<DateTimeBlock>() { schedule.TimeBlock });
                     _timeTableManager.Save(timeTable);
-                    _scheduler.AssignSchdules(week.GetDay(6));
+                    _scheduler.AssignSchdules(Week.From(StandardTime).GetDay(6));
                 }
                 else
                 {
@@ -925,7 +929,7 @@ namespace TimeManager.Forms
                     }
                     timeTable.AssignSchedule(schedule.Id, dateTimeBlocksTmp);
                     _timeTableManager.Save(timeTable);
-                    _scheduler.AssignSchdules(week.GetDay(6));
+                    _scheduler.AssignSchdules(Week.From(StandardTime).GetDay(6));
                 }
             }
 
