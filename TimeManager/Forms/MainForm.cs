@@ -364,7 +364,7 @@ namespace TimeManager.Forms
         private void MoveScrollToNow()
         {
             int nowRow = DateTime.Now.Hour * 2 + DateTime.Now.Minute / 30;
-            dataGridView.FirstDisplayedScrollingRowIndex = nowRow - 5;
+            dataGridView.FirstDisplayedScrollingRowIndex = nowRow;
         }
 
         private bool IsSameCellValue(int column, int row)
