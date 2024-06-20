@@ -1157,40 +1157,62 @@ namespace TimeManager.Forms
 
         private void ScheduleSRemoveBtn_Click(object sender, EventArgs e)
         {
-            timeTable.UnassignSchedule(focusedSchedule.Id);
-            _timeTableManager.Save(timeTable);
-            _scheduleManager.Delete(focusedSchedule);
             assignedScheduleColor.Remove(focusedSchedule.Id);
+            List<AssignedSchedule> assignedSchedules = timeTable.GetAllAssignedSchedules();
+
+            if (assignedSchedules.FindIndex(s => s.ScheduleId == focusedSchedule.Id) != -1)
+            {
+                timeTable.UnassignSchedule(focusedSchedule.Id);
+                _timeTableManager.Save(timeTable);
+            }
+            _scheduleManager.Delete(focusedSchedule);
             focusedSchedule = null;
             UpdateView[(int)viewType]();
         }
 
         private void ScheduleRRemoveBtn_Click(object sender, EventArgs e)
         {
-            timeTable.UnassignSchedule(focusedSchedule.Id);
-            _timeTableManager.Save(timeTable);
-            _scheduleManager.Delete(focusedSchedule);
             assignedScheduleColor.Remove(focusedSchedule.Id);
+            List<AssignedSchedule> assignedSchedules = timeTable.GetAllAssignedSchedules();
+
+            if (assignedSchedules.FindIndex(s => s.ScheduleId == focusedSchedule.Id) != -1)
+            {
+                timeTable.UnassignSchedule(focusedSchedule.Id);
+                _timeTableManager.Save(timeTable);
+            }
+            _scheduleManager.Delete(focusedSchedule);
             focusedSchedule = null;
             UpdateView[(int)viewType]();
         }
 
         private void TaskSRemoveBtn_Click(object sender, EventArgs e)
         {
-            timeTable.UnassignTask(focusedTask.Id);
-            _timeTableManager.Save(timeTable);
-            _taskManager.Delete(focusedTask);
             assignedTaskColor.Remove(focusedTask.Id);
+            List<AssignedTask> assignedTasks = timeTable.GetAllAssignedTasks();
+
+            if (assignedTasks.FindIndex(t => t.TaskId == focusedTask.Id) != -1)
+            {
+                timeTable.UnassignTask(focusedTask.Id);
+                _timeTableManager.Save(timeTable);
+            }
+            _taskManager.Delete(focusedTask);
+
             focusedTask = null;
             UpdateView[(int)viewType]();
         }
 
         private void TaskLRemoveBtn_Click(object sender, EventArgs e)
         {
-            timeTable.UnassignTask(focusedTask.Id);
-            _timeTableManager.Save(timeTable);
-            _taskManager.Delete(focusedTask);
             assignedTaskColor.Remove(focusedTask.Id);
+            List<AssignedTask> assignedTasks = timeTable.GetAllAssignedTasks();
+
+            if (assignedTasks.FindIndex(t => t.TaskId == focusedTask.Id) != -1)
+            {
+                timeTable.UnassignTask(focusedTask.Id);
+                _timeTableManager.Save(timeTable);
+            }
+            _taskManager.Delete(focusedTask);
+
             focusedTask = null;
             UpdateView[(int)viewType]();
         }
