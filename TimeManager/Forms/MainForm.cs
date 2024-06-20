@@ -849,9 +849,8 @@ namespace TimeManager.Forms
                 DateTime endTmp = new DateTime(ScheduleDatePicker.Value.Year, ScheduleDatePicker.Value.Month, ScheduleDatePicker.Value.Day, int.Parse(endHM[0]), int.Parse(endHM[1]), 0);
 
                 focusedSchedule.TimeBlock = new DateTimeBlock(startTmp, endTmp);
-                timeTable.UnassignSchedule(focusedSchedule.Id);
-                timeTable.AssignSchedule(focusedSchedule.Id, new List<DateTimeBlock>() { new DateTimeBlock(focusedSchedule.TimeBlock.StartDate, focusedSchedule.TimeBlock.EndDate) });
-                //timeTable.ReassignSchedule(focusedSchedule.Id, new List<DateTimeBlock>() { new DateTimeBlock(focusedSchedule.TimeBlock.StartDate, focusedSchedule.TimeBlock.EndDate) });
+                timeTable.ReassignSchedule(focusedSchedule.Id, new List<DateTimeBlock>() { new DateTimeBlock(focusedSchedule.TimeBlock.StartDate, focusedSchedule.TimeBlock.EndDate) });
+                _timeTableManager.Save(timeTable);
             }
             else
             {
@@ -870,9 +869,8 @@ namespace TimeManager.Forms
                 {
                     dateTimeBlocksTmp.Add(new DateTimeBlock(d.StartTime, d.EndTime));
                 }
-                timeTable.UnassignSchedule(focusedSchedule.Id);
-                timeTable.AssignSchedule(focusedSchedule.Id, dateTimeBlocksTmp);
-                //timeTable.ReassignSchedule(focusedSchedule.Id, dateTimeBlocksTmp);
+                timeTable.ReassignSchedule(focusedSchedule.Id, dateTimeBlocksTmp);
+                _timeTableManager.Save(timeTable);
             }
             focusedSchedule.Description = LogTxt.Text;
 
