@@ -884,16 +884,23 @@ namespace TimeManager.Scheduler
 
 
 
-            // W.T.D : 이제 days의 day에 repl_tasks의 repl_task를 넣기
-            FillDaysWithTasks(repl_tasks, days);
+            try
+            {
+                // W.T.D : 이제 days의 day에 repl_tasks의 repl_task를 넣기
+                FillDaysWithTasks(repl_tasks, days);
 
-            // W.T.D : 덩어리가 큰 것들을 찾아 등분하여 다른곳과 바꿈
-            List<Day> daysRandomlyArranged = RandomArrange(days, least_interval);
+                // W.T.D : 덩어리가 큰 것들을 찾아 등분하여 다른곳과 바꿈
+                List<Day> daysRandomlyArranged = RandomArrange(days, least_interval);
 /*
-            List<Day> longTermTaskAdded = AddLongTermTasks(daysRandomlyArranged, tasks);
+                List<Day> longTermTaskAdded = AddLongTermTasks(daysRandomlyArranged, tasks);
 */
-            // W.T.D : TimeTable에 채우기
-            FillTimeTable(daysRandomlyArranged, timeTable);
+                // W.T.D : TimeTable에 채우기
+                FillTimeTable(daysRandomlyArranged, timeTable);
+            }
+            catch (TimeOverflowException e)
+            {
+                MessageBox.Show(e.Message);
+            }
 
             return;
         }
