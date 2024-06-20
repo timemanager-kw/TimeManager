@@ -100,7 +100,7 @@ namespace TimeManager.Scheduler
 
             /////////////////////////////////////////////////////////
             // 정기
-            DateTime endDateTime = DateTime.MinValue;
+            DateTime endDateTime = limitDate;
             List<Task> tasks = (List<Task>)_taskManager.GetAll();
 
             foreach (Data.Model.Task task in tasks)
