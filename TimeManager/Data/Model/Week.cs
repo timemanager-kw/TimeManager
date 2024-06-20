@@ -41,5 +41,11 @@ namespace TimeManager.Data.Model
             DateTime endOfWeek = startOfWeek.AddDays(7);
             return dateTime >= startOfWeek && dateTime < endOfWeek;
         }
+
+        public DateTime GetDay(int dayOfWeek)
+        {
+            DateTime startOfWeek = new DateTime(Year, Month, 1).FirstDayOfMonthHasDayOfWeek(DayOfWeek.Monday).AddDays((WeekOfMonth - 1) * 7);
+            return startOfWeek.AddDays(dayOfWeek);
+        }
     }
 }
