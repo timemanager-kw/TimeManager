@@ -783,7 +783,8 @@ namespace TimeManager.Scheduler
                         int allocatable_time = Math.Min(allocate_available, weeklyDateTimeInterval);
 
                         day.tempBlocks.Add(new TempBlock(longTermTask, allocatable_time));
-                        day.availableTime += allocatable_time;
+                        day.availableTime -= allocatable_time; // MARK: 배치한 만큼 가용시간을 제거하도록 수정
+                        day.time_allocated += allocatable_time; // MARK: 배치한 만큼 시간이 채워졌다고 표시
                     }
 
                 }
