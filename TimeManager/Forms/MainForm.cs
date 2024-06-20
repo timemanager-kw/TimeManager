@@ -758,6 +758,8 @@ namespace TimeManager.Forms
 
             UpdateView[0]();
 
+            _scheduler.AssignSchdules(Week.From(StandardTime));
+
             TimeTableView();
 
             CleanEditPanel();
