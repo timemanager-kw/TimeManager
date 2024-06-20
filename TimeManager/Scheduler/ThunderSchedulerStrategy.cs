@@ -476,7 +476,7 @@ namespace TimeManager.Scheduler
                         else interval = tempBlock.time_interval;
 
                         // 일단 50% 확률로 빈공간에 채우기 or tempblock과 바꾸기
-                        if (PercentRandom(50))
+                        if (PercentRandom(40))
                         {
                             // 위치를 바꿀 수 있는 Temp를 찾는다.(changableTemp)
                             TempBlock changableTemp = FindExchangableTempBlock(tempBlock.task, day_cursor, interval);
@@ -624,8 +624,6 @@ namespace TimeManager.Scheduler
                     break;
                 }
 
-                int z = 0;      // 디버깅용
-
                 // 2) timeBlockHandles에서 blank가 제일 큰 것 찾기
                 foreach (TimeBlockHandle timeBlockHandle in timeBlockHandles)
                 {
@@ -635,8 +633,6 @@ namespace TimeManager.Scheduler
                         max_timeBlockHandle = timeBlockHandle;
                     }
                 }
-
-                int x = 0;      // 디버깅용
 
                 // 3) allocate가 큰 부분부터 채우며 넣기
                 for (int i = 0; i < max_available; i++)
@@ -653,13 +649,16 @@ namespace TimeManager.Scheduler
                 }
             }
 
-            int y = 0;      // 디버깅용
-
             foreach (TimeBlockHandle timeBlockHandle in timeBlockHandles)
             {
+                int space = timeBlockHandle.blank;
+                Random random = new Random((int)DateTime.Now.Ticks);
+
+                space = random.Next(0, space + 1);
+
                 for (int i = 0; i < timeBlockHandle.taskBlocks.Count(); i++)
                 {
-                    task_arr[timeBlockHandle.startTime + i] = timeBlockHandle.taskBlocks[i];
+                    task_arr[space + timeBlockHandle.startTime + i] = timeBlockHandle.taskBlocks[i];
                 }
             }
             return task_arr;
