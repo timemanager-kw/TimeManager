@@ -94,12 +94,12 @@ namespace TimeManager.Data.Model
             if (currWeek < -48)
                 return new List<DateTimeBlock>();
 
-            IEnumerable<DateTimeBlock> scheduleTimes = GetDailyAssignedSchedules(originalDate)
-                .SelectMany(s => s.AssignedBlocks);
+            List<DateTimeBlock> scheduleTimes = GetDailyAssignedSchedules(originalDate)
+                .SelectMany(s => s.AssignedBlocks).ToList();
 
-            IEnumerable<DateTimeBlock> dailyWorkTimes = _workTimes
+            List<DateTimeBlock> dailyWorkTimes = _workTimes
                 .Where(b => b.StartDate.Date == date.Date)
-                .Select(b => new DateTimeBlock(b.StartDate.AddDays(-(currWeek * 7)), b.EndDate.AddDays(-(currWeek * 7))));
+                .Select(b => new DateTimeBlock(b.StartDate.AddDays(-(currWeek * 7)), b.EndDate.AddDays(-(currWeek * 7)))).ToList();
 
             if (dailyWorkTimes.Count() == 0)
                 return _GetDailyAvailableTimes(date.AddDays(-7), originalDate, currWeek - 1);
