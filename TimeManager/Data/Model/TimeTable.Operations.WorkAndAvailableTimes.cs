@@ -80,18 +80,6 @@ namespace TimeManager.Data.Model
 
             return (List<DateTimeBlock>) DateTimeBlock.Difference(workTimes, scheduleTimesInThisWeek);
         }
-        
-        public bool IsAvailable(DateTimeBlock timeBlock)
-        {
-            if (timeBlock.StartDate.ToString("yyyy-MM-dd") != timeBlock.EndDate.ToString("yyyy-MM-dd"))
-            {
-                // TODO: 여러 날짜에 걸친 TimeBlock 처리 지원 
-                throw new ArgumentException("TimeBlock should be in the same day.");
-            }
-
-            IEnumerable<DateTimeBlock> availableTimes = GetDailyAvailableTimes(timeBlock.StartDate);
-            return availableTimes.Any(t => t.StartDate <= timeBlock.StartDate && t.EndDate >= timeBlock.EndDate);
-        }
 
         public List<DateTimeBlock> GetDailyAvailableTimes(DateTime date)
         {

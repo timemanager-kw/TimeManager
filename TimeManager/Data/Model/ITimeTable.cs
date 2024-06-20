@@ -18,7 +18,6 @@ namespace TimeManager.Data.Model
         List<DateTimeBlock> GetWeeklyAvailableTimes(Week week);
         List<DateTimeBlock> GetAvailableTimesInThisWeekAsOfNow();
         List<DateTimeBlock> GetAvailableTimesInDaysBlock(DateTimeBlock timeBlock);
-        bool IsAvailable(DateTimeBlock timeBlock);
 
         /* AssignedSchedule Operations */
         void AssignSchedule(long scheduleId, IEnumerable<DateTimeBlock> assignedTimeBlocks);
