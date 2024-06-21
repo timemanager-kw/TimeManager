@@ -34,7 +34,7 @@ namespace TimeManager.Data.Model
                 bool overlap = false;
                 foreach(var subtrahendBlock in subtrahend)
                 {
-                    if(!(minuendBlock.EndDate < subtrahendBlock.StartDate) || (minuendBlock.StartDate > subtrahendBlock.EndDate)){
+                    if(!(minuendBlock.EndDate < subtrahendBlock.StartDate || minuendBlock.StartDate > subtrahendBlock.EndDate)){
                         overlap = true;
                         if ((minuendBlock.StartDate < subtrahendBlock.StartDate) && minuendBlock.EndDate < subtrahendBlock.EndDate) {
                             DateTimeBlock canTime = new DateTimeBlock();
