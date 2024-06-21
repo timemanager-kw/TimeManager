@@ -45,8 +45,8 @@ namespace TimeManager.Data.Model
                         else if((minuendBlock.StartDate>subtrahendBlock.StartDate) && (minuendBlock.EndDate > subtrahendBlock.EndDate))
                         {
                             DateTimeBlock canTIme = new DateTimeBlock();
-                            canTIme.StartDate = minuendBlock.StartDate;
-                            canTIme.EndDate = subtrahendBlock.EndDate;
+                            canTIme.StartDate = subtrahendBlock.EndDate;
+                            canTIme.EndDate = minuendBlock.EndDate;
                             difference.Add(canTIme);
                         }
                         else if ((minuendBlock.StartDate <= subtrahendBlock.StartDate) && (subtrahendBlock.EndDate <= minuendBlock.EndDate))
