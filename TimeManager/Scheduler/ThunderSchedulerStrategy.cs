@@ -924,12 +924,12 @@ namespace TimeManager.Scheduler
 
                 foreach(var day in daysRandomlyArranged)
                 {
-                    Debug.WriteLine(day.dateTime + ": " + "가용시간) " + day.availableTime + "  할당된 시간 ) " + day.time_allocated );
-                    foreach (var tempBlock in day.tempBlocks)
-                    {
-                        Debug.WriteLine("tempBlock -> task : " + tempBlock.task.Name + " time_interval : " + tempBlock.time_interval);
-                    }
-                    Debug.WriteLine("\n");
+                    //Debug.WriteLine(day.dateTime + ": " + "가용시간) " + day.availableTime + "  할당된 시간 ) " + day.time_allocated );
+                    //foreach (var tempBlock in day.tempBlocks)
+                    //{
+                    //    Debug.WriteLine("tempBlock -> task : " + tempBlock.task.Name + " time_interval : " + tempBlock.time_interval);
+                    //}
+                    //Debug.WriteLine("\n");
                 }
 
 
