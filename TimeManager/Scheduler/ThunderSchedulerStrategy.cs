@@ -508,6 +508,7 @@ namespace TimeManager.Scheduler
                                     {
                                         temp.time_interval += interval;
                                         found = true;
+                                        AutoAllocatedTimeHandle(day_f_copied);
                                         break;
                                     }
                                 }
@@ -543,6 +544,7 @@ namespace TimeManager.Scheduler
                                     {
                                         temp.time_interval += interval;
                                         found = true;
+                                        AutoAllocatedTimeHandle(day_f_copied);
                                         break;
                                     }
                                 }
@@ -919,6 +921,25 @@ namespace TimeManager.Scheduler
 
                 // W.T.D : 덩어리가 큰 것들을 찾아 등분하여 다른곳과 바꿈
                 List<Day> daysRandomlyArranged = RandomArrange(days, least_interval);
+
+                foreach(var day in daysRandomlyArranged)
+                {
+                    Debug.WriteLine(day.dateTime + ": " + "가용시간) " + day.availableTime + "  할당된 시간 ) " + day.time_allocated );
+                    foreach (var tempBlock in day.tempBlocks)
+                    {
+                        Debug.WriteLine("tempBlock -> task : " + tempBlock.task.Name + " time_interval : " + tempBlock.time_interval);
+                    }
+                    Debug.WriteLine("\n");
+                }
+
+
+/*
+                foreach (var tempBlock in dateTimeBlocks)
+                {
+                    Debug.WriteLine("dateTimeBlock -> start : " + tempBlock.StartDate + " end : " + tempBlock.EndDate);
+                }
+
+*/
 
                 List<Day> longTermTaskAdded = AddLongTermTasks(daysRandomlyArranged, tasks);
 
